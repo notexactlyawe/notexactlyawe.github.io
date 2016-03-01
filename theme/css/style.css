@@ -8,5 +8,13 @@
   font-size: .8rem;
   font-weight: bold;
   float: left;
-  width: 90%;
+  width: 80%;
 }
+
+.sidebar-nav-item {
+    margin: .2rem .2rem 0 .2rem;
+}
+
+.links-container {
+    width: 100%;
+   }
