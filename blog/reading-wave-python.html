@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href="http://gmpg.org/xfn/11" rel="profile">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- Enable responsiveness on mobile devices-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+		<title>Cameron MacLeod</title>
+
+		<!-- CSS -->
+		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
+		<link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Abril+Fatface|PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
+
+		<link rel="stylesheet" href="/theme/css/poole.css" />
+		<link rel="stylesheet" href="/theme/css/hyde.css" />
+		<link rel="stylesheet" href="/theme/css/syntax.css" />
+        <link rel="stylesheet" href="/theme/css/style.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		<!-- RSS -->
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	</head>
+
+	<body class="theme-base-0d">
+<div class="sidebar">
+	<div class="container sidebar-sticky">
+		<div class="sidebar-about">
+
+			<h1>
+				<a href="/">
+					<img class="profile-picture" src="/images/profile.jpg">
+					Cameron MacLeod
+				</a>
+			</h1>
+			<p class="lead"></p>
+			<p class="lead"> </p>
+			<p></p>
+		</div>
+        <div class="links-container">
+		<div>
+                <a class="sidebar-links-item" href="/about">
+                    About
+                </a>
+                <a class="sidebar-links-item" href="/cv">
+                    CV
+                </a>
+                <a class="sidebar-links-item" href="/projects">
+                    Projects
+                </a>
+        </div>
+		<nav class="sidebar-nav">
+					<a class="sidebar-nav-item" href="http://twitter.com/notexactlyawe">
+						<i class="fa fa-twitter"></i>
+					</a>
+					<a class="sidebar-nav-item" href="https://uk.linkedin.com/in/cameronjohnmacleod">
+						<i class="fa fa-linkedin"></i>
+					</a>
+					<a class="sidebar-nav-item" href="https://github.com/notexactlyawe">
+						<i class="fa fa-github"></i>
+					</a>
+					<a class="sidebar-nav-item" href="https://www.flickr.com/photos/rotor132">
+						<i class="fa fa-flickr"></i>
+					</a>
+			<a class="sidebar-nav-item" href="">
+				<i class="fa fa-feed"></i>
+			</a>
+		</nav>
+	    </div>
+    </div>
+</div>		<div class="content container">
+<div class="post">
+	<h1 class="post-title">How to read WAVE files in Python</h1>
+	<span class="post-date">Thu 07 April 2016</span>
+	<p>Any project that uses audio will usually start out using WAVE files for its on-disk presence, and as with many things in Python, there's a standard library module for that. Now don't get me wrong in the rest of this article - <code>wave</code> does the job. The thing is that it can be a bit confusing to get started with and it's not <em>always</em> the best tool for the job. This post will go over my journey in reading WAVEs and the various approaches I found.</p>
+<p>When you read <a href="https://docs.python.org/2/library/wave.html">the documentation</a> for <code>wave</code>, you quickly find the <code>readframes()</code> function for reading the meat of the file. This just as quickly poses a problem, that of how to parse the data it returns.</p>
+<div class="highlight"><pre>&#39;\xd04\xd52\xd63\x824...&#39;
+</pre></div>
+
+
+<p>Of course, this wouldn't pose even the hint of a problem if we bothered to read <a href="http://www-mmsp.ece.mcgill.ca/documents/audioformats/wave/wave.html">the spec</a> for wave files, but who reads those? As a result, I found myself writing some convoluted string parser that was the textbook example of treating the symptom as opposed to the cause. It also didn't really work. It would technically be a valid solution, but there is little point getting it up and running because there are better ways.</p>
+<p>The next level up is discovering the <code>struct</code> module. <code>struct</code> is a module that allows for the reading of raw binary data into native Python types that I discovered - after some pained googling - in [this Stack Overflow question]. <code>struct.unpack()</code> contains all of the magic that we need. It takes a format string and the data that you want to extract. The below is an example from the git history of <a href="http://github.com/notexactlyawe/abracadabra">abracadabra</a>.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">read_whole</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">wav_r</span> <span class="o">=</span> <span class="n">wave</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">wav_r</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">wav_r</span><span class="o">.</span><span class="n">getnframes</span><span class="p">():</span>
+        <span class="n">decoded</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&quot;&lt;h&quot;</span><span class="p">,</span> <span class="n">wav_r</span><span class="o">.</span><span class="n">readframes</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">decoded</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span>
+</pre></div>
+
+
+<p>As a quick explanation of the format string, the <code>&lt;</code> indicates little-endian data (defined in the spec) and the <code>h</code> 1 signed 16-bit int. Before you think "Hooray, a code snippet! I can leave now.", there are a few problems with this approach. Firstly, wave data is not guaranteed to contain int16s and so this would fall down on a good number of files. Second, it's horrendously slow.</p>
+<p>Tackling the second issue first, you could minimise the number of calls to <code>unpack()</code>. Calling it with fmt as <code>"&lt;hh"</code> it would expect two int16s, <code>"&lt;hhhhh"</code> would expect 5. You could change the above code to use this as so:</p>
+<div class="highlight"><pre><span class="o">...</span>
+<span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="k">while</span> <span class="n">wav_r</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">wav_r</span><span class="o">.</span><span class="n">getnframes</span><span class="p">():</span>
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s">&quot;&lt;&quot;</span> <span class="o">+</span> <span class="s">&quot;h&quot;</span> <span class="o">*</span> <span class="n">chunk_size</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">decoded</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="n">wav_r</span><span class="o">.</span><span class="n">readframes</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">))</span>
+    <span class="k">except</span> <span class="n">struct</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+        <span class="c"># (w.getnframes() - w.tell()) &lt; chunk_size</span>
+        <span class="n">tmp_size</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">getnframes</span><span class="p">()</span> <span class="o">-</span> <span class="n">w</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
+        <span class="n">tmp_fmt</span> <span class="o">=</span> <span class="s">&quot;&lt;&quot;</span> <span class="o">+</span> <span class="s">&quot;h&quot;</span> <span class="o">*</span> <span class="n">chunk_size</span>
+        <span class="n">decoded</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">tmp_fmt</span><span class="p">,</span> <span class="n">wav_r</span><span class="o">.</span><span class="n">readframes</span><span class="p">(</span><span class="n">tmp_size</span><span class="p">))</span>
+<span class="o">...</span>
+</pre></div>
+
+
+<p>Yet again, as this article is a journey as opposed to a straight out answer, this ugly hack does not come recommended. In general, I find that ugly code == doing things wrong. This example is no different, but is easily fixed.</p>
+<div class="highlight"><pre><span class="o">...</span>
+<span class="n">fmt</span> <span class="o">=</span> <span class="s">&quot;&lt;{0}h&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">)</span>
+<span class="o">...</span>
+</pre></div>
+
+
+<p>As an aside, if you are not already using this way to construct format strings, please take the time to internalise it. But back to the change, this works due to an unremarkable looking line in the docs for <code>struct</code>.</p>
+<blockquote>
+<p>A format character may be preceded by an integral repeat count. For example, the format string '4h' means exactly the same as 'hhhh'.</p>
+</blockquote>
+<p>Much better, no?</p>
+<p>Our next issue was that the data isn't guaranteed to come in signed 16-bit integers. The good news is that we can get what format it is in programmatically with our old friend, the <code>wave</code> module. The below code is from abracadabra.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">read</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="s">&#39;r&#39;</span> <span class="k">if</span> <span class="n">read</span> <span class="k">else</span> <span class="s">&#39;w&#39;</span>
+    <span class="n">sizes</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s">&#39;h&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s">&#39;i&#39;</span><span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">wav</span> <span class="o">=</span> <span class="n">wave</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="o">...</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wav</span><span class="o">.</span><span class="n">getnchannels</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">fmt_size</span> <span class="o">=</span> <span class="n">sizes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">wav</span><span class="o">.</span><span class="n">getsampwidth</span><span class="p">()]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">fmt</span> <span class="o">=</span> <span class="s">&quot;&lt;&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmt_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span>
+</pre></div>
+
+
+<p>If you have read the WAVE spec you will see that BitsPerSample is 2 bytes, suggesting that getsampwidth() could return an arbitrary value between 0 and 8192. In reality, you are not likely to encounter greater than 32 bit audio in the wild and <code>sizes</code> reflects this. Saying this, it would probably be good practice to catch KeyError when setting fmt_size and raising a more readable error.</p>
+<p>So we now have a working solution, and I have used this in production code before now. There is, however, another optimisation you could make assuming that the files you are loading in aren't overly large and it involves the <code>array</code> module. <code>array</code> is advertised in the docs as memory efficent arrays, but for our purposes we care more that its implemented in straight C and is lightning fast. It's also pretty easy to use.</p>
+<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fmt_size</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">itemsize</span><span class="p">)</span>
+</pre></div>
+
+
+<p>You just pass it a format string (of the same format as struct) and then call <code>fromfile</code> with a file object and the size of it. According to <a href="http://stackoverflow.com/questions/5804052/improve-speed-of-reading-and-converting-from-binary-file-with-python">this</a> SO question it is up to 40X faster than <code>struct.unpack</code> <em>YMMV</em>.</p>
+<p>This has been my journey in attempting to read WAVE files and hopefully it will help. Most of the code in here has been adapted from my repository <a href="https://github.com/notexactlyawe/abracadabra">abracadabra</a> and if you are looking for an up-to-date version of what I am using there might be a good place to look. This article is <a href="https://github.com/notexactlyawe/cameronmacleod.com">also on Github</a> so if you see something wrong, please submit an issue.</p>
+<p>Hasta la vista, baby.</p>
+</div>
+		</div>
+	</body>
+</html>
