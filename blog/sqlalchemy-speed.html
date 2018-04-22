@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href="http://gmpg.org/xfn/11" rel="profile">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- Enable responsiveness on mobile devices-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+		<title>Cameron MacLeod</title>
+
+		<!-- CSS -->
+		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
+		<link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Abril+Fatface|PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
+
+		<link rel="stylesheet" href="/theme/css/poole.css" />
+		<link rel="stylesheet" href="/theme/css/hyde.css" />
+		<link rel="stylesheet" href="/theme/css/syntax.css" />
+        <link rel="stylesheet" href="/theme/css/style.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		<!-- RSS -->
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	<script type="text/javascript">
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-76310908-1', 'auto');
+			ga('send', 'pageview');
+	</script>
+	</head>
+
+	<body class="theme-base-0d">
+<div class="sidebar">
+	<div class="container sidebar-sticky">
+		<div class="sidebar-about">
+
+			<h1>
+				<a href="/">
+					<img class="profile-picture" src="/images/profile.jpg">
+					Cameron MacLeod
+				</a>
+			</h1>
+			<p class="lead"></p>
+			<p class="lead"> </p>
+			<p></p>
+		</div>
+        <div class="links-container">
+		<div>
+                <a class="sidebar-links-item" href="/about">
+                    About
+                </a>
+                <a class="sidebar-links-item" href="/cv">
+                    CV
+                </a>
+                <a class="sidebar-links-item" href="/projects">
+                    Projects
+                </a>
+        </div>
+		<nav class="sidebar-nav">
+					<a class="sidebar-nav-item" href="http://twitter.com/notexactlyawe">
+						<i class="fa fa-twitter"></i>
+					</a>
+					<a class="sidebar-nav-item" href="https://uk.linkedin.com/in/cameronjohnmacleod">
+						<i class="fa fa-linkedin"></i>
+					</a>
+					<a class="sidebar-nav-item" href="https://github.com/notexactlyawe">
+						<i class="fa fa-github"></i>
+					</a>
+					<a class="sidebar-nav-item" href="https://www.flickr.com/photos/rotor132">
+						<i class="fa fa-flickr"></i>
+					</a>
+			<a class="sidebar-nav-item" href="">
+				<i class="fa fa-feed"></i>
+			</a>
+		</nav>
+	    </div>
+    </div>
+</div>		<div class="content container">
+<div class="post">
+	<h1 class="post-title">Diagnosing performance issues in a Flask app</h1>
+	<span class="post-date">Sun 22 April 2018</span>
+	<p>I was recently part of the team that ran <a href="https://createdhack.github.io">CreatED</a>, the UK’s first hardware hackathon of its kind. Organising it was stressful at times and incredibly rewarding at others, especially when it came to the event actually happening. During the run up to the event, we learned a lot about what actually needs to happen for a hackathon to run and one of those things was the setting up of event software.</p>
+<p>It’s easy to overlook when you’re thinking about running your first hackathon, but things like registration systems, mentor allocation systems and hardware distribution systems all need to be put in place. Since we were a hardware hackathon, the last one was of particular importance to us. Thankfully HackMIT and MakeMIT, mostly through <a href="http://noahmoroze.com/">Noah Moroze</a> had already put together a fantastic system for this, <a href="https://github.com/techx/cog">Cog</a>, which had been battle tested at much larger hackathons than ours.</p>
+<p>Cog was a great gift to us, as we’d only started to think about a system for this quite late in the game (2 or 3 weeks to go) and it had pretty much all of the functionality we needed. There were, however, a few things that needed to be added and so I set about doing so.</p>
+<ul>
+<li>We needed MyMLH, an OAuth provider, integrated since Cog only worked with HackMIT’s Quill registration system which we weren't using.</li>
+<li>We needed participants to be able to upload CVs since Eventbrite had no functionality for this and it had been promised to sponsors.</li>
+<li>We wanted a list of admin emails to be recognised by Cog so that not everyone had to use the same credentials.</li>
+</ul>
+<p>Most of these were quite easy to integrate, thanks to some logical design on the part of the team at MIT. The CV upload functionality took me longer than the others though mostly due to my inexperience with front-end development. Before I was comfortable signing this off for use during the hack (due to it being so critical), I wanted to do some manual testing, and part of that was load testing since I was worried about a huge amount of users at the start of the hackathon.</p>
+<p>I wrote up a quick script that started up a number of threads and used them all to fire a request at the home page of the application in a staggered fashion, hoping to simulate actual usage.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="n">URL</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:5000&quot;</span>
+
+<span class="k">def</span> <span class="nf">time_to_get</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">elapsed</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">load_test</span><span class="p">(</span><span class="n">num_users</span><span class="p">):</span>
+    <span class="n">t_pool</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_users</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">time_to_get</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">URL</span><span class="p">,))</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">t_pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+    <span class="k">print</span> <span class="s2">&quot;Waiting&quot;</span>
+
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_pool</span><span class="p">:</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+
+<span class="n">load_test</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The results I got from this quick test were mildly alarming. Each of these times (in seconds) is how long it took to receive a full response from the server.</p>
+<div class="highlight"><pre><span></span>cameron@isla:~/src/created/cog$ python load_test.py
+Waiting
+1.971983
+3.797295
+5.694615
+7.800551
+9.669649
+...
+</pre></div>
+
+
+<p>To put this into context, this isn’t a particularly demanding page. It displays to the user a list of available hardware and does little else.</p>
+<p><img alt="The main page for Cog" src="/images/cog_main_page.png" title="The main page for Cog"></p>
+<p>However, I wasn’t sure whether the problem was with my script or with Cog itself. To investigate this, I started Googling around profiling in Flask (the framework Cog is written in) and <a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvi-debugging-testing-and-profiling">this article</a> pointed me to some <a href="http://werkzeug.pocoo.org/docs/0.14/contrib/profiler/">Werkzeug middleware</a> that did what I wanted. The output is below from one of the endpoint calls - pay attention to the top call.</p>
+<div class="highlight"><pre><span></span>PATH: &#39;/inventory&#39;
+         1761654 function calls (1645404 primitive calls) in 2.829 seconds
+
+   Ordered by: internal time, call count
+   List reduced from 1183 to 10 due to restriction &lt;10&gt;
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      759    0.375    0.000    0.377    0.000 {method &#39;execute&#39; of &#39;psycopg2.extensions.cursor&#39; objects}
+     4536    0.062    0.000    0.280    0.000 /home/cameron/src/created/cog/venv/local/lib/python2.7/site-packages/sqlalchemy/sql/schema.py:898(__init__)
+     6426    0.056    0.000    0.070    0.000 /home/cameron/src/created/cog/venv/local/lib/python2.7/site-packages/sqlalchemy/sql/elements.py:674(__getattr__)
+...
+</pre></div>
+
+
+<p>The 2.829 seconds it took to serve the page suggested that the problem was somewhere in the application as opposed to my script and looked at the output. The most suspicious line to my eyes was the one that ended <code>{method 'execute' of 'psycopg2.extensions.cursor' objects}</code>, mostly because it was the most expensive, but also because it meant the database calls were taking a long time to execute. After a while going down the rabbit hole of trying different deployment options with the database in case the problem was with the database itself I went back and saw the <code>ncalls</code> column had 759 in it. This was fishy as all the page was doing was displaying a list of hardware available to the user, which shouldn’t have taken more than a couple of queries at most.</p>
+<p>I was stumped as to what could be making this many queries in the application as the code all looked sensible, so I set SQLAlchemy to echo all queries to see whether I could see a pattern. Sparing you the output of 759 queries, a lot of COUNTs were popping up suggesting that the problem may be in the quantities of items since those were the only numbers on the page. Sure enough, looking at the code I found this:</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">InventoryEntry</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">quantity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns quantity of items that have not been &#39;claimed&#39; by a request&quot;&quot;&quot;</span>
+        <span class="n">requests</span> <span class="o">=</span> <span class="n">RequestItem</span><span class="o">.</span><span class="n">query</span> \
+                   <span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">entry_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> \
+                   <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">hardwarecheckout</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span> \
+                   <span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="n">hardwarecheckout</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">RequestStatus</span><span class="o">.</span><span class="n">APPROVED</span><span class="p">)</span> \
+                   <span class="o">.</span><span class="n">with_entities</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">RequestItem</span><span class="o">.</span><span class="n">quantity</span><span class="p">))</span><span class="o">.</span><span class="n">scalar</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">requests</span><span class="p">:</span> <span class="n">requests</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">Item</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">entry_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">user</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="n">requests</span>
+</pre></div>
+
+
+<p>In the database, there was a table for inventory entries (roughly corresponding to 'classes' of items) and items (think instances of these classes). When calculating how many of a particular inventory entry was available it would check how many of an inventory entry existed in total and then subtract the number of approved requests for that item. This looks fine at first glance, and indeed it gives the correct result. However the issue is that this is calculated on a per-item basis, meaning each item makes 2 queries, when this could be done in a single query on a table basis.</p>
+<p>The solution comes through the use of the GROUP BY clause. The following code selects all items that no user has claimed and groups them by the ID in <code>inventory_entry</code> before counting the groups (effectively returning how many of each inventory entry are free). The bottom line is a dictionary comprehension that puts them in a nice format for the Jinja template.</p>
+<div class="highlight"><pre><span></span>    <span class="n">counts</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Item</span><span class="o">.</span><span class="n">entry_id</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">Item</span><span class="o">.</span><span class="n">entry_id</span><span class="p">))</span>\
+            <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">Item</span><span class="o">.</span><span class="n">entry_id</span><span class="p">)</span>\
+            <span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">user_id</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span>\
+            <span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="n">id_</span><span class="p">:</span> <span class="n">count</span> <span class="k">for</span> <span class="p">(</span><span class="n">id_</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">}</span>
+</pre></div>
+
+
+<p>The one important thing to note with this code is that <code>counts[“some_id”]</code> will error if <code>some_id</code> has no items free since <code>counts</code> won't have it as a key. The way to fix this is by using <code>counts.get(“some_id”, 0)</code> where <code>0</code> is a default value that’s returned when there’s no entry in the dictionary for <code>some_id</code>.</p>
+<p>And as thought, the profiler output looks much better. The ncalls to <code>cursor.execute</code> has gone down to 4, which is much more sensible!</p>
+<div class="highlight"><pre><span></span>PATH: &#39;/inventory&#39;
+         30824 function calls (29237 primitive calls) in 0.055 seconds
+
+   Ordered by: internal time, call count
+   List reduced from 677 to 10 due to restriction &lt;10&gt;
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      297    0.003    0.000    0.010    0.000 /home/cameron/src/created/cog/venv/local/lib/python2.7/site-packages/sqlalchemy/orm/loading.py:30(instances)
+        4    0.003    0.001    0.003    0.001 {method &#39;execute&#39; of &#39;psycopg2.extensions.cursor&#39; objects}
+    162/1    0.003    0.000    0.025    0.025 {method &#39;join&#39; of &#39;unicode&#39; objects}
+...
+</pre></div>
+
+
+<p>The final code that we deployed is now sitting on <a href="https://github.com/notexactlyawe/cog">GitHub</a> so you can feel free to take a look.</p>
+</div>
+		</div>
+	</body>
+</html>
