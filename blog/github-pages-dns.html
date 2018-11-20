@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href="http://gmpg.org/xfn/11" rel="profile">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- Enable responsiveness on mobile devices-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        <title>How to configure DNS for custom domains on GitHub Pages - Cameron MacLeod</title>
+        <meta name="title" property="og:title" content="How to configure DNS for custom domains on GitHub Pages - Cameron MacLeod">
+        <meta property="og:type" content="Article">
+
+        <meta name="author" content="Cameron MacLeod">
+
+		<!-- CSS -->
+		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
+		<link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Abril+Fatface|PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
+
+		<link rel="stylesheet" href="/theme/css/poole.css" />
+		<link rel="stylesheet" href="/theme/css/hyde.css" />
+		<link rel="stylesheet" href="/theme/css/syntax.css" />
+        <link rel="stylesheet" href="/theme/css/style.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		<!-- RSS -->
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	<script type="text/javascript">
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-76310908-1', 'auto');
+			ga('send', 'pageview');
+	</script>
+	</head>
+
+	<body class="theme-base-0d">
+<div class="sidebar">
+	<div class="container sidebar-sticky">
+		<div class="sidebar-about">
+
+			<h1>
+				<a href="/">
+					<img class="profile-picture" alt="Cameron MacLeod's Profile Picture" src="/images/profile.jpg">
+					Cameron MacLeod
+				</a>
+			</h1>
+			<p class="lead"></p>
+			<p class="lead"> </p>
+			<p></p>
+		</div>
+        <div class="links-container">
+		<div>
+                <a class="sidebar-links-item" href="/about">
+                    About
+                </a>
+                <a class="sidebar-links-item" href="/cv.pdf">
+                    CV
+                </a>
+                <a class="sidebar-links-item" href="/projects">
+                    Projects
+                </a>
+        </div>
+		<nav class="sidebar-nav">
+                    <a class="sidebar-nav-item" href="http://twitter.com/notexactlyawe" aria-label="twitter">
+						<i class="fa fa-twitter"></i>
+					</a>
+                    <a class="sidebar-nav-item" href="https://uk.linkedin.com/in/cameronjohnmacleod" aria-label="linkedin">
+						<i class="fa fa-linkedin"></i>
+					</a>
+                    <a class="sidebar-nav-item" href="https://github.com/notexactlyawe" aria-label="github">
+						<i class="fa fa-github"></i>
+					</a>
+                    <a class="sidebar-nav-item" href="https://www.flickr.com/photos/rotor132" aria-label="flickr">
+						<i class="fa fa-flickr"></i>
+					</a>
+			<a class="sidebar-nav-item" href="" aria-label="RSS Feed">
+				<i class="fa fa-feed"></i>
+			</a>
+		</nav>
+	    </div>
+    </div>
+</div>		<div class="content container">
+<div class="post">
+	<h1 class="post-title">How to configure DNS for custom domains on GitHub Pages</h1>
+	<span class="post-date">Tue 20 November 2018</span>
+	<p>Recently-ish GitHub <a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/">announced</a> that HTTPS would now work on custom domains with GitHub Pages. This was a great bit of news, because the web is slowly moving towards a HTTPS-only state of being and it's nice not to be left behind.</p>
+<p>Unfortunately for me, for this new feature to work you had to be using either <strong>CNAME</strong> or <strong>ALIAS records</strong> to point to your GitHub Pages domain. At the time, I was using <strong>A records</strong> pointed at the old GitHub Pages servers, which didn't have the new features enabled. All these terms can be quite confusing if you're not familiar with DNS, so let's take a look at some basics.</p>
+<h3>What is DNS?</h3>
+<p>DNS stands for Domain Name System and it's the internet's way of mapping <strong>URLs</strong> (like <code>cameronmacleod.com</code>) to the actual <strong>IP addresses</strong> (like <code>185.199.108.153</code>) of the computers that can serve you the website. By means of an analogy, a <strong>URL</strong> is a bit like a postal address, for example:</p>
+<blockquote>
+<p>1 Castlehill<br>
+Edinburgh<br>
+EH1 2NG<br>
+United Kingdom  </p>
+</blockquote>
+<p>Unless you have been to Edinburgh, you would have no idea how to get to that address. You'd need something to take that address and give you directions back. Similarly, if you give a browser a <strong>URL</strong> then it would need something (in this case, a <strong>nameserver</strong>) to give it directions (an <strong>IP address</strong>) to find a website. Just as humans need directions to find a place, browsers need IP addresses to find a website.</p>
+<p>DNS is the system by which these <strong>URLs</strong> are translated into <strong>IP addresses</strong>. For a basic mental model of how it works, you can think of these steps:</p>
+<ol>
+<li>The <strong>browser</strong> asks a <strong>nameserver</strong> for the <strong>IP address</strong> related to a <strong>URL</strong></li>
+<li>The <strong>nameserver</strong> looks through some information it holds known as <strong>records</strong> to find out</li>
+<li>The <strong>nameserver</strong> then tells the <strong>browser</strong> the <strong>IP</strong> and the <strong>browser</strong> goes away and fetches the website</li>
+</ol>
+<p>A <strong>nameserver</strong> is just the DNS name for a computer that keeps <strong>records</strong> and can do the job of translating <strong>URLs</strong> to <strong>IP addresses</strong>.</p>
+<p>This is not comprehensive or 100% accurate, but it's a good enough model for our purposes. If you would like to know more, or you're still a bit confused then Cloudflare have a <a href="https://www.cloudflare.com/learning/dns/what-is-dns/">really good intro to the topic</a>.</p>
+<h3>What are DNS records?</h3>
+<p>So far, we know that things called <strong>records</strong> store the mapping between <strong>URLs</strong> and <strong>IP addresses</strong>. Presumably this means that if we want to make our site point at the GitHub Pages servers, then we need to change these. But what are <strong>records</strong> and how do they work?</p>
+<p>At their core, <strong>records</strong> are just text files written in a certain way, that tell the <strong>nameserver</strong> how to find the <strong>IP address</strong> for a certain website. There are multiple different types of DNS <strong>records</strong> and all of them serve a slightly different purpose. Alongside the information below, all records have a <code>TTL</code> or <code>Time To Live</code> value that contains the number of seconds that the record is still valid for.</p>
+<ul>
+<li>
+<p><strong>A records</strong> - These are possibly the simplest type of DNS records and hold the IP address for either a sub-domain (like <code>blog.cameronmacleod.com</code>) or your root domain (like <code>cameronmacleod.com</code>). Similarly, you may see <strong>AAAA records</strong> which are the same, but they hold an <a href="https://en.wikipedia.org/wiki/IPv6">IPv6 address</a>.</p>
+</li>
+<li>
+<p><strong>CNAME records</strong> - <strong>CNAME</strong> stands for <strong>C</strong>anonical <strong>N</strong>ame and points one domain name to another. The idea behind these records is to have a single official domain name and to let lots of other domains point to it. They are frequently used to redirect <code>www.</code> subdomains to the root domain. e.g. <code>www.cameronmacleod.com -&gt; cameronmacleod.com</code>. They can only be used on sub-domains, not on root domains.</p>
+</li>
+<li>
+<p><strong>ALIAS records</strong> - These are similar to <strong>CNAME records</strong> in that they point your domain to another domain but there are a couple of subtle differences. <strong>ALIAS records</strong> can only be used on the root domain, not sub-domains, and they are not standardised across all DNS providers, so yours may or may not support them.</p>
+</li>
+<li>
+<p><strong>Other record types</strong> - There are many other record types, including <strong>MX</strong> for pointing to mail servers, <strong>NS</strong> for nameserver data and even <strong>TXT</strong> for general notes.</p>
+</li>
+</ul>
+<h3>How can I change my DNS records?</h3>
+<p>If you know your DNS provider already, then great! If not, you will need to either figure out which one you are using, or set one up if your site is not yet live. For those of you who have yet to set up DNS, often your domain name provider will have a DNS service as part of purchasing your domain name, if not then there are many free DNS providers out there.</p>
+<p>If you (like me) can't remember what DNS provider you used, then a really useful tool can be found <a href="https://www.dnsstuff.com/tools">from DNSstuff</a>. On that page there is a "DNS Lookup" tool that you can type your domain into.</p>
+<p><img alt="DNS lookup tool screenshot" src="/images/dnsstufflookup.png"></p>
+<p>On the page that follows, under the heading "Referral path:" you will see the words "Response from <strong>some.dns.server</strong>" where <strong>some.dns.server</strong> is your DNS server. You can then type that URL into Google and the results should tell you your provider.</p>
+<p><img alt="DNS lookup results screenshot" src="/images/dnslookupresults.png"></p>
+<p>The actual process of changing your DNS records varies from provider to provider, but most will have an admin panel that you can log into and add/remove records. The records I have configured for my GitHub pages domain and by extension ones that should work for your GitHub Pages site are as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Host name</th>
+<th>Points to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNAME</td>
+<td>www</td>
+<td>notexactlyawe.github.io</td>
+</tr>
+<tr>
+<td>ALIAS</td>
+<td></td>
+<td>notexactlyawe.github.io</td>
+</tr>
+</tbody>
+</table>
+<p>The first is necessary to redirect <code>www.cameronmacleod.com</code> to the GitHub Pages servers and the second redirects the "apex" domain (<code>cameronmacleod.com</code>).</p>
+<p>When you come to configure this for yourself, you may find that there are no <strong>ALIAS records</strong> available under your provider. Unfortunately your best option in this case may be to change DNS provider.</p>
+<h3>How do I know it worked?</h3>
+<p>DNS is notoriously slow to make changes to. Most providers recommend waiting 24 hours (some up to 72!) before you will be able to see your changes. When checking to see whether or not your changes have propagated, you can do one of two things. Use a DNS tool (like the one from <a href="https://www.dnsstuff.com/tools">DNSstuff</a> above) or use the unix command <code>dig</code>.</p>
+<p><code>dig</code> is a command that can find and list the DNS records for a given domain name. On Linux and Mac machines, you can run the following in terminal:</p>
+<div class="highlight"><pre><span></span>cameron@isla:~$ dig www.cameronmacleod.com +noall +answer
+
+; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Ubuntu &lt;&lt;&gt;&gt; www.cameronmacleod.com +noall +answer
+;; global options: +cmd
+www.cameronmacleod.com. 655 IN  A   192.30.252.154
+www.cameronmacleod.com. 655 IN  A   192.30.252.153
+</pre></div>
+
+
+<p>The output might look a bit confusing, but it's the last two lines that count. Those are the records that <code>dig</code> has found for your domain. In my case, this output was from before I changed my DNS settings, so it still shows the old <strong>A records</strong> that I was using. Running it now would give something like this:</p>
+<div class="highlight"><pre><span></span>cameron@isla:~$ dig www.cameronmacleod.com +noall +answer
+
+; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Ubuntu &lt;&lt;&gt;&gt; www.cameronmacleod.com +noall +answer
+;; global options: +cmd
+www.cameronmacleod.com. 3600    IN  CNAME   notexactlyawe.github.io.
+notexactlyawe.github.io. 3599   IN  A   185.199.108.153
+notexactlyawe.github.io. 3599   IN  A   185.199.109.153
+notexactlyawe.github.io. 3599   IN  A   185.199.111.153
+notexactlyawe.github.io. 3599   IN  A   185.199.110.153
+</pre></div>
+
+
+<p>You might notice that there are a lot of <strong>A records</strong>, but that is because <strong>ALIAS records</strong> will resolve automatically to <strong>A records</strong> in the DNS server, meaning that when you run <code>dig</code> it just shows you the final output.</p>
+<p>You will want to check that the <strong>IP addresses</strong> in the last column of the <code>dig</code> output look similar to the ones above. For a complete and up to date list of GitHub Pages <strong>IP addresses</strong>, you can check <a href="https://help.github.com/articles/setting-up-an-apex-domain/#configuring-a-records-with-your-dns-provider">their documentation</a>.</p>
+<p>If this worked, then great! Your DNS is properly configured to redirect your custom domain to GitHub Pages, and you should be able to visit your domain in a browser and see your page being served!</p>
+<h3>HTTPS for custom domains in GitHub Pages</h3>
+<p>If you are trying to set up HTTPS on your site, then the changes above are necessary because they will point you at GitHub's content delivery network which has support for HTTPS. See <a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/">GitHub's announcement</a> for more details. You will also need to perform a couple more steps.</p>
+<p>Firstly, if you used to be using <strong>A records</strong> then you may need to remove and re-add your custom subdomain from your repository's settings. This will generate you a certificate for your domain. To do this, firstly go to your repository settings.</p>
+<p><img alt="Screenshot of repository settings" src="/images/repositorysettings.png"></p>
+<p>Next, head to the GitHub Pages settings and remove your domain from the "Custom domain" box and click "Save". Put your domain back in that box and click Save again.</p>
+<p><img alt="Screenshot of GitHub Pages settings" src="/images/githubpagessettings.png">)</p>
+<p>After doing this you will need to wait about an hour, but after that you should be able to go to <code>https://siteinthecustomdomainbox.com</code> and see a green padlock in the address bar. If the domain you put in the "Custom domain" box had a <code>www.</code> in front of it, then you will need to add that to the URL when visiting your site else it won't work.</p>
+<p>For full and up to date instructions on the above see <a href="https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/">GitHub's documentation</a>.</p>
+<p>One thing to note is that HTTPS will only work for either <code>www.yoursite.com</code> or <code>yoursite.com</code> but not both depending on which one you put in the "Custom domain" box. GitHub are aware of the issue, but haven't given any public timeline for fixing it, see <a href="https://github.community/t5/GitHub-Pages/Does-GitHub-Pages-Support-HTTPS-for-www-and-subdomains/td-p/7116">this GitHub Community thread</a>.</p>
+<h1>If something didn't work</h1>
+<p>GitHub have a really useful <a href="https://help.github.com/articles/troubleshooting-custom-domains/">troubleshooting guide</a> for custom domains and HTTPS.</p>
+</div>
+		</div>
+	</body>
+</html>
