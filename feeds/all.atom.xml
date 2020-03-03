@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cameron MacLeod</title><link href="https://www.cameronmacleod.com/" rel="alternate"></link><link href="https://www.cameronmacleod.com/feeds/all.atom.xml" rel="self"></link><id>https://www.cameronmacleod.com/</id><updated>2020-03-03T00:00:00+00:00</updated><entry><title>Why I chose product management over software development</title><link href="https://www.cameronmacleod.com/blog/why-pm-over-software" rel="alternate"></link><published>2020-03-03T00:00:00+00:00</published><updated>2020-03-03T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-03-03:/blog/why-pm-over-software</id><summary type="html">&lt;p&gt;I'm about to finish my degree and have been fortunate enough to receive two graduate job offers. One was an associate product manager position at Google, and the other was software engineering at Bloomberg. Both companies and jobs excited me, which left me with a difficult choice. In this post …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm about to finish my degree and have been fortunate enough to receive two graduate job offers. One was an associate product manager position at Google, and the other was software engineering at Bloomberg. Both companies and jobs excited me, which left me with a difficult choice. In this post, I'll explain why I chose product management, even after years of wanting to be a software developer.&lt;/p&gt;
+&lt;p&gt;The factors that were important to my decision won't be the same for everyone, and this post is not a recommendation of one career path over the other. Choosing a job is deeply personal, and both career paths could potentially be right for any given individual. However, I do hope that this post helps someone else if confronted with a similar decision.&lt;/p&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;At the time of this decision, I:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;was a final year Computer Science student.&lt;/li&gt;
+&lt;li&gt;had completed a few software development internships (including an enjoyable one at Bloomberg).&lt;/li&gt;
+&lt;li&gt;had applied mostly to software jobs and only to a single product management position (the Google one).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I had applied to the Google APM program on a whim and only because I spotted it while looking for software engineering roles. Of course, I liked the sound of the position but had never really thought about working in product before. I wasn't that clear on what product meant.&lt;/p&gt;
+&lt;p&gt;Throughout the interview process and up until I signed the contract, I did my best to understand product management. I think that I ended up with a reasonably clear idea of what it is, but of course, I have never actually &lt;em&gt;done&lt;/em&gt; it. After my research, the points below are the biggest reasons that justified my decision.&lt;/p&gt;
+&lt;h2&gt;Generalism&lt;/h2&gt;
+&lt;p&gt;I have always identified with the label 'generalist' for a couple of reasons. Firstly, it means that I enjoy novelty, something that shows up most in my hobbies. I rarely stick with one for longer than a few months. Whether or not this is a character flaw (something I'm still unsure about), it's a part of me that I have to take into account when making big decisions.&lt;/p&gt;
+&lt;p&gt;Another reason that I identify with this label is a fear of specialisation. The idea of becoming a professional expert in a single field or skill scares me. I worry that it would be boring. I'm not saying that I don't want to be an expert in anything, more that I'm afraid of becoming a one-trick pony.&lt;/p&gt;
+&lt;p&gt;Software development has the potential to provide new challenges each day. I enjoy writing software, and hopefully always will, but I worry about getting pigeonholed as one type of developer. While development would tick the generalism box at the start of my career, I'm not sure that it still would as my career progressed.&lt;/p&gt;
+&lt;p&gt;Product management, in itself, would be new for me. From everything I've read, the job involves a lot of context switching and many different skills. Most importantly, it doesn't look like this generalist quality of the job disappears as you move up the career ladder.&lt;/p&gt;
+&lt;h2&gt;Communication&lt;/h2&gt;
+&lt;p&gt;Communication is getting an idea out of your head and into someone else's, but this can cover a wide range of skills due to the many ways we convey information. Writing, presenting, face-to-face conversation, education and visual design can all fall under the communication umbrella.&lt;/p&gt;
+&lt;p&gt;As I've gotten older, I have placed more importance on communication, mostly as a result of enjoying related activities. Writing for this blog, teaching, giving presentations and finding sponsorship for a hackathon have all brought me a lot of satisfaction, and all of them have been communication heavy. Improving my communication is something I find difficult but pleasantly so.&lt;/p&gt;
+&lt;p&gt;Product management relies heavily on communication. Attempting to align people from different backgrounds requires understanding all perspectives and then translating them into the language of other people around you. I find this challenge exciting.&lt;/p&gt;
+&lt;h2&gt;Rounding my skill-set&lt;/h2&gt;
+&lt;p&gt;I have been programming for a long time and over that time have acquired a decent level of technical skill. While there is still a lot of room for me to grow as a developer, there are many other skills that I have never had the chance to focus on improving. Becoming a product manager would allow me to focus on different skills than those I have been able to so far.&lt;/p&gt;
+&lt;p&gt;Product managers sit in the middle of developers, designers and business people, allowing them to learn a little about each of these areas. This learning would be alongside getting more in-depth knowledge about product management. Product management should broaden my knowledge base in a way few other positions could.&lt;/p&gt;
+&lt;h2&gt;The Google effect&lt;/h2&gt;
+&lt;p&gt;It might reduce my credibility in some circles, but "working for Google" was also attractive to me. When I first started programming, I idolised Google. Their products were everywhere, and the narrative they cultivated around their working culture seemed exciting and fun, especially for someone who knew little about the working world.&lt;/p&gt;
+&lt;p&gt;Of course, after having a few jobs and being exposed to more perspectives, my initial infatuation faded. Every year of university, however, I applied religiously to Google for internships. As time went on, some of my friends started getting in, but I still never even received an interview.&lt;/p&gt;
+&lt;p&gt;So finally getting in after all this time did feel a little unbelievable and I had to be very careful not to accept the offer on that basis alone. I stand by this excitement forming part of my final decision, but it was important to me that it wasn't the whole reason for making my choice.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I justified my final decision with the points above, but it was still painful to reject the software engineering position. The decision process was long and involved a series of pros/cons lists and talking to many people before I settled on an answer. Alongside friends and family, one of my interviewers from Google also offered to answer any questions I had, which was really helpful.&lt;/p&gt;
+&lt;p&gt;I'm pleased to say that I'm very sure about my decision, and I feel confident that I made the right choice for me. Of course, it's not possible to know that one job or the other is better overall, because that would require predicting not just one future, but two. That said, I have no regrets.&lt;/p&gt;
+&lt;p&gt;My start date is in August, and I'm super excited.&lt;/p&gt;</content></entry><entry><title>Easy Python speed wins with functools.lru_cache</title><link href="https://www.cameronmacleod.com/blog/python-lru-cache" rel="alternate"></link><published>2019-06-10T00:00:00+01:00</published><updated>2019-06-10T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2019-06-10:/blog/python-lru-cache</id><summary type="html">&lt;p&gt;Recently, I was reading an &lt;a href="https://datawhatnow.com/things-you-are-probably-not-using-in-python-3-but-should/"&gt;interesting article&lt;/a&gt; on some under-used Python features. In the article, the author mentioned that from Python version 3.2, the standard library came with a built in decorator &lt;code&gt;functools.lru_cache&lt;/code&gt; which I found exciting as it has the potential to speed up a lot of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently, I was reading an &lt;a href="https://datawhatnow.com/things-you-are-probably-not-using-in-python-3-but-should/"&gt;interesting article&lt;/a&gt; on some under-used Python features. In the article, the author mentioned that from Python version 3.2, the standard library came with a built in decorator &lt;code&gt;functools.lru_cache&lt;/code&gt; which I found exciting as it has the potential to speed up a lot of applications with very little effort.&lt;/p&gt;
+&lt;p&gt;That's great and all, you may be thinking, but what is it? Well, the decorator provides access to a ready-built cache that uses the Least Recently Used (LRU) replacement strategy, hence the name &lt;code&gt;lru_cache&lt;/code&gt;. Of course, that sentence probably sounds a little intimidating, so let's break it down.&lt;/p&gt;
+&lt;h2&gt;What is a cache?&lt;/h2&gt;
+&lt;p&gt;A cache is a place that is quick to access where you store things that are otherwise slow to access. To demonstrate this, let's take your web browser as an example.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Diagram of a web browser using a cache" src="/images/browser_cache.png"&gt;&lt;/p&gt;
+&lt;p&gt;Getting a web page from the internet can take up to a few seconds, even on a fast internet connection. In computer time this is an eternity. To solve this, browsers store the web pages you've already visited in a cache on your computer which can be thousands of times faster to access.&lt;/p&gt;
+&lt;p&gt;Using a cache, the steps to download a webpage are as follows:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Check the local cache for the page. If it's there, return that.&lt;/li&gt;
+&lt;li&gt;Go find the web page on the internet and download it from there.&lt;/li&gt;
+&lt;li&gt;Store that web page in the cache to make it faster to access in future.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;While this doesn't make things faster the first time you visit a web page, often you'll find yourself visiting a page more than once (think Facebook, or your email) and every subsequent visit will be faster.&lt;/p&gt;
+&lt;p&gt;Web browsers aren't the only place caches are used. They are used everywhere from servers to computer hardware between the CPU and your hard disk/SSD. Getting things from a cache is quick, and so when you are getting something more than once, it can speed up a program a lot.&lt;/p&gt;
+&lt;h2&gt;What does LRU mean?&lt;/h2&gt;
+&lt;p&gt;A cache can only ever store a finite amount of things, and often is much smaller than whatever it is caching (for example, your hard drive is much smaller than the internet). This means that sometimes you will need to swap something that is already in the cache out for something else that you want to put in the cache. The way you decide what to take out is called a replacement strategy.&lt;/p&gt;
+&lt;p&gt;That's where LRU comes in. LRU stands for Least Recently Used and is a commonly used replacement strategy for caches.&lt;/p&gt;
+&lt;p&gt;&lt;details&gt;&lt;summary&gt;Why does a replacement strategy matter?&lt;/summary&gt;
+&lt;p&gt;
+A cache performs really well when it contains the thing you are trying to access, and not so well when it doesn't. The percentage of times that the cache contains the item you are looking for is called the hit rate. The primary factor in hit rate (apart from cache size) is replacement strategy.&lt;/p&gt;
+&lt;p&gt;Think about it this way: Using the browser example, if your most accessed site was &lt;code&gt;www.facebook.com&lt;/code&gt; and your replacement strategy was to get rid of the most accessed site, then you are going to have a low hit rate. However if it was LRU, the hit rate would be much better.
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;The idea behind Least Rececntly Used replacement is that if you haven't accessed something in a while, you probably won't any time soon. To use the strategy, you just get rid of the item that was used longest ago when the cache is full.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LRU diagram" src="/images/lru.png"&gt;&lt;/p&gt;
+&lt;p&gt;In the above diagram each item in the cache has an associated access time. LRU chooses the item at 2:55PM to be replaced since it was accessed longest ago. If there were two objects with the same access time, then LRU would pick one at random.&lt;/p&gt;
+&lt;p&gt;It turns out that there is an optimal strategy for choosing what to replace in a cache and that is to get rid of the thing that won't be used for longest. This is called &lt;a href="https://en.wikipedia.org/wiki/Page_replacement_algorithm#The_theoretically_optimal_page_replacement_algorithm"&gt;Bélády's optimal algorithm&lt;/a&gt; but unfortunately requires knowing the future. Thankfully, in many situations LRU provides near optimal performance .&lt;/p&gt;
+&lt;h2&gt;How do I use it?&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;functools.lru_cache&lt;/code&gt; is a decorator, so you can just place it on top of your function:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;functools&lt;/span&gt;
+
+&lt;span class="nd"&gt;@functools.lru_cache&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;maxsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The Fibonacci example is really commonly used here because the speed-up is so dramatic for so little effort. Running this on my machine, I got the following results for with and without cache versions of this function.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;fib(30)&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;10&lt;/span&gt; loops, best of &lt;span class="m"&gt;3&lt;/span&gt;: &lt;span class="m"&gt;282&lt;/span&gt; msec per loop
+$ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_cache&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;fib_cache(30)&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;10000000&lt;/span&gt; loops, best of &lt;span class="m"&gt;3&lt;/span&gt;: &lt;span class="m"&gt;0&lt;/span&gt;.0791 usec per loop
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;That's a &lt;strong&gt;3,565,107x&lt;/strong&gt; speed increase for a single line of code.&lt;/p&gt;
+&lt;p&gt;Of course, I think it can be hard to see how you'd actually use this in practice, since it's quite rare to need to calculate the Fibonacci series. Going back to our example with web pages, we can take the slightly more realistic example of caching rendered templates.&lt;/p&gt;
+&lt;p&gt;In server development, usually individual pages are stored as templates that have placeholder variables. For example, the following is a template for a page that displays the results of various football matches for a given day.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Matches for {{day}}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;table&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;matches&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Home team&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Away team&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Score&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+      {% for match in matches %}
+      &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;{{match[&amp;quot;home&amp;quot;]}}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;{{match[&amp;quot;away&amp;quot;]}}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;{{match[&amp;quot;home_goals&amp;quot;]}} - {{match[&amp;quot;away_goals&amp;quot;]}}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;td&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;tr&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+      {% endfor %}
+    &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;table&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When the template is rendered, it looks like the below:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Match template rendered" src="/images/match.png"&gt;&lt;/p&gt;
+&lt;p&gt;This is a prime target for caching because the results for each day won't change and it's likely that there will be multiple hits on each day. Below is a Flask app that serves this template. I've introduced a 50ms delay to simulate getting the match dictionary over a network/from a large database.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;
+
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;match.json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;match_dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# simulate network/database delay&lt;/span&gt;
+    &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.05&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;match_dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/matches/&amp;lt;day&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;show_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;matches&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;matches.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Using &lt;code&gt;requests&lt;/code&gt; to get three match days without caching takes on average 171ms running locally on my computer. This isn't bad, but we can do better, even considering the artificial delay.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/matches/&amp;lt;day&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nd"&gt;@functools.lru_cache&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;maxsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;show_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;matches&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;matches.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I've set &lt;code&gt;maxsize=4&lt;/code&gt; in this example, because my test script only gets the same three days and it's best to set a power of two. Using this makes the average come down to 13.7ms over 10 loops.&lt;/p&gt;
+&lt;h2&gt;Anything else I should know?&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://docs.python.org/3/library/functools.html#functools.lru_cache"&gt;Python docs&lt;/a&gt; are pretty good, but there are a few things worth highlighting.&lt;/p&gt;
+&lt;h3&gt;Built in functions&lt;/h3&gt;
+&lt;p&gt;The decorator comes with some built-in functions that you may find useful. &lt;code&gt;cache_info()&lt;/code&gt; will help you figure out how big &lt;code&gt;maxsize&lt;/code&gt; should be by giving you information on hits, misses and the current size of the cache. &lt;code&gt;cache_clear()&lt;/code&gt; will delete all elements in the cache.&lt;/p&gt;
+&lt;h3&gt;Sometimes you shouldn't use a cache&lt;/h3&gt;
+&lt;p&gt;In general a cache can only be used when:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The data doesn't change for the lifetime of the cache.&lt;/li&gt;
+&lt;li&gt;The function will always return the same value for the same arguments (so &lt;code&gt;time&lt;/code&gt; and &lt;code&gt;random&lt;/code&gt; don't make sense to cache).&lt;/li&gt;
+&lt;li&gt;The function has no side effects. If the cache is hit, then the function never gets called, so make sure you're not changing any state in it.&lt;/li&gt;
+&lt;li&gt;The function doesn't return distinct mutable objects. For example, functions that return lists are a bad idea to cache since the reference to the list will be cached, not the list contents.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Whilst it's not suitable for every situation, caching can be a super simple way to gain a large performance boost, and &lt;code&gt;functools.lru_cache&lt;/code&gt; makes it even easier to use. If you're interested to learn more then check out some of the links below.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cachetools.readthedocs.io/en/stable/"&gt;More powerful caching library&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/python/cpython/blob/3.7/Lib/functools.py"&gt;Python 3.7 functools source&lt;/a&gt;&lt;/p&gt;</content></entry><entry><title>Better parameter validation in Flask with marshmallow</title><link href="https://www.cameronmacleod.com/blog/better-validation-flask-marshmallow" rel="alternate"></link><published>2019-04-25T00:00:00+01:00</published><updated>2019-04-25T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2019-04-25:/blog/better-validation-flask-marshmallow</id><summary type="html">&lt;p&gt;Recently I've had two Flask projects with endpoints that take lots of parameters. While working on the first project, I noticed that I was writing a lot of code for validation in each method, and it ended up looking ugly and probably full of bugs. When I started the second …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently I've had two Flask projects with endpoints that take lots of parameters. While working on the first project, I noticed that I was writing a lot of code for validation in each method, and it ended up looking ugly and probably full of bugs. When I started the second project, I thought that there had to be a way to fix this, and it turns out that there was!&lt;/p&gt;
+&lt;p&gt;To illustrate what I'm talking about, imagine you need to implement the following endpoint for a note taking app.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/api/note - POST
+
+Parameters:
+ - title (str) No longer than 60 characters
+ - note (str) No longer than 1000 characters
+ - user_id (int) No smaller than 1
+ - time_created (datetime) Not in the future
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In Flask without a library for validation, you might end up writing the following view function to implement this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_note&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="c1"&gt;# we don&amp;#39;t know that the &amp;#39;title&amp;#39; parameter exists yet&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BAD_REQUEST&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# we have to do manual validation on business requirements&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BAD_REQUEST&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# now we have to do it again?!&lt;/span&gt;
+    &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BAD_REQUEST&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="c1"&gt;# more validation&lt;/span&gt;
+
+    &lt;span class="n"&gt;actually_create_note&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The two parameters I validated up there were strings which made this easier, the &lt;code&gt;integer&lt;/code&gt; parameter would have additionally needed a type check and don't even think about parsing and validating the &lt;code&gt;datetime&lt;/code&gt; there. The above code is long and very prone to bugs. Of course, you could abstract it all to cleaner methods, but that wouldn't solve the underlying problem of having to write all of this manually.&lt;/p&gt;
+&lt;p&gt;Thankfully, it turns out there is a library that does validation like this straight out of the box. It's called &lt;a href="https://marshmallow.readthedocs.io/"&gt;marshmallow&lt;/a&gt; and is meant for object serialization. Alongside parsing and dumping, it also comes with some powerful validation functionality built-in.&lt;/p&gt;
+&lt;p&gt;&lt;details&gt;&lt;summary&gt;What is object serialization?&lt;/summary&gt;
+&lt;p&gt;
+&lt;a href="https://en.wikipedia.org/wiki/Serialization"&gt;Serialization&lt;/a&gt; is the process of converting objects and data from the format used internally in your program into a format that can be stored or transmitted. For example, JSON data can be represented and easily accessed as a dictionary in Python, but it needs to be &lt;strong&gt;serialized&lt;/strong&gt; to a string to send it anywhere. The reverse operation is called &lt;strong&gt;deserialization&lt;/strong&gt; and is what we'll be dealing with in this article.
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;The core idea in marshmallow is that data structure is represented with a schema. A schema is a class that defines what format the data comes in. It dictates what fields exist, their types and validation on them. You create a schema by sub-classing &lt;code&gt;marshmallow.Schema&lt;/code&gt; and creating attributes that will represent the fields in your data.&lt;/p&gt;
+&lt;p&gt;Using the note-taking endpoint as an example, we'll create a schema that represents the structure of incoming data to the endpoint.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;marshmallow&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CreateNoteInputSchema&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; /api/note - POST&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Parameters:&lt;/span&gt;
+&lt;span class="sd"&gt;     - title (str)&lt;/span&gt;
+&lt;span class="sd"&gt;     - note (str)&lt;/span&gt;
+&lt;span class="sd"&gt;     - user_id (int)&lt;/span&gt;
+&lt;span class="sd"&gt;     - time_created (time)&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="c1"&gt;# the &amp;#39;required&amp;#39; argument ensures the field exists&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is a pretty simple class, but already it contains a lot of magic. This will check both existence of fields and their types for you. It's important to note that it won't do any business logic validation yet. You can use this in a view function like so:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;create_note_schema&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreateNoteInputSchema&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_note&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;errors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_note_schema&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BAD_REQUEST&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="c1"&gt;# now all required fields exist and are the right type&lt;/span&gt;
+    &lt;span class="c1"&gt;# business requirements aren&amp;#39;t necessarily satisfied (length, time bounds, etc)&lt;/span&gt;
+    &lt;span class="n"&gt;actually_create_note&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We don't have all of the functionality we need, but even still this has cleaned up the code considerably. The other thing we need to do is to add validation methods for the business requirements. You can do this in two ways with marshmallow. Firstly you could create a method in your schema that has the &lt;code&gt;@validates&lt;/code&gt; decorator, or for simple cases, you could give the &lt;code&gt;validate&lt;/code&gt; keyword argument to the field.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;marshmallow&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;
+&lt;span class="c1"&gt;# import built-in validators&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;marshmallow.validate&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Range&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CreateNoteInputSchema&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="c1"&gt;# no longer than 60 chars&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="c1"&gt;# no longer than 1000 chars&lt;/span&gt;
+    &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="c1"&gt;# at least 1&lt;/span&gt;
+    &lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You will notice above that marshmallow comes with a bunch of handy validators built-in. You can see a full list of them in the &lt;a href="https://marshmallow.readthedocs.io/en/3.0/api_reference.html#module-marshmallow.validate"&gt;API docs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We're still missing a validator for checking that the date is not in the future. Luckily we can use the &lt;code&gt;@validates&lt;/code&gt; decorator to write our own.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;marshmallow&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ValidationError&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CreateNoteInputSchema&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="nd"&gt;@validates&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;time_created&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;is_not_in_future&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&amp;#39;value&amp;#39; is the datetime parsed from time_created by marshmallow&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;ValidationError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Can&amp;#39;t create notes in the future!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c1"&gt;# if the function doesn&amp;#39;t raise an error, the check is considered passed&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We don't even have to use any extra code in our view function now to use the extra validation, we still just call the &lt;code&gt;validate&lt;/code&gt; method.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_note&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;errors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_note_schema&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BAD_REQUEST&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;actually_create_note&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Extra information&lt;/h2&gt;
+&lt;p&gt;marshmallow is very powerful and contains much more than what I have covered here. Thankfully there are many good resources on the internet for you to research further.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://marshmallow.readthedocs.io/en/3.0/quickstart.html"&gt;marshmallow Quickstart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://flask-marshmallow.readthedocs.io/en/latest/"&gt;Flask-Marshmallow&lt;/a&gt; - An integration library that adds extra functionality (automatic schemas from models, extra field types, etc)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.codementor.io/dongido/how-to-build-restful-apis-with-python-and-flask-fh5x7zjrx"&gt;How to Build RESTful APIs with Python and Flask | Codementor&lt;/a&gt; - A wider look at API building as opposed to just the validation.&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>How to configure DNS for custom domains on GitHub Pages</title><link href="https://www.cameronmacleod.com/blog/github-pages-dns" rel="alternate"></link><published>2018-11-20T00:00:00+00:00</published><updated>2018-11-20T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-11-20:/blog/github-pages-dns</id><summary type="html">&lt;p&gt;Recently-ish GitHub &lt;a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/"&gt;announced&lt;/a&gt; that HTTPS would now work on custom domains with GitHub Pages. This was a great bit of news, because the web is slowly moving towards a HTTPS-only state of being and it's nice not to be left behind.&lt;/p&gt;
+&lt;p&gt;Unfortunately for me, for this new feature to work …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently-ish GitHub &lt;a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/"&gt;announced&lt;/a&gt; that HTTPS would now work on custom domains with GitHub Pages. This was a great bit of news, because the web is slowly moving towards a HTTPS-only state of being and it's nice not to be left behind.&lt;/p&gt;
+&lt;p&gt;Unfortunately for me, for this new feature to work you had to be using either &lt;strong&gt;CNAME&lt;/strong&gt; or &lt;strong&gt;ALIAS records&lt;/strong&gt; to point to your GitHub Pages domain. At the time, I was using &lt;strong&gt;A records&lt;/strong&gt; pointed at the old GitHub Pages servers, which didn't have the new features enabled. All these terms can be quite confusing if you're not familiar with DNS, so let's take a look at some basics.&lt;/p&gt;
+&lt;h3&gt;What is DNS?&lt;/h3&gt;
+&lt;p&gt;DNS stands for Domain Name System and it's the internet's way of mapping &lt;strong&gt;URLs&lt;/strong&gt; (like &lt;code&gt;cameronmacleod.com&lt;/code&gt;) to the actual &lt;strong&gt;IP addresses&lt;/strong&gt; (like &lt;code&gt;185.199.108.153&lt;/code&gt;) of the computers that can serve you the website. By means of an analogy, a &lt;strong&gt;URL&lt;/strong&gt; is a bit like a postal address, for example:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1 Castlehill&lt;br&gt;
+Edinburgh&lt;br&gt;
+EH1 2NG&lt;br&gt;
+United Kingdom  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Unless you have been to Edinburgh, you would have no idea how to get to that address. You'd need something to take that address and give you directions back. Similarly, if you give a browser a &lt;strong&gt;URL&lt;/strong&gt; then it would need something (in this case, a &lt;strong&gt;nameserver&lt;/strong&gt;) to give it directions (an &lt;strong&gt;IP address&lt;/strong&gt;) to find a website. Just as humans need directions to find a place, browsers need IP addresses to find a website.&lt;/p&gt;
+&lt;p&gt;DNS is the system by which these &lt;strong&gt;URLs&lt;/strong&gt; are translated into &lt;strong&gt;IP addresses&lt;/strong&gt;. For a basic mental model of how it works, you can think of these steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The &lt;strong&gt;browser&lt;/strong&gt; asks a &lt;strong&gt;nameserver&lt;/strong&gt; for the &lt;strong&gt;IP address&lt;/strong&gt; related to a &lt;strong&gt;URL&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;nameserver&lt;/strong&gt; looks through some information it holds known as &lt;strong&gt;records&lt;/strong&gt; to find out&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;nameserver&lt;/strong&gt; then tells the &lt;strong&gt;browser&lt;/strong&gt; the &lt;strong&gt;IP&lt;/strong&gt; and the &lt;strong&gt;browser&lt;/strong&gt; goes away and fetches the website&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A &lt;strong&gt;nameserver&lt;/strong&gt; is just the DNS name for a computer that keeps &lt;strong&gt;records&lt;/strong&gt; and can do the job of translating &lt;strong&gt;URLs&lt;/strong&gt; to &lt;strong&gt;IP addresses&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This is not comprehensive or 100% accurate, but it's a good enough model for our purposes. If you would like to know more, or you're still a bit confused then Cloudflare have a &lt;a href="https://www.cloudflare.com/learning/dns/what-is-dns/"&gt;really good intro to the topic&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;What are DNS records?&lt;/h3&gt;
+&lt;p&gt;So far, we know that things called &lt;strong&gt;records&lt;/strong&gt; store the mapping between &lt;strong&gt;URLs&lt;/strong&gt; and &lt;strong&gt;IP addresses&lt;/strong&gt;. Presumably this means that if we want to make our site point at the GitHub Pages servers, then we need to change these. But what are &lt;strong&gt;records&lt;/strong&gt; and how do they work?&lt;/p&gt;
+&lt;p&gt;At their core, &lt;strong&gt;records&lt;/strong&gt; are just text files written in a certain way, that tell the &lt;strong&gt;nameserver&lt;/strong&gt; how to find the &lt;strong&gt;IP address&lt;/strong&gt; for a certain website. There are multiple different types of DNS &lt;strong&gt;records&lt;/strong&gt; and all of them serve a slightly different purpose. Alongside the information below, all records have a &lt;code&gt;TTL&lt;/code&gt; or &lt;code&gt;Time To Live&lt;/code&gt; value that contains the number of seconds that the record is still valid for.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;A records&lt;/strong&gt; - These are possibly the simplest type of DNS records and hold the IP address for either a sub-domain (like &lt;code&gt;blog.cameronmacleod.com&lt;/code&gt;) or your root domain (like &lt;code&gt;cameronmacleod.com&lt;/code&gt;). Similarly, you may see &lt;strong&gt;AAAA records&lt;/strong&gt; which are the same, but they hold an &lt;a href="https://en.wikipedia.org/wiki/IPv6"&gt;IPv6 address&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;CNAME records&lt;/strong&gt; - &lt;strong&gt;CNAME&lt;/strong&gt; stands for &lt;strong&gt;C&lt;/strong&gt;anonical &lt;strong&gt;N&lt;/strong&gt;ame and points one domain name to another. The idea behind these records is to have a single official domain name and to let lots of other domains point to it. They are frequently used to redirect &lt;code&gt;www.&lt;/code&gt; subdomains to the root domain. e.g. &lt;code&gt;www.cameronmacleod.com -&amp;gt; cameronmacleod.com&lt;/code&gt;. They can only be used on sub-domains, not on root domains.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ALIAS records&lt;/strong&gt; - These are similar to &lt;strong&gt;CNAME records&lt;/strong&gt; in that they point your domain to another domain but there are a couple of subtle differences. &lt;strong&gt;ALIAS records&lt;/strong&gt; can only be used on the root domain, not sub-domains, and they are not standardised across all DNS providers, so yours may or may not support them.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Other record types&lt;/strong&gt; - There are many other record types, including &lt;strong&gt;MX&lt;/strong&gt; for pointing to mail servers, &lt;strong&gt;NS&lt;/strong&gt; for nameserver data and even &lt;strong&gt;TXT&lt;/strong&gt; for general notes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;How can I change my DNS records?&lt;/h3&gt;
+&lt;p&gt;If you know your DNS provider already, then great! If not, you will need to either figure out which one you are using, or set one up if your site is not yet live. For those of you who have yet to set up DNS, often your domain name provider will have a DNS service as part of purchasing your domain name, if not then there are many free DNS providers out there.&lt;/p&gt;
+&lt;p&gt;If you (like me) can't remember what DNS provider you used, then a really useful tool can be found &lt;a href="https://www.dnsstuff.com/tools"&gt;from DNSstuff&lt;/a&gt;. On that page there is a "DNS Lookup" tool that you can type your domain into.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="DNS lookup tool screenshot" src="/images/dnsstufflookup.png"&gt;&lt;/p&gt;
+&lt;p&gt;On the page that follows, under the heading "Referral path:" you will see the words "Response from &lt;strong&gt;some.dns.server&lt;/strong&gt;" where &lt;strong&gt;some.dns.server&lt;/strong&gt; is your DNS server. You can then type that URL into Google and the results should tell you your provider.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="DNS lookup results screenshot" src="/images/dnslookupresults.png"&gt;&lt;/p&gt;
+&lt;p&gt;The actual process of changing your DNS records varies from provider to provider, but most will have an admin panel that you can log into and add/remove records. The records I have configured for my GitHub pages domain and by extension ones that should work for your GitHub Pages site are as follows:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Type&lt;/th&gt;
+&lt;th&gt;Host name&lt;/th&gt;
+&lt;th&gt;Points to&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CNAME&lt;/td&gt;
+&lt;td&gt;www&lt;/td&gt;
+&lt;td&gt;notexactlyawe.github.io&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ALIAS&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;notexactlyawe.github.io&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The first is necessary to redirect &lt;code&gt;www.cameronmacleod.com&lt;/code&gt; to the GitHub Pages servers and the second redirects the "apex" domain (&lt;code&gt;cameronmacleod.com&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;When you come to configure this for yourself, you may find that there are no &lt;strong&gt;ALIAS records&lt;/strong&gt; available under your provider. Unfortunately your best option in this case may be to change DNS provider.&lt;/p&gt;
+&lt;h3&gt;How do I know it worked?&lt;/h3&gt;
+&lt;p&gt;DNS is notoriously slow to make changes to. Most providers recommend waiting 24 hours (some up to 72!) before you will be able to see your changes. When checking to see whether or not your changes have propagated, you can do one of two things. Use a DNS tool (like the one from &lt;a href="https://www.dnsstuff.com/tools"&gt;DNSstuff&lt;/a&gt; above) or use the unix command &lt;code&gt;dig&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;dig&lt;/code&gt; is a command that can find and list the DNS records for a given domain name. On Linux and Mac machines, you can run the following in terminal:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cameron@isla:~$ dig www.cameronmacleod.com +noall +answer
+
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.10.3-P4-Ubuntu &amp;lt;&amp;lt;&amp;gt;&amp;gt; www.cameronmacleod.com +noall +answer
+;; global options: +cmd
+www.cameronmacleod.com. 655 IN  A   192.30.252.154
+www.cameronmacleod.com. 655 IN  A   192.30.252.153
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The output might look a bit confusing, but it's the last two lines that count. Those are the records that &lt;code&gt;dig&lt;/code&gt; has found for your domain. In my case, this output was from before I changed my DNS settings, so it still shows the old &lt;strong&gt;A records&lt;/strong&gt; that I was using. Running it now would give something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cameron@isla:~$ dig www.cameronmacleod.com +noall +answer
+
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.10.3-P4-Ubuntu &amp;lt;&amp;lt;&amp;gt;&amp;gt; www.cameronmacleod.com +noall +answer
+;; global options: +cmd
+www.cameronmacleod.com. 3600    IN  CNAME   notexactlyawe.github.io.
+notexactlyawe.github.io. 3599   IN  A   185.199.108.153
+notexactlyawe.github.io. 3599   IN  A   185.199.109.153
+notexactlyawe.github.io. 3599   IN  A   185.199.111.153
+notexactlyawe.github.io. 3599   IN  A   185.199.110.153
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You might notice that there are a lot of &lt;strong&gt;A records&lt;/strong&gt;, but that is because &lt;strong&gt;ALIAS records&lt;/strong&gt; will resolve automatically to &lt;strong&gt;A records&lt;/strong&gt; in the DNS server, meaning that when you run &lt;code&gt;dig&lt;/code&gt; it just shows you the final output.&lt;/p&gt;
+&lt;p&gt;You will want to check that the &lt;strong&gt;IP addresses&lt;/strong&gt; in the last column of the &lt;code&gt;dig&lt;/code&gt; output look similar to the ones above. For a complete and up to date list of GitHub Pages &lt;strong&gt;IP addresses&lt;/strong&gt;, you can check &lt;a href="https://help.github.com/articles/setting-up-an-apex-domain/#configuring-a-records-with-your-dns-provider"&gt;their documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If this worked, then great! Your DNS is properly configured to redirect your custom domain to GitHub Pages, and you should be able to visit your domain in a browser and see your page being served!&lt;/p&gt;
+&lt;h3&gt;HTTPS for custom domains in GitHub Pages&lt;/h3&gt;
+&lt;p&gt;If you are trying to set up HTTPS on your site, then the changes above are necessary because they will point you at GitHub's content delivery network which has support for HTTPS. See &lt;a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/"&gt;GitHub's announcement&lt;/a&gt; for more details. You will also need to perform a couple more steps.&lt;/p&gt;
+&lt;p&gt;Firstly, if you used to be using &lt;strong&gt;A records&lt;/strong&gt; then you may need to remove and re-add your custom subdomain from your repository's settings. This will generate you a certificate for your domain. To do this, firstly go to your repository settings.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot of repository settings" src="/images/repositorysettings.png"&gt;&lt;/p&gt;
+&lt;p&gt;Next, head to the GitHub Pages settings and remove your domain from the "Custom domain" box and click "Save". Put your domain back in that box and click Save again.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot of GitHub Pages settings" src="/images/githubpagessettings.png"&gt;)&lt;/p&gt;
+&lt;p&gt;After doing this you will need to wait about an hour, but after that you should be able to go to &lt;code&gt;https://siteinthecustomdomainbox.com&lt;/code&gt; and see a green padlock in the address bar. If the domain you put in the "Custom domain" box had a &lt;code&gt;www.&lt;/code&gt; in front of it, then you will need to add that to the URL when visiting your site else it won't work.&lt;/p&gt;
+&lt;p&gt;For full and up to date instructions on the above see &lt;a href="https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/"&gt;GitHub's documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;One thing to note is that HTTPS will only work for either &lt;code&gt;www.yoursite.com&lt;/code&gt; or &lt;code&gt;yoursite.com&lt;/code&gt; but not both depending on which one you put in the "Custom domain" box. GitHub are aware of the issue, but haven't given any public timeline for fixing it, see &lt;a href="https://github.community/t5/GitHub-Pages/Does-GitHub-Pages-Support-HTTPS-for-www-and-subdomains/td-p/7116"&gt;this GitHub Community thread&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;If something didn't work&lt;/h1&gt;
+&lt;p&gt;GitHub have a really useful &lt;a href="https://help.github.com/articles/troubleshooting-custom-domains/"&gt;troubleshooting guide&lt;/a&gt; for custom domains and HTTPS.&lt;/p&gt;</content></entry><entry><title>5 Mistakes companies make recruiting software interns</title><link href="https://www.cameronmacleod.com/blog/recruiting-software-interns" rel="alternate"></link><published>2018-11-14T00:00:00+00:00</published><updated>2018-11-14T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-11-14:/blog/recruiting-software-interns</id><summary type="html">&lt;p&gt;August to November is internship application season for computer science undergraduates and over the past few months I've been applying to a good number of internships myself. Through these applications I've learnt a few things about what makes for a good recruitment process and what doesn't and I hope to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;August to November is internship application season for computer science undergraduates and over the past few months I've been applying to a good number of internships myself. Through these applications I've learnt a few things about what makes for a good recruitment process and what doesn't and I hope to share a few of them here.&lt;/p&gt;
+&lt;p&gt;Having a good process is really important in software engineering roles because candidates hold so much power. A good candidate will be progressing with at least 3 or 4 companies that are likely to hire them at any one time. If they find any reason to dismiss your company, then they will. Below I've listed five common mistakes I've seen in recruiting processes and why each one is likely to lose you a good candidate.&lt;/p&gt;
+&lt;h1&gt;1. Timing the process wrong&lt;/h1&gt;
+&lt;p&gt;The big companies that recruit computer science interns (Google, Amazon, Facebook etc) tend to start their processes around September. This means that all the candidates they wanted have been snapped up by December at the latest. If you are starting your recruiting process any later than September, then you are losing a lot of good candidates to bigger companies that got in earlier.&lt;/p&gt;
+&lt;p&gt;The earlier you list your positions, the better. If a candidate receives an offer from you whilst they are only in an early stage of the process with other companies, then they are much more likely to take your position. Of course, the same applies to other companies, which makes it even more necessary to get in early.&lt;/p&gt;
+&lt;p&gt;All this is not to say that there aren't still good candidates left later on, it's just that you will have a harder time finding them. When a candidate receives an offer, they're likely to take it.&lt;/p&gt;
+&lt;h1&gt;2. Bad communication&lt;/h1&gt;
+&lt;p&gt;There is nothing worse from a candidate's perspective than not hearing anything back from an application. Not being clear on what happens next in a recruitment process comes in a close second. It's crucial when recruiting to be prompt in replying to candidates and exceedingly clear on what the process will entail.&lt;/p&gt;
+&lt;p&gt;Often companies make this mistake by opening applications for a position, stockpiling them and then come back to review them a few weeks later. Alongside being an unpleasant candidate experience, this will also lose you candidates to other companies that have reviewed and made offers faster.&lt;/p&gt;
+&lt;p&gt;In terms of making sure the candidate is aware of what the process entails, it's generally a good idea to let them know as early as possible in an email that lists the steps, and then reinforce this at the end of every step. Candidates really appreciate having all the information and will reward you for your effort with a better image of your organisation.&lt;/p&gt;
+&lt;h1&gt;3. Unhelpful interviews&lt;/h1&gt;
+&lt;p&gt;An interview is your best chance to get to know the candidate and their experience. Something that's often overlooked, however, is that it's also your best chance to sell the candidate your position.&lt;/p&gt;
+&lt;p&gt;Lists of what is important to software engineers in their job often start with working with smart colleagues. For the candidate to know that your team are excellent at what they do, it's important that the questions they get asked in interview are smart and relevant. Asking candidates to recite some facts from a textbook is unhelpful for you and them, but asking them to solve a problem that's relevant to your business both gives you greater insight into them and demonstrates your team's skill.&lt;/p&gt;
+&lt;h1&gt;4. Not reimbursing travel&lt;/h1&gt;
+&lt;p&gt;Hiring software engineers is expensive. The amount of recruiting and engineering time that goes into a single candidate is huge. But the reason for this is that hiring the wrong engineer is even more expensive. So why would you vastly narrow your pool of candidates and exclude many good engineers by not paying for a train fare or flight? The price will pale in comparison to what you're already spending on the candidate. Personally I would not attend an interview without travel reimbursement and I know many people that feel the same.&lt;/p&gt;
+&lt;p&gt;This is also a problem in terms of recruiting diverse candidates. I'm sure that I don't need to go into the benefits of a diverse workforce, but not reimbursing travel expenses reduces the diversity of your talent pool. Only candidates from the local area, or those who can afford to travel would then attend. Assuming that you'll find enough good engineers this way can be a costly mistake.&lt;/p&gt;
+&lt;h1&gt;5. Ignoring early year undergraduates&lt;/h1&gt;
+&lt;p&gt;This is quite possibly the most common mistake I see companies making today. A candidate not in their penultimate year of study can have an awful experience with all the auto-rejections and non-replies sent their way. This is a real shame because there are a lot of really good candidates that get ignored by companies that prefer to hire penultimate year students.&lt;/p&gt;
+&lt;p&gt;Understandably, some companies run internships for the express purpose of channelling interns into their graduate program. The argument goes that candidates are more likely to return for a graduate job if they get the offer just after their internship ends and you can only offer graduate jobs to students expecting to graduate the following year. Whilst this is true, I would disagree with this implying excluding earlier year candidates because in my opinion the early bird gets the worm. If you are a company that doesn't ignore non-penultimate year students then those early students will have a more favourable image of you. On top of this many interns return for another internship at the same company, meaning you still get the funnelling effect, just they're even more productive when they join full time due to the extra experience working in your environment.&lt;/p&gt;
+&lt;p&gt;It's also worth mentioning that a lot of the most talented students I know are not penultimate-year. Whilst university is valuable, some students have been programming for years beforehand and come into university well above their expected level. It would be a shame to ignore these candidates, especially at a time in their career when other companies are less interested.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Start looking early  &lt;/li&gt;
+&lt;li&gt;Review applications as they come in  &lt;/li&gt;
+&lt;li&gt;Be clear with how the process works  &lt;/li&gt;
+&lt;li&gt;Put a lot of thought into your interview questions  &lt;/li&gt;
+&lt;li&gt;Reimburse travel (at least nationally)  &lt;/li&gt;
+&lt;li&gt;Don't ignore first and second years  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Internships are a fantastic thing for all parties involved. Interns get great experience and companies get access to some of the smartest engineers at an early stage in their career. Getting the recruiting process right can lead to great things for your organisation, and it's a shame to see simple mistakes being made.&lt;/p&gt;
+&lt;p&gt;If you found this useful or interesting, why not &lt;a href="https://twitter.com/notexactlyawe"&gt;follow me on Twitter&lt;/a&gt;?&lt;/p&gt;</content></entry><entry><title>How we ran Welcome Week events</title><link href="https://www.cameronmacleod.com/blog/running-freshers-events" rel="alternate"></link><published>2018-10-06T00:00:00+01:00</published><updated>2018-10-06T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-10-06:/blog/running-freshers-events</id><summary type="html">&lt;p&gt;At the University of Edinburgh we call the week before lectures begin each year Welcome Week. It's designed as a time for new students to meet each other and get settled into university and often a new city. Most societies will run events to try and attract new students to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;At the University of Edinburgh we call the week before lectures begin each year Welcome Week. It's designed as a time for new students to meet each other and get settled into university and often a new city. Most societies will run events to try and attract new students to join them and we (&lt;a href="http://ears-edi.com/"&gt;EaRS&lt;/a&gt;) were no different. After all, a society dies when no-one is interested any more.&lt;/p&gt;
+&lt;p&gt;I wanted to write down some of our experience running events during Welcome Week because it is different to running events any other time of the year and it may be useful to anyone who is new to running a society in future. If you are not running a society, hopefully it should be an interesting insight into what goes on behind the scenes.&lt;/p&gt;
+&lt;p&gt;We ran three separate events during Welcome Week 2018. There was a pub quiz, a workshop and an evening of board games. We attempted to make each event as inclusive to various skill levels as possible, because we wanted to attract first year undergraduates and the level of technical knowledge amongst new students varies wildly.&lt;/p&gt;
+&lt;h2&gt;Choosing events to run&lt;/h2&gt;
+&lt;p&gt;It's important to be as inclusive as possible during your first events as you want to encourage people to join whatever their experience level. For this reason, we chose to run two socials alongside our workshop, which everyone could turn up to and didn't reward technical knowledge to level the playing field. The workshop was aimed squarely at beginners as well. This is especially important for technical societies like ours, since we can often seem intimidating to beginners.&lt;/p&gt;
+&lt;h4&gt;Mistake #1 - Wrong level of workshop&lt;/h4&gt;
+&lt;p&gt;The workshop that we ran was aimed at complete programming beginners. We decided to do this since we weren't sure what skill level the freshers coming in would be at. Unfortunately we ended up attracting a lot of experienced people to the workshop and had to split it into two sessions at the same time; one for beginners and one for more advanced people. This made it harder to run the workshop as we could give less attention to each group.&lt;/p&gt;
+&lt;h6&gt;Potential solutions&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;More heavily emphasise the beginner nature of the event in the advertising.&lt;/li&gt;
+&lt;li&gt;Advertise the event through other tangentially related societies with potential interests in learning to code. This would attract people that wouldn't have gone out of their way to find a technical society like ours.&lt;/li&gt;
+&lt;li&gt;Keep the event at a beginner level, but in a less popular topic such as electronics or mechanical engineering.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Advertising events&lt;/h2&gt;
+&lt;p&gt;Our student union is the best place to advertise fresher's events in Edinburgh as they put a lot of money into printing booklets and directing students towards the places to find these events. Because we submitted late we didn't get to make full use of this, but we still got a few sign-ups from the online version of their events brochure.&lt;/p&gt;
+&lt;h4&gt;Mistake #2 - Late submission to the student union&lt;/h4&gt;
+&lt;p&gt;This mistake fell squarely on my shoulders. In April before the last academic year ended, our student union sent us an email with details on how to include our Welcome Week events in their advertising. I didn't pay enough attention to the email to see this and so we missed the deadline for submission by a few months.&lt;/p&gt;
+&lt;h5&gt;Potential solutions&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Read all emails from the student union.&lt;/li&gt;
+&lt;li&gt;Find a better secretary.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Despite this, the channel that gained us the most sign-ups to the events was without a doubt our Activities Fair, which is an event every year where societies gather in an expo format to advertise to new students. Since we scheduled all our events for after the fair, we were able to direct people to them at the fair and a lot of the people present at the events found out there.&lt;/p&gt;
+&lt;p&gt;Facebook was also a very useful tool for us due to the network effects. If one person is interested in our events, then there's a good chance that their friends are too, so it acts like improved word of mouth advertising. There's no need to spend money on it if you build your page using off-line methods.&lt;/p&gt;
+&lt;p&gt;We also used our mailing list from last year, but that generally produces quite low engagement rates.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Make sure to delegate&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Having someone responsible for marketing and another person responsible for each individual event helps enormously. The year before, there were only 3 of us and the events wouldn't have run if we didn't draft some friends in. This year having 9 members on the committee in specific roles made things a whole lot easier.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;We had great fun during Welcome Week, and despite the mistakes we made it was very successful for the society. The turn-out to events was great and we managed to increase our reach with mailing lists and Facebook dramatically!&lt;/p&gt;
+&lt;p&gt;Questions? Contact me using the links on the left!&lt;/p&gt;</content></entry><entry><title>Diagnosing performance issues in a Flask app</title><link href="https://www.cameronmacleod.com/blog/sqlalchemy-speed" rel="alternate"></link><published>2018-04-22T00:00:00+01:00</published><updated>2018-04-22T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-04-22:/blog/sqlalchemy-speed</id><summary type="html">&lt;p&gt;I was recently part of the team that ran &lt;a href="https://createdhack.github.io"&gt;CreatED&lt;/a&gt;, the UK’s first hardware hackathon of its kind. Organising it was stressful at times and incredibly rewarding at others, especially when it came to the event actually happening. During the run up to the event, we learned a lot …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I was recently part of the team that ran &lt;a href="https://createdhack.github.io"&gt;CreatED&lt;/a&gt;, the UK’s first hardware hackathon of its kind. Organising it was stressful at times and incredibly rewarding at others, especially when it came to the event actually happening. During the run up to the event, we learned a lot about what actually needs to happen for a hackathon to run and one of those things was the setting up of event software.&lt;/p&gt;
+&lt;p&gt;It’s easy to overlook when you’re thinking about running your first hackathon, but things like registration systems, mentor allocation systems and hardware distribution systems all need to be put in place. Since we were a hardware hackathon, the last one was of particular importance to us. Thankfully HackMIT and MakeMIT, mostly through &lt;a href="http://noahmoroze.com/"&gt;Noah Moroze&lt;/a&gt; had already put together a fantastic system for this, &lt;a href="https://github.com/techx/cog"&gt;Cog&lt;/a&gt;, which had been battle tested at much larger hackathons than ours.&lt;/p&gt;
+&lt;p&gt;Cog was a great gift to us, as we’d only started to think about a system for this quite late in the game (2 or 3 weeks to go) and it had pretty much all of the functionality we needed. There were, however, a few things that needed to be added and so I set about doing so.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We needed MyMLH, an OAuth provider, integrated since Cog only worked with HackMIT’s Quill registration system which we weren't using.&lt;/li&gt;
+&lt;li&gt;We needed participants to be able to upload CVs since Eventbrite had no functionality for this and it had been promised to sponsors.&lt;/li&gt;
+&lt;li&gt;We wanted a list of admin emails to be recognised by Cog so that not everyone had to use the same credentials.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Most of these were quite easy to integrate, thanks to some logical design on the part of the team at MIT. The CV upload functionality took me longer than the others though mostly due to my inexperience with front-end development. Before I was comfortable signing this off for use during the hack (due to it being so critical), I wanted to do some manual testing, and part of that was load testing since I was worried about a huge amount of users at the start of the hackathon.&lt;/p&gt;
+&lt;p&gt;I wrote up a quick script that started up a number of threads and used them all to fire a request at the home page of the application in a staggered fashion, hoping to simulate actual usage.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;random&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
+
+&lt;span class="n"&gt;URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http://localhost:5000&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;time_to_get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;elapsed&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;total_seconds&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;load_test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num_users&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;t_pool&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num_users&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Thread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;time_to_get&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;URL&lt;/span&gt;&lt;span class="p"&gt;,))&lt;/span&gt;
+        &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;t_pool&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Waiting&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;t_pool&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+
+&lt;span class="n"&gt;load_test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The results I got from this quick test were mildly alarming. Each of these times (in seconds) is how long it took to receive a full response from the server.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cameron@isla:~/src/created/cog$ python load_test.py
+Waiting
+1.971983
+3.797295
+5.694615
+7.800551
+9.669649
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To put this into context, this isn’t a particularly demanding page. It displays to the user a list of available hardware and does little else.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The main page for Cog" src="/images/cog_main_page.png" title="The main page for Cog"&gt;&lt;/p&gt;
+&lt;p&gt;However, I wasn’t sure whether the problem was with my script or with Cog itself. To investigate this, I started Googling around profiling in Flask (the framework Cog is written in) and &lt;a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvi-debugging-testing-and-profiling"&gt;this article&lt;/a&gt; pointed me to some &lt;a href="http://werkzeug.pocoo.org/docs/0.14/contrib/profiler/"&gt;Werkzeug middleware&lt;/a&gt; that did what I wanted. The output is below from one of the endpoint calls - pay attention to the top call.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PATH: &amp;#39;/inventory&amp;#39;
+         1761654 function calls (1645404 primitive calls) in 2.829 seconds
+
+   Ordered by: internal time, call count
+   List reduced from 1183 to 10 due to restriction &amp;lt;10&amp;gt;
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      759    0.375    0.000    0.377    0.000 {method &amp;#39;execute&amp;#39; of &amp;#39;psycopg2.extensions.cursor&amp;#39; objects}
+     4536    0.062    0.000    0.280    0.000 /home/cameron/src/created/cog/venv/local/lib/python2.7/site-packages/sqlalchemy/sql/schema.py:898(__init__)
+     6426    0.056    0.000    0.070    0.000 /home/cameron/src/created/cog/venv/local/lib/python2.7/site-packages/sqlalchemy/sql/elements.py:674(__getattr__)
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The 2.829 seconds it took to serve the page suggested that the problem was somewhere in the application as opposed to my script and looked at the output. The most suspicious line to my eyes was the one that ended &lt;code&gt;{method 'execute' of 'psycopg2.extensions.cursor' objects}&lt;/code&gt;, mostly because it was the most expensive, but also because it meant the database calls were taking a long time to execute. After a while going down the rabbit hole of trying different deployment options with the database in case the problem was with the database itself I went back and saw the &lt;code&gt;ncalls&lt;/code&gt; column had 759 in it. This was fishy as all the page was doing was displaying a list of hardware available to the user, which shouldn’t have taken more than a couple of queries at most.&lt;/p&gt;
+&lt;p&gt;I was stumped as to what could be making this many queries in the application as the code all looked sensible, so I set SQLAlchemy to echo all queries to see whether I could see a pattern. Sparing you the output of 759 queries, a lot of COUNTs were popping up suggesting that the problem may be in the quantities of items since those were the only numbers on the page. Sure enough, looking at the code I found this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;InventoryEntry&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;quantity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Returns quantity of items that have not been &amp;#39;claimed&amp;#39; by a request&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;requests&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RequestItem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt; \
+                   &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; \
+                   &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hardwarecheckout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Request&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; \
+                   &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;hardwarecheckout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RequestStatus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;APPROVED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; \
+                   &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;with_entities&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;RequestItem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quantity&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scalar&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In the database, there was a table for inventory entries (roughly corresponding to 'classes' of items) and items (think instances of these classes). When calculating how many of a particular inventory entry was available it would check how many of an inventory entry existed in total and then subtract the number of approved requests for that item. This looks fine at first glance, and indeed it gives the correct result. However the issue is that this is calculated on a per-item basis, meaning each item makes 2 queries, when this could be done in a single query on a table basis.&lt;/p&gt;
+&lt;p&gt;The solution comes through the use of the GROUP BY clause. The following code selects all items that no user has claimed and groups them by the ID in &lt;code&gt;inventory_entry&lt;/code&gt; before counting the groups (effectively returning how many of each inventory entry are free). The bottom line is a dictionary comprehension that puts them in a nice format for the Jinja template.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="n"&gt;counts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;session&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;\
+            &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;\
+            &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;\
+            &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;counts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;id_&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;counts&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The one important thing to note with this code is that &lt;code&gt;counts[“some_id”]&lt;/code&gt; will error if &lt;code&gt;some_id&lt;/code&gt; has no items free since &lt;code&gt;counts&lt;/code&gt; won't have it as a key. The way to fix this is by using &lt;code&gt;counts.get(“some_id”, 0)&lt;/code&gt; where &lt;code&gt;0&lt;/code&gt; is a default value that’s returned when there’s no entry in the dictionary for &lt;code&gt;some_id&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;And as thought, the profiler output looks much better. The ncalls to &lt;code&gt;cursor.execute&lt;/code&gt; has gone down to 4, which is much more sensible!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PATH: &amp;#39;/inventory&amp;#39;
+         30824 function calls (29237 primitive calls) in 0.055 seconds
+
+   Ordered by: internal time, call count
+   List reduced from 677 to 10 due to restriction &amp;lt;10&amp;gt;
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      297    0.003    0.000    0.010    0.000 /home/cameron/src/created/cog/venv/local/lib/python2.7/site-packages/sqlalchemy/orm/loading.py:30(instances)
+        4    0.003    0.001    0.003    0.001 {method &amp;#39;execute&amp;#39; of &amp;#39;psycopg2.extensions.cursor&amp;#39; objects}
+    162/1    0.003    0.000    0.025    0.025 {method &amp;#39;join&amp;#39; of &amp;#39;unicode&amp;#39; objects}
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The final code that we deployed is now sitting on &lt;a href="https://github.com/notexactlyawe/cog"&gt;GitHub&lt;/a&gt; so you can feel free to take a look.&lt;/p&gt;</content></entry><entry><title>Useful links relating to abracadabra</title><link href="https://www.cameronmacleod.com/blog/abracadabra-links" rel="alternate"></link><published>2016-07-18T00:00:00+01:00</published><updated>2016-07-18T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-07-18:/blog/abracadabra-links</id><summary type="html">&lt;p&gt;Here is a collection of links relating to abracadabra that may be useful for anyone looking to do something similar.&lt;/p&gt;
+&lt;h2&gt;Github Repositories&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/worldveil/dejavu"&gt;dejavu&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Academic Papers&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://musicweb.ucsd.edu/~sdubnov/CATbox/Reader/ThumbnailingMM05.pdf"&gt;Audio Thumbnailing of Popular Music Using Chroma-Based Representations&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The above paper was more about feature detection for search and retrieval as opposed to robust …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is a collection of links relating to abracadabra that may be useful for anyone looking to do something similar.&lt;/p&gt;
+&lt;h2&gt;Github Repositories&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/worldveil/dejavu"&gt;dejavu&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Academic Papers&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://musicweb.ucsd.edu/~sdubnov/CATbox/Reader/ThumbnailingMM05.pdf"&gt;Audio Thumbnailing of Popular Music Using Chroma-Based Representations&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The above paper was more about feature detection for search and retrieval as opposed to robust fingerprinting for search after distortion.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://slsp.kaist.ac.kr/~swkim/papers/journal_TIFS_2009.pdf"&gt;Pairwise Boosted Audio Fingerprint&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The above paper is about a new approach to finding filters and quantisers for fingerprinting music.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.cs.cmu.edu/~yke/musicretrieval/cvpr2005-mr.pdf"&gt;Computer Vision for Music Identification&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Dejavu works in a similar way to the paper outlined above.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf"&gt;An Industrial Strength Audio Search Algorithm&lt;/a&gt; - The original Shazam paper&lt;/p&gt;
+&lt;p&gt;Papers referencing Wang:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://scholar.google.co.uk/scholar?client=ubuntu&amp;amp;channel=fs&amp;amp;oe=utf-8&amp;amp;gfe_rd=cr&amp;amp;um=1&amp;amp;ie=UTF-8&amp;amp;lr&amp;amp;cites=11824032630980601393"&gt;https://scholar.google.co.uk/scholar?client=ubuntu&amp;amp;channel=fs&amp;amp;oe=utf-8&amp;amp;gfe_rd=cr&amp;amp;um=1&amp;amp;ie=UTF-8&amp;amp;lr&amp;amp;cites=11824032630980601393&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Similar Projects&lt;/h2&gt;
+&lt;p&gt;Probably the closest in scope and implementation is &lt;a href="https://github.com/worldveil/dejavu"&gt;dejavu&lt;/a&gt; by Will Drevo.&lt;/p&gt;
+&lt;p&gt;An algorithm that takes a slightly different approach is &lt;a href="https://acoustid.org/chromaprint"&gt;Chromaprint&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://wiki.musicbrainz.org/Fingerprinting"&gt;Musicbrainz&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://aubio.org/news/20091111-2339_shazam"&gt;Playing with Shazam fingerprints&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://echoprint.me/"&gt;Echoprint&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Use Cases&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://static1.squarespace.com/static/53f7940ae4b05c506d396373/t/5669c81ba2bab86d89ef3dec/1449773083824/Koh_30x40.pdf"&gt;Alignment of videos of same event using audio fingerprinting&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://news.ycombinator.com/item?id=8303713"&gt;De-duplicating music library&lt;/a&gt; &lt;/p&gt;</content></entry><entry><title>How to read WAVE files in Python</title><link href="https://www.cameronmacleod.com/blog/reading-wave-python" rel="alternate"></link><published>2016-04-07T00:00:00+01:00</published><updated>2016-04-07T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-04-07:/blog/reading-wave-python</id><summary type="html">&lt;p&gt;Any project that uses audio will usually start out using WAVE files for its on-disk presence, and as with many things in Python, there's a standard library module for that. Now don't get me wrong in the rest of this article - &lt;code&gt;wave&lt;/code&gt; does the job. The thing is that it …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Any project that uses audio will usually start out using WAVE files for its on-disk presence, and as with many things in Python, there's a standard library module for that. Now don't get me wrong in the rest of this article - &lt;code&gt;wave&lt;/code&gt; does the job. The thing is that it can be a bit confusing to get started with and it's not &lt;em&gt;always&lt;/em&gt; the best tool for the job. This post will go over my journey in reading WAVEs and the various approaches I found.&lt;/p&gt;
+&lt;p&gt;When you read &lt;a href="https://docs.python.org/2/library/wave.html"&gt;the documentation&lt;/a&gt; for &lt;code&gt;wave&lt;/code&gt;, you quickly find the &lt;code&gt;readframes()&lt;/code&gt; function for reading the meat of the file. This just as quickly poses a problem, that of how to parse the data it returns.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;\xd04\xd52\xd63\x824...&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Of course, this wouldn't pose even the hint of a problem if we bothered to read &lt;a href="http://www-mmsp.ece.mcgill.ca/documents/audioformats/wave/wave.html"&gt;the spec&lt;/a&gt; for wave files, but who reads those? As a result, I found myself writing some convoluted string parser that was the textbook example of treating the symptom as opposed to the cause. It also didn't really work. It would technically be a valid solution, but there is little point getting it up and running because there are better ways.&lt;/p&gt;
+&lt;p&gt;The next level up is discovering the &lt;code&gt;struct&lt;/code&gt; module. &lt;code&gt;struct&lt;/code&gt; is a module that allows for the reading of raw binary data into native Python types that I discovered - after some pained googling - in [this Stack Overflow question]. &lt;code&gt;struct.unpack()&lt;/code&gt; contains all of the magic that we need. It takes a format string and the data that you want to extract. The below is an example from the git history of &lt;a href="http://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_whole&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;wav_r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wave&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tell&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getnframes&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="n"&gt;decoded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;h&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readframes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decoded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As a quick explanation of the format string, the &lt;code&gt;&amp;lt;&lt;/code&gt; indicates little-endian data (defined in the spec) and the &lt;code&gt;h&lt;/code&gt; 1 signed 16-bit int. Before you think "Hooray, a code snippet! I can leave now.", there are a few problems with this approach. Firstly, wave data is not guaranteed to contain int16s and so this would fall down on a good number of files. Second, it's horrendously slow.&lt;/p&gt;
+&lt;p&gt;Tackling the second issue first, you could minimise the number of calls to &lt;code&gt;unpack()&lt;/code&gt;. Calling it with fmt as &lt;code&gt;"&amp;lt;hh"&lt;/code&gt; it would expect two int16s, &lt;code&gt;"&amp;lt;hhhhh"&lt;/code&gt; would expect 5. You could change the above code to use this as so:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="n"&gt;chunk_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tell&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getnframes&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;h&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;chunk_size&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;decoded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readframes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk_size&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c1"&gt;# (w.getnframes() - w.tell()) &amp;lt; chunk_size&lt;/span&gt;
+        &lt;span class="n"&gt;tmp_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getnframes&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tell&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;tmp_fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;h&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;chunk_size&lt;/span&gt;
+        &lt;span class="n"&gt;decoded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tmp_fmt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readframes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tmp_size&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Yet again, as this article is a journey as opposed to a straight out answer, this ugly hack does not come recommended. In general, I find that ugly code == doing things wrong. This example is no different, but is easily fixed.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;{0}h&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk_size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As an aside, if you are not already using this way to construct format strings, please take the time to internalise it. But back to the change, this works due to an unremarkable looking line in the docs for &lt;code&gt;struct&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A format character may be preceded by an integral repeat count. For example, the format string '4h' means exactly the same as 'hhhh'.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Much better, no?&lt;/p&gt;
+&lt;p&gt;Our next issue was that the data isn't guaranteed to come in signed 16-bit integers. The good news is that we can get what format it is in programmatically with our old friend, the &lt;code&gt;wave&lt;/code&gt; module. The below code is from abracadabra.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;mode&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;sizes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;h&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wav&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wave&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wav&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getnchannels&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fmt_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sizes&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wav&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getsampwidth&lt;/span&gt;&lt;span class="p"&gt;()]&lt;/span&gt;
+    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fmt_size&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you have read the WAVE spec you will see that BitsPerSample is 2 bytes, suggesting that getsampwidth() could return an arbitrary value between 0 and 8192. In reality, you are not likely to encounter greater than 32 bit audio in the wild and &lt;code&gt;sizes&lt;/code&gt; reflects this. Saying this, it would probably be good practice to catch KeyError when setting fmt_size and raising a more readable error.&lt;/p&gt;
+&lt;p&gt;So we now have a working solution, and I have used this in production code before now. There is, however, another optimisation you could make assuming that the files you are loading in aren't overly large and it involves the &lt;code&gt;array&lt;/code&gt; module. &lt;code&gt;array&lt;/code&gt; is advertised in the docs as memory efficent arrays, but for our purposes we care more that its implemented in straight C and is lightning fast. It's also pretty easy to use.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fmt_size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getsize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;itemsize&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You just pass it a format string (of the same format as struct) and then call &lt;code&gt;fromfile&lt;/code&gt; with a file object and the size of it. According to &lt;a href="http://stackoverflow.com/questions/5804052/improve-speed-of-reading-and-converting-from-binary-file-with-python"&gt;this&lt;/a&gt; SO question it is up to 40X faster than &lt;code&gt;struct.unpack&lt;/code&gt; &lt;em&gt;YMMV&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;This has been my journey in attempting to read WAVE files and hopefully it will help. Most of the code in here has been adapted from my repository &lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt; and if you are looking for an up-to-date version of what I am using there might be a good place to look. This article is &lt;a href="https://github.com/notexactlyawe/cameronmacleod.com"&gt;also on Github&lt;/a&gt; so if you see something wrong, please submit an issue.&lt;/p&gt;</content></entry><entry><title>The importance of letting go of ideas</title><link href="https://www.cameronmacleod.com/blog/importance-of-letting-go" rel="alternate"></link><published>2016-03-13T00:00:00+00:00</published><updated>2016-03-13T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-03-13:/blog/importance-of-letting-go</id><summary type="html">&lt;p&gt;On May 29 2015, I made my first entry into a fancy notebook I had bought. This was going to be it, I was never again going to struggle in vain to remember that killer idea I had earlier. Everything was getting written down from here on out.&lt;/p&gt;</summary><content type="html">&lt;p&gt;On May 29 2015, I made my first entry into a fancy notebook I had bought. This was going to be it, I was never again going to struggle in vain to remember that killer idea I had earlier. Everything was getting written down from here on out.&lt;/p&gt;
+&lt;p&gt;Despite a decent start, by July the entries had started to get less frequent and at the start of August they had dried up completely. As with the vast majority of things that I start, this logbook concept hadn't got very far at all.&lt;/p&gt;
+&lt;p&gt;Admittedly, some aspects were useful whilst it lasted. Thanks to this little book, I now have a complete record of my trip to Barcelona to a level of detail that photographs and memories could just never fill on their own. It was also great for keeping track of tasks that I had to do. Just to be clear, it didn't increase the speed with which I did them, just kept a record of them.&lt;/p&gt;
+&lt;p&gt;The obvious question from here is, "Why did I stop writing in the notebook if it was useful?". I still have the notebook, and it still sits most of the time within easy reach, so it's not as if I lost it or anything. The answer to this I feel lies in the concept of value and the exchange of time for value. People, as a rule, only do things if they view the value of doing said thing to be greater than or equal to the value of the resources they use to do the thing. In this case, the only resource to be used was time, but I still didn't view the benefits I would gain from writing down an idea, or a task to be done as worth the time it would take.&lt;/p&gt;
+&lt;p&gt;At this point, you may be calling me lazy. The time it takes to write a bullet point down is basically negligible, and all this hot air about value is just covering up a fundamental attitude of "can't be bothered". But that's the thing, "can't be bothered" stems from a lack of perceived value. I used to hate piano lessons. I would rarely practise, and would only do the minimum to get by due to what we would usually call not being bothered. In other terms, not seeing the value in doing the practice. &lt;/p&gt;
+&lt;p&gt;When we don't do something that should be regular for a while, we fall out of the habit. This, I believe, is what happened with my notebook. I didn't see sufficient value in writing things down, despite forcing myself to do so for a time, and after a while just forgot all about the exercise. The question from here is: Even if I didn't see sufficient value in writing all my ideas down, was there sufficient value anyway?&lt;/p&gt;
+&lt;p&gt;And here's where we get to the crux of the article. I would say no simply because the vast majority of ideas are absolute rubbish. Even the ones that we think are great (just look the failure rate of startups or the save-the-world ideas so often generated down the pub). As manner of example, one shamefully representative entry from July 2 in my notebook was as follows.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Peckish Rice Crackers&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Not overly enlightening stuff.&lt;/p&gt;
+&lt;p&gt;No matter whether you are an extraordinary genius or you struggle with the puzzles on the backs of cereal boxes, you will give too much value to your own ideas. This narcissism is a fundamental and necessary component of human nature. If people weren't to have ideas that they believed in, then we wouldn't have any of the innovations that we have today. More than that, a lack of self-confidence in our ideas would lead to a lack of leaders, and society itself may not have developed - certainly not to the same extent it has.&lt;/p&gt;
+&lt;p&gt;Beyond the cheapness of ideas, is there really any harm in scratching the itch of putting them somewhere? Not necessarily, but there is a freedom in learning to let them go. An idea that you are doing your best to remember is a bit of your mind that could be assigned to other things. Not only that, but good ideas tend to be remembered through their own virtue as opposed to needing to be explicitly remembered.&lt;/p&gt;
+&lt;p&gt;Everyone goes through a diary phase or buys a notebook at some point, it's a natural thing to do. But don't beat yourself up for stopping, that much is logical.&lt;/p&gt;</content></entry></feed>
