@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href="http://gmpg.org/xfn/11" rel="profile">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- Enable responsiveness on mobile devices-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        <title>Build a snake game on the BBC micro:bit - Cameron MacLeod</title>
+        <meta name="title" property="og:title" content="Build a snake game on the BBC micro:bit - Cameron MacLeod">
+        <meta property="og:type" content="Article">
+
+        <meta name="author" content="Cameron MacLeod">
+
+		<!-- CSS -->
+		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
+		<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
+
+		<link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/poole.css" />
+		<link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/hyde.css" />
+		<link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/syntax.css" />
+        <link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/style.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		<!-- RSS -->
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	<script type="text/javascript">
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-76310908-1', 'auto');
+            ga('set', 'anonymizeIp', true);
+			ga('send', 'pageview');
+	</script>
+	</head>
+
+	<body class="theme-base-0d">
+<div class="sidebar">
+	<div class="container sidebar-sticky">
+		<div class="sidebar-about">
+
+			<h1>
+				<a href="/">
+					<img class="profile-picture" alt="Cameron MacLeod's Profile Picture" src="https://www.cameronmacleod.com/images/profile.jpg">
+					Cameron MacLeod
+				</a>
+			</h1>
+			<p class="lead"></p>
+			<p class="lead"> </p>
+			<p></p>
+		</div>
+        <div class="links-container">
+                <a class="sidebar-links-item" href="/about">
+                    About
+                </a>
+                <a class="sidebar-links-item" href="/cv.pdf">
+                    CV
+                </a>
+                <a class="sidebar-links-item" href="/projects">
+                    Projects
+                </a>
+		<nav class="sidebar-nav">
+                    <a class="sidebar-nav-item" href="http://twitter.com/notexactlyawe" aria-label="twitter">
+						<i class="fa fa-twitter"></i>
+					</a>
+                    <a class="sidebar-nav-item" href="https://uk.linkedin.com/in/cameronjohnmacleod" aria-label="linkedin">
+						<i class="fa fa-linkedin"></i>
+					</a>
+                    <a class="sidebar-nav-item" href="https://github.com/notexactlyawe" aria-label="github">
+						<i class="fa fa-github"></i>
+					</a>
+                    <a class="sidebar-nav-item" href="https://www.flickr.com/photos/rotor132" aria-label="flickr">
+						<i class="fa fa-flickr"></i>
+					</a>
+            <a class="sidebar-nav-item" href="https://www.cameronmacleod.com/feeds/all.atom.xml" aria-label="RSS Feed">
+				<i class="fa fa-feed"></i>
+			</a>
+		</nav>
+	    </div>
+    </div>
+</div>		<div class="content container">
+<div class="post">
+	<h1 class="post-title">Build a snake game on the BBC micro:bit</h1>
+	<p class="subtitle">A detailed tutorial (simulator included)</p>
+	<span class="post-date">Mon 18 May 2020</span>
+	<p><img alt="Header image" src="/images/microbitsnake/header.png"></p>
+<p>By the end of this tutorial, you'll have built your very own game and learned not only about game development, but Python and the BBC micro:bit too. What's more, you don't even need to own a micro:bit to follow along!</p>
+<p>Below is a preview of what we'll be building.</p>
+<video autoplay loop muted playsinline src="/images/microbitsnake/snakepreview.mp4">Snake game running on the BBC micro:bit</video>
+
+<h2 id="pre-requisites">Pre-requisites</h2>
+<p>This tutorial will assume that you know what Python is, and that you know some basic programming concepts. But don't worry, if you consider yourself a beginner then this tutorial is for you. In fact, I will try to over-explain things and provide solutions to every exercise, so there's nothing to fear!</p>
+<p>With that out the way, let's get started.</p>
+<p><strong>Quick links</strong></p>
+<div class="toc">
+<ul>
+<li><a href="#pre-requisites">Pre-requisites</a></li>
+<li><a href="#what-is-a-microbit">What is a micro:bit?</a></li>
+<li><a href="#setting-up-environment">Setting up environment</a></li>
+<li><a href="#snake">Snake</a></li>
+<li><a href="#skeleton-code">Skeleton code</a></li>
+<li><a href="#creating-the-game-state">Creating the game state</a><ul>
+<li><a href="#python-lists">Python lists</a></li>
+<li><a href="#the-microbit-co-ordinate-system">The micro:bit co-ordinate system</a></li>
+<li><a href="#your-turn-1-filling-in-the-state"><i class="fa fa-lightbulb-o"></i> Your turn 1: Filling in the state</a></li>
+</ul>
+</li>
+<li><a href="#drawing-to-the-screen">Drawing to the screen</a><ul>
+<li><a href="#drawing-the-food">Drawing the food</a></li>
+<li><a href="#python-for-loops">Python for loops</a></li>
+<li><a href="#your-turn-2-drawing-the-snake"><i class="fa fa-lightbulb-o"></i> Your turn 2: Drawing the snake</a></li>
+<li><a href="#running-our-code">Running our code</a></li>
+</ul>
+</li>
+<li><a href="#moving-the-snake">Moving the snake</a><ul>
+<li><a href="#python-if-statements">Python if statements</a></li>
+<li><a href="#your-turn-3-calculating-the-new-head"><i class="fa fa-lightbulb-o"></i> Your turn 3: Calculating the new head</a></li>
+<li><a href="#your-turn-4-removing-the-tail"><i class="fa fa-lightbulb-o"></i> Your turn 4: Removing the tail</a></li>
+</ul>
+</li>
+<li><a href="#wrapping">Wrapping</a><ul>
+<li><a href="#your-turn-5-wrap-the-screen"><i class="fa fa-lightbulb-o"></i> Your turn 5: Wrap the screen</a></li>
+</ul>
+</li>
+<li><a href="#getting-input">Getting input</a><ul>
+<li><a href="#accelerometers">Accelerometers</a></li>
+<li><a href="#simulator-only-how-to-test-with-the-accelerometer">Simulator only: How to test with the accelerometer</a></li>
+<li><a href="#your-turn-6-updating-direction"><i class="fa fa-lightbulb-o"></i> Your turn 6: Updating direction</a></li>
+</ul>
+</li>
+<li><a href="#food">Food</a><ul>
+<li><a href="#your-turn-7-eating-food"><i class="fa fa-lightbulb-o"></i> Your turn 7: Eating food</a></li>
+<li><a href="#random-numbers">Random numbers</a></li>
+<li><a href="#your-turn-8-generating-food"><i class="fa fa-lightbulb-o"></i> Your turn 8: Generating food</a></li>
+</ul>
+</li>
+<li><a href="#ending-the-game">Ending the game</a><ul>
+<li><a href="#loop-control">Loop control</a></li>
+<li><a href="#your-turn-9-ending-the-game"><i class="fa fa-lightbulb-o"></i> Your turn 9: Ending the game</a></li>
+</ul>
+</li>
+<li><a href="#final-notes">Final notes</a></li>
+<li><a href="#extensions">Extensions</a></li>
+<li><a href="#useful-links">Useful links</a></li>
+<li><a href="#copyright">Copyright</a></li>
+</ul>
+</div>
+<h2 id="what-is-a-microbit">What is a micro:bit?</h2>
+<p>A <a href="https://microbit.org/">micro:bit</a> is a tiny computer that you can program in Python. It comes with an LED grid (for a screen), an accelerometer (to detect motion), electrical outputs (for controlling motors, lights etc) and a bunch of other cool features. They're also pretty cheap (£20/$20 at time of writing on Amazon), and programming them is as simple as dragging a file to a USB stick.</p>
+<p><img alt="A micro:bit" src="/images/microbitsnake/microbit.svg"></p>
+<p>If you don't already have one, don't worry! There are simulators available online and you'll be able to follow along with this whole tutorial.</p>
+<h2 id="setting-up-environment">Setting up environment</h2>
+<p>Whether you have a micro:bit or not, the first step is to open the <a href="https://www.cameronmacleod.com/createwithcode/">create.withcode editor</a>. When you do, you should see a screen like the one below.</p>
+<p><img alt="create.withcode editor" src="/images/microbitsnake/createwithcode.png"></p>
+<p>Most of the screen (1) is taken up with the editor. This is where you'll put your code. In the lower-right corner (2) is a button to run your code which looks like a green triangle. Alternatively, you can run your code by pressing <code>Ctrl</code>+<code>Enter</code>.</p>
+<p>Your editor will auto-backup your code to your computer. You can access these backups by clicking the "+" button in the lower-right corner then clicking the button that looks like a clock.</p>
+<p>Running your code will produce a pop-up that looks like the below.</p>
+<p><img alt="micro:bit create.withcode interface" src="/images/microbitsnake/microbitmodal.png"></p>
+<p>Your code will be running on the virtual micro:bit you can see, and there are tabs along the top for your to control various inputs to the device, which will become important later.</p>
+<p>If you are working with a physical micro:bit, then the "Download HEX" button in the top-left of the pop-up will allow you to download the file you need to program your micro:bit. You can drag this file to the "MICROBIT" device in your file manager to program it.</p>
+<p>Before we start looking at some code, let's take a quick detour to look at the game of Snake.</p>
+<h2 id="snake">Snake</h2>
+<p>Fun fact - if you go to Google and search for "snake", a snake game should appear. Just in case it doesn't appear for you, you can play it <a href="https://www.google.com/fbx?fbx=snake_arcade">here</a>. Below you can see it in action.</p>
+<video autoplay loop muted playsinline src="/images/microbitsnake/snakedemo.mp4">Google Snake game demo</video>
+
+<p>This is a good example of a snake game. It has all the necessary components:</p>
+<ul>
+<li>A grid on which the snake moves.<ul>
+<li>The grid has cells, which can be identified by their X and Y co-ordinates.</li>
+</ul>
+</li>
+<li>A snake.<ul>
+<li>The snake occupies some cells of the grid (you can think of it as a list of co-ordinates).</li>
+<li>The snake has a direction (up, down, left, right).</li>
+</ul>
+</li>
+<li>Some randomly generated food on a cell.</li>
+<li>An end condition.<ul>
+<li>In the video this happens when the snake crashes into itself, losing the game.</li>
+</ul>
+</li>
+</ul>
+<p>So in theory, if we can build all these components, then we should have a snake game!</p>
+<h2 id="skeleton-code">Skeleton code</h2>
+<p>To make it easier to get started, we'll be working from a skeleton file. Find it at <a href="https://github.com/notexactlyawe/microbit-snake/blob/master/skeleton.py">this link</a> and copy the contents into the <a href="https://www.cameronmacleod.com/createwithcode/">create.withcode editor</a>.</p>
+<p>Let's take a look at each part of the code to figure out what it does.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">microbit</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">Snake</span><span class="p">:</span>
+<span class="o">...</span>
+</pre></div>
+
+
+<p>At the very top of the file is an import. An import allows us to use code someone else has written in our own script. In this case, the other code we're using is the <code>microbit</code> library, which allows us to control various components of the micro:bit including the display and accelerometer.</p>
+<p>Skipping the class definition for now, at the bottom of the file is our game loop.</p>
+<div class="highlight"><pre><span></span><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">game</span><span class="o">.</span><span class="n">handle_input</span><span class="p">()</span>
+    <span class="n">game</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">game</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The game loop is the entry point for the game (the first bit of code to be executed). It defines a series of actions that we do repeatedly in order to make the game work. In this case, we get some input from the user, update the <dfn title="The state of a program is another word for its variables">game state</dfn> accordingly and then re-draw the screen. Updating the screen twice a second feels about right, and so at the end we sleep for 500 milliseconds (half a second).</p>
+<p>The functions called in the game loop are part of the Snake class, which is defined above the game loop.</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Snake</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; This class contains the functions that operate</span>
+<span class="sd">        on our game as well as the state of the game.</span>
+<span class="sd">        It&#39;s a handy way to link the two.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">handle_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+<span class="n">game</span> <span class="o">=</span> <span class="n">Snake</span><span class="p">()</span>
+</pre></div>
+
+
+<p>A class is a handy way of keeping some state, like the position of our snake, alongside the functions that operate on it. Our class has a few different functions that we'll have to write.</p>
+<ul>
+<li>
+<p><code>__init__(self)</code>: This is a special Python function that is called when an "instance" of a class is created. We'll see an example of creating an instance later on. The function will initialise our variables ready for the game to run. For example, we need an initial position for the snake and a direction it will first be heading.</p>
+<p>You may notice that it takes an argument, <code>self</code>. This argument is a Python requirement for functions that are part of a class, and represents the instance of the class. This means we can use it to access the state that's part of the class.</p>
+</li>
+<li>
+<p><code>handle_input(self)</code>: This function gets input from the user and uses it to change the direction of the snake. We'll be using the accelerometer for this which means that the user will be tilting the device to make the snake move. Again, this function takes <code>self</code> since Python requires it to.</p>
+</li>
+<li><code>update(self)</code>: Once we have the direction that the user wants the snake to move, we can update the game state. This means moving the snake, "eating" food and ending the game.</li>
+<li><code>draw(self)</code>: The <code>draw</code> function allows us to see the game state on the screen. In this function we'll be lighting up LEDs to represent the snake and the food.</li>
+</ul>
+<p>Below the <code>Snake</code> class definition, we create an instance of it and assign it to the variable <code>game</code>. If you're not yet comfortable with classes and instances, take a look at the expandable panel below.</p>
+<p><details><summary>Classes and instances</summary>
+<p>
+A class is a way of linking functions to variables, but you can also think of it as defining the 'type' of something. Let's use cars as an analogy:</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">make</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">colour</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make</span> <span class="o">=</span> <span class="n">make</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">colour</span> <span class="o">=</span> <span class="n">colour</span>
+
+    <span class="k">def</span> <span class="nf">print_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;This is a {self.colour} {self.make} {self.model}&quot;</span><span class="p">)</span>
+
+<span class="n">astra</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="s2">&quot;Vauxhall&quot;</span><span class="p">,</span> <span class="s2">&quot;Astra&quot;</span><span class="p">,</span> <span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">golf</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="s2">&quot;Volkswagen&quot;</span><span class="p">,</span> <span class="s2">&quot;Golf&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+
+<span class="n">astra</span><span class="o">.</span><span class="n">print_info</span><span class="p">()</span>
+<span class="c1"># Prints &quot;This is a white Vauxhall Astra&quot;</span>
+<span class="n">golf</span><span class="o">.</span><span class="n">print_info</span><span class="p">()</span>
+<span class="c1"># Prints &quot;This is a blue Volkswagen Golf&quot;</span>
+</pre></div>
+
+
+<p>In this example, we've defined a <code>Car</code> <em>class</em> that contains the make, model and colour of a car. The class represents the concept of a car, but note that it does not represent any actual cars, that's what instances are for.</p>
+<p>Below the class definition, we create two <em>instances</em> of <code>Car</code>. One that represents an Astra, and one that represents a Golf. An instance represents a specific thing, instead of the concept of a thing. So our <code>astra</code> variable does not represent the idea of a car, but instead a specific white Vauxhall Astra.</p>
+<p>One thing you may notice about the class is that both of its functions take <code>self</code> as the first argument. This represents the instance of the class that the function is being called on. When we call <code>astra.print_info()</code>, Python passes the <code>astra</code> instance as the first argument to the <code>print_info()</code> function.</p>
+<p>One other thing that often confuses people with classes is the <code>__init__</code> method. It's a special method in Python that gets called when you create an instance of a class. When we create an instance, you can think of the following happening.</p>
+<ol>
+<li>We call <code>astra = Car("Vauxhall", "Astra", "white")</code></li>
+<li>Python creates an empty <code>Car</code>, let's call it <code>temp_car</code>.</li>
+<li>Python runs <code>astra = Car.__init__(temp_car, "Vauxhall", "Astra", "white")</code></li>
+<li><code>astra</code> now has the correct variables and <code>temp_car</code> is discarded.</li>
+</ol>
+<p>For more discussion of classes, take a look a <a href="https://jeffknupp.com/blog/2014/06/18/improve-your-python-python-classes-and-object-oriented-programming/">Jeff Knupp's blog post</a>.
+</p>
+</details></p>
+<p>Now that we have a template, our first step will be to initialise the game state.</p>
+<h2 id="creating-the-game-state">Creating the game state</h2>
+<p>Before we can intialise the game state, we need to learn a little bit about Python and the micro:bit. Feel free to skip these sections if you have done this before.</p>
+<h3 id="python-lists">Python lists</h3>
+<p>Lists are a way to store multiple values in the same variable in Python. If you haven't come across them before there's a more <a href="http://openbookproject.net/thinkcs/python/english3e/lists.html">detailed introduction here</a>. You may be able to get by with the cheat sheet below though.</p>
+<div class="highlight"><pre><span></span><span class="c1"># define a list</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="c1"># access elements of a list (start counting at 0)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="mi">1</span>
+<span class="c1"># -1 is the last element of the list</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">3</span>
+<span class="c1"># Add an item to a list</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="c1"># Remove an item from a list</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="c1"># list of lists</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list_of_coords</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list_of_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">list_of_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">2</span>
+</pre></div>
+
+
+<h3 id="the-microbit-co-ordinate-system">The micro:bit co-ordinate system</h3>
+<p>On the front of a micro:bit is a grid of LEDs. When drawing something on the screen, we need a way to describe individual LEDs within this grid so that we know which one to light up. This is where the co-ordinate system comes in.</p>
+<p><img alt="Diagram of the micro:bit co-ordinate system" src="/images/microbitsnake/displaycoords.svg"></p>
+<p>Display co-ordinates on the micro:bit work a little like the graphs you may have plotted in school. There's an X axis that goes from left to right and a Y axis that goes from top to bottom. The main difference from the graphs in school is that the Y axis increases going down (towards the pins) whereas in school it would have increased going up.</p>
+<p>In the image above, point A is at the co-ordinates <code>[3, 0]</code>. The left number in these co-ordinates is the position along the X axis and the right number is the position along the Y axis. Similarly, point B is at co-ordinates <code>[1, 2]</code>.</p>
+<h3 id="your-turn-1-filling-in-the-state"><i class="fa fa-lightbulb-o"></i> Your turn 1: Filling in the state</h3>
+<p>If you now feel comfortable with these concepts, you'll notice that the <code>__init__</code> function has some commented out code. When you uncomment that, it looks like the below. Feel free to have a go at completing it and we'll look at the solution in the next section.</p>
+<div class="highlight"><pre><span></span><span class="c1"># direction is a string with up, down, left or right</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span>
+<span class="c1"># snake is a list of the pixels that the snake is at</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">snake</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<span class="c1"># food is the co-ords of the current food</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">food</span> <span class="o">=</span>
+<span class="c1"># whether or not to end the game (boolean)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span>
+</pre></div>
+
+
+<p><details><summary>Solution</summary>
+<p>
+Let's talk through the solution line by line.</p>
+<div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s2">&quot;up&quot;</span>
+</pre></div>
+
+
+<p>We defined <code>self.direction</code> to be a string and I've chosen to make the snake go up at first. If you've put any other direction that's fine too.</p>
+<div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">food</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+
+<p>I've put my food in the middle of the left-most column to start with. If you've put it elsewhere, that's fine as long as you've defined valid co-ordinates that aren't the same as the snake's starting position.</p>
+<div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="bp">False</span>
+</pre></div>
+
+
+<p>This variable tells us whether the game has finished or not. It wouldn't be very helpful to set it to <code>True</code> before it's even started!
+</p>
+</details></p>
+<h2 id="drawing-to-the-screen">Drawing to the screen</h2>
+<p>We have some initial state, but if you ran this code right now, you wouldn't see much happening. That's because we're not actually drawing anything to the screen.</p>
+<p>So what do we need to draw on the screen? Thinking back to our Google Snake example, the snake, food and grid were visible. On the micro:bit the grid is already built for us since the LEDs form a grid naturally. That leaves the snake and the food to be drawn.</p>
+<h3 id="drawing-the-food">Drawing the food</h3>
+<p>Ideally, then, we need a function to light up an individual LED using its co-ordinates. The snake and the food are both stored using co-ordinates, so if we can draw these on one at a time then we'll have completed our <code>draw</code> function.</p>
+<p>The micro:bit offers us a number of different ways to <a href="https://microbit-micropython.readthedocs.io/en/latest/display.html">draw to the screen</a>, including one that does what we need. <code>display.set_pixel(x, y, value)</code> will set the pixel at <code>[x, y]</code> to the level of brightness <code>value</code>. <code>value</code> can be between 0 and 9, where 0 is off and 9 is fully on.</p>
+<p>Now that we have a function to turn on a pixel, we can start to fill in our <code>draw</code> function.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">display</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">display</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># TODO: draw snake</span>
+</pre></div>
+
+
+<p>The first thing we do in this function is <code>display.clear()</code>. This sets all the LEDs off, which is important because this draw function will be called repeatedly and we want to draw something different each time. If we didn't clear the display, then the game state from the last iteration of the game loop would still be there.</p>
+<p>Next we use the <code>self.food</code> co-ordinates to draw the food. We use the intensity <code>5</code> because that will help us to distinguish it from the snake.</p>
+<p>Before we draw the snake, let's take a look at <code>for</code> loops in Python. Again, if you've done this before, feel free to skip it.</p>
+<h3 id="python-for-loops">Python <code>for</code> loops</h3>
+<p><code>for</code> loops are great for when you want to do the same thing to multiple elements. In Python they're written like this:</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">iterable_thing</span><span class="p">:</span>
+    <span class="n">do_things</span><span class="p">(</span><span class="n">variable_name</span><span class="p">)</span>
+</pre></div>
+
+
+<p><code>iterable_thing</code> is something with multiple elements, for example a list, tuple or even a <code>range(start, stop)</code>. <code>variable_name</code> is the name that you assign to the element that you are currently working on in the loop. To make this example more concrete, here's how you would print the numbers from one to five.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="c1"># alternatively</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+</pre></div>
+
+
+<h3 id="your-turn-2-drawing-the-snake"><i class="fa fa-lightbulb-o"></i> Your turn 2: Drawing the snake</h3>
+<p>Now you know how to light up individual pixels, and how to use a <code>for</code> loop to go over a list, you should be able to draw the snake to the screen. You'll want to draw the snake with intensity <code>9</code> so that it looks different from the food we drew earlier. As before, the solution is below.</p>
+<p><details><summary>Solution</summary>
+<p></p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">display</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">display</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">:</span>
+      <span class="n">display</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="n">part</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">part</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">9</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Since <code>self.snake</code> is a list of co-ordinates, we can use it in a <code>for</code> loop to get every co-ordinate that's part of the snake. We then use the <code>set_pixel</code> function to draw each part to the screen.
+</p>
+</details></p>
+<h3 id="running-our-code">Running our code</h3>
+<p>At this point, we should see some output, so let's go ahead and run our code. Whether or not you have a physical micro:bit, press <code>Ctrl</code>+<code>Enter</code> in the editor to bring up the micro:bit pop up. You can also click the cross in the corner and then click the green play button.</p>
+<p>If you want to run the code on your physical micro:bit, click the "Download HEX" button in the top left corner. You can refer to the <a href="#setting-up-environment">Setting up environment section</a> if you can't find it.</p>
+<p>You should see something that looks like the below. If so, well done! If not, go back and check the solutions match your code exactly. Whitespace matters in Python as well, so check that carefully.</p>
+<p><img alt="Snake game state being drawn to the screen" src="/images/microbitsnake/drawingtoscreen.svg"></p>
+<p>Our snake is in the centre of the screen as a bright dot, and our food is at the left of the screen as a less bright dot. Yours might be in different positions depending on what you chose in <a href="#your-turn-1-filling-in-the-state">Creating the game state</a>. The next step is to make the snake move.</p>
+<h2 id="moving-the-snake">Moving the snake</h2>
+<p>To understand how to move the snake, let's take a look at an example.</p>
+<video autoplay loop muted playsinline src="/images/microbitsnake/calcheadcuttail.mp4">Animation showing how the snake moves.</video>
+
+<p>The animation shows a snake before and after moving down one cell. At first glance, moving the snake in this situation looks like it would be complicated, especially since it moves around a corner. Luckily for us though, it only consists of two actions.</p>
+<ol>
+<li>Calculate the new head</li>
+<li>Cut the tail off</li>
+</ol>
+<p>So our first step will be to calculate the new head. We can do that with the help of <code>if</code> statements.</p>
+<h3 id="python-if-statements">Python <code>if</code> statements</h3>
+<p>Sometimes we want to choose what to do based on a condition. For example, you would want to wear a coat if it was raining outside, but if it was sunny you would put on sunglasses. You can do this in Python using <code>if</code> statements.</p>
+<div class="highlight"><pre><span></span><span class="c1"># rain is a boolean variable (True or False)</span>
+<span class="k">if</span> <span class="n">rain</span><span class="p">:</span>
+    <span class="n">put_on_coat</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># it must be sunny</span>
+    <span class="n">put_on_sunglasses</span><span class="p">()</span>
+<span class="c1"># we&#39;ll go outside whether it&#39;s raining or sunny</span>
+<span class="n">go_outside</span><span class="p">()</span>
+</pre></div>
+
+
+<p>You can even choose between more than two options. Sticking with the weather example, maybe it could be windy, rainy, or sunny. Being the responsible person that you are, you have clothes for each different possibility.</p>
+<div class="highlight"><pre><span></span><span class="c1"># in this case, weather is a string</span>
+<span class="k">if</span> <span class="n">weather</span> <span class="o">==</span> <span class="s2">&quot;rain&quot;</span><span class="p">:</span>
+    <span class="n">put_on_raincoat</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">weather</span> <span class="o">==</span> <span class="s2">&quot;wind&quot;</span><span class="p">:</span>
+    <span class="n">put_on_jumper</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">weather</span> <span class="o">==</span> <span class="s2">&quot;sunny&quot;</span><span class="p">:</span>
+    <span class="n">put_on_sunglasses</span><span class="p">()</span>
+<span class="n">go_outside</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="your-turn-3-calculating-the-new-head"><i class="fa fa-lightbulb-o"></i> Your turn 3: Calculating the new head</h3>
+<p>We're going to be working in the <code>update()</code> function here, since that updates the game state before we draw the screen.</p>
+<p>There are a few steps in calculating the new head of the snake.</p>
+<ol>
+<li>Get current head of the snake (last item of the list)</li>
+<li>Calculate a new head based on <code>self.direction</code>.</li>
+<li>Add this head to the end of the list (<code>.append(item)</code> function)</li>
+</ol>
+<p>The most difficult step here will be figuring out what to do for each direction. You might find this easier if you draw it out on a co-ordinate grid like the one in the <a href="#the-microbit-co-ordinate-system">micro:bit co-ordinate system section</a>.</p>
+<p><strong>Important</strong> - If you create the new head from the old head (e.g. <code>new_head = self.snake[-1]</code>), you will need to copy it. Otherwise you will have a really annoying bug. You can copy a list like so:</p>
+<div class="highlight"><pre><span></span><span class="c1"># call list() to copy the old head</span>
+<span class="n">new_head</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+
+<p><details><summary>What is the really annoying bug? (optional)</summary>
+<p>
+If you don't copy the head of the snake, then you will modify the existing head as well as creating a new one. Let's illustrate this with an example:</p>
+<p>Let's imagine a snake at <code>[[1, 1], [2, 1], [2, 2]]</code> where <code>[2, 2]</code> is the head of the snake. Also let's say that the snake is moving south.</p>
+<p><img alt="Snake at [[1, 1], [2, 1], [2, 2]]" src="/images/microbitsnake/bugex1.png"></p>
+<p>When we update the snake, we will take the head and update it to <code>[2, 3]</code> since it is heading downwards. Ordinarily this would mean the snake looks like this:</p>
+<p><img alt="Snake at [[2, 1], [2, 2], [2, 3]]" src="/images/microbitsnake/bugex2.png"></p>
+<p>However, since we didn't copy the head, we'll end up modifying the existing one <strong>and</strong> appending it, so our snake will be at <code>[[2, 1], [2, 3], [2, 3]]</code>:</p>
+<p><img alt="Snake at [[2, 1], [2, 3], [2, 3]]" src="/images/microbitsnake/bugex3.png"></p>
+<p>This is because lists in Python are <em>mutable</em>, which means that you can modify their values. When we type <code>new_head = self.snake[-1]</code> we're not creating a new list called <code>new_head</code>, we're assigning a new name to <code>self.snake[-1]</code>.</p>
+<p>Some objects in Python, for example tuples, are <em>immutable</em> which means their values cannot be changed. If we used tuples for the co-ordinates we would not have this problem. However, if we used tuples, the code wouldn't be as simple as incrementing or decrementing a co-ordinate, and it would introduce another concept to a beginner-friendly tutorial, something I'd like to keep to a minimum.
+</p>
+</details></p>
+<p><details><summary>Solution</summary>
+<p></p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">new_head</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;up&quot;</span><span class="p">:</span>
+        <span class="c1"># Y decreases as you go up the screen</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;down&quot;</span><span class="p">:</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
+        <span class="c1"># X decreases as you go left</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
+    <span class="c1"># put the head on the end of the list</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_head</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Firstly we copy the old head of the snake, remember <code>-1</code> is the index of the last element of a list. Next we check what the current direction is, and increment or decrement the appropriate co-ordinate. Finally, we append the new head to the end of the snake list.
+</p>
+</details></p>
+<h3 id="your-turn-4-removing-the-tail"><i class="fa fa-lightbulb-o"></i> Your turn 4: Removing the tail</h3>
+<p>Remember the <code>.pop(idx)</code> method on lists from before? You can remove an item from a list by calling this function with the index of the item that you want to remove.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Your task is to remove the tail of the snake. Here's a hint, if we add the new head to the end of the snake list, then the tail will be at the start of it.</p>
+<p><details><summary>Solution</summary>
+<p>
+The full <code>update</code> function should now look like this:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">new_head</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;up&quot;</span><span class="p">:</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;down&quot;</span><span class="p">:</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_head</span><span class="p">)</span>
+    <span class="c1"># cut the tail of the snake</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+
+<p></p>
+</details></p>
+<p>We're now ready to run this again, and our snake should now move!</p>
+<video autoplay loop muted playsinline src="/images/microbitsnake/microbiterror.mp4">Demonstration of the wrapping error with the snake moving code.</video>
+
+<p>Except, we get an error. The error on the simulator isn't very helpful, but on the micro:bit it makes more sense.</p>
+<p><code>ValueError: index out of bounds</code></p>
+<p>What's happening here is that our <code>new_head</code> is going out of bounds, which means it's becoming a value that can't be displayed on the screen. If you remember our co-ordinates diagram, the Y co-ordinate is getting smaller until it gets to -1. When we then try and call <code>display.set_pixel</code> with -1 as an input, it gives us an error, since there's no LED at <code>[2, -1]</code>.</p>
+<p>We could fix this by ending the game if the snake goes out of bounds, but on a screen this small that wouldn't be much fun. Instead, let's fix it by wrapping our snake around the board.</p>
+<h2 id="wrapping">Wrapping</h2>
+<p>Wrapping just means that if the snake hits one side of the screen, then it should appear on the other side of the screen.</p>
+<video autoplay loop muted playsinline src="/images/microbitsnake/wrappingdemo.mp4">Demonstration of wrapping the snake to the other side of the screen.</video>
+
+<p>In the above example, the snake is moving up the screen. After the snake's head reaches <code>[3, 0]</code> it goes to <code>[3, 4]</code> and appears at the bottom of the screen. The snake continues to move upwards, just starting from the bottom of the screen now. We can implement this behaviour by checking the bounds of the <code>new_head</code>.</p>
+<h3 id="your-turn-5-wrap-the-screen"><i class="fa fa-lightbulb-o"></i> Your turn 5: Wrap the screen</h3>
+<p>The bounds of our screen are 0-4 in both the X and Y axes. So you'll want to check if the X co-ordinate or the Y co-ordinate are less than/greater than these boundaries. If they are, reset them to the other edge of the screen.</p>
+<p>Again, for this task we'll be working in our <code>update</code> method.</p>
+<p><details><summary>Solution</summary>
+<p></p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span> <span class="c1"># the code from above</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
+
+    <span class="c1"># X co-ordinate</span>
+    <span class="k">if</span> <span class="n">new_head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">new_head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="c1"># Y co-ordinate</span>
+    <span class="k">if</span> <span class="n">new_head</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">new_head</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">new_head</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_head</span><span class="p">)</span>
+    <span class="o">...</span>
+</pre></div>
+
+
+<p>We add a new <code>if</code> statement for both the X co-ordinate and the Y co-ordinate. In it, we check if they are above 4 or below 0 since those are the maximum co-ordinates of our display. This would also work if you only have a single <code>if/elif</code> block for both the X and Y since we'll only be changing one at a time.
+</p>
+</details></p>
+<p>When we add this code to our game, it should look like the below.</p>
+<video autoplay loop muted playsinline src="/images/microbitsnake/wrapping.mp4">The game successfully wrapping the snake round the screen.</video>
+
+<h2 id="getting-input">Getting input</h2>
+<p>At this point, we have an image on the screen and the snake moves! The user can't yet control the snake though, so let's add that in.</p>
+<p>The micro:bit has a few different ways of getting input from the user and the world around it. Most visibly, it has two buttons on the front that the user can press. While we could use these for input, four directions doesn't map into two buttons in an intuitive way. Other inputs the micro:bit has include an accelerometer for detecting tilt and motion, a compass for direction relative to the earth, pins on the bottom for electrical input and a temperature sensor. Out of these, the accelerometer can provide the simplest method of control.</p>
+<h3 id="accelerometers">Accelerometers</h3>
+<p>We won't try to understand how accelerometers work here, that would take a post of its own. However, we can understand what an accelerometer can do for us. If you've never heard of an accelerometer before, it's the bit of your phone that detects orientation and makes your videos landscape when you tilt your phone.</p>
+<p>In short, an accelerometer can measure the tilt of a device, and we can use this for our game. To see how this will work, take a look at the video below.</p>
+<video autoplay loop muted playsinline src="/images/microbitsnake/accelphysdemo.mp4">Using the accelerometer to move a dot around the micro:bit screen</video>
+
+<p>The dot follows the tilt of the device here. When we tilt the device away from us, the dot heads up the screen (away from us). Tilting the device to the left, right or towards us have similar efects.</p>
+<h3 id="simulator-only-how-to-test-with-the-accelerometer">Simulator only: How to test with the accelerometer</h3>
+<video autoplay loop muted playsinline src="/images/microbitsnake/accelvirtdemo.mp4">Controlling the micro:bit accelerometer with the mouse in the create.withcode editor</video>
+
+<p>The micro:bit pop-up in the simulator has some tabs along the top for controlling the various components of the micro:bit. One of these tabs controls the accelerometer (seen in the video above). In the tab you will see three sliders, one for each axis, and a checkbox labelled "Move accelerometer with mouse". Go ahead and tick that checkbox.</p>
+<p>With the checkbox ticked, you'll notice that moving your mouse over the micro:bit's screen will change the accelerometer values in the sliders. As you head towards the lower-right corner of the micro:bit the values will increase, and as you head towards the upper-left corner they will decrease.</p>
+<h3 id="your-turn-6-updating-direction"><i class="fa fa-lightbulb-o"></i> Your turn 6: Updating direction</h3>
+<p>We're working in the <code>handle_input</code> function for this section.</p>
+<p>The accelerometer will return you values in the X and Y axes using the following functions. We don't care about the Z axis since our screen is 2D.</p>
+<div class="highlight"><pre><span></span><span class="c1"># These functions return values in the range -2000 to 2000</span>
+<span class="n">accelerometer</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
+<span class="n">accelerometer</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
+</pre></div>
+
+
+<p>The X axis increases going left to right, and the Y axis increases from top to bottom, just like the screen co-ordinates.</p>
+<p><img alt="Accelerometer axes on the micro:bit" src="/images/microbitsnake/acceldir.png"></p>
+<p>We'll calculate the direction the user wants to go in by taking the biggest value from X and Y and then seeing if it's positive or negative (see diagram above). Careful though! X and Y can both be negative, so you can't do a simple <code>X &gt; Y</code>. To see why, imagine that X was 500 and Y was -1000. Even though Y is a bigger number than X, <code>X &gt; Y == True</code> because X is positive.</p>
+<p>You may find the absolute function, <code>abs(x)</code>, useful.</p>
+<div class="highlight"><pre><span></span><span class="c1"># abs (the absolute function) will remove a minus sign if present</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span> <span class="o">==</span> <span class="mi">30</span>
+<span class="bp">True</span>
+<span class="c1"># ... and leave the value alone if not</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">==</span> <span class="mi">30</span>
+<span class="bp">True</span>
+</pre></div>
+
+
+<p><details><summary>Solution</summary>
+<p></p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">handle_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># get accelerometer values</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">accelerometer</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">accelerometer</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
+    <span class="c1"># compare the magnitude of X and Y</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+        <span class="c1"># X is bigger than Y (maybe negative)</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s2">&quot;right&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Y is bigger than X (maybe negative)</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s2">&quot;up&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s2">&quot;down&quot;</span>
+</pre></div>
+
+
+<p>First we get the raw values from the accelerometer for X and Y, and then we compare their magnitudes using <code>abs()</code>. If X is bigger than Y, then we see whether X is negative (left) or positive (right). We do the equivalent checks when Y is bigger than X.
+</p>
+</details></p>
+<p>The user can now tilt the micro:bit to make the snake move! You may notice while playing with this that the snake will never grow, so now it's time to figure out how food works.</p>
+<h2 id="food">Food</h2>
+<p>When the snake approaches some food, we want the snake to grow and the food to appear again in another location. Ideally, the process would look like the following animation.</p>
+<video autoplay loop muted playsinline src="/images/microbitsnake/food.mp4">Animation showing the snake eating food and growing</video>
+
+<p>Building our food mechanic can be split into two steps. Detecting and reacting to food being eaten, and then generating new food.</p>
+<h3 id="your-turn-7-eating-food"><i class="fa fa-lightbulb-o"></i> Your turn 7: Eating food</h3>
+<p>The snake "eats" the food when its head is in the same cell as the food. When it eats the food, it should grow by one cell which can be done by not cutting the tail from the snake.</p>
+<p>In the case that the snake is eating the food, you should leave some space in your code to generate the new food.</p>
+<p>Hint: In Python you can compare two lists just with <code>list1 == list2</code>.</p>
+<p><details><summary>Solution</summary>
+<p></p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_head</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">new_head</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">:</span>
+        <span class="c1"># generate new food</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># cut the tail of the snake</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+
+<p>We compare the new head and the food. If they are the same then we leave some space in the code to generate the new food.</p>
+<p>We cut the tail in the else block, which means that we only cut it when the snake isn't eating food.
+</p>
+</details></p>
+<h3 id="random-numbers">Random numbers</h3>
+<p>We want to generate new food randomly so that the game is interesting. We can do this using the <code>random</code> module in Python. Here's an example that guesses (poorly) how old you are.</p>
+<div class="highlight"><pre><span></span><span class="c1"># import the function randint from the module random</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+
+<span class="c1"># generate a random integer between 0 and 100 (inclusive)</span>
+<span class="n">age</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;I bet you are {age} years old&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>In this program we import then call the <code>randint(start, stop)</code> function. This will give us back a number between 1 and 100. We then print it out using an <a href="https://realpython.com/python-f-strings/">f-string</a>. Side note: if you haven't come across f-strings before, check out that link. They are very cool.</p>
+<p>We'll be using this <code>randint</code> function to generate random co-ordinates.</p>
+<h3 id="your-turn-8-generating-food"><i class="fa fa-lightbulb-o"></i> Your turn 8: Generating food</h3>
+<p>To generate new food, you'll need to generate an X co-ordinate and a Y co-ordinate. Remember, the axes run from 0 to 4.</p>
+<p>One edge case you'll have to think about is what happens if the co-ordinates you generate are covered by the snake. The solution I'll recommend is to keep re-generating the co-ordinates until they are not in the snake, but feel free to come up with your own solutions here. You can check if the co-ordinates are inside the snake using the <code>in</code> keyword (<code>co_ords in self.snake</code>) and a <code>while</code> loop.</p>
+<p><details><summary>Solution</summary>
+<p></p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">if</span> <span class="n">new_head</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">food</span> <span class="o">=</span> <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">food</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">food</span> <span class="o">=</span> <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+    <span class="o">...</span>
+</pre></div>
+
+
+<p>We use a <code>while</code> loop to check if the food we've generated is inside the snake or not. We keep generating the food until it's visible on the screen.
+</p>
+</details></p>
+<p><details><summary>Is this really a valid solution?</summary>
+<p>
+In case you're having trouble believing that re-generating the food is a valid solution, let's take a look at some probabilities.</p>
+<p>We can model generating the food successfully as a binomially distributed random variable. If the snake is of length two (the smallest case after eating food), then the probability of generating the food in an empty space is 23/25. This means that we have a 92% chance of success on the first go and a 99% chance of succeeding within two tries. The expected number of generations before our first success is just over 1.</p>
+<p>Taking the worst case where the snake is length 24 after eating food, the probability of generating the food correctly is 1/25. This means that the expected number of trials before our first success is 25. In fact 63% of the time it will take 25 tries or fewer and 99% of the time it will take fewer than 113.</p>
+<p>These numbers are very small for a computer, and we won't notice much delay in the snake's motion.
+</p>
+</details></p>
+<p>Our snake game is almost finished! The only step left is figuring out how to end the game.</p>
+<h2 id="ending-the-game">Ending the game</h2>
+<p>The game of snake ends in two situations. Firstly, if you crash into yourself (or the wall, in some versions) then you lose. Secondly, if you fill the entire grid with your snake then you win.</p>
+<p>We'll worry about losing the game for now, and I'll leave winning the game as an exercise for you.</p>
+<h3 id="loop-control">Loop control</h3>
+<p>We've seen <code>while</code> loops a couple of times so far. Most recently we used them to generate food, but at the very start we saw how our game loop is made of a <code>while</code> loop.</p>
+<p>In Python, you have the ability to run a loop forever with <code>while True</code>. The complementary feature is that you have the ability to cut a loop short early using the <code>break</code> statement. Let's take a quick look at how it works.</p>
+<p>In the below example, we wait for the micro:bit's button A to be pressed then show a happy face.</p>
+<div class="highlight"><pre><span></span><span class="c1"># import all the microbit code</span>
+<span class="kn">from</span> <span class="nn">microbit</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="c1"># check if button A was pressed since we last called this function</span>
+    <span class="k">if</span> <span class="n">button_a</span><span class="o">.</span><span class="n">was_pressed</span><span class="p">():</span>
+        <span class="c1"># if so, exit the loop</span>
+        <span class="k">break</span>
+    <span class="c1"># wait for 100 milliseconds</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># show a happy face</span>
+<span class="n">display</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">HAPPY</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="your-turn-9-ending-the-game"><i class="fa fa-lightbulb-o"></i> Your turn 9: Ending the game</h3>
+<p>There are three steps to implementing losing the game.</p>
+<ol>
+<li>Detect if you've crashed into yourself using the <code>in</code> keyword. This will be part of the <code>update</code> function.</li>
+<li>Set <code>self.end</code> to <code>True</code> if the player has lost.</li>
+<li>Use <code>break</code> in the game loop if the player has lost. <code>self.end</code> will be <code>game.end</code> inside the game loop.</li>
+</ol>
+<p>You could also display a sad face, or scroll some text if the player loses. Get creative!</p>
+<p><details><summary>Solution</summary>
+<p>
+In our update function:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="c1"># after we calculate new_head</span>
+    <span class="k">if</span> <span class="n">new_head</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_head</span><span class="p">)</span>
+    <span class="o">...</span>
+</pre></div>
+
+
+<p>We've just added an <code>if</code> statement here to check whether the new head is already part of the snake.</p>
+<p>In our game loop:</p>
+<div class="highlight"><pre><span></span><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="o">...</span>
+    <span class="n">game</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="c1"># now game.end will be set</span>
+    <span class="k">if</span> <span class="n">game</span><span class="o">.</span><span class="n">end</span><span class="p">:</span>
+        <span class="n">display</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">SAD</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="n">game</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+    <span class="o">...</span>
+</pre></div>
+
+
+<p>We add an if statement to check whether <code>game.end</code> was set to <code>True</code> in <code>update</code> and if so we break. I've also added a sad face in there to make it more obvious that the player has lost, but that is optional.
+</p>
+</details></p>
+<h2 id="final-notes">Final notes</h2>
+<p>Well done on making it this far! You've just built your very own game, and can be really proud of yourself. I hope you've enjoyed the experience and that it's inspired you to keep going with micro:bit, programming or game development. If you want some more material for learning, then check out the <a href="#useful-links">Useful links</a> below. If you'd like to check your solution, I've put the <a href="https://github.com/notexactlyawe/microbit-snake/blob/master/snake.py">final code for this tutorial on GitHub</a>.</p>
+<p>This tutorial was based off a workshop that I wrote while part of the Embedded and Robotics Society (EaRS) at Edinburgh. It was one of my favourite workshops there, and it's been fun to re-visit it and turn it into a full tutorial. If you like this, then they have more resources <a href="http://ears-edi.com/">on their website</a> so you should check them out.</p>
+<p>If you found any issues in this tutorial, have ideas for new tutorials you'd like to see, or have a question then feel free to <a href="/contact">contact me</a>. I'd love to hear from you.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Just because you finished this tutorial doesn't mean you have to stop working on the game. There are a number of extensions you could make to it, and you may even think of some of your own.</p>
+<ul>
+<li>Implement a winning condition.</li>
+<li>Stop the player from going in a direction opposite to the current one they're going in. This annoyed me while playing the game, since it means you lost when you go back into yourself, and most snake implementations prevent you from being able to do this.</li>
+<li>Expand the game grid. Maybe you could have a grid that is bigger than the screen, and display a part of it at a time. You could show this by moving the food instead of the snake, or by flashing the screen when you drew a different area.</li>
+</ul>
+<h2 id="useful-links">Useful links</h2>
+<ul>
+<li><a href="https://python.microbit.org/v/2.0">Official Python editor for micro:bit</a></li>
+<li><a href="https://makecode.microbit.org/">MakeCode for micro:bit (JavaScript/Scratch)</a></li>
+<li><a href="http://ears-edi.com/">Embedded and Robotics Society Edinburgh</a></li>
+<li><a href="https://docs.google.com/presentation/d/1d5NM7Sf5eOalQJ1Otfe1fJ4gtUMj3hgkXyFJPTEyZik/edit?usp=sharing">Original workshop slides</a></li>
+<li><a href="https://microbit-challenges.readthedocs.io/en/latest/introduction/getting_started.html">UCL BBC micro:bit tutorial</a></li>
+</ul>
+<h2 id="copyright">Copyright</h2>
+<p>Pretty micro:bit SVG images were modified from the <a href="https://github.com/microbit-foundation/microbit-svg/">Micro:bit Educational Foundation's GitHub repo</a> under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>. Those images on this page are therefore licensed under the same terms.</p>
+<p>All other content on this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0 license</a>.</p>
+<p>The create.withcode editor hosted on my site is courtesy of Pete Dring of <a href="https://blog.withcode.uk/">blog.withcode.uk</a>. It has been slightly modified, hence this tutorial not using the official site.</p>
+</div>
+		</div>
+	</body>
+</html>
