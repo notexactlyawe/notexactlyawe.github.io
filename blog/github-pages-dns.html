@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<link href="http://gmpg.org/xfn/11" rel="profile">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<head>
+	<link href="http://gmpg.org/xfn/11" rel="profile">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-		<!-- Enable responsiveness on mobile devices-->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<!-- Enable responsiveness on mobile devices-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-        <title>How to configure DNS for custom domains on GitHub Pages - Cameron MacLeod</title>
-        <meta name="title" property="og:title" content="How to configure DNS for custom domains on GitHub Pages - Cameron MacLeod">
-        <meta property="og:type" content="Article">
+	<title>How to configure DNS for custom domains on GitHub Pages - Cameron MacLeod</title>
+	<meta name="title" property="og:title" content="How to configure DNS for custom domains on GitHub Pages - Cameron MacLeod">
+	<meta property="og:type" content="Article">
 
-        <meta name="author" content="Cameron MacLeod">
+	<meta name="author" content="Cameron MacLeod">
 
-		<!-- CSS -->
-		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
-		<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
+	<!-- CSS -->
+	<link href="//fonts.googleapis.com/" rel="dns-prefetch">
+	<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
 
-		<link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/poole.css" />
-		<link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/hyde.css" />
-		<link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/syntax.css" />
-        <link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/style.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/poole.css" />
+	<link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/hyde.css" />
+	<link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/syntax.css" />
+	<link rel="stylesheet" href="https://www.cameronmacleod.com/theme/css/style.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-		<!-- RSS -->
-		<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	<!-- RSS -->
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/all.atom.xml">
 	<script type="text/javascript">
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
  			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -35,9 +35,9 @@
             ga('set', 'anonymizeIp', true);
 			ga('send', 'pageview');
 	</script>
-	</head>
+</head>
 
-	<body class="theme-base-0d">
+<body class="theme-base-0d">
 <div class="sidebar">
 	<div class="container sidebar-sticky">
 		<div class="sidebar-about">
@@ -81,7 +81,7 @@
 			</nav>
 		</div>
 	</div>
-</div>		<div class="content container">
+</div>	<div class="content container">
 <div class="post">
 	<h1 class="post-title">How to configure DNS for custom domains on GitHub Pages</h1>
 	<span class="post-date">Tue 20 November 2018</span>
@@ -154,25 +154,25 @@ United Kingdom  </p>
 <h3 id="how-do-i-know-it-worked">How do I know it worked?</h3>
 <p>DNS is notoriously slow to make changes to. Most providers recommend waiting 24 hours (some up to 72!) before you will be able to see your changes. When checking to see whether or not your changes have propagated, you can do one of two things. Use a DNS tool (like the one from <a href="https://www.dnsstuff.com/tools">DNSstuff</a> above) or use the unix command <code>dig</code>.</p>
 <p><code>dig</code> is a command that can find and list the DNS records for a given domain name. On Linux and Mac machines, you can run the following in terminal:</p>
-<div class="highlight"><pre><span></span>cameron@isla:~$ dig www.cameronmacleod.com +noall +answer
+<div class="highlight"><pre><span></span><span class="n">cameron</span><span class="nv">@isla</span><span class="err">:</span><span class="o">~</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="n">www</span><span class="p">.</span><span class="n">cameronmacleod</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="o">+</span><span class="n">noall</span><span class="w"> </span><span class="o">+</span><span class="n">answer</span><span class="w"></span>
 
-; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Ubuntu &lt;&lt;&gt;&gt; www.cameronmacleod.com +noall +answer
-;; global options: +cmd
-www.cameronmacleod.com. 655 IN  A   192.30.252.154
-www.cameronmacleod.com. 655 IN  A   192.30.252.153
+<span class="p">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="n">DiG</span><span class="w"> </span><span class="mf">9.10.3</span><span class="o">-</span><span class="n">P4</span><span class="o">-</span><span class="n">Ubuntu</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="n">www</span><span class="p">.</span><span class="n">cameronmacleod</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="o">+</span><span class="n">noall</span><span class="w"> </span><span class="o">+</span><span class="n">answer</span><span class="w"></span>
+<span class="p">;;</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="nl">options</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="n">cmd</span><span class="w"></span>
+<span class="n">www</span><span class="p">.</span><span class="n">cameronmacleod</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="w"> </span><span class="mi">655</span><span class="w"> </span><span class="ow">IN</span><span class="w">  </span><span class="n">A</span><span class="w">   </span><span class="mf">192.30.252.154</span><span class="w"></span>
+<span class="n">www</span><span class="p">.</span><span class="n">cameronmacleod</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="w"> </span><span class="mi">655</span><span class="w"> </span><span class="ow">IN</span><span class="w">  </span><span class="n">A</span><span class="w">   </span><span class="mf">192.30.252.153</span><span class="w"></span>
 </pre></div>
 
 
 <p>The output might look a bit confusing, but it's the last two lines that count. Those are the records that <code>dig</code> has found for your domain. In my case, this output was from before I changed my DNS settings, so it still shows the old <strong>A records</strong> that I was using. Running it now would give something like this:</p>
-<div class="highlight"><pre><span></span>cameron@isla:~$ dig www.cameronmacleod.com +noall +answer
+<div class="highlight"><pre><span></span><span class="n">cameron</span><span class="nv">@isla</span><span class="err">:</span><span class="o">~</span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="n">www</span><span class="p">.</span><span class="n">cameronmacleod</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="o">+</span><span class="n">noall</span><span class="w"> </span><span class="o">+</span><span class="n">answer</span><span class="w"></span>
 
-; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Ubuntu &lt;&lt;&gt;&gt; www.cameronmacleod.com +noall +answer
-;; global options: +cmd
-www.cameronmacleod.com. 3600    IN  CNAME   notexactlyawe.github.io.
-notexactlyawe.github.io. 3599   IN  A   185.199.108.153
-notexactlyawe.github.io. 3599   IN  A   185.199.109.153
-notexactlyawe.github.io. 3599   IN  A   185.199.111.153
-notexactlyawe.github.io. 3599   IN  A   185.199.110.153
+<span class="p">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="n">DiG</span><span class="w"> </span><span class="mf">9.10.3</span><span class="o">-</span><span class="n">P4</span><span class="o">-</span><span class="n">Ubuntu</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="n">www</span><span class="p">.</span><span class="n">cameronmacleod</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="o">+</span><span class="n">noall</span><span class="w"> </span><span class="o">+</span><span class="n">answer</span><span class="w"></span>
+<span class="p">;;</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="nl">options</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="n">cmd</span><span class="w"></span>
+<span class="n">www</span><span class="p">.</span><span class="n">cameronmacleod</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="w"> </span><span class="mi">3600</span><span class="w">    </span><span class="ow">IN</span><span class="w">  </span><span class="n">CNAME</span><span class="w">   </span><span class="n">notexactlyawe</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="w"></span>
+<span class="n">notexactlyawe</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="w"> </span><span class="mi">3599</span><span class="w">   </span><span class="ow">IN</span><span class="w">  </span><span class="n">A</span><span class="w">   </span><span class="mf">185.199.108.153</span><span class="w"></span>
+<span class="n">notexactlyawe</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="w"> </span><span class="mi">3599</span><span class="w">   </span><span class="ow">IN</span><span class="w">  </span><span class="n">A</span><span class="w">   </span><span class="mf">185.199.109.153</span><span class="w"></span>
+<span class="n">notexactlyawe</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="w"> </span><span class="mi">3599</span><span class="w">   </span><span class="ow">IN</span><span class="w">  </span><span class="n">A</span><span class="w">   </span><span class="mf">185.199.111.153</span><span class="w"></span>
+<span class="n">notexactlyawe</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="w"> </span><span class="mi">3599</span><span class="w">   </span><span class="ow">IN</span><span class="w">  </span><span class="n">A</span><span class="w">   </span><span class="mf">185.199.110.153</span><span class="w"></span>
 </pre></div>
 
 
@@ -218,6 +218,6 @@ notexactlyawe.github.io. 3599   IN  A   185.199.110.153
 </div>
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 <!--End mc_embed_signup-->
-		</div>
-	</body>
+	</div>
+</body>
 </html>

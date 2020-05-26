@@ -1,5 +1,385 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cameron MacLeod</title><link href="https://www.cameronmacleod.com/" rel="alternate"></link><link href="https://www.cameronmacleod.com/feeds/all.atom.xml" rel="self"></link><id>https://www.cameronmacleod.com/</id><updated>2020-05-18T00:00:00+01:00</updated><entry><title>Build a snake game on the BBC micro:bit</title><link href="https://www.cameronmacleod.com/blog/microbit-snake" rel="alternate"></link><published>2020-05-18T00:00:00+01:00</published><updated>2020-05-18T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-05-18:/blog/microbit-snake</id><summary type="html">&lt;p&gt;&lt;img alt="Header image" src="/images/microbitsnake/header.png"&gt; By the end of this tutorial, you'll have built your very own game and learned not only about game development, but Python and the BBC micro:bit too. What's more, you don't even need to own a micro:bit to follow along!&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Header image" src="/images/microbitsnake/header.png"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cameron MacLeod</title><link href="https://www.cameronmacleod.com/" rel="alternate"></link><link href="https://www.cameronmacleod.com/feeds/all.atom.xml" rel="self"></link><id>https://www.cameronmacleod.com/</id><updated>2020-05-25T00:00:00+01:00</updated><entry><title>What a computer science degree looks like in 2020</title><link href="https://www.cameronmacleod.com/blog/cs-degree-structure" rel="alternate"></link><published>2020-05-25T00:00:00+01:00</published><updated>2020-05-25T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-05-25:/blog/cs-degree-structure</id><summary type="html">&lt;p&gt;Lots of people who are learning to code ask the question "Should I get a CS degree or do a bootcamp?", or "Is a degree necessary?". I have just finished my degree (not graduated yet), and while I can't give all the answers to these questions, I can share my …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lots of people who are learning to code ask the question "Should I get a CS degree or do a bootcamp?", or "Is a degree necessary?". I have just finished my degree (not graduated yet), and while I can't give all the answers to these questions, I can share my experience.&lt;/p&gt;
+&lt;p&gt;In this post I will go into detail about what my degree contained. You can use this information to decide whether university is for you, make your own curriculum, or even just see how the syllabus has changed since you went.&lt;/p&gt;
+&lt;p&gt;I don't want to tell you to get a degree, and I equally don't want to tell you to not get one. It is a personal choice. However, on the whole I'm very pleased that I went to university. I learned a lot of things that I wouldn't have otherwise, but more importantly, I met lots of great people and had experiences that I couldn't have had in any other setting. The piece of paper that I will get once I graduate is important for the &lt;a href="/blog/why-pm-over-software"&gt;job I chose&lt;/a&gt;, but it won't be important for everyone on my course.&lt;/p&gt;
+&lt;p&gt;Below you will find a list of every module I took in the course of my degree and their content. Not every degree will look like this, I had a lot of elective modules and some universities are more practical than others, but this should give you an idea of what university can offer.&lt;/p&gt;
+&lt;p&gt;The courses are broken down by year and semester. Each course has the following structure.&lt;/p&gt;
+&lt;div class="csdegree-course "&gt;
+  &lt;summary&gt;Name and link to full course description&lt;/summary&gt;
+
+  Some information about the course, including searchable terms where appropriate.
+  &lt;br /&gt;&lt;br /&gt;
+  Number of credits to give you an idea of how much depth each course has.
+&lt;/div&gt;
+
+&lt;p&gt;This is a Bachelor of Science (Hons) degree from the University of Edinburgh. It is under the Scottish university system, so it is four years long. Each year is composed of two semesters and you need to take 120 credits of courses across these semesters.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; This is not a comprehensive guide to the degree program at Edinburgh, if you are looking for that, go to &lt;a href="http://www.drps.ed.ac.uk/"&gt;DRPS (Degree Regulations and Programmes of Study)&lt;/a&gt;. I have tried not to include my opinions of the courses, since it's the syllabus that's important.&lt;/p&gt;
+&lt;p&gt;With that out the way, here's the full list.&lt;/p&gt;
+&lt;div class="csdegree-year"&gt;
+  &lt;h2&gt;Year 1&lt;/h2&gt;
+  &lt;p&gt;Year 1 had 40 credits free for optional modules. The number of free credits in first year may be higher in Scotland than elsewhere due to Scottish universities doing a four year bachelors degree.&lt;/p&gt;
+  &lt;div class="csdegree-sem"&gt;
+    &lt;h3&gt;Semester 1&lt;/h3&gt;
+    &lt;div class="csdegree-sem-wrap"&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/inf1/cl"&gt;Computation and Logic&lt;/a&gt;&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Propositional and first-order logic&lt;/li&gt;
+          &lt;li&gt;Finite state machines&lt;/li&gt;
+          &lt;li&gt;Set theory&lt;/li&gt;
+        &lt;/ul&gt;
+
+        10 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/inf1/fp/"&gt;Functional Programming&lt;/a&gt;&lt;/summary&gt;
+        &lt;p&gt;Introductory course on Haskell. Gets as far as monads, but doesn't really address them that thoroughly.&lt;/p&gt;
+
+        &lt;p&gt;10 credits&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/16-17/dpt/cxmath08057.htm"&gt;Introduction to Linear Algebra&lt;/a&gt;&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Complex numbers&lt;/li&gt;
+          &lt;li&gt;Vectors&lt;/li&gt;
+          &lt;li&gt;Systems of linear equations&lt;/li&gt;
+          &lt;li&gt;Matrices&lt;/li&gt;
+          &lt;li&gt;Eigenvalues/eigenvectors&lt;/li&gt;
+        &lt;/ul&gt;
+
+        20 credits
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="csdegree-sem"&gt;
+    &lt;h3&gt;Semester 2&lt;/h3&gt;
+    &lt;div class="csdegree-sem-wrap"&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/16-17/dpt/cxinfr08014.htm"&gt;Object-oriented Programming&lt;/a&gt;&lt;/summary&gt;
+        &lt;p&gt;Honestly, I didn't really pay attention to this course. It taught introductory Java.&lt;/p&gt;
+
+        &lt;p&gt;10 credits&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="https://blog.inf.ed.ac.uk/da18/"&gt;Data and Analysis&lt;/a&gt;&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;SQL/Basic databases&lt;/li&gt;
+          &lt;li&gt;XML&lt;/li&gt;
+          &lt;li&gt;Text corpora&lt;/li&gt;
+        &lt;/ul&gt;
+
+         10 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/16-17/dpt/cxmath08058.htm"&gt;Calculus and its Applications&lt;/a&gt;&lt;/summary&gt;
+        &lt;p&gt;Introductory calculus course. It covered single variable integration, differentiation and series.&lt;/p&gt;
+
+        &lt;p&gt;20 credits&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="csdegree-sem"&gt;
+    &lt;h3&gt;Full Year&lt;/h3&gt;
+    &lt;div class="csdegree-sem-wrap"&gt;
+      &lt;div class="csdegree-course optional full-year"&gt;&lt;summary&gt;Russian Studies (optional)&lt;/summary&gt;
+        &lt;p&gt;Russian course for beginners. One of the reasons that I went to university in Scotland was so that I could do languages alongside my degree. Scotland has more of a "liberal arts" system than the rest of the UK.&lt;/p&gt;
+
+        &lt;p&gt;&lt;b&gt;40 credits&lt;/b&gt;&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="csdegree-year"&gt;
+  &lt;h2&gt;Year 2&lt;/h2&gt;
+  &lt;p&gt;Year 2 only had 20 credits free. Bayes Theorem was a big theme in year 2.&lt;/p&gt;
+  &lt;div class="csdegree-sem"&gt;
+    &lt;h3&gt;Semester 1&lt;/h3&gt;
+    &lt;div class="csdegree-sem-wrap"&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/fnlp/"&gt;Processing Formal and Natural Languages&lt;/a&gt;&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Natural language processing&lt;/li&gt;
+          &lt;li&gt;Hidden Markov Models&lt;/li&gt;
+          &lt;li&gt;Grammars&lt;/li&gt;
+        &lt;/ul&gt;
+
+         20 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/inf2c-cs/"&gt;Introduction to Computer Systems&lt;/a&gt;&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Instruction sets and assembly&lt;/li&gt;
+          &lt;li&gt;C programming&lt;/li&gt;
+          &lt;li&gt;Basic processor and digital logic design&lt;/li&gt;
+        &lt;/ul&gt;
+
+         10 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/16-17/dpt/cxinfr08019.htm"&gt;Introduction to Software Engineering&lt;/a&gt;&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Software lifecycle&lt;/li&gt;
+          &lt;li&gt;UML&lt;/li&gt;
+          &lt;li&gt;Design patterns&lt;/li&gt;
+          &lt;li&gt;Intro to testing&lt;/li&gt;
+          &lt;li&gt;Version control&lt;/li&gt;
+        &lt;/ul&gt;
+
+         10 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/16-17/dpt/cxinfr08023.htm"&gt;Discrete Mathematics and Mathematical Reasoning&lt;/a&gt;&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Number systems&lt;/li&gt;
+          &lt;li&gt;Proofs by induction&lt;/li&gt;
+          &lt;li&gt;Counting (combinatorics)&lt;/li&gt;
+          &lt;li&gt;Graphs&lt;/li&gt;
+          &lt;li&gt;Trees&lt;/li&gt;
+          &lt;li&gt;Discrete probabilities&lt;/li&gt;
+        &lt;/ul&gt;
+
+         20 credits
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="csdegree-sem"&gt;
+    &lt;h3&gt;Semester 2&lt;/h3&gt;
+    &lt;div class="csdegree-sem-wrap"&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/inf2b/"&gt;Algorithms, Data Structures, Learning&lt;/a&gt;&lt;/summary&gt;
+      This was actually two courses combined. Firstly the algorithms and data structures component contained:
+        &lt;ul&gt;
+          &lt;li&gt;Asymptotic notation and algorithms (Big O etc)&lt;/li&gt;
+          &lt;li&gt;Data structures&lt;/li&gt;
+          &lt;li&gt;Sorting algorithms&lt;/li&gt;
+          &lt;li&gt;Graphs&lt;/li&gt;
+        &lt;/ul&gt;
+        The other half of the course was focused on machine learning.
+        &lt;ul&gt;
+          &lt;li&gt;Dimensionality in data (PCA etc)&lt;/li&gt;
+          &lt;li&gt;Naive Bayes&lt;/li&gt;
+          &lt;li&gt;Clustering algorithms&lt;/li&gt;
+          &lt;li&gt;Gaussians&lt;/li&gt;
+          &lt;li&gt;Neural networks&lt;/li&gt;
+        &lt;/ul&gt;
+
+         20 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/16-17/dpt/cxmath08067.htm"&gt;Probability with Applications&lt;/a&gt;&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Combinatorics&lt;/li&gt;
+          &lt;li&gt;Bayes theorem&lt;/li&gt;
+          &lt;li&gt;Discrete random variable distributions&lt;/li&gt;
+          &lt;li&gt;Continuous random variable distributions&lt;/li&gt;
+          &lt;li&gt;Jointly distributed random variables&lt;/li&gt;
+          &lt;li&gt;Covariance and correlation&lt;/li&gt;
+          &lt;li&gt;Discrete Markov chains&lt;/li&gt;
+          &lt;li&gt;Birth and death processes&lt;/li&gt;
+        &lt;/ul&gt;
+
+         20 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/inf2d/"&gt;Reasoning and Agents&lt;/a&gt; (optional)&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Intelligent agents&lt;/li&gt;
+          &lt;li&gt;Problem solving through search&lt;/li&gt;
+          &lt;li&gt;Adversarial search&lt;/li&gt;
+          &lt;li&gt;Knowledge bases and inference&lt;/li&gt;
+          &lt;li&gt;First order logic&lt;/li&gt;
+          &lt;li&gt;Planning&lt;/li&gt;
+          &lt;li&gt;Bayes Theorem&lt;/li&gt;
+          &lt;li&gt;Markov decision processes&lt;/li&gt;
+        &lt;/ul&gt;
+
+         20 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="http://www-test.drps.ed.ac.uk/17-18/dpt/cxscee08007.htm"&gt;Signals and Communications Systems&lt;/a&gt; (optional)&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Types of signals (continuous vs discrete, periodic vs aperiodic etc)&lt;/li&gt;
+          &lt;li&gt;Power and energy&lt;/li&gt;
+          &lt;li&gt;Fourier analysis&lt;/li&gt;
+          &lt;li&gt;Convolution&lt;/li&gt;
+          &lt;li&gt;Nyquist's sampling theorem&lt;/li&gt;
+          &lt;li&gt;Modulation techniques (OOK, FSK, PSK)&lt;/li&gt;
+          &lt;li&gt;Multiplexing (FDM and TDM)&lt;/li&gt;
+          &lt;li&gt;Information theory&lt;/li&gt;
+        &lt;/ul&gt;
+
+         10 credits
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="csdegree-year"&gt;
+  &lt;h2&gt;Year 3&lt;/h2&gt;
+  &lt;p&gt;Year 3 was the first honours year, and so courses start to get more specific in comparison to the foundational courses of years 1 and 2. It had 50 free credits&lt;/p&gt;
+  &lt;div class="csdegree-sem"&gt;
+    &lt;h3&gt;Semester 1&lt;/h3&gt;
+    &lt;div class="csdegree-sem-wrap"&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/18-19/dpt/cxinfr10022.htm"&gt;Professional Issues&lt;/a&gt;&lt;/summary&gt;
+        &lt;p&gt;This course was focused on "soft" skills such as ethical, legal and financial issues for software development businesses.&lt;/p&gt;
+        &lt;p&gt;10 credits&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/18-19/dpt/cxinfr09051.htm"&gt;Informatics Large Practical&lt;/a&gt;&lt;/summary&gt;
+        &lt;p&gt;This was a project course that required students to build an Android game. There was a specification, but some room for creativity. &lt;a href="https://github.com/notexactlyawe/coinz"&gt;My code from this course is on GitHub&lt;/a&gt;&lt;/p&gt;
+
+        &lt;p&gt;20 credits&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/18-19/dpt/cxinfr09046.htm"&gt;Computer Design&lt;/a&gt; (optional)&lt;/summary&gt;
+      Course on digital logic and processor design.
+        &lt;ul&gt;
+          &lt;li&gt;Combinatorial logic&lt;/li&gt;
+          &lt;li&gt;Sequential logic&lt;/li&gt;
+          &lt;li&gt;Processor design&lt;/li&gt;
+          &lt;li&gt;Memory system design&lt;/li&gt;
+          &lt;li&gt;I/O controller design&lt;/li&gt;
+          &lt;li&gt;Synchronisation issues&lt;/li&gt;
+          &lt;li&gt;RISC&lt;/li&gt;
+        &lt;/ul&gt;
+
+         20 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/ivr/"&gt;Introduction to Vision and Robotics&lt;/a&gt; (optional)&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Robotic actuators and sensors&lt;/li&gt;
+          &lt;li&gt;Control theory&lt;/li&gt;
+          &lt;li&gt;Image thresholding, filtering and classification&lt;/li&gt;
+          &lt;li&gt;Active vision and attention&lt;/li&gt;
+        &lt;/ul&gt;
+
+         10 credits
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="csdegree-sem"&gt;
+    &lt;h3&gt;Semester 2&lt;/h3&gt;
+    &lt;div class="csdegree-sem-wrap"&gt;
+    &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/18-19/dpt/cxinfr09032.htm"&gt;System Design Project&lt;/a&gt;&lt;/summary&gt;
+        &lt;p&gt;This was a group project to build a lego robot with the theme of "assistive technology". My team chose to build a chess-playing robot to enable disabled players to compete in tournaments more easily. See the &lt;a href="https://github.com/deeper-blue/"&gt;Deeper Blue GitHub organisation&lt;/a&gt; for more details.&lt;/p&gt;
+
+        &lt;p&gt;20 credits&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/cs/index-2017.html"&gt;Computer Security&lt;/a&gt;&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Network security&lt;/li&gt;
+          &lt;li&gt;Usable security (the human factor)&lt;/li&gt;
+          &lt;li&gt;Symmetric and asymmetric ciphers&lt;/li&gt;
+          &lt;li&gt;MACs and hash functions&lt;/li&gt;
+          &lt;li&gt;Digital signatures&lt;/li&gt;
+          &lt;li&gt;SSL/TLS&lt;/li&gt;
+          &lt;li&gt;TOR&lt;/li&gt;
+          &lt;li&gt;OS Security&lt;/li&gt;
+          &lt;li&gt;Web security&lt;/li&gt;
+        &lt;/ul&gt;
+
+         20 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/18-19/dpt/cxinfr09047.htm"&gt;Operating Systems&lt;/a&gt; (optional)&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Process management&lt;/li&gt;
+          &lt;li&gt;Resource allocation and deadlocks&lt;/li&gt;
+          &lt;li&gt;The Kernel&lt;/li&gt;
+          &lt;li&gt;Memory management (virtual memory, paging etc)&lt;/li&gt;
+          &lt;li&gt;Scheduling&lt;/li&gt;
+          &lt;li&gt;File management&lt;/li&gt;
+        &lt;/ul&gt;
+
+         20 credits
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="csdegree-year"&gt;
+  &lt;h2&gt;Year 4&lt;/h2&gt;
+  &lt;p&gt;Year 4 really frees up with 80 credits for optional courses. Of course, most of these credits have to be spent in the area of computer science unlike years 1 and 2.&lt;/p&gt;
+  &lt;div class="csdegree-sem"&gt;
+    &lt;h3&gt;Semester 1&lt;/h3&gt;
+    &lt;div class="csdegree-sem-wrap"&gt;
+      &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/cg/index2019.html"&gt;Computer Graphics&lt;/a&gt; (optional)&lt;/summary&gt;
+      This was a coursework-only course which is unusual. Most courses have at least 60% of their mark come from an exam. There were three courseworks.
+        &lt;ul&gt;
+          &lt;li&gt;Compositing using Blender, PBRT and Gimp&lt;/li&gt;
+          &lt;li&gt;Build a raytracer&lt;/li&gt;
+          &lt;li&gt;Implement a new sampling method and material in PBRT&lt;/li&gt;
+        &lt;/ul&gt;
+
+         10 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/18-19/dpt/cxinfr11088.htm"&gt;Extreme Computing&lt;/a&gt; (optional)&lt;/summary&gt;
+      Course on cloud computing and web-scale technologies.
+        &lt;ul&gt;
+          &lt;li&gt;Distributed file systems&lt;/li&gt;
+          &lt;li&gt;Virtualisation&lt;/li&gt;
+          &lt;li&gt;Fault tolerance&lt;/li&gt;
+          &lt;li&gt;Hadoop/MapReduce&lt;/li&gt;
+        &lt;/ul&gt;
+
+         10 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="http://www.speech.zone/courses/speech-processing/"&gt;Speech Processing&lt;/a&gt; (optional)&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Speech signals (source-filter model)&lt;/li&gt;
+          &lt;li&gt;Text processing (POS tagging, expanding abbreviations etc)&lt;/li&gt;
+          &lt;li&gt;Pronunciation (letter-to-sound models, prosody prediction)&lt;/li&gt;
+          &lt;li&gt;Waveform generation in speech synthesis&lt;/li&gt;
+          &lt;li&gt;Speech recognition features&lt;/li&gt;
+          &lt;li&gt;Hidden Markov models&lt;/li&gt;
+        &lt;/ul&gt;
+
+         20 credits
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="csdegree-sem"&gt;
+    &lt;h3&gt;Semester 2&lt;/h3&gt;
+    &lt;div class="csdegree-sem-wrap"&gt;
+      &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/comn/"&gt;Computer Communications and Networks&lt;/a&gt; (optional)&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;The Internet layer model&lt;/li&gt;
+          &lt;li&gt;UDP and TCP&lt;/li&gt;
+          &lt;li&gt;IP&lt;/li&gt;
+          &lt;li&gt;Routing algorithms&lt;/li&gt;
+          &lt;li&gt;Link layer protocols&lt;/li&gt;
+          &lt;li&gt;Software defined networking&lt;/li&gt;
+        &lt;/ul&gt;
+
+         20 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="http://www.inf.ed.ac.uk/teaching/courses/asr/"&gt;Automatic Speech Recognition&lt;/a&gt; (optional)&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Gaussian mixture models&lt;/li&gt;
+          &lt;li&gt;EM algorithm&lt;/li&gt;
+          &lt;li&gt;Hidden Markov models&lt;/li&gt;
+          &lt;li&gt;Speech signal analysis and features&lt;/li&gt;
+          &lt;li&gt;Context dependent modelling&lt;/li&gt;
+          &lt;li&gt;Hybrid HMM/DNN systems&lt;/li&gt;
+          &lt;li&gt;Large vocabulary ASR&lt;/li&gt;
+          &lt;li&gt;TDNN and LSTM architectures&lt;/li&gt;
+          &lt;li&gt;Speaker adaptation&lt;/li&gt;
+          &lt;li&gt;Multi-lingual speech recognition&lt;/li&gt;
+          &lt;li&gt;Speaker verification and diarization&lt;/li&gt;
+        &lt;/ul&gt;
+
+         10 credits
+      &lt;/div&gt;
+      &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="http://www.inf.ed.ac.uk/teaching/courses/st/2017-18/index.html"&gt;Software Testing&lt;/a&gt; (optional)&lt;/summary&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Unit testing&lt;/li&gt;
+          &lt;li&gt;Combinatorial testing&lt;/li&gt;
+          &lt;li&gt;Structural testing&lt;/li&gt;
+          &lt;li&gt;Coverage&lt;/li&gt;
+          &lt;li&gt;Mutation testing&lt;/li&gt;
+          &lt;li&gt;TDD&lt;/li&gt;
+          &lt;li&gt;Regression testing&lt;/li&gt;
+        &lt;/ul&gt;
+
+         10 credits
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="csdegree-sem"&gt;
+    &lt;h3&gt;Full Year&lt;/h3&gt;
+    &lt;div class="csdegree-sem-wrap"&gt;
+      &lt;div class="csdegree-course full-year"&gt;&lt;summary&gt;Honours Project&lt;/summary&gt;
+        &lt;p&gt;This is the course that represents our undergraduate dissertation. At the end of third year, you have to produce a preference list of five topics from around 300 or you can propose your own. You then get assigned a topic and a supervisor and work on it through fourth year. Mine was on Kubernetes and mobile networks. You can &lt;a href="/dissertation.pdf"&gt;read it here&lt;/a&gt;.&lt;/p&gt;
+
+        &lt;p&gt;40 credits&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><category term="Blogging"></category><category term="Degrees"></category><category term="Career"></category><category term="Computer science"></category></entry><entry><title>Build a snake game on the BBC micro:bit</title><link href="https://www.cameronmacleod.com/blog/microbit-snake" rel="alternate"></link><published>2020-05-18T00:00:00+01:00</published><updated>2020-05-18T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-05-18:/blog/microbit-snake</id><summary type="html">&lt;p&gt;&lt;img alt="" src="/images/microbitsnake/header.png"&gt; By the end of this tutorial, you'll have built your very own game and learned not only about game development, but Python and the BBC micro:bit too. What's more, you don't even need to own a micro:bit to follow along!&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="" src="/images/microbitsnake/header.png"&gt;&lt;/p&gt;
 &lt;p&gt;By the end of this tutorial, you'll have built your very own game and learned not only about game development, but Python and the BBC micro:bit too. What's more, you don't even need to own a micro:bit to follow along!&lt;/p&gt;
 &lt;p&gt;Below is a preview of what we'll be building.&lt;/p&gt;
 &lt;video autoplay loop muted playsinline src="/images/microbitsnake/snakepreview.mp4"&gt;Snake game running on the BBC micro:bit&lt;/video&gt;
@@ -109,7 +489,7 @@
 
 &lt;p&gt;At the very top of the file is an import. An import allows us to use code someone else has written in our own script. In this case, the other code we're using is the &lt;code&gt;microbit&lt;/code&gt; library, which allows us to control various components of the micro:bit including the display and accelerometer.&lt;/p&gt;
 &lt;p&gt;Skipping the class definition for now, at the bottom of the file is our game loop.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;handle_input&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -154,9 +534,10 @@
 &lt;li&gt;&lt;code&gt;draw(self)&lt;/code&gt;: The &lt;code&gt;draw&lt;/code&gt; function allows us to see the game state on the screen. In this function we'll be lighting up LEDs to represent the snake and the food.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Below the &lt;code&gt;Snake&lt;/code&gt; class definition, we create an instance of it and assign it to the variable &lt;code&gt;game&lt;/code&gt;. If you're not yet comfortable with classes and instances, take a look at the expandable panel below.&lt;/p&gt;
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Classes and instances&lt;/summary&gt;
+&lt;details&gt;&lt;summary&gt;Classes and instances&lt;/summary&gt;
 &lt;p&gt;
-A class is a way of linking functions to variables, but you can also think of it as defining the 'type' of something. Let's use cars as an analogy:&lt;/p&gt;
+A class is a way of linking functions to variables, but you can also think of it as defining the 'type' of something. Let's use cars as an analogy:
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Car&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;colour&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt;
@@ -164,7 +545,7 @@ A class is a way of linking functions to variables, but you can also think of it
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;colour&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;colour&lt;/span&gt;
 
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;print_info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is a {self.colour} {self.make} {self.model}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is a &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;colour&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;astra&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Car&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Vauxhall&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Astra&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;white&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;golf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Car&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Volkswagen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Golf&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;blue&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -176,19 +557,24 @@ A class is a way of linking functions to variables, but you can also think of it
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;In this example, we've defined a &lt;code&gt;Car&lt;/code&gt; &lt;em&gt;class&lt;/em&gt; that contains the make, model and colour of a car. The class represents the concept of a car, but note that it does not represent any actual cars, that's what instances are for.&lt;/p&gt;
-&lt;p&gt;Below the class definition, we create two &lt;em&gt;instances&lt;/em&gt; of &lt;code&gt;Car&lt;/code&gt;. One that represents an Astra, and one that represents a Golf. An instance represents a specific thing, instead of the concept of a thing. So our &lt;code&gt;astra&lt;/code&gt; variable does not represent the idea of a car, but instead a specific white Vauxhall Astra.&lt;/p&gt;
-&lt;p&gt;One thing you may notice about the class is that both of its functions take &lt;code&gt;self&lt;/code&gt; as the first argument. This represents the instance of the class that the function is being called on. When we call &lt;code&gt;astra.print_info()&lt;/code&gt;, Python passes the &lt;code&gt;astra&lt;/code&gt; instance as the first argument to the &lt;code&gt;print_info()&lt;/code&gt; function.&lt;/p&gt;
-&lt;p&gt;One other thing that often confuses people with classes is the &lt;code&gt;__init__&lt;/code&gt; method. It's a special method in Python that gets called when you create an instance of a class. When we create an instance, you can think of the following happening.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;We call &lt;code&gt;astra = Car("Vauxhall", "Astra", "white")&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Python creates an empty &lt;code&gt;Car&lt;/code&gt;, let's call it &lt;code&gt;temp_car&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Python runs &lt;code&gt;astra = Car.__init__(temp_car, "Vauxhall", "Astra", "white")&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;astra&lt;/code&gt; now has the correct variables and &lt;code&gt;temp_car&lt;/code&gt; is discarded.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;For more discussion of classes, take a look a &lt;a href="https://jeffknupp.com/blog/2014/06/18/improve-your-python-python-classes-and-object-oriented-programming/"&gt;Jeff Knupp's blog post&lt;/a&gt;.
+
+In this example, we've defined a `Car` _class_ that contains the make, model and colour of a car. The class represents the concept of a car, but note that it does not represent any actual cars, that's what instances are for.
+
+Below the class definition, we create two _instances_ of `Car`. One that represents an Astra, and one that represents a Golf. An instance represents a specific thing, instead of the concept of a thing. So our `astra` variable does not represent the idea of a car, but instead a specific white Vauxhall Astra.
+
+One thing you may notice about the class is that both of its functions take `self` as the first argument. This represents the instance of the class that the function is being called on. When we call `astra.print_info()`, Python passes the `astra` instance as the first argument to the `print_info()` function.
+
+One other thing that often confuses people with classes is the `__init__` method. It's a special method in Python that gets called when you create an instance of a class. When we create an instance, you can think of the following happening.
+
+1. We call `astra = Car("Vauxhall", "Astra", "white")`
+2. Python creates an empty `Car`, let's call it `temp_car`.
+3. Python runs `astra = Car.__init__(temp_car, "Vauxhall", "Astra", "white")`
+4. `astra` now has the correct variables and `temp_car` is discarded.
+
+For more discussion of classes, take a look a [Jeff Knupp's blog post](https://jeffknupp.com/blog/2014/06/18/improve-your-python-python-classes-and-object-oriented-programming/).
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;p&gt;Now that we have a template, our first step will be to initialise the game state.&lt;/p&gt;
 &lt;h2 id="creating-the-game-state"&gt;Creating the game state&lt;/h2&gt;
 &lt;p&gt;Before we can intialise the game state, we need to learn a little bit about Python and the micro:bit. Feel free to skip these sections if you have done this before.&lt;/p&gt;
@@ -238,26 +624,35 @@ A class is a way of linking functions to variables, but you can also think of it
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
+&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
-Let's talk through the solution line by line.&lt;/p&gt;
+Let's talk through the solution line by line.
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;up&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We defined &lt;code&gt;self.direction&lt;/code&gt; to be a string and I've chosen to make the snake go up at first. If you've put any other direction that's fine too.&lt;/p&gt;
+
+We defined `self.direction` to be a string and I've chosen to make the snake go up at first. If you've put any other direction that's fine too.
+
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;I've put my food in the middle of the left-most column to start with. If you've put it elsewhere, that's fine as long as you've defined valid co-ordinates that aren't the same as the snake's starting position.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+
+I've put my food in the middle of the left-most column to start with. If you've put it elsewhere, that's fine as long as you've defined valid co-ordinates that aren't the same as the snake's starting position.
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;This variable tells us whether the game has finished or not. It wouldn't be very helpful to set it to &lt;code&gt;True&lt;/code&gt; before it's even started!
+
+This variable tells us whether the game has finished or not. It wouldn't be very helpful to set it to `True` before it's even started!
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;h2 id="drawing-to-the-screen"&gt;Drawing to the screen&lt;/h2&gt;
 &lt;p&gt;We have some initial state, but if you ran this code right now, you wouldn't see much happening. That's because we're not actually drawing anything to the screen.&lt;/p&gt;
 &lt;p&gt;So what do we need to draw on the screen? Thinking back to our Google Snake example, the snake, food and grid were visible. On the micro:bit the grid is already built for us since the LEDs form a grid naturally. That leaves the snake and the food to be drawn.&lt;/p&gt;
@@ -284,7 +679,7 @@ Let's talk through the solution line by line.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;iterable_thing&lt;/code&gt; is something with multiple elements, for example a list, tuple or even a &lt;code&gt;range(start, stop)&lt;/code&gt;. &lt;code&gt;variable_name&lt;/code&gt; is the name that you assign to the element that you are currently working on in the loop. To make this example more concrete, here's how you would print the numbers from one to five.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="mi"&gt;2&lt;/span&gt;
 &lt;span class="mi"&gt;3&lt;/span&gt;
@@ -293,7 +688,7 @@ Let's talk through the solution line by line.&lt;/p&gt;
 &lt;span class="c1"&gt;# alternatively&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;nums&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;nums&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="mi"&gt;2&lt;/span&gt;
 &lt;span class="mi"&gt;3&lt;/span&gt;
@@ -304,8 +699,9 @@ Let's talk through the solution line by line.&lt;/p&gt;
 
 &lt;h3 id="your-turn-2-drawing-the-snake"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 2: Drawing the snake&lt;/h3&gt;
 &lt;p&gt;Now you know how to light up individual pixels, and how to use a &lt;code&gt;for&lt;/code&gt; loop to go over a list, you should be able to draw the snake to the screen. You'll want to draw the snake with intensity &lt;code&gt;9&lt;/code&gt; so that it looks different from the food we drew earlier. As before, the solution is below.&lt;/p&gt;
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
+&lt;p&gt;
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clear&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_pixel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -314,9 +710,11 @@ Let's talk through the solution line by line.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Since &lt;code&gt;self.snake&lt;/code&gt; is a list of co-ordinates, we can use it in a &lt;code&gt;for&lt;/code&gt; loop to get every co-ordinate that's part of the snake. We then use the &lt;code&gt;set_pixel&lt;/code&gt; function to draw each part to the screen.
+
+Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to get every co-ordinate that's part of the snake. We then use the `set_pixel` function to draw each part to the screen.
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;h3 id="running-our-code"&gt;Running our code&lt;/h3&gt;
 &lt;p&gt;At this point, we should see some output, so let's go ahead and run our code. Whether or not you have a physical micro:bit, press &lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;Enter&lt;/code&gt; in the editor to bring up the micro:bit pop up. You can also click the cross in the corner and then click the green play button.&lt;/p&gt;
 &lt;p&gt;If you want to run the code on your physical micro:bit, click the "Download HEX" button in the top left corner. You can refer to the &lt;a href="#setting-up-environment"&gt;Setting up environment section&lt;/a&gt; if you can't find it.&lt;/p&gt;
@@ -373,21 +771,31 @@ Let's talk through the solution line by line.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;What is the really annoying bug? (optional)&lt;/summary&gt;
+&lt;details&gt;&lt;summary&gt;What is the really annoying bug? (optional)&lt;/summary&gt;
 &lt;p&gt;
-If you don't copy the head of the snake, then you will modify the existing head as well as creating a new one. Let's illustrate this with an example:&lt;/p&gt;
-&lt;p&gt;Let's imagine a snake at &lt;code&gt;[[1, 1], [2, 1], [2, 2]]&lt;/code&gt; where &lt;code&gt;[2, 2]&lt;/code&gt; is the head of the snake. Also let's say that the snake is moving south.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Snake at [[1, 1], [2, 1], [2, 2]]" src="/images/microbitsnake/bugex1.png"&gt;&lt;/p&gt;
-&lt;p&gt;When we update the snake, we will take the head and update it to &lt;code&gt;[2, 3]&lt;/code&gt; since it is heading downwards. Ordinarily this would mean the snake looks like this:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Snake at [[2, 1], [2, 2], [2, 3]]" src="/images/microbitsnake/bugex2.png"&gt;&lt;/p&gt;
-&lt;p&gt;However, since we didn't copy the head, we'll end up modifying the existing one &lt;strong&gt;and&lt;/strong&gt; appending it, so our snake will be at &lt;code&gt;[[2, 1], [2, 3], [2, 3]]&lt;/code&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Snake at [[2, 1], [2, 3], [2, 3]]" src="/images/microbitsnake/bugex3.png"&gt;&lt;/p&gt;
-&lt;p&gt;This is because lists in Python are &lt;em&gt;mutable&lt;/em&gt;, which means that you can modify their values. When we type &lt;code&gt;new_head = self.snake[-1]&lt;/code&gt; we're not creating a new list called &lt;code&gt;new_head&lt;/code&gt;, we're assigning a new name to &lt;code&gt;self.snake[-1]&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Some objects in Python, for example tuples, are &lt;em&gt;immutable&lt;/em&gt; which means their values cannot be changed. If we used tuples for the co-ordinates we would not have this problem. However, if we used tuples, the code wouldn't be as simple as incrementing or decrementing a co-ordinate, and it would introduce another concept to a beginner-friendly tutorial, something I'd like to keep to a minimum.
+If you don't copy the head of the snake, then you will modify the existing head as well as creating a new one. Let's illustrate this with an example:
+
+Let's imagine a snake at `[[1, 1], [2, 1], [2, 2]]` where `[2, 2]` is the head of the snake. Also let's say that the snake is moving south.
+
+![Snake at `[[1, 1], [2, 1], [2, 2]]`](/images/microbitsnake/bugex1.png)
+
+When we update the snake, we will take the head and update it to `[2, 3]` since it is heading downwards. Ordinarily this would mean the snake looks like this:
+
+![Snake at `[[2, 1], [2, 2], [2, 3]]`](/images/microbitsnake/bugex2.png)
+
+However, since we didn't copy the head, we'll end up modifying the existing one **and** appending it, so our snake will be at `[[2, 1], [2, 3], [2, 3]]`:
+
+![Snake at `[[2, 1], [2, 3], [2, 3]]`](/images/microbitsnake/bugex3.png)
+
+This is because lists in Python are _mutable_, which means that you can modify their values. When we type `new_head = self.snake[-1]` we're not creating a new list called `new_head`, we're assigning a new name to `self.snake[-1]`.
+
+Some objects in Python, for example tuples, are _immutable_ which means their values cannot be changed. If we used tuples for the co-ordinates we would not have this problem. However, if we used tuples, the code wouldn't be as simple as incrementing or decrementing a co-ordinate, and it would introduce another concept to a beginner-friendly tutorial, something I'd like to keep to a minimum.
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
+&lt;p&gt;
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;new_head&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;up&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -405,9 +813,11 @@ If you don't copy the head of the snake, then you will modify the existing head 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Firstly we copy the old head of the snake, remember &lt;code&gt;-1&lt;/code&gt; is the index of the last element of a list. Next we check what the current direction is, and increment or decrement the appropriate co-ordinate. Finally, we append the new head to the end of the snake list.
+
+Firstly we copy the old head of the snake, remember `-1` is the index of the last element of a list. Next we check what the current direction is, and increment or decrement the appropriate co-ordinate. Finally, we append the new head to the end of the snake list.
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;h3 id="your-turn-4-removing-the-tail"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 4: Removing the tail&lt;/h3&gt;
 &lt;p&gt;Remember the &lt;code&gt;.pop(idx)&lt;/code&gt; method on lists from before? You can remove an item from a list by calling this function with the index of the item that you want to remove.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -419,9 +829,10 @@ If you don't copy the head of the snake, then you will modify the existing head 
 
 
 &lt;p&gt;Your task is to remove the tail of the snake. Here's a hint, if we add the new head to the end of the snake list, then the tail will be at the start of it.&lt;/p&gt;
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
+&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
-The full &lt;code&gt;update&lt;/code&gt; function should now look like this:&lt;/p&gt;
+The full `update` function should now look like this:
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;new_head&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;up&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -438,8 +849,9 @@ The full &lt;code&gt;update&lt;/code&gt; function should now look like this:&lt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;p&gt;We're now ready to run this again, and our snake should now move!&lt;/p&gt;
 &lt;video autoplay loop muted playsinline src="/images/microbitsnake/microbiterror.mp4"&gt;Demonstration of the wrapping error with the snake moving code.&lt;/video&gt;
 
@@ -455,8 +867,9 @@ The full &lt;code&gt;update&lt;/code&gt; function should now look like this:&lt;
 &lt;h3 id="your-turn-5-wrap-the-screen"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 5: Wrap the screen&lt;/h3&gt;
 &lt;p&gt;The bounds of our screen are 0-4 in both the X and Y axes. So you'll want to check if the X co-ordinate or the Y co-ordinate are less than/greater than these boundaries. If they are, reset them to the other edge of the screen.&lt;/p&gt;
 &lt;p&gt;Again, for this task we'll be working in our &lt;code&gt;update&lt;/code&gt; method.&lt;/p&gt;
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
+&lt;p&gt;
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="c1"&gt;# the code from above&lt;/span&gt;
     &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;right&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -478,9 +891,11 @@ The full &lt;code&gt;update&lt;/code&gt; function should now look like this:&lt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We add a new &lt;code&gt;if&lt;/code&gt; statement for both the X co-ordinate and the Y co-ordinate. In it, we check if they are above 4 or below 0 since those are the maximum co-ordinates of our display. This would also work if you only have a single &lt;code&gt;if/elif&lt;/code&gt; block for both the X and Y since we'll only be changing one at a time.
+
+We add a new `if` statement for both the X co-ordinate and the Y co-ordinate. In it, we check if they are above 4 or below 0 since those are the maximum co-ordinates of our display. This would also work if you only have a single `if/elif` block for both the X and Y since we'll only be changing one at a time.
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;p&gt;When we add this code to our game, it should look like the below.&lt;/p&gt;
 &lt;video autoplay loop muted playsinline src="/images/microbitsnake/wrapping.mp4"&gt;The game successfully wrapping the snake round the screen.&lt;/video&gt;
 
@@ -513,15 +928,16 @@ The full &lt;code&gt;update&lt;/code&gt; function should now look like this:&lt;
 &lt;p&gt;You may find the absolute function, &lt;code&gt;abs(x)&lt;/code&gt;, useful.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# abs (the absolute function) will remove a minus sign if present&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;
-&lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;span class="kc"&gt;True&lt;/span&gt;
 &lt;span class="c1"&gt;# ... and leave the value alone if not&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;
-&lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;span class="kc"&gt;True&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
+&lt;p&gt;
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;handle_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="c1"&gt;# get accelerometer values&lt;/span&gt;
     &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;accelerometer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_x&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -542,9 +958,11 @@ The full &lt;code&gt;update&lt;/code&gt; function should now look like this:&lt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;First we get the raw values from the accelerometer for X and Y, and then we compare their magnitudes using &lt;code&gt;abs()&lt;/code&gt;. If X is bigger than Y, then we see whether X is negative (left) or positive (right). We do the equivalent checks when Y is bigger than X.
+
+First we get the raw values from the accelerometer for X and Y, and then we compare their magnitudes using `abs()`. If X is bigger than Y, then we see whether X is negative (left) or positive (right). We do the equivalent checks when Y is bigger than X.
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;p&gt;The user can now tilt the micro:bit to make the snake move! You may notice while playing with this that the snake will never grow, so now it's time to figure out how food works.&lt;/p&gt;
 &lt;h2 id="food"&gt;Food&lt;/h2&gt;
 &lt;p&gt;When the snake approaches some food, we want the snake to grow and the food to appear again in another location. Ideally, the process would look like the following animation.&lt;/p&gt;
@@ -555,8 +973,9 @@ The full &lt;code&gt;update&lt;/code&gt; function should now look like this:&lt;
 &lt;p&gt;The snake "eats" the food when its head is in the same cell as the food. When it eats the food, it should grow by one cell which can be done by not cutting the tail from the snake.&lt;/p&gt;
 &lt;p&gt;In the case that the snake is eating the food, you should leave some space in your code to generate the new food.&lt;/p&gt;
 &lt;p&gt;Hint: In Python you can compare two lists just with &lt;code&gt;list1 == list2&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
+&lt;p&gt;
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_head&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -569,10 +988,13 @@ The full &lt;code&gt;update&lt;/code&gt; function should now look like this:&lt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We compare the new head and the food. If they are the same then we leave some space in the code to generate the new food.&lt;/p&gt;
-&lt;p&gt;We cut the tail in the else block, which means that we only cut it when the snake isn't eating food.
+
+We compare the new head and the food. If they are the same then we leave some space in the code to generate the new food.
+
+We cut the tail in the else block, which means that we only cut it when the snake isn't eating food.
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;h3 id="random-numbers"&gt;Random numbers&lt;/h3&gt;
 &lt;p&gt;We want to generate new food randomly so that the game is interesting. We can do this using the &lt;code&gt;random&lt;/code&gt; module in Python. Here's an example that guesses (poorly) how old you are.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# import the function randint from the module random&lt;/span&gt;
@@ -581,7 +1003,7 @@ The full &lt;code&gt;update&lt;/code&gt; function should now look like this:&lt;
 &lt;span class="c1"&gt;# generate a random integer between 0 and 100 (inclusive)&lt;/span&gt;
 &lt;span class="n"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;I bet you are {age} years old&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;I bet you are &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; years old&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -590,8 +1012,9 @@ The full &lt;code&gt;update&lt;/code&gt; function should now look like this:&lt;
 &lt;h3 id="your-turn-8-generating-food"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 8: Generating food&lt;/h3&gt;
 &lt;p&gt;To generate new food, you'll need to generate an X co-ordinate and a Y co-ordinate. Remember, the axes run from 0 to 4.&lt;/p&gt;
 &lt;p&gt;One edge case you'll have to think about is what happens if the co-ordinates you generate are covered by the snake. The solution I'll recommend is to keep re-generating the co-ordinates until they are not in the snake, but feel free to come up with your own solutions here. You can check if the co-ordinates are inside the snake using the &lt;code&gt;in&lt;/code&gt; keyword (&lt;code&gt;co_ords in self.snake&lt;/code&gt;) and a &lt;code&gt;while&lt;/code&gt; loop.&lt;/p&gt;
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
+&lt;p&gt;
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;new_head&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -602,17 +1025,23 @@ The full &lt;code&gt;update&lt;/code&gt; function should now look like this:&lt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We use a &lt;code&gt;while&lt;/code&gt; loop to check if the food we've generated is inside the snake or not. We keep generating the food until it's visible on the screen.
+
+We use a `while` loop to check if the food we've generated is inside the snake or not. We keep generating the food until it's visible on the screen.
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Is this really a valid solution?&lt;/summary&gt;
+&lt;/details&gt;
+
+&lt;details&gt;&lt;summary&gt;Is this really a valid solution?&lt;/summary&gt;
 &lt;p&gt;
-In case you're having trouble believing that re-generating the food is a valid solution, let's take a look at some probabilities.&lt;/p&gt;
-&lt;p&gt;We can model generating the food successfully as a binomially distributed random variable. If the snake is of length two (the smallest case after eating food), then the probability of generating the food in an empty space is 23/25. This means that we have a 92% chance of success on the first go and a 99% chance of succeeding within two tries. The expected number of generations before our first success is just over 1.&lt;/p&gt;
-&lt;p&gt;Taking the worst case where the snake is length 24 after eating food, the probability of generating the food correctly is 1/25. This means that the expected number of trials before our first success is 25. In fact 63% of the time it will take 25 tries or fewer and 99% of the time it will take fewer than 113.&lt;/p&gt;
-&lt;p&gt;These numbers are very small for a computer, and we won't notice much delay in the snake's motion.
+In case you're having trouble believing that re-generating the food is a valid solution, let's take a look at some probabilities.
+
+We can model generating the food successfully as a binomially distributed random variable. If the snake is of length two (the smallest case after eating food), then the probability of generating the food in an empty space is 23/25. This means that we have a 92% chance of success on the first go and a 99% chance of succeeding within two tries. The expected number of generations before our first success is just over 1.
+
+Taking the worst case where the snake is length 24 after eating food, the probability of generating the food correctly is 1/25. This means that the expected number of trials before our first success is 25. In fact 63% of the time it will take 25 tries or fewer and 99% of the time it will take fewer than 113.
+
+These numbers are very small for a computer, and we won't notice much delay in the snake's motion.
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;p&gt;Our snake game is almost finished! The only step left is figuring out how to end the game.&lt;/p&gt;
 &lt;h2 id="ending-the-game"&gt;Ending the game&lt;/h2&gt;
 &lt;p&gt;The game of snake ends in two situations. Firstly, if you crash into yourself (or the wall, in some versions) then you lose. Secondly, if you fill the entire grid with your snake then you win.&lt;/p&gt;
@@ -624,7 +1053,7 @@ In case you're having trouble believing that re-generating the food is a valid s
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# import all the microbit code&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;microbit&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 
-&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="c1"&gt;# check if button A was pressed since we last called this function&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;button_a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;was_pressed&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
         &lt;span class="c1"&gt;# if so, exit the loop&lt;/span&gt;
@@ -645,22 +1074,27 @@ In case you're having trouble believing that re-generating the food is a valid s
 &lt;li&gt;Use &lt;code&gt;break&lt;/code&gt; in the game loop if the player has lost. &lt;code&gt;self.end&lt;/code&gt; will be &lt;code&gt;game.end&lt;/code&gt; inside the game loop.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;You could also display a sad face, or scroll some text if the player loses. Get creative!&lt;/p&gt;
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
+&lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
-In our update function:&lt;/p&gt;
+In our update function:
+
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
     &lt;span class="c1"&gt;# after we calculate new_head&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;new_head&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_head&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We've just added an &lt;code&gt;if&lt;/code&gt; statement here to check whether the new head is already part of the snake.&lt;/p&gt;
-&lt;p&gt;In our game loop:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+We've just added an `if` statement here to check whether the new head is already part of the snake.
+
+In our game loop:
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
     &lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="c1"&gt;# now game.end will be set&lt;/span&gt;
@@ -672,9 +1106,11 @@ In our update function:&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;We add an if statement to check whether &lt;code&gt;game.end&lt;/code&gt; was set to &lt;code&gt;True&lt;/code&gt; in &lt;code&gt;update&lt;/code&gt; and if so we break. I've also added a sad face in there to make it more obvious that the player has lost, but that is optional.
+
+We add an if statement to check whether `game.end` was set to `True` in `update` and if so we break. I've also added a sad face in there to make it more obvious that the player has lost, but that is optional.
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;h2 id="final-notes"&gt;Final notes&lt;/h2&gt;
 &lt;p&gt;Well done on making it this far! You've just built your very own game, and can be really proud of yourself. I hope you've enjoyed the experience and that it's inspired you to keep going with micro:bit, programming or game development. If you want some more material for learning, then check out the &lt;a href="#useful-links"&gt;Useful links&lt;/a&gt; below. If you'd like to check your solution, I've put the &lt;a href="https://github.com/notexactlyawe/microbit-snake/blob/master/snake.py"&gt;final code for this tutorial on GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This tutorial was based off a workshop that I wrote while part of the Embedded and Robotics Society (EaRS) at Edinburgh. It was one of my favourite workshops there, and it's been fun to re-visit it and turn it into a full tutorial. If you like this, then they have more resources &lt;a href="http://ears-edi.com/"&gt;on their website&lt;/a&gt; so you should check them out.&lt;/p&gt;
@@ -697,7 +1133,7 @@ In our update function:&lt;/p&gt;
 &lt;h2 id="copyright"&gt;Copyright&lt;/h2&gt;
 &lt;p&gt;Pretty micro:bit SVG images were modified from the &lt;a href="https://github.com/microbit-foundation/microbit-svg/"&gt;Micro:bit Educational Foundation's GitHub repo&lt;/a&gt; under the &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0 license&lt;/a&gt;. Those images on this page are therefore licensed under the same terms.&lt;/p&gt;
 &lt;p&gt;All other content on this page is licensed under the &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;CC BY 4.0 license&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The create.withcode editor hosted on my site is courtesy of Pete Dring of &lt;a href="https://blog.withcode.uk/"&gt;blog.withcode.uk&lt;/a&gt;. It has been slightly modified, hence this tutorial not using the official site.&lt;/p&gt;</content><category term="micro:bit"></category><category term="Python"></category><category term="Games"></category></entry><entry><title>Disappearing documentation (a Kubernetes war story)</title><link href="https://www.cameronmacleod.com/blog/disappearing-k8s-docs" rel="alternate"></link><published>2020-05-03T00:00:00+01:00</published><updated>2020-05-03T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-05-03:/blog/disappearing-k8s-docs</id><summary type="html">&lt;p&gt;I like a good war story, and I like them even more when I get to tell them. While writing my dissertation, I ran into a case of disappearing documentation. Here's what happened.&lt;/p&gt;
+&lt;p&gt;The create.withcode editor hosted on my site is courtesy of Pete Dring of &lt;a href="https://blog.withcode.uk/"&gt;blog.withcode.uk&lt;/a&gt;. It has been slightly modified, hence this tutorial not using the official site.&lt;/p&gt;</content><category term="Tutorials"></category><category term="micro:bit"></category><category term="Python"></category><category term="Games"></category></entry><entry><title>Disappearing documentation (a Kubernetes war story)</title><link href="https://www.cameronmacleod.com/blog/disappearing-k8s-docs" rel="alternate"></link><published>2020-05-03T00:00:00+01:00</published><updated>2020-05-03T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-05-03:/blog/disappearing-k8s-docs</id><summary type="html">&lt;p&gt;I like a good war story, and I like them even more when I get to tell them. While writing my dissertation, I ran into a case of disappearing documentation. Here's what happened.&lt;/p&gt;
 &lt;p&gt;As part of my undergraduate dissertation, I was working with Kubernetes, and more specifically, the &lt;a href="https://kubernetes.io/docs/concepts/architecture/controller/"&gt;controllers&lt;/a&gt; within …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I like a good war story, and I like them even more when I get to tell them. While writing my dissertation, I ran into a case of disappearing documentation. Here's what happened.&lt;/p&gt;
 &lt;p&gt;As part of my undergraduate dissertation, I was working with Kubernetes, and more specifically, the &lt;a href="https://kubernetes.io/docs/concepts/architecture/controller/"&gt;controllers&lt;/a&gt; within Kubernetes. A controller can be thought of as a generalised thermostat. Just as a thermostat maintains temperature in a house, a controller maintains state in a cluster.&lt;/p&gt;
 &lt;p&gt;A controller has some desired state, some world state, and a way of affecting the world state (an actuator). In the example of the thermostat, the world state would be the current temperature, the desired state would be the user-set temperature, and the actuator would be a heating system.&lt;/p&gt;
@@ -730,7 +1166,7 @@ error validating &lt;span class="s2"&gt;&amp;quot;some-autoscale.yaml&amp;quot;&
 &lt;p&gt;Just to make this even more confusing, the Kubernetes API docs agreed with the error that the &lt;code&gt;behavior&lt;/code&gt; field didn't exist. At this point, I had exhausted all other options and had to turn to StackOverflow for help. At 7PM I posted a question, &lt;a href="https://stackoverflow.com/questions/60045564/kubernetes-unknown-field-behavior"&gt;Kubernetes unknown field "behavior"&lt;/a&gt;, and at 11PM I received an answer. The answerer said that I was reading the docs wrong and that the field didn't exist in the first place. Ready to drag this unsuspecting samaritan into my confusion, I went to sleep and planned to reply the following day.&lt;/p&gt;
 &lt;p&gt;When I checked the docs the following day, the quote from above was missing. After considering whether I'd imagined it all, I discovered that the Kubernetes docs were in a public GitHub repository that was linked from the bottom of each page. It turned out that a couple of hours before I had posted my question, the text about the &lt;code&gt;behavior&lt;/code&gt; object had been &lt;a href="https://github.com/kubernetes/website/pull/18963"&gt;removed in a PR&lt;/a&gt;. The &lt;code&gt;behavior&lt;/code&gt; object was meant to be introduced in V1.18 instead of V1.17 that was current at the time. The reason I hadn't seen the updated docs was probably due to my browser caching the old version since I'd visited that page a lot.&lt;/p&gt;
 &lt;p&gt;Finding out that I wasn't imagining things and that the docs were wrong was very satisfying. Everything had fallen nicely into place. I answered the Stack Overflow question with a shortened version of this story and carried on with my dissertation.&lt;/p&gt;
-&lt;p&gt;Now that 1.18 is out, this will no longer be a problem, but I thought it would be an interesting story to share. This was only a small part of my dissertation, which was on mobile networks and Kubernetes. It's now finished (exhausted hooray). If you're interested, you can read it &lt;a href="/dissertation.pdf"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="Kubernetes"></category><category term="Documentation"></category></entry><entry><title>Why I chose product management over software development</title><link href="https://www.cameronmacleod.com/blog/why-pm-over-software" rel="alternate"></link><published>2020-03-03T00:00:00+00:00</published><updated>2020-03-03T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-03-03:/blog/why-pm-over-software</id><summary type="html">&lt;p&gt;I'm about to finish my degree and have been fortunate enough to receive two graduate job offers. One was an associate product manager position at Google, and the other was software engineering at Bloomberg. Both companies and jobs excited me, which left me with a difficult choice. In this post …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm about to finish my degree and have been fortunate enough to receive two graduate job offers. One was an associate product manager position at Google, and the other was software engineering at Bloomberg. Both companies and jobs excited me, which left me with a difficult choice. In this post, I'll explain why I chose product management, even after years of wanting to be a software developer.&lt;/p&gt;
+&lt;p&gt;Now that 1.18 is out, this will no longer be a problem, but I thought it would be an interesting story to share. This was only a small part of my dissertation, which was on mobile networks and Kubernetes. It's now finished (exhausted hooray). If you're interested, you can read it &lt;a href="/dissertation.pdf"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="Blogging"></category><category term="Kubernetes"></category><category term="Documentation"></category></entry><entry><title>Why I chose product management over software development</title><link href="https://www.cameronmacleod.com/blog/why-pm-over-software" rel="alternate"></link><published>2020-03-03T00:00:00+00:00</published><updated>2020-03-03T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-03-03:/blog/why-pm-over-software</id><summary type="html">&lt;p&gt;I'm about to finish my degree and have been fortunate enough to receive two graduate job offers. One was an associate product manager position at Google, and the other was software engineering at Bloomberg. Both companies and jobs excited me, which left me with a difficult choice. In this post …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm about to finish my degree and have been fortunate enough to receive two graduate job offers. One was an associate product manager position at Google, and the other was software engineering at Bloomberg. Both companies and jobs excited me, which left me with a difficult choice. In this post, I'll explain why I chose product management, even after years of wanting to be a software developer.&lt;/p&gt;
 &lt;p&gt;The factors that were important to my decision won't be the same for everyone, and this post is not a recommendation of one career path over the other. Choosing a job is deeply personal, and both career paths could potentially be right for any given individual. However, I do hope that this post helps someone else if confronted with a similar decision.&lt;/p&gt;
 &lt;h2 id="background"&gt;Background&lt;/h2&gt;
 &lt;p&gt;At the time of this decision, I:&lt;/p&gt;
@@ -760,7 +1196,7 @@ error validating &lt;span class="s2"&gt;&amp;quot;some-autoscale.yaml&amp;quot;&
 &lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;I justified my final decision with the points above, but it was still painful to reject the software engineering position. The decision process was long and involved a series of pros/cons lists and talking to many people before I settled on an answer. Alongside friends and family, one of my interviewers from Google also offered to answer any questions I had, which was really helpful.&lt;/p&gt;
 &lt;p&gt;I'm pleased to say that I'm very sure about my decision, and I feel confident that I made the right choice for me. Of course, it's not possible to know that one job or the other is better overall, because that would require predicting not just one future, but two. That said, I have no regrets.&lt;/p&gt;
-&lt;p&gt;My start date is in August, and I'm super excited.&lt;/p&gt;</content><category term="Career"></category><category term="Product Management"></category></entry><entry><title>Easy Python speed wins with functools.lru_cache</title><link href="https://www.cameronmacleod.com/blog/python-lru-cache" rel="alternate"></link><published>2019-06-10T00:00:00+01:00</published><updated>2019-06-10T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2019-06-10:/blog/python-lru-cache</id><summary type="html">&lt;p&gt;Recently, I was reading an &lt;a href="https://datawhatnow.com/things-you-are-probably-not-using-in-python-3-but-should/"&gt;interesting article&lt;/a&gt; on some under-used Python features. In the article, the author mentioned that from Python version 3.2, the standard library came with a built in decorator &lt;code&gt;functools.lru_cache&lt;/code&gt; which I found exciting as it has the potential to speed up a lot of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently, I was reading an &lt;a href="https://datawhatnow.com/things-you-are-probably-not-using-in-python-3-but-should/"&gt;interesting article&lt;/a&gt; on some under-used Python features. In the article, the author mentioned that from Python version 3.2, the standard library came with a built in decorator &lt;code&gt;functools.lru_cache&lt;/code&gt; which I found exciting as it has the potential to speed up a lot of applications with very little effort.&lt;/p&gt;
+&lt;p&gt;My start date is in August, and I'm super excited.&lt;/p&gt;</content><category term="Blogging"></category><category term="Career"></category><category term="Product Management"></category></entry><entry><title>Easy Python speed wins with functools.lru_cache</title><link href="https://www.cameronmacleod.com/blog/python-lru-cache" rel="alternate"></link><published>2019-06-10T00:00:00+01:00</published><updated>2019-06-10T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2019-06-10:/blog/python-lru-cache</id><summary type="html">&lt;p&gt;Recently, I was reading an &lt;a href="https://datawhatnow.com/things-you-are-probably-not-using-in-python-3-but-should/"&gt;interesting article&lt;/a&gt; on some under-used Python features. In the article, the author mentioned that from Python version 3.2, the standard library came with a built in decorator &lt;code&gt;functools.lru_cache&lt;/code&gt; which I found exciting as it has the potential to speed up a lot of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently, I was reading an &lt;a href="https://datawhatnow.com/things-you-are-probably-not-using-in-python-3-but-should/"&gt;interesting article&lt;/a&gt; on some under-used Python features. In the article, the author mentioned that from Python version 3.2, the standard library came with a built in decorator &lt;code&gt;functools.lru_cache&lt;/code&gt; which I found exciting as it has the potential to speed up a lot of applications with very little effort.&lt;/p&gt;
 &lt;p&gt;That's great and all, you may be thinking, but what is it? Well, the decorator provides access to a ready-built cache that uses the Least Recently Used (LRU) replacement strategy, hence the name &lt;code&gt;lru_cache&lt;/code&gt;. Of course, that sentence probably sounds a little intimidating, so let's break it down.&lt;/p&gt;
 &lt;h2 id="what-is-a-cache"&gt;What is a cache?&lt;/h2&gt;
 &lt;p&gt;A cache is a place that is quick to access where you store things that are otherwise slow to access. To demonstrate this, let's take your web browser as an example.&lt;/p&gt;
@@ -777,12 +1213,14 @@ error validating &lt;span class="s2"&gt;&amp;quot;some-autoscale.yaml&amp;quot;&
 &lt;h2 id="what-does-lru-mean"&gt;What does LRU mean?&lt;/h2&gt;
 &lt;p&gt;A cache can only ever store a finite amount of things, and often is much smaller than whatever it is caching (for example, your hard drive is much smaller than the internet). This means that sometimes you will need to swap something that is already in the cache out for something else that you want to put in the cache. The way you decide what to take out is called a replacement strategy.&lt;/p&gt;
 &lt;p&gt;That's where LRU comes in. LRU stands for Least Recently Used and is a commonly used replacement strategy for caches.&lt;/p&gt;
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;Why does a replacement strategy matter?&lt;/summary&gt;
+&lt;details&gt;&lt;summary&gt;Why does a replacement strategy matter?&lt;/summary&gt;
 &lt;p&gt;
-A cache performs really well when it contains the thing you are trying to access, and not so well when it doesn't. The percentage of times that the cache contains the item you are looking for is called the hit rate. The primary factor in hit rate (apart from cache size) is replacement strategy.&lt;/p&gt;
-&lt;p&gt;Think about it this way: Using the browser example, if your most accessed site was &lt;code&gt;www.facebook.com&lt;/code&gt; and your replacement strategy was to get rid of the most accessed site, then you are going to have a low hit rate. However if it was LRU, the hit rate would be much better.
+A cache performs really well when it contains the thing you are trying to access, and not so well when it doesn't. The percentage of times that the cache contains the item you are looking for is called the hit rate. The primary factor in hit rate (apart from cache size) is replacement strategy.
+
+Think about it this way: Using the browser example, if your most accessed site was `www.facebook.com` and your replacement strategy was to get rid of the most accessed site, then you are going to have a low hit rate. However if it was LRU, the hit rate would be much better.
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;p&gt;The idea behind Least Rececntly Used replacement is that if you haven't accessed something in a while, you probably won't any time soon. To use the strategy, you just get rid of the item that was used longest ago when the cache is full.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="LRU diagram" src="/images/lru.png"&gt;&lt;/p&gt;
 &lt;p&gt;In the above diagram each item in the cache has an associated access time. LRU chooses the item at 2:55PM to be replaced since it was accessed longest ago. If there were two objects with the same access time, then LRU would pick one at random.&lt;/p&gt;
@@ -791,7 +1229,7 @@ A cache performs really well when it contains the thing you are trying to access
 &lt;p&gt;&lt;code&gt;functools.lru_cache&lt;/code&gt; is a decorator, so you can just place it on top of your function:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;functools&lt;/span&gt;
 
-&lt;span class="nd"&gt;@functools.lru_cache&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;maxsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nd"&gt;@functools&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lru_cache&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;maxsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
   &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
@@ -849,7 +1287,7 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
     &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.05&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;match_dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
-&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/matches/&amp;lt;day&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/matches/&amp;lt;day&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;show_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;matches&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;matches.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -860,8 +1298,8 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
 
 
 &lt;p&gt;Using &lt;code&gt;requests&lt;/code&gt; to get three match days without caching takes on average 171ms running locally on my computer. This isn't bad, but we can do better, even considering the artificial delay.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/matches/&amp;lt;day&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="nd"&gt;@functools.lru_cache&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;maxsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/matches/&amp;lt;day&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nd"&gt;@functools&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lru_cache&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;maxsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;show_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;matches&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;matches.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -884,32 +1322,32 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
 &lt;hr&gt;
 &lt;p&gt;Whilst it's not suitable for every situation, caching can be a super simple way to gain a large performance boost, and &lt;code&gt;functools.lru_cache&lt;/code&gt; makes it even easier to use. If you're interested to learn more then check out some of the links below.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://cachetools.readthedocs.io/en/stable/"&gt;More powerful caching library&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/python/cpython/blob/3.7/Lib/functools.py"&gt;Python 3.7 functools source&lt;/a&gt;&lt;/p&gt;</content><category term="Caching"></category><category term="Python"></category><category term="Performance"></category></entry><entry><title>Better parameter validation in Flask with marshmallow</title><link href="https://www.cameronmacleod.com/blog/better-validation-flask-marshmallow" rel="alternate"></link><published>2019-04-25T00:00:00+01:00</published><updated>2019-04-25T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2019-04-25:/blog/better-validation-flask-marshmallow</id><summary type="html">&lt;p&gt;Recently I've had two Flask projects with endpoints that take lots of parameters. While working on the first project, I noticed that I was writing a lot of code for validation in each method, and it ended up looking ugly and probably full of bugs. When I started the second …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently I've had two Flask projects with endpoints that take lots of parameters. While working on the first project, I noticed that I was writing a lot of code for validation in each method, and it ended up looking ugly and probably full of bugs. When I started the second project, I thought that there had to be a way to fix this, and it turns out that there was!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/python/cpython/blob/3.7/Lib/functools.py"&gt;Python 3.7 functools source&lt;/a&gt;&lt;/p&gt;</content><category term="Tutorials"></category><category term="Caching"></category><category term="Python"></category><category term="Performance"></category></entry><entry><title>Better parameter validation in Flask with marshmallow</title><link href="https://www.cameronmacleod.com/blog/better-validation-flask-marshmallow" rel="alternate"></link><published>2019-04-25T00:00:00+01:00</published><updated>2019-04-25T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2019-04-25:/blog/better-validation-flask-marshmallow</id><summary type="html">&lt;p&gt;Recently I've had two Flask projects with endpoints that take lots of parameters. While working on the first project, I noticed that I was writing a lot of code for validation in each method, and it ended up looking ugly and probably full of bugs. When I started the second …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently I've had two Flask projects with endpoints that take lots of parameters. While working on the first project, I noticed that I was writing a lot of code for validation in each method, and it ended up looking ugly and probably full of bugs. When I started the second project, I thought that there had to be a way to fix this, and it turns out that there was!&lt;/p&gt;
 &lt;p&gt;To illustrate what I'm talking about, imagine you need to implement the following endpoint for a note taking app.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/api/note - POST
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;POST&lt;/span&gt;
 
-Parameters:
- - title (str) No longer than 60 characters
- - note (str) No longer than 1000 characters
- - user_id (int) No smaller than 1
- - time_created (datetime) Not in the future
+&lt;span class="k"&gt;Parameters&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+ &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;No&lt;/span&gt; &lt;span class="n"&gt;longer&lt;/span&gt; &lt;span class="k"&gt;than&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt; &lt;span class="n"&gt;characters&lt;/span&gt;
+ &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;No&lt;/span&gt; &lt;span class="n"&gt;longer&lt;/span&gt; &lt;span class="k"&gt;than&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="n"&gt;characters&lt;/span&gt;
+ &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;No&lt;/span&gt; &lt;span class="n"&gt;smaller&lt;/span&gt; &lt;span class="k"&gt;than&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+ &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;Not&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;future&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;In Flask without a library for validation, you might end up writing the following view function to implement this.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_note&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="c1"&gt;# we don&amp;#39;t know that the &amp;#39;title&amp;#39; parameter exists yet&lt;/span&gt;
-    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BAD_REQUEST&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="c1"&gt;# we have to do manual validation on business requirements&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BAD_REQUEST&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
     &lt;span class="c1"&gt;# now we have to do it again?!&lt;/span&gt;
-    &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BAD_REQUEST&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
     &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="c1"&gt;# more validation&lt;/span&gt;
@@ -921,11 +1359,12 @@ Parameters:
 
 &lt;p&gt;The two parameters I validated up there were strings which made this easier, the &lt;code&gt;integer&lt;/code&gt; parameter would have additionally needed a type check and don't even think about parsing and validating the &lt;code&gt;datetime&lt;/code&gt; there. The above code is long and very prone to bugs. Of course, you could abstract it all to cleaner methods, but that wouldn't solve the underlying problem of having to write all of this manually.&lt;/p&gt;
 &lt;p&gt;Thankfully, it turns out there is a library that does validation like this straight out of the box. It's called &lt;a href="https://marshmallow.readthedocs.io/"&gt;marshmallow&lt;/a&gt; and is meant for object serialization. Alongside parsing and dumping, it also comes with some powerful validation functionality built-in.&lt;/p&gt;
-&lt;p&gt;&lt;details&gt;&lt;summary&gt;What is object serialization?&lt;/summary&gt;
+&lt;details&gt;&lt;summary&gt;What is object serialization?&lt;/summary&gt;
 &lt;p&gt;
-&lt;a href="https://en.wikipedia.org/wiki/Serialization"&gt;Serialization&lt;/a&gt; is the process of converting objects and data from the format used internally in your program into a format that can be stored or transmitted. For example, JSON data can be represented and easily accessed as a dictionary in Python, but it needs to be &lt;strong&gt;serialized&lt;/strong&gt; to a string to send it anywhere. The reverse operation is called &lt;strong&gt;deserialization&lt;/strong&gt; and is what we'll be dealing with in this article.
+[Serialization](https://en.wikipedia.org/wiki/Serialization) is the process of converting objects and data from the format used internally in your program into a format that can be stored or transmitted. For example, JSON data can be represented and easily accessed as a dictionary in Python, but it needs to be **serialized** to a string to send it anywhere. The reverse operation is called **deserialization** and is what we'll be dealing with in this article.
 &lt;/p&gt;
-&lt;/details&gt;&lt;/p&gt;
+&lt;/details&gt;
+
 &lt;p&gt;The core idea in marshmallow is that data structure is represented with a schema. A schema is a class that defines what format the data comes in. It dictates what fields exist, their types and validation on them. You create a schema by sub-classing &lt;code&gt;marshmallow.Schema&lt;/code&gt; and creating attributes that will represent the fields in your data.&lt;/p&gt;
 &lt;p&gt;Using the note-taking endpoint as an example, we'll create a schema that represents the structure of incoming data to the endpoint.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;marshmallow&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;
@@ -940,17 +1379,17 @@ Parameters:
 &lt;span class="sd"&gt;     - time_created (time)&lt;/span&gt;
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="c1"&gt;# the &amp;#39;required&amp;#39; argument ensures the field exists&lt;/span&gt;
-    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This is a pretty simple class, but already it contains a lot of magic. This will check both existence of fields and their types for you. It's important to note that it won't do any business logic validation yet. You can use this in a view function like so:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;create_note_schema&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreateNoteInputSchema&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
-&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_note&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="n"&gt;errors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_note_schema&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -970,12 +1409,12 @@ Parameters:
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CreateNoteInputSchema&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
     &lt;span class="c1"&gt;# no longer than 60 chars&lt;/span&gt;
-    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
     &lt;span class="c1"&gt;# no longer than 1000 chars&lt;/span&gt;
-    &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
     &lt;span class="c1"&gt;# at least 1&lt;/span&gt;
-    &lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -987,7 +1426,7 @@ Parameters:
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CreateNoteInputSchema&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
-    &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
     &lt;span class="nd"&gt;@validates&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;time_created&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;is_not_in_future&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -1000,7 +1439,7 @@ Parameters:
 
 
 &lt;p&gt;We don't even have to use any extra code in our view function now to use the extra validation, we still just call the &lt;code&gt;validate&lt;/code&gt; method.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_note&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="n"&gt;errors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_note_schema&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -1016,7 +1455,7 @@ Parameters:
 &lt;li&gt;&lt;a href="https://marshmallow.readthedocs.io/en/3.0/quickstart.html"&gt;marshmallow Quickstart&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://flask-marshmallow.readthedocs.io/en/latest/"&gt;Flask-Marshmallow&lt;/a&gt; - An integration library that adds extra functionality (automatic schemas from models, extra field types, etc)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.codementor.io/dongido/how-to-build-restful-apis-with-python-and-flask-fh5x7zjrx"&gt;How to Build RESTful APIs with Python and Flask | Codementor&lt;/a&gt; - A wider look at API building as opposed to just the validation.&lt;/li&gt;
-&lt;/ul&gt;</content><category term="Python"></category><category term="Flask"></category><category term="marshmallow"></category><category term="Web apps"></category></entry><entry><title>How to configure DNS for custom domains on GitHub Pages</title><link href="https://www.cameronmacleod.com/blog/github-pages-dns" rel="alternate"></link><published>2018-11-20T00:00:00+00:00</published><updated>2018-11-20T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-11-20:/blog/github-pages-dns</id><summary type="html">&lt;p&gt;Recently-ish GitHub &lt;a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/"&gt;announced&lt;/a&gt; that HTTPS would now work on custom domains with GitHub Pages. This was a great bit of news, because the web is slowly moving towards a HTTPS-only state of being and it's nice not to be left behind.&lt;/p&gt;
+&lt;/ul&gt;</content><category term="Tutorials"></category><category term="Python"></category><category term="Flask"></category><category term="marshmallow"></category><category term="Web apps"></category></entry><entry><title>How to configure DNS for custom domains on GitHub Pages</title><link href="https://www.cameronmacleod.com/blog/github-pages-dns" rel="alternate"></link><published>2018-11-20T00:00:00+00:00</published><updated>2018-11-20T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-11-20:/blog/github-pages-dns</id><summary type="html">&lt;p&gt;Recently-ish GitHub &lt;a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/"&gt;announced&lt;/a&gt; that HTTPS would now work on custom domains with GitHub Pages. This was a great bit of news, because the web is slowly moving towards a HTTPS-only state of being and it's nice not to be left behind.&lt;/p&gt;
 &lt;p&gt;Unfortunately for me, for this new feature to work …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently-ish GitHub &lt;a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/"&gt;announced&lt;/a&gt; that HTTPS would now work on custom domains with GitHub Pages. This was a great bit of news, because the web is slowly moving towards a HTTPS-only state of being and it's nice not to be left behind.&lt;/p&gt;
 &lt;p&gt;Unfortunately for me, for this new feature to work you had to be using either &lt;strong&gt;CNAME&lt;/strong&gt; or &lt;strong&gt;ALIAS records&lt;/strong&gt; to point to your GitHub Pages domain. At the time, I was using &lt;strong&gt;A records&lt;/strong&gt; pointed at the old GitHub Pages servers, which didn't have the new features enabled. All these terms can be quite confusing if you're not familiar with DNS, so let's take a look at some basics.&lt;/p&gt;
 &lt;h3 id="what-is-dns"&gt;What is DNS?&lt;/h3&gt;
@@ -1086,25 +1525,25 @@ United Kingdom  &lt;/p&gt;
 &lt;h3 id="how-do-i-know-it-worked"&gt;How do I know it worked?&lt;/h3&gt;
 &lt;p&gt;DNS is notoriously slow to make changes to. Most providers recommend waiting 24 hours (some up to 72!) before you will be able to see your changes. When checking to see whether or not your changes have propagated, you can do one of two things. Use a DNS tool (like the one from &lt;a href="https://www.dnsstuff.com/tools"&gt;DNSstuff&lt;/a&gt; above) or use the unix command &lt;code&gt;dig&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;dig&lt;/code&gt; is a command that can find and list the DNS records for a given domain name. On Linux and Mac machines, you can run the following in terminal:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cameron@isla:~$ dig www.cameronmacleod.com +noall +answer
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="nv"&gt;@isla&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;noall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.10.3-P4-Ubuntu &amp;lt;&amp;lt;&amp;gt;&amp;gt; www.cameronmacleod.com +noall +answer
-;; global options: +cmd
-www.cameronmacleod.com. 655 IN  A   192.30.252.154
-www.cameronmacleod.com. 655 IN  A   192.30.252.153
+&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;DiG&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.10.3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;P4&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Ubuntu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;noall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;global&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;655&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mf"&gt;192.30.252.154&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;655&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mf"&gt;192.30.252.153&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The output might look a bit confusing, but it's the last two lines that count. Those are the records that &lt;code&gt;dig&lt;/code&gt; has found for your domain. In my case, this output was from before I changed my DNS settings, so it still shows the old &lt;strong&gt;A records&lt;/strong&gt; that I was using. Running it now would give something like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cameron@isla:~$ dig www.cameronmacleod.com +noall +answer
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="nv"&gt;@isla&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;noall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.10.3-P4-Ubuntu &amp;lt;&amp;lt;&amp;gt;&amp;gt; www.cameronmacleod.com +noall +answer
-;; global options: +cmd
-www.cameronmacleod.com. 3600    IN  CNAME   notexactlyawe.github.io.
-notexactlyawe.github.io. 3599   IN  A   185.199.108.153
-notexactlyawe.github.io. 3599   IN  A   185.199.109.153
-notexactlyawe.github.io. 3599   IN  A   185.199.111.153
-notexactlyawe.github.io. 3599   IN  A   185.199.110.153
+&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;DiG&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.10.3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;P4&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Ubuntu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;noall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;global&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3600&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;CNAME&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;notexactlyawe&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;notexactlyawe&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3599&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mf"&gt;185.199.108.153&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;notexactlyawe&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3599&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mf"&gt;185.199.109.153&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;notexactlyawe&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3599&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mf"&gt;185.199.111.153&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;notexactlyawe&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3599&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mf"&gt;185.199.110.153&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1121,7 +1560,7 @@ notexactlyawe.github.io. 3599   IN  A   185.199.110.153
 &lt;p&gt;For full and up to date instructions on the above see &lt;a href="https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/"&gt;GitHub's documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;One thing to note is that HTTPS will only work for either &lt;code&gt;www.yoursite.com&lt;/code&gt; or &lt;code&gt;yoursite.com&lt;/code&gt; but not both depending on which one you put in the "Custom domain" box. GitHub are aware of the issue, but haven't given any public timeline for fixing it, see &lt;a href="https://github.community/t5/GitHub-Pages/Does-GitHub-Pages-Support-HTTPS-for-www-and-subdomains/td-p/7116"&gt;this GitHub Community thread&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id="if-something-didnt-work"&gt;If something didn't work&lt;/h1&gt;
-&lt;p&gt;GitHub have a really useful &lt;a href="https://help.github.com/articles/troubleshooting-custom-domains/"&gt;troubleshooting guide&lt;/a&gt; for custom domains and HTTPS.&lt;/p&gt;</content><category term="Github Pages"></category><category term="DNS"></category></entry><entry><title>5 Mistakes companies make recruiting software interns</title><link href="https://www.cameronmacleod.com/blog/recruiting-software-interns" rel="alternate"></link><published>2018-11-14T00:00:00+00:00</published><updated>2018-11-14T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-11-14:/blog/recruiting-software-interns</id><summary type="html">&lt;p&gt;August to November is internship application season for computer science undergraduates and over the past few months I've been applying to a good number of internships myself. Through these applications I've learnt a few things about what makes for a good recruitment process and what doesn't and I hope to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;August to November is internship application season for computer science undergraduates and over the past few months I've been applying to a good number of internships myself. Through these applications I've learnt a few things about what makes for a good recruitment process and what doesn't and I hope to share a few of them here.&lt;/p&gt;
+&lt;p&gt;GitHub have a really useful &lt;a href="https://help.github.com/articles/troubleshooting-custom-domains/"&gt;troubleshooting guide&lt;/a&gt; for custom domains and HTTPS.&lt;/p&gt;</content><category term="Tutorials"></category><category term="Github Pages"></category><category term="DNS"></category></entry><entry><title>5 Mistakes companies make recruiting software interns</title><link href="https://www.cameronmacleod.com/blog/recruiting-software-interns" rel="alternate"></link><published>2018-11-14T00:00:00+00:00</published><updated>2018-11-14T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-11-14:/blog/recruiting-software-interns</id><summary type="html">&lt;p&gt;August to November is internship application season for computer science undergraduates and over the past few months I've been applying to a good number of internships myself. Through these applications I've learnt a few things about what makes for a good recruitment process and what doesn't and I hope to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;August to November is internship application season for computer science undergraduates and over the past few months I've been applying to a good number of internships myself. Through these applications I've learnt a few things about what makes for a good recruitment process and what doesn't and I hope to share a few of them here.&lt;/p&gt;
 &lt;p&gt;Having a good process is really important in software engineering roles because candidates hold so much power. A good candidate will be progressing with at least 3 or 4 companies that are likely to hire them at any one time. If they find any reason to dismiss your company, then they will. Below I've listed five common mistakes I've seen in recruiting processes and why each one is likely to lose you a good candidate.&lt;/p&gt;
 &lt;h1 id="1-timing-the-process-wrong"&gt;1. Timing the process wrong&lt;/h1&gt;
 &lt;p&gt;The big companies that recruit computer science interns (Google, Amazon, Facebook etc) tend to start their processes around September. This means that all the candidates they wanted have been snapped up by December at the latest. If you are starting your recruiting process any later than September, then you are losing a lot of good candidates to bigger companies that got in earlier.&lt;/p&gt;
@@ -1152,7 +1591,7 @@ notexactlyawe.github.io. 3599   IN  A   185.199.110.153
 &lt;li&gt;Don't ignore first and second years  &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Internships are a fantastic thing for all parties involved. Interns get great experience and companies get access to some of the smartest engineers at an early stage in their career. Getting the recruiting process right can lead to great things for your organisation, and it's a shame to see simple mistakes being made.&lt;/p&gt;
-&lt;p&gt;If you found this useful or interesting, why not &lt;a href="https://twitter.com/notexactlyawe"&gt;follow me on Twitter&lt;/a&gt;?&lt;/p&gt;</content><category term="Career"></category><category term="Recruiting"></category></entry><entry><title>How we ran Welcome Week events</title><link href="https://www.cameronmacleod.com/blog/running-freshers-events" rel="alternate"></link><published>2018-10-06T00:00:00+01:00</published><updated>2018-10-06T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-10-06:/blog/running-freshers-events</id><summary type="html">&lt;p&gt;At the University of Edinburgh we call the week before lectures begin each year Welcome Week. It's designed as a time for new students to meet each other and get settled into university and often a new city. Most societies will run events to try and attract new students to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;At the University of Edinburgh we call the week before lectures begin each year Welcome Week. It's designed as a time for new students to meet each other and get settled into university and often a new city. Most societies will run events to try and attract new students to join them and we (&lt;a href="http://ears-edi.com/"&gt;EaRS&lt;/a&gt;) were no different. After all, a society dies when no-one is interested any more.&lt;/p&gt;
+&lt;p&gt;If you found this useful or interesting, why not &lt;a href="https://twitter.com/notexactlyawe"&gt;follow me on Twitter&lt;/a&gt;?&lt;/p&gt;</content><category term="Blogging"></category><category term="Career"></category><category term="Recruiting"></category></entry><entry><title>How we ran Welcome Week events</title><link href="https://www.cameronmacleod.com/blog/running-freshers-events" rel="alternate"></link><published>2018-10-06T00:00:00+01:00</published><updated>2018-10-06T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-10-06:/blog/running-freshers-events</id><summary type="html">&lt;p&gt;At the University of Edinburgh we call the week before lectures begin each year Welcome Week. It's designed as a time for new students to meet each other and get settled into university and often a new city. Most societies will run events to try and attract new students to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;At the University of Edinburgh we call the week before lectures begin each year Welcome Week. It's designed as a time for new students to meet each other and get settled into university and often a new city. Most societies will run events to try and attract new students to join them and we (&lt;a href="http://ears-edi.com/"&gt;EaRS&lt;/a&gt;) were no different. After all, a society dies when no-one is interested any more.&lt;/p&gt;
 &lt;p&gt;I wanted to write down some of our experience running events during Welcome Week because it is different to running events any other time of the year and it may be useful to anyone who is new to running a society in future. If you are not running a society, hopefully it should be an interesting insight into what goes on behind the scenes.&lt;/p&gt;
 &lt;p&gt;We ran three separate events during Welcome Week 2018. There was a pub quiz, a workshop and an evening of board games. We attempted to make each event as inclusive to various skill levels as possible, because we wanted to attract first year undergraduates and the level of technical knowledge amongst new students varies wildly.&lt;/p&gt;
 &lt;h2 id="choosing-events-to-run"&gt;Choosing events to run&lt;/h2&gt;
@@ -1184,7 +1623,7 @@ notexactlyawe.github.io. 3599   IN  A   185.199.110.153
 &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;p&gt;We had great fun during Welcome Week, and despite the mistakes we made it was very successful for the society. The turn-out to events was great and we managed to increase our reach with mailing lists and Facebook dramatically!&lt;/p&gt;
-&lt;p&gt;Questions? Contact me using the links on the left!&lt;/p&gt;</content><category term="Societies"></category><category term="Events"></category></entry><entry><title>Diagnosing performance issues in a Flask app</title><link href="https://www.cameronmacleod.com/blog/sqlalchemy-speed" rel="alternate"></link><published>2018-04-22T00:00:00+01:00</published><updated>2018-04-22T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-04-22:/blog/sqlalchemy-speed</id><summary type="html">&lt;p&gt;I was recently part of the team that ran &lt;a href="https://createdhack.github.io"&gt;CreatED&lt;/a&gt;, the UK’s first hardware hackathon of its kind. Organising it was stressful at times and incredibly rewarding at others, especially when it came to the event actually happening. During the run up to the event, we learned a lot …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I was recently part of the team that ran &lt;a href="https://createdhack.github.io"&gt;CreatED&lt;/a&gt;, the UK’s first hardware hackathon of its kind. Organising it was stressful at times and incredibly rewarding at others, especially when it came to the event actually happening. During the run up to the event, we learned a lot about what actually needs to happen for a hackathon to run and one of those things was the setting up of event software.&lt;/p&gt;
+&lt;p&gt;Questions? Contact me using the links on the left!&lt;/p&gt;</content><category term="Blogging"></category><category term="Societies"></category><category term="Events"></category></entry><entry><title>Diagnosing performance issues in a Flask app</title><link href="https://www.cameronmacleod.com/blog/sqlalchemy-speed" rel="alternate"></link><published>2018-04-22T00:00:00+01:00</published><updated>2018-04-22T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-04-22:/blog/sqlalchemy-speed</id><summary type="html">&lt;p&gt;I was recently part of the team that ran &lt;a href="https://createdhack.github.io"&gt;CreatED&lt;/a&gt;, the UK’s first hardware hackathon of its kind. Organising it was stressful at times and incredibly rewarding at others, especially when it came to the event actually happening. During the run up to the event, we learned a lot …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I was recently part of the team that ran &lt;a href="https://createdhack.github.io"&gt;CreatED&lt;/a&gt;, the UK’s first hardware hackathon of its kind. Organising it was stressful at times and incredibly rewarding at others, especially when it came to the event actually happening. During the run up to the event, we learned a lot about what actually needs to happen for a hackathon to run and one of those things was the setting up of event software.&lt;/p&gt;
 &lt;p&gt;It’s easy to overlook when you’re thinking about running your first hackathon, but things like registration systems, mentor allocation systems and hardware distribution systems all need to be put in place. Since we were a hardware hackathon, the last one was of particular importance to us. Thankfully HackMIT and MakeMIT, mostly through &lt;a href="http://noahmoroze.com/"&gt;Noah Moroze&lt;/a&gt; had already put together a fantastic system for this, &lt;a href="https://github.com/techx/cog"&gt;Cog&lt;/a&gt;, which had been battle tested at much larger hackathons than ours.&lt;/p&gt;
 &lt;p&gt;Cog was a great gift to us, as we’d only started to think about a system for this quite late in the game (2 or 3 weeks to go) and it had pretty much all of the functionality we needed. There were, however, a few things that needed to be added and so I set about doing so.&lt;/p&gt;
 &lt;ul&gt;
@@ -1202,7 +1641,7 @@ notexactlyawe.github.io. 3599   IN  A   185.199.110.153
 &lt;span class="n"&gt;URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http://localhost:5000&amp;quot;&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;time_to_get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;elapsed&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;total_seconds&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;elapsed&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;total_seconds&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;load_test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num_users&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;t_pool&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
@@ -1211,7 +1650,7 @@ notexactlyawe.github.io. 3599   IN  A   185.199.110.153
         &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;t_pool&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Waiting&amp;quot;&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Waiting&amp;quot;&lt;/span&gt;
 
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;t_pool&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -1222,31 +1661,31 @@ notexactlyawe.github.io. 3599   IN  A   185.199.110.153
 
 
 &lt;p&gt;The results I got from this quick test were mildly alarming. Each of these times (in seconds) is how long it took to receive a full response from the server.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cameron@isla:~/src/created/cog$ python load_test.py
-Waiting
-1.971983
-3.797295
-5.694615
-7.800551
-9.669649
-...
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;cameron@isla:~/src/created/cog$ python load_test.py&lt;/span&gt;
+&lt;span class="err"&gt;Waiting&lt;/span&gt;
+&lt;span class="err"&gt;1.971983&lt;/span&gt;
+&lt;span class="err"&gt;3.797295&lt;/span&gt;
+&lt;span class="err"&gt;5.694615&lt;/span&gt;
+&lt;span class="err"&gt;7.800551&lt;/span&gt;
+&lt;span class="err"&gt;9.669649&lt;/span&gt;
+&lt;span class="err"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;To put this into context, this isn’t a particularly demanding page. It displays to the user a list of available hardware and does little else.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The main page for Cog" src="/images/cog_main_page.png" title="The main page for Cog"&gt;&lt;/p&gt;
 &lt;p&gt;However, I wasn’t sure whether the problem was with my script or with Cog itself. To investigate this, I started Googling around profiling in Flask (the framework Cog is written in) and &lt;a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvi-debugging-testing-and-profiling"&gt;this article&lt;/a&gt; pointed me to some &lt;a href="http://werkzeug.pocoo.org/docs/0.14/contrib/profiler/"&gt;Werkzeug middleware&lt;/a&gt; that did what I wanted. The output is below from one of the endpoint calls - pay attention to the top call.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PATH: &amp;#39;/inventory&amp;#39;
-         1761654 function calls (1645404 primitive calls) in 2.829 seconds
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PATH&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/inventory&amp;#39;&lt;/span&gt;
+         &lt;span class="mi"&gt;1761654&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1645404&lt;/span&gt; &lt;span class="n"&gt;primitive&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;829&lt;/span&gt; &lt;span class="n"&gt;seconds&lt;/span&gt;
 
-   Ordered by: internal time, call count
-   List reduced from 1183 to 10 due to restriction &amp;lt;10&amp;gt;
+   &lt;span class="n"&gt;Ordered&lt;/span&gt; &lt;span class="k"&gt;by&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;internal&lt;/span&gt; &lt;span class="k"&gt;time&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;call&lt;/span&gt; &lt;span class="k"&gt;count&lt;/span&gt;
+   &lt;span class="n"&gt;List&lt;/span&gt; &lt;span class="n"&gt;reduced&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;1183&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="n"&gt;due&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;restriction&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 
-   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-      759    0.375    0.000    0.377    0.000 {method &amp;#39;execute&amp;#39; of &amp;#39;psycopg2.extensions.cursor&amp;#39; objects}
-     4536    0.062    0.000    0.280    0.000 /home/cameron/src/created/cog/venv/local/lib/python2.7/site-packages/sqlalchemy/sql/schema.py:898(__init__)
-     6426    0.056    0.000    0.070    0.000 /home/cameron/src/created/cog/venv/local/lib/python2.7/site-packages/sqlalchemy/sql/elements.py:674(__getattr__)
-...
+   &lt;span class="n"&gt;ncalls&lt;/span&gt;  &lt;span class="n"&gt;tottime&lt;/span&gt;  &lt;span class="n"&gt;percall&lt;/span&gt;  &lt;span class="n"&gt;cumtime&lt;/span&gt;  &lt;span class="n"&gt;percall&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;lineno&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="mi"&gt;759&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;375&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;377&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="k"&gt;method&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;execute&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;psycopg2.extensions.cursor&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;
+     &lt;span class="mi"&gt;4536&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;062&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;280&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sqlalchemy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;sql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;schema&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;898&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="mi"&gt;6426&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;056&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;070&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sqlalchemy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;sql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;674&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__getattr__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1263,7 +1702,7 @@ Waiting
                    &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;hardwarecheckout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RequestStatus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;APPROVED&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; \
                    &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;with_entities&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;RequestItem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quantity&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scalar&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1271,7 +1710,7 @@ Waiting
 &lt;p&gt;The solution comes through the use of the GROUP BY clause. The following code selects all items that no user has claimed and groups them by the ID in &lt;code&gt;inventory_entry&lt;/code&gt; before counting the groups (effectively returning how many of each inventory entry are free). The bottom line is a dictionary comprehension that puts them in a nice format for the Jinja template.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="n"&gt;counts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;session&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;\
             &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;\
-            &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;\
+            &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;\
             &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;counts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;id_&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;counts&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -1279,21 +1718,21 @@ Waiting
 
 &lt;p&gt;The one important thing to note with this code is that &lt;code&gt;counts[“some_id”]&lt;/code&gt; will error if &lt;code&gt;some_id&lt;/code&gt; has no items free since &lt;code&gt;counts&lt;/code&gt; won't have it as a key. The way to fix this is by using &lt;code&gt;counts.get(“some_id”, 0)&lt;/code&gt; where &lt;code&gt;0&lt;/code&gt; is a default value that’s returned when there’s no entry in the dictionary for &lt;code&gt;some_id&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;And as thought, the profiler output looks much better. The ncalls to &lt;code&gt;cursor.execute&lt;/code&gt; has gone down to 4, which is much more sensible!&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PATH: &amp;#39;/inventory&amp;#39;
-         30824 function calls (29237 primitive calls) in 0.055 seconds
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PATH&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/inventory&amp;#39;&lt;/span&gt;
+         &lt;span class="mi"&gt;30824&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;29237&lt;/span&gt; &lt;span class="n"&gt;primitive&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;055&lt;/span&gt; &lt;span class="n"&gt;seconds&lt;/span&gt;
 
-   Ordered by: internal time, call count
-   List reduced from 677 to 10 due to restriction &amp;lt;10&amp;gt;
+   &lt;span class="n"&gt;Ordered&lt;/span&gt; &lt;span class="k"&gt;by&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;internal&lt;/span&gt; &lt;span class="k"&gt;time&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;call&lt;/span&gt; &lt;span class="k"&gt;count&lt;/span&gt;
+   &lt;span class="n"&gt;List&lt;/span&gt; &lt;span class="n"&gt;reduced&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;677&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="n"&gt;due&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;restriction&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 
-   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-      297    0.003    0.000    0.010    0.000 /home/cameron/src/created/cog/venv/local/lib/python2.7/site-packages/sqlalchemy/orm/loading.py:30(instances)
-        4    0.003    0.001    0.003    0.001 {method &amp;#39;execute&amp;#39; of &amp;#39;psycopg2.extensions.cursor&amp;#39; objects}
-    162/1    0.003    0.000    0.025    0.025 {method &amp;#39;join&amp;#39; of &amp;#39;unicode&amp;#39; objects}
-...
+   &lt;span class="n"&gt;ncalls&lt;/span&gt;  &lt;span class="n"&gt;tottime&lt;/span&gt;  &lt;span class="n"&gt;percall&lt;/span&gt;  &lt;span class="n"&gt;cumtime&lt;/span&gt;  &lt;span class="n"&gt;percall&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;lineno&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="mi"&gt;297&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;003&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;010&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sqlalchemy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;orm&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;loading&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;instances&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="mi"&gt;4&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;003&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;001&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;003&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;001&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="k"&gt;method&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;execute&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;psycopg2.extensions.cursor&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;
+    &lt;span class="mi"&gt;162&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;003&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;025&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;025&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="k"&gt;method&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;join&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;unicode&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The final code that we deployed is now sitting on &lt;a href="https://github.com/notexactlyawe/cog"&gt;GitHub&lt;/a&gt; so you can feel free to take a look.&lt;/p&gt;</content><category term="Python"></category><category term="Databases"></category><category term="SQLAlchemy"></category></entry><entry><title>Useful links relating to abracadabra</title><link href="https://www.cameronmacleod.com/blog/abracadabra-links" rel="alternate"></link><published>2016-07-18T00:00:00+01:00</published><updated>2016-07-18T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-07-18:/blog/abracadabra-links</id><summary type="html">&lt;p&gt;Here is a collection of links relating to abracadabra that may be useful for anyone looking to do something similar.&lt;/p&gt;
+&lt;p&gt;The final code that we deployed is now sitting on &lt;a href="https://github.com/notexactlyawe/cog"&gt;GitHub&lt;/a&gt; so you can feel free to take a look.&lt;/p&gt;</content><category term="Blogging"></category><category term="Python"></category><category term="Databases"></category><category term="SQLAlchemy"></category></entry><entry><title>Useful links relating to abracadabra</title><link href="https://www.cameronmacleod.com/blog/abracadabra-links" rel="alternate"></link><published>2016-07-18T00:00:00+01:00</published><updated>2016-07-18T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-07-18:/blog/abracadabra-links</id><summary type="html">&lt;p&gt;Here is a collection of links relating to abracadabra that may be useful for anyone looking to do something similar.&lt;/p&gt;
 &lt;h2 id="github-repositories"&gt;Github Repositories&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/worldveil/dejavu"&gt;dejavu&lt;/a&gt;&lt;/p&gt;
@@ -1321,9 +1760,9 @@ Waiting
 &lt;p&gt;&lt;a href="http://echoprint.me/"&gt;Echoprint&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="use-cases"&gt;Use Cases&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://static1.squarespace.com/static/53f7940ae4b05c506d396373/t/5669c81ba2bab86d89ef3dec/1449773083824/Koh_30x40.pdf"&gt;Alignment of videos of same event using audio fingerprinting&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://news.ycombinator.com/item?id=8303713"&gt;De-duplicating music library&lt;/a&gt; &lt;/p&gt;</content><category term="Python"></category><category term="abracadabra"></category></entry><entry><title>How to read WAVE files in Python</title><link href="https://www.cameronmacleod.com/blog/reading-wave-python" rel="alternate"></link><published>2016-04-07T00:00:00+01:00</published><updated>2016-04-07T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-04-07:/blog/reading-wave-python</id><summary type="html">&lt;p&gt;Any project that uses audio will usually start out using WAVE files for its on-disk presence, and as with many things in Python, there's a standard library module for that. Now don't get me wrong in the rest of this article - &lt;code&gt;wave&lt;/code&gt; does the job. The thing is that it …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Any project that uses audio will usually start out using WAVE files for its on-disk presence, and as with many things in Python, there's a standard library module for that. Now don't get me wrong in the rest of this article - &lt;code&gt;wave&lt;/code&gt; does the job. The thing is that it can be a bit confusing to get started with and it's not &lt;em&gt;always&lt;/em&gt; the best tool for the job. This post will go over my journey in reading WAVEs and the various approaches I found.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://news.ycombinator.com/item?id=8303713"&gt;De-duplicating music library&lt;/a&gt; &lt;/p&gt;</content><category term="Link collections"></category><category term="Python"></category><category term="abracadabra"></category></entry><entry><title>How to read WAVE files in Python</title><link href="https://www.cameronmacleod.com/blog/reading-wave-python" rel="alternate"></link><published>2016-04-07T00:00:00+01:00</published><updated>2016-04-07T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-04-07:/blog/reading-wave-python</id><summary type="html">&lt;p&gt;Any project that uses audio will usually start out using WAVE files for its on-disk presence, and as with many things in Python, there's a standard library module for that. Now don't get me wrong in the rest of this article - &lt;code&gt;wave&lt;/code&gt; does the job. The thing is that it …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Any project that uses audio will usually start out using WAVE files for its on-disk presence, and as with many things in Python, there's a standard library module for that. Now don't get me wrong in the rest of this article - &lt;code&gt;wave&lt;/code&gt; does the job. The thing is that it can be a bit confusing to get started with and it's not &lt;em&gt;always&lt;/em&gt; the best tool for the job. This post will go over my journey in reading WAVEs and the various approaches I found.&lt;/p&gt;
 &lt;p&gt;When you read &lt;a href="https://docs.python.org/2/library/wave.html"&gt;the documentation&lt;/a&gt; for &lt;code&gt;wave&lt;/code&gt;, you quickly find the &lt;code&gt;readframes()&lt;/code&gt; function for reading the meat of the file. This just as quickly poses a problem, that of how to parse the data it returns.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;\xd04\xd52\xd63\x824...&amp;#39;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;\xd04\xd52\xd63\x824...&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1358,7 +1797,7 @@ Waiting
 
 &lt;p&gt;Yet again, as this article is a journey as opposed to a straight out answer, this ugly hack does not come recommended. In general, I find that ugly code == doing things wrong. This example is no different, but is easily fixed.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;{0}h&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk_size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;&lt;/span&gt;&lt;span class="si"&gt;{0}&lt;/span&gt;&lt;span class="s2"&gt;h&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk_size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1369,7 +1808,7 @@ Waiting
 &lt;/blockquote&gt;
 &lt;p&gt;Much better, no?&lt;/p&gt;
 &lt;p&gt;Our next issue was that the data isn't guaranteed to come in signed 16-bit integers. The good news is that we can get what format it is in programmatically with our old friend, the &lt;code&gt;wave&lt;/code&gt; module. The below code is from abracadabra.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;mode&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;
     &lt;span class="n"&gt;sizes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;h&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wav&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wave&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1388,7 +1827,7 @@ Waiting
 
 
 &lt;p&gt;You just pass it a format string (of the same format as struct) and then call &lt;code&gt;fromfile&lt;/code&gt; with a file object and the size of it. According to &lt;a href="http://stackoverflow.com/questions/5804052/improve-speed-of-reading-and-converting-from-binary-file-with-python"&gt;this&lt;/a&gt; SO question it is up to 40X faster than &lt;code&gt;struct.unpack&lt;/code&gt; &lt;em&gt;YMMV&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;This has been my journey in attempting to read WAVE files and hopefully it will help. Most of the code in here has been adapted from my repository &lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt; and if you are looking for an up-to-date version of what I am using there might be a good place to look. This article is &lt;a href="https://github.com/notexactlyawe/cameronmacleod.com"&gt;also on Github&lt;/a&gt; so if you see something wrong, please submit an issue.&lt;/p&gt;</content><category term="Python"></category><category term="Audio"></category></entry><entry><title>The importance of letting go of ideas</title><link href="https://www.cameronmacleod.com/blog/importance-of-letting-go" rel="alternate"></link><published>2016-03-13T00:00:00+00:00</published><updated>2016-03-13T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-03-13:/blog/importance-of-letting-go</id><summary type="html">&lt;p&gt;On May 29 2015, I made my first entry into a fancy notebook I had bought. This was going to be it, I was never again going to struggle in vain to remember that killer idea I had earlier. Everything was getting written down from here on out.&lt;/p&gt;</summary><content type="html">&lt;p&gt;On May 29 2015, I made my first entry into a fancy notebook I had bought. This was going to be it, I was never again going to struggle in vain to remember that killer idea I had earlier. Everything was getting written down from here on out.&lt;/p&gt;
+&lt;p&gt;This has been my journey in attempting to read WAVE files and hopefully it will help. Most of the code in here has been adapted from my repository &lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt; and if you are looking for an up-to-date version of what I am using there might be a good place to look. This article is &lt;a href="https://github.com/notexactlyawe/cameronmacleod.com"&gt;also on Github&lt;/a&gt; so if you see something wrong, please submit an issue.&lt;/p&gt;</content><category term="Tutorials"></category><category term="Python"></category><category term="Audio"></category></entry><entry><title>The importance of letting go of ideas</title><link href="https://www.cameronmacleod.com/blog/importance-of-letting-go" rel="alternate"></link><published>2016-03-13T00:00:00+00:00</published><updated>2016-03-13T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-03-13:/blog/importance-of-letting-go</id><summary type="html">&lt;p&gt;On May 29 2015, I made my first entry into a fancy notebook I had bought. This was going to be it, I was never again going to struggle in vain to remember that killer idea I had earlier. Everything was getting written down from here on out.&lt;/p&gt;</summary><content type="html">&lt;p&gt;On May 29 2015, I made my first entry into a fancy notebook I had bought. This was going to be it, I was never again going to struggle in vain to remember that killer idea I had earlier. Everything was getting written down from here on out.&lt;/p&gt;
 &lt;p&gt;Despite a decent start, by July the entries had started to get less frequent and at the start of August they had dried up completely. As with the vast majority of things that I start, this logbook concept hadn't got very far at all.&lt;/p&gt;
 &lt;p&gt;Admittedly, some aspects were useful whilst it lasted. Thanks to this little book, I now have a complete record of my trip to Barcelona to a level of detail that photographs and memories could just never fill on their own. It was also great for keeping track of tasks that I had to do. Just to be clear, it didn't increase the speed with which I did them, just kept a record of them.&lt;/p&gt;
 &lt;p&gt;The obvious question from here is, "Why did I stop writing in the notebook if it was useful?". I still have the notebook, and it still sits most of the time within easy reach, so it's not as if I lost it or anything. The answer to this I feel lies in the concept of value and the exchange of time for value. People, as a rule, only do things if they view the value of doing said thing to be greater than or equal to the value of the resources they use to do the thing. In this case, the only resource to be used was time, but I still didn't view the benefits I would gain from writing down an idea, or a task to be done as worth the time it would take.&lt;/p&gt;
@@ -1401,4 +1840,4 @@ Waiting
 &lt;p&gt;Not overly enlightening stuff.&lt;/p&gt;
 &lt;p&gt;No matter whether you are an extraordinary genius or you struggle with the puzzles on the backs of cereal boxes, you will give too much value to your own ideas. This narcissism is a fundamental and necessary component of human nature. If people weren't to have ideas that they believed in, then we wouldn't have any of the innovations that we have today. More than that, a lack of self-confidence in our ideas would lead to a lack of leaders, and society itself may not have developed - certainly not to the same extent it has.&lt;/p&gt;
 &lt;p&gt;Beyond the cheapness of ideas, is there really any harm in scratching the itch of putting them somewhere? Not necessarily, but there is a freedom in learning to let them go. An idea that you are doing your best to remember is a bit of your mind that could be assigned to other things. Not only that, but good ideas tend to be remembered through their own virtue as opposed to needing to be explicitly remembered.&lt;/p&gt;
-&lt;p&gt;Everyone goes through a diary phase or buys a notebook at some point, it's a natural thing to do. But don't beat yourself up for stopping, that much is logical.&lt;/p&gt;</content></entry></feed>
+&lt;p&gt;Everyone goes through a diary phase or buys a notebook at some point, it's a natural thing to do. But don't beat yourself up for stopping, that much is logical.&lt;/p&gt;</content><category term="Blogging"></category></entry></feed>
