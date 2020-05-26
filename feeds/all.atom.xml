@@ -7,7 +7,7 @@
 &lt;div class="csdegree-course "&gt;
   &lt;summary&gt;Name and link to full course description&lt;/summary&gt;
 
-  Some information about the course, including searchable terms where appropriate.
+  Some information about the course, including searchable terms where appropriate and the main textbook used.
   &lt;br /&gt;&lt;br /&gt;
   Number of credits to give you an idea of how much depth each course has.
 &lt;/div&gt;
@@ -28,10 +28,14 @@
           &lt;li&gt;Set theory&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: &lt;a href="https://myelms.umd.edu/courses/1154654/files/39380916/download?download_frd=1"&gt;Mathematical Methods in Linuguistics&lt;/a&gt;&lt;/p&gt;
+
         10 credits
       &lt;/div&gt;
       &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/inf1/fp/"&gt;Functional Programming&lt;/a&gt;&lt;/summary&gt;
         &lt;p&gt;Introductory course on Haskell. Gets as far as monads, but doesn't really address them that thoroughly.&lt;/p&gt;
+
+        &lt;p&gt;Textbook: &lt;a href="http://learnyouahaskell.com/"&gt;Learn you a Haskell for Great Good!&lt;/a&gt;&lt;/p&gt;
 
         &lt;p&gt;10 credits&lt;/p&gt;
       &lt;/div&gt;
@@ -44,6 +48,8 @@
           &lt;li&gt;Eigenvalues/eigenvectors&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: 'Linear Algebra, A Modern Introduction' by David Poole&lt;/p&gt;
+
         20 credits
       &lt;/div&gt;
     &lt;/div&gt;
@@ -54,6 +60,8 @@
       &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/16-17/dpt/cxinfr08014.htm"&gt;Object-oriented Programming&lt;/a&gt;&lt;/summary&gt;
         &lt;p&gt;Honestly, I didn't really pay attention to this course. It taught introductory Java.&lt;/p&gt;
 
+        &lt;p&gt;Textbook: 'The Java Tutorial: A Short Course on the Basics' - Raymond Gallardo et al.&lt;/p&gt;
+
         &lt;p&gt;10 credits&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="https://blog.inf.ed.ac.uk/da18/"&gt;Data and Analysis&lt;/a&gt;&lt;/summary&gt;
@@ -61,12 +69,16 @@
           &lt;li&gt;SQL/Basic databases&lt;/li&gt;
           &lt;li&gt;XML&lt;/li&gt;
           &lt;li&gt;Text corpora&lt;/li&gt;
+
+          &lt;p&gt;Textbook: Unknown. The lecturer handed out notes for this course&lt;/p&gt;
         &lt;/ul&gt;
 
          10 credits
       &lt;/div&gt;
       &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/16-17/dpt/cxmath08058.htm"&gt;Calculus and its Applications&lt;/a&gt;&lt;/summary&gt;
         &lt;p&gt;Introductory calculus course. It covered single variable integration, differentiation and series.&lt;/p&gt;
+
+        &lt;p&gt;Textbook: 'Essential Calculus: Early Transcendentals' - James Stewart&lt;/p&gt;
 
         &lt;p&gt;20 credits&lt;/p&gt;
       &lt;/div&gt;
@@ -97,6 +109,8 @@
           &lt;li&gt;Grammars&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: Speech and Language Processing, Jurafsky, D and J. H. Martin&lt;/p&gt;
+
          20 credits
       &lt;/div&gt;
       &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/inf2c-cs/"&gt;Introduction to Computer Systems&lt;/a&gt;&lt;/summary&gt;
@@ -105,6 +119,8 @@
           &lt;li&gt;C programming&lt;/li&gt;
           &lt;li&gt;Basic processor and digital logic design&lt;/li&gt;
         &lt;/ul&gt;
+
+        &lt;p&gt;Textbook: Computer Organisation and Design, D.A. Patterson and J.L. Hennessy&lt;/p&gt;
 
          10 credits
       &lt;/div&gt;
@@ -117,6 +133,8 @@
           &lt;li&gt;Version control&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: Software Engineering, Ian Sommerville&lt;/p&gt;
+
          10 credits
       &lt;/div&gt;
       &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/16-17/dpt/cxinfr08023.htm"&gt;Discrete Mathematics and Mathematical Reasoning&lt;/a&gt;&lt;/summary&gt;
@@ -128,6 +146,8 @@
           &lt;li&gt;Trees&lt;/li&gt;
           &lt;li&gt;Discrete probabilities&lt;/li&gt;
         &lt;/ul&gt;
+
+        &lt;p&gt;Textbook: Discrete Mathematics and its Applications, Kenneth Rosen&lt;/p&gt;
 
          20 credits
       &lt;/div&gt;
@@ -144,6 +164,8 @@
           &lt;li&gt;Sorting algorithms&lt;/li&gt;
           &lt;li&gt;Graphs&lt;/li&gt;
         &lt;/ul&gt;
+        &lt;p&gt;Textbook: &lt;a href="http://ww0.java4.datastructures.net/"&gt;Data Structures and Algorithms in Java&lt;/a&gt;, Goodrich, M T and Tamassia&lt;/p&gt;
+
         The other half of the course was focused on machine learning.
         &lt;ul&gt;
           &lt;li&gt;Dimensionality in data (PCA etc)&lt;/li&gt;
@@ -152,6 +174,8 @@
           &lt;li&gt;Gaussians&lt;/li&gt;
           &lt;li&gt;Neural networks&lt;/li&gt;
         &lt;/ul&gt;
+
+        &lt;p&gt;Textbook: &lt;a href="http://www.dcs.gla.ac.uk/~srogers/firstcourseml/"&gt;A First Course in Machine Learning&lt;/a&gt; - second edition, Simon Rogers and Mark Girolami&lt;/p&gt;
 
          20 credits
       &lt;/div&gt;
@@ -167,6 +191,8 @@
           &lt;li&gt;Birth and death processes&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: A First Course in Probability, Sheldon Ross&lt;/p&gt;
+
          20 credits
       &lt;/div&gt;
       &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/inf2d/"&gt;Reasoning and Agents&lt;/a&gt; (optional)&lt;/summary&gt;
@@ -180,6 +206,8 @@
           &lt;li&gt;Bayes Theorem&lt;/li&gt;
           &lt;li&gt;Markov decision processes&lt;/li&gt;
         &lt;/ul&gt;
+
+        &lt;p&gt;Textbook: Artificial Intelligence: A Modern Approach, Russell R &amp; Norvig P&lt;/p&gt;
 
          20 credits
       &lt;/div&gt;
@@ -195,6 +223,8 @@
           &lt;li&gt;Information theory&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: Digital Signal Processing, John G. Proakis &amp; Dimitris G. Manolakis&lt;/p&gt;
+
          10 credits
       &lt;/div&gt;
     &lt;/div&gt;
@@ -209,10 +239,13 @@
     &lt;div class="csdegree-sem-wrap"&gt;
       &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/18-19/dpt/cxinfr10022.htm"&gt;Professional Issues&lt;/a&gt;&lt;/summary&gt;
         &lt;p&gt;This course was focused on "soft" skills such as ethical, legal and financial issues for software development businesses.&lt;/p&gt;
+        &lt;p&gt;Textbook: Professional Issues in Information Technology, Frank Bott&lt;/p&gt;
         &lt;p&gt;10 credits&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/18-19/dpt/cxinfr09051.htm"&gt;Informatics Large Practical&lt;/a&gt;&lt;/summary&gt;
         &lt;p&gt;This was a project course that required students to build an Android game. There was a specification, but some room for creativity. &lt;a href="https://github.com/notexactlyawe/coinz"&gt;My code from this course is on GitHub&lt;/a&gt;&lt;/p&gt;
+
+        &lt;p&gt;No textbook&lt;/p&gt;
 
         &lt;p&gt;20 credits&lt;/p&gt;
       &lt;/div&gt;
@@ -228,6 +261,8 @@
           &lt;li&gt;RISC&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: 'Computer Organization', V. C. Hamacher, Z. G. Vranesic &amp; S. G. Zaky&lt;/p&gt;
+
          20 credits
       &lt;/div&gt;
       &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="https://www.inf.ed.ac.uk/teaching/courses/ivr/"&gt;Introduction to Vision and Robotics&lt;/a&gt; (optional)&lt;/summary&gt;
@@ -238,6 +273,8 @@
           &lt;li&gt;Active vision and attention&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: Russell &amp; Norvig Chapters 24 &amp; 25 in Artificial Intelligence: A Modern Approach&lt;/p&gt;
+
          10 credits
       &lt;/div&gt;
     &lt;/div&gt;
@@ -247,6 +284,8 @@
     &lt;div class="csdegree-sem-wrap"&gt;
     &lt;div class="csdegree-course"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/18-19/dpt/cxinfr09032.htm"&gt;System Design Project&lt;/a&gt;&lt;/summary&gt;
         &lt;p&gt;This was a group project to build a lego robot with the theme of "assistive technology". My team chose to build a chess-playing robot to enable disabled players to compete in tournaments more easily. See the &lt;a href="https://github.com/deeper-blue/"&gt;Deeper Blue GitHub organisation&lt;/a&gt; for more details.&lt;/p&gt;
+
+        &lt;p&gt;No textbook&lt;/p&gt;
 
         &lt;p&gt;20 credits&lt;/p&gt;
       &lt;/div&gt;
@@ -263,6 +302,8 @@
           &lt;li&gt;Web security&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: Introduction to Computer Security, Michael Goodrich and Robert Tamassia Pearson&lt;/p&gt;
+
          20 credits
       &lt;/div&gt;
       &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/18-19/dpt/cxinfr09047.htm"&gt;Operating Systems&lt;/a&gt; (optional)&lt;/summary&gt;
@@ -274,6 +315,8 @@
           &lt;li&gt;Scheduling&lt;/li&gt;
           &lt;li&gt;File management&lt;/li&gt;
         &lt;/ul&gt;
+
+        &lt;p&gt;Textbook: 'Operating Systems, Internals and Design Principles', W. Stallings&lt;/p&gt;
 
          20 credits
       &lt;/div&gt;
@@ -295,6 +338,8 @@
           &lt;li&gt;Implement a new sampling method and material in PBRT&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: &lt;a href="http://www.pbr-book.org/"&gt;'Physically Based Rendering'&lt;/a&gt;, Matt Pharr, Greg Humphreys &amp; Wenzel Jakob&lt;/p&gt;
+
          10 credits
       &lt;/div&gt;
       &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="http://www.drps.ed.ac.uk/18-19/dpt/cxinfr11088.htm"&gt;Extreme Computing&lt;/a&gt; (optional)&lt;/summary&gt;
@@ -305,6 +350,8 @@
           &lt;li&gt;Fault tolerance&lt;/li&gt;
           &lt;li&gt;Hadoop/MapReduce&lt;/li&gt;
         &lt;/ul&gt;
+
+        &lt;p&gt;Textbook: Data Intensive Text Processing with MapReduce, Jimmy Linn &amp; Chris Dyer&lt;/p&gt;
 
          10 credits
       &lt;/div&gt;
@@ -317,6 +364,8 @@
           &lt;li&gt;Speech recognition features&lt;/li&gt;
           &lt;li&gt;Hidden Markov models&lt;/li&gt;
         &lt;/ul&gt;
+
+        &lt;p&gt;Textbook: Speech and Language Processing, Jurafsky, D and J. H. Martin&lt;/p&gt;
 
          20 credits
       &lt;/div&gt;
@@ -335,6 +384,8 @@
           &lt;li&gt;Software defined networking&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: Computer Networking: A Top-Down Approach, J. F. Kurose and K. W. Ross&lt;/p&gt;
+
          20 credits
       &lt;/div&gt;
       &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="http://www.inf.ed.ac.uk/teaching/courses/asr/"&gt;Automatic Speech Recognition&lt;/a&gt; (optional)&lt;/summary&gt;
@@ -352,6 +403,8 @@
           &lt;li&gt;Speaker verification and diarization&lt;/li&gt;
         &lt;/ul&gt;
 
+        &lt;p&gt;Textbook: Speech and Language Processing, Jurafsky, D and J. H. Martin&lt;/p&gt;
+
          10 credits
       &lt;/div&gt;
       &lt;div class="csdegree-course optional"&gt;&lt;summary&gt;&lt;a href="http://www.inf.ed.ac.uk/teaching/courses/st/2017-18/index.html"&gt;Software Testing&lt;/a&gt; (optional)&lt;/summary&gt;
@@ -364,6 +417,8 @@
           &lt;li&gt;TDD&lt;/li&gt;
           &lt;li&gt;Regression testing&lt;/li&gt;
         &lt;/ul&gt;
+
+        &lt;p&gt;Textbook: Software Testing and Analysis: Process, Principles and Techniques, Pezze and Young&lt;/p&gt;
 
          10 credits
       &lt;/div&gt;
