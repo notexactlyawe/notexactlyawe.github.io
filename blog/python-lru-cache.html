@@ -82,6 +82,7 @@
 <div class="post">
 	<h1 class="post-title">Easy Python speed wins with functools.lru_cache</h1>
 	<span class="post-date">Mon 10 June 2019</span>
+    <span class="category"><a href="/category/tutorials.html">Tutorials</a></span>
 	<p>Recently, I was reading an <a href="https://datawhatnow.com/things-you-are-probably-not-using-in-python-3-but-should/">interesting article</a> on some under-used Python features. In the article, the author mentioned that from Python version 3.2, the standard library came with a built in decorator <code>functools.lru_cache</code> which I found exciting as it has the potential to speed up a lot of applications with very little effort.</p>
 <p>That's great and all, you may be thinking, but what is it? Well, the decorator provides access to a ready-built cache that uses the Least Recently Used (LRU) replacement strategy, hence the name <code>lru_cache</code>. Of course, that sentence probably sounds a little intimidating, so let's break it down.</p>
 <h2 id="what-is-a-cache">What is a cache?</h2>
@@ -209,6 +210,22 @@ $ python3 -m timeit -s <span class="s1">&#39;from fib_test import fib_cache&#39;
 <p>Whilst it's not suitable for every situation, caching can be a super simple way to gain a large performance boost, and <code>functools.lru_cache</code> makes it even easier to use. If you're interested to learn more then check out some of the links below.</p>
 <p><a href="https://cachetools.readthedocs.io/en/stable/">More powerful caching library</a></p>
 <p><a href="https://github.com/python/cpython/blob/3.7/Lib/functools.py">Python 3.7 functools source</a></p>
+    <hr />
+    <div class="other-articles">
+        <div class="other-article">
+            <h3 class="other-articles-headers">&lt; Older</h3>
+            <a href="/blog/better-validation-flask-marshmallow">
+                Better parameter validation in Flask with marshmallow
+            </a>
+        </div>
+        <div class="verticalline"></div>
+        <div class="other-article">
+            <h3 class="other-articles-headers">Newer &gt;</h3>
+            <a href="/blog/why-pm-over-software">
+                Why I chose product management over software development
+            </a>
+        </div>
+    </div>
 </div>
 <!-- Begin Mailchimp Signup Form -->
 <div id="mc_embed_signup">

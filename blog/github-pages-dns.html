@@ -82,6 +82,7 @@
 <div class="post">
 	<h1 class="post-title">How to configure DNS for custom domains on GitHub Pages</h1>
 	<span class="post-date">Tue 20 November 2018</span>
+    <span class="category"><a href="/category/tutorials.html">Tutorials</a></span>
 	<p>Recently-ish GitHub <a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/">announced</a> that HTTPS would now work on custom domains with GitHub Pages. This was a great bit of news, because the web is slowly moving towards a HTTPS-only state of being and it's nice not to be left behind.</p>
 <p>Unfortunately for me, for this new feature to work you had to be using either <strong>CNAME</strong> or <strong>ALIAS records</strong> to point to your GitHub Pages domain. At the time, I was using <strong>A records</strong> pointed at the old GitHub Pages servers, which didn't have the new features enabled. All these terms can be quite confusing if you're not familiar with DNS, so let's take a look at some basics.</p>
 <h3 id="what-is-dns">What is DNS?</h3>
@@ -187,6 +188,22 @@ United Kingdom  </p>
 <p>One thing to note is that HTTPS will only work for either <code>www.yoursite.com</code> or <code>yoursite.com</code> but not both depending on which one you put in the "Custom domain" box. GitHub are aware of the issue, but haven't given any public timeline for fixing it, see <a href="https://github.community/t5/GitHub-Pages/Does-GitHub-Pages-Support-HTTPS-for-www-and-subdomains/td-p/7116">this GitHub Community thread</a>.</p>
 <h1 id="if-something-didnt-work">If something didn't work</h1>
 <p>GitHub have a really useful <a href="https://help.github.com/articles/troubleshooting-custom-domains/">troubleshooting guide</a> for custom domains and HTTPS.</p>
+    <hr />
+    <div class="other-articles">
+        <div class="other-article">
+            <h3 class="other-articles-headers">&lt; Older</h3>
+            <a href="/blog/recruiting-software-interns">
+                5 Mistakes companies make recruiting software interns
+            </a>
+        </div>
+        <div class="verticalline"></div>
+        <div class="other-article">
+            <h3 class="other-articles-headers">Newer &gt;</h3>
+            <a href="/blog/better-validation-flask-marshmallow">
+                Better parameter validation in Flask with marshmallow
+            </a>
+        </div>
+    </div>
 </div>
 <!-- Begin Mailchimp Signup Form -->
 <div id="mc_embed_signup">

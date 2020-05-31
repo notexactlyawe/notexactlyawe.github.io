@@ -82,6 +82,7 @@
 <div class="post">
 	<h1 class="post-title">Disappearing documentation (a Kubernetes war story)</h1>
 	<span class="post-date">Sun 03 May 2020</span>
+    <span class="category"><a href="/category/blogging.html">Blogging</a></span>
 	<p>I like a good war story, and I like them even more when I get to tell them. While writing my dissertation, I ran into a case of disappearing documentation. Here's what happened.</p>
 <p>As part of my undergraduate dissertation, I was working with Kubernetes, and more specifically, the <a href="https://kubernetes.io/docs/concepts/architecture/controller/">controllers</a> within Kubernetes. A controller can be thought of as a generalised thermostat. Just as a thermostat maintains temperature in a house, a controller maintains state in a cluster.</p>
 <p>A controller has some desired state, some world state, and a way of affecting the world state (an actuator). In the example of the thermostat, the world state would be the current temperature, the desired state would be the user-set temperature, and the actuator would be a heating system.</p>
@@ -115,6 +116,22 @@ error validating <span class="s2">&quot;some-autoscale.yaml&quot;</span>: error 
 <p>When I checked the docs the following day, the quote from above was missing. After considering whether I'd imagined it all, I discovered that the Kubernetes docs were in a public GitHub repository that was linked from the bottom of each page. It turned out that a couple of hours before I had posted my question, the text about the <code>behavior</code> object had been <a href="https://github.com/kubernetes/website/pull/18963">removed in a PR</a>. The <code>behavior</code> object was meant to be introduced in V1.18 instead of V1.17 that was current at the time. The reason I hadn't seen the updated docs was probably due to my browser caching the old version since I'd visited that page a lot.</p>
 <p>Finding out that I wasn't imagining things and that the docs were wrong was very satisfying. Everything had fallen nicely into place. I answered the Stack Overflow question with a shortened version of this story and carried on with my dissertation.</p>
 <p>Now that 1.18 is out, this will no longer be a problem, but I thought it would be an interesting story to share. This was only a small part of my dissertation, which was on mobile networks and Kubernetes. It's now finished (exhausted hooray). If you're interested, you can read it <a href="/dissertation.pdf">here</a>.</p>
+    <hr />
+    <div class="other-articles">
+        <div class="other-article">
+            <h3 class="other-articles-headers">&lt; Older</h3>
+            <a href="/blog/why-pm-over-software">
+                Why I chose product management over software development
+            </a>
+        </div>
+        <div class="verticalline"></div>
+        <div class="other-article">
+            <h3 class="other-articles-headers">Newer &gt;</h3>
+            <a href="/blog/microbit-snake">
+                Build a snake game on the BBC micro:bit
+            </a>
+        </div>
+    </div>
 </div>
 <!-- Begin Mailchimp Signup Form -->
 <div id="mc_embed_signup">
