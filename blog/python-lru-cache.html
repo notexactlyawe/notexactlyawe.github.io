@@ -114,28 +114,26 @@ Think about it this way: Using the browser example, if your most accessed site w
 <p>It turns out that there is an optimal strategy for choosing what to replace in a cache and that is to get rid of the thing that won't be used for longest. This is called <a href="https://en.wikipedia.org/wiki/Page_replacement_algorithm#The_theoretically_optimal_page_replacement_algorithm">Bélády's optimal algorithm</a> but unfortunately requires knowing the future. Thankfully, in many situations LRU provides near optimal performance .</p>
 <h2 id="how-do-i-use-it">How do I use it?</h2>
 <p><code>functools.lru_cache</code> is a decorator, so you can just place it on top of your function:</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functools</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">functools</span>
 
 <span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
   <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
     <span class="k">return</span> <span class="mi">1</span>
   <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>The Fibonacci example is really commonly used here because the speed-up is so dramatic for so little effort. Running this on my machine, I got the following results for with and without cache versions of this function.</p>
-<div class="highlight"><pre><span></span>$ python3 -m timeit -s <span class="s1">&#39;from fib_test import fib&#39;</span> <span class="s1">&#39;fib(30)&#39;</span>
+<div class="highlight"><pre><span></span><code>$ python3 -m timeit -s <span class="s1">&#39;from fib_test import fib&#39;</span> <span class="s1">&#39;fib(30)&#39;</span>
 <span class="m">10</span> loops, best of <span class="m">3</span>: <span class="m">282</span> msec per loop
 $ python3 -m timeit -s <span class="s1">&#39;from fib_test import fib_cache&#39;</span> <span class="s1">&#39;fib_cache(30)&#39;</span>
 <span class="m">10000000</span> loops, best of <span class="m">3</span>: <span class="m">0</span>.0791 usec per loop
-</pre></div>
-
+</code></pre></div>
 
 <p>That's a <strong>3,565,107x</strong> speed increase for a single line of code.</p>
 <p>Of course, I think it can be hard to see how you'd actually use this in practice, since it's quite rare to need to calculate the Fibonacci series. Going back to our example with web pages, we can take the slightly more realistic example of caching rendered templates.</p>
 <p>In server development, usually individual pages are stored as templates that have placeholder variables. For example, the following is a template for a page that displays the results of various football matches for a given day.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Matches for {{day}}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">table</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;matches&quot;</span><span class="p">&gt;</span>
@@ -154,13 +152,12 @@ $ python3 -m timeit -s <span class="s1">&#39;from fib_test import fib_cache&#39;
     <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>When the template is rendered, it looks like the below:</p>
 <p><img alt="Match template rendered" src="/images/match.png"></p>
 <p>This is a prime target for caching because the results for each day won't change and it's likely that there will be multiple hits on each day. Below is a Flask app that serves this template. I've introduced a 50ms delay to simulate getting the match dictionary over a network/from a large database.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
 
@@ -181,17 +178,15 @@ $ python3 -m timeit -s <span class="s1">&#39;from fib_test import fib_cache&#39;
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Using <code>requests</code> to get three match days without caching takes on average 171ms running locally on my computer. This isn't bad, but we can do better, even considering the artificial delay.</p>
-<div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/matches/&lt;day&gt;&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/matches/&lt;day&gt;&#39;</span><span class="p">)</span>
 <span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">show_matches</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
     <span class="n">matches</span> <span class="o">=</span> <span class="n">get_matches</span><span class="p">(</span><span class="n">day</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;matches.html&#39;</span><span class="p">,</span> <span class="n">matches</span><span class="o">=</span><span class="n">matches</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="n">day</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>I've set <code>maxsize=4</code> in this example, because my test script only gets the same three days and it's best to set a power of two. Using this makes the average come down to 13.7ms over 10 loops.</p>
 <h2 id="anything-else-i-should-know">Anything else I should know?</h2>

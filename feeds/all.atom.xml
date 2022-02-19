@@ -1,5 +1,303 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cameron MacLeod</title><link href="https://www.cameronmacleod.com/" rel="alternate"></link><link href="https://www.cameronmacleod.com/feeds/all.atom.xml" rel="self"></link><id>https://www.cameronmacleod.com/</id><updated>2020-05-25T00:00:00+01:00</updated><entry><title>What a computer science degree looks like in 2020</title><link href="https://www.cameronmacleod.com/blog/cs-degree-structure" rel="alternate"></link><published>2020-05-25T00:00:00+01:00</published><updated>2020-05-25T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-05-25:/blog/cs-degree-structure</id><summary type="html">&lt;p&gt;Lots of people who are learning to code ask the question "Should I get a CS degree or do a bootcamp?", or "Is a degree necessary?". I have just finished my degree (not graduated yet), and while I can't give all the answers to these questions, I can share my …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lots of people who are learning to code ask the question "Should I get a CS degree or do a bootcamp?", or "Is a degree necessary?". I have just finished my degree (not graduated yet), and while I can't give all the answers to these questions, I can share my experience.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cameron MacLeod</title><link href="https://www.cameronmacleod.com/" rel="alternate"></link><link href="https://www.cameronmacleod.com/feeds/all.atom.xml" rel="self"></link><id>https://www.cameronmacleod.com/</id><updated>2022-02-19T00:00:00+00:00</updated><entry><title>abracadabra: How does Shazam work?</title><link href="https://www.cameronmacleod.com/blog/how-does-shazam-work" rel="alternate"></link><published>2022-02-19T00:00:00+00:00</published><updated>2022-02-19T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2022-02-19:/blog/how-does-shazam-work</id><summary type="html">&lt;p&gt;&lt;img alt="" src="/images/abracadabra/header.png"&gt;&lt;/p&gt;
+&lt;p&gt;Your phone's ability to identify any song it listens to is pure technological magic. In this article, I'll show you how one of the most popular apps, &lt;a href="https://www.shazam.com"&gt;Shazam&lt;/a&gt;, does it. The founders of Shazam released &lt;a href="https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf"&gt;a paper&lt;/a&gt; in 2003 documenting how it works, and I have been working on an …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="" src="/images/abracadabra/header.png"&gt;&lt;/p&gt;
+&lt;p&gt;Your phone's ability to identify any song it listens to is pure technological magic. In this article, I'll show you how one of the most popular apps, &lt;a href="https://www.shazam.com"&gt;Shazam&lt;/a&gt;, does it. The founders of Shazam released &lt;a href="https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf"&gt;a paper&lt;/a&gt; in 2003 documenting how it works, and I have been working on an implementation of that paper, &lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Where the paper doesn't explain something, I will fill in the gaps with how abracadabra approaches it. I've also included links to the corresponding part of the abracadabra codebase in relevant sections so you can follow along in Python if you prefer.&lt;/p&gt;
+&lt;p&gt;The state of the art has moved on since this paper, and Shazam has probably evolved its algorithm. However, the core principles of audio identification systems haven't changed, and the accuracy you can obtain using the original Shazam method is impressive.&lt;/p&gt;
+&lt;p&gt;To get the most out of this article, you should understand:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dobrian.github.io/cmp/topics/physics-of-sound/1.frequency-and-pitch.html"&gt;Frequency and pitch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pudding.cool/2018/02/waveforms/"&gt;Waves&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.twinkl.co.uk/teaching-wiki/axes"&gt;Graphs and axes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Quick links&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="toc"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#what-is-shazam"&gt;What is Shazam?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#why-is-song-recognition-hard-anyway"&gt;Why is song recognition hard anyway?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#system-overview"&gt;System overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#calculating-a-spectrogram"&gt;Calculating a spectrogram&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#the-fourier-transform"&gt;The Fourier transform&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#spectrograms"&gt;Spectrograms&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#fingerprinting"&gt;Fingerprinting&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="#why-is-the-fingerprint-based-on-spectrogram-peaks"&gt;Why is the fingerprint based on spectrogram peaks?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#finding-peaks"&gt;Finding peaks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#hashing"&gt;Hashing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#matching"&gt;Matching&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#enter-abracadabra"&gt;Enter abracadabra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#further-reading"&gt;Further reading&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h2 id="what-is-shazam"&gt;What is Shazam?&lt;/h2&gt;
+&lt;p&gt;Shazam is an app that identifies songs that are playing around you. You open the app while music is playing, and Shazam will record a few seconds of audio which it uses to search its database. Once it identifies the song that's playing, it will display the result on screen.&lt;/p&gt;
+&lt;video autoplay loop muted playsinline src="/images/abracadabra/shazam.mp4" class="portrait-video"&gt;Shazam recognising a song&lt;/video&gt;
+
+&lt;p&gt;Before Shazam was an app, it was a phone number. To identify a song, you would ring up the number and hold your phone's microphone to the music. After 30 seconds, Shazam would hang up and then text you details on the song you were listening to. If you were using a mobile phone back in 2002, you'll understand that the quality of phone calls back then made this a challenging task!&lt;/p&gt;
+&lt;h2 id="why-is-song-recognition-hard-anyway"&gt;Why is song recognition hard anyway?&lt;/h2&gt;
+&lt;p&gt;If you haven't done much signal processing before, it may not be obvious why this is a difficult problem to solve. To help give you an idea, take a look at the following audio:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Chris Cornell's &amp;quot;Like a Stone&amp;quot; waveform" src="/images/abracadabra/likeastone.png"&gt;&lt;/p&gt;
+&lt;p&gt;The above graph shows what &lt;a href="https://www.youtube.com/watch?v=pom_tO2-5s8"&gt;Chris Cornell's "Like a Stone"&lt;/a&gt; looks like when stored in a computer. Now take a look at the following section of the track:&lt;/p&gt;
+&lt;p&gt;&lt;img class="small-image" alt="Section from Like a Stone" src="/images/abracadabra/likeastonesection.png" /&gt;&lt;/p&gt;
+&lt;p&gt;If you wanted to tell whether this section of audio came from the track above, you could use a brute-force method. For example, you could slide the section of audio along the track and see if it matches at any point:&lt;/p&gt;
+&lt;video autoplay loop muted playsinline src="/images/abracadabra/slidingtrack.mp4"&gt;Matching a section of track by sliding it&lt;/video&gt;
+
+&lt;p&gt;This would be a bit slow, but it would work. Now imagine that you didn't know which track this audio came from, and you had a database of 10 million songs to search. This would take a lot longer!&lt;/p&gt;
+&lt;p&gt;What's worse, when you move from this toy example to samples that are recorded through a microphone you introduce background noise, frequency effects, amplitude changes and more. All of these can change the shape of the audio significantly. The sliding method just doesn't work that well for this problem.&lt;/p&gt;
+&lt;p&gt;Thankfully, Shazam's approach is a lot smarter than that. In the next section, you'll see the high-level overview of how this works.&lt;/p&gt;
+&lt;h2 id="system-overview"&gt;System overview&lt;/h2&gt;
+&lt;p&gt;If Shazam doesn't take the sliding approach we described above, what does it do? Take a look at the following high-level diagram:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Diagram showing high-level overview of Shazam design" src="/images/abracadabra/shazam_overview.png"&gt;&lt;/p&gt;
+&lt;p&gt;The first thing you will notice is that the diagram is split up into &lt;em&gt;register&lt;/em&gt; and &lt;em&gt;recognise&lt;/em&gt; flows. The &lt;em&gt;register&lt;/em&gt; flow remembers a song to enable it to be recognised in the future. The &lt;em&gt;recognise&lt;/em&gt; flow identifies a short section of audio.&lt;/p&gt;
+&lt;p&gt;Registering a song and identifying some audio share a lot of commonality. The following sections will go into more detail, but both flows have the following steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Calculate the &lt;strong&gt;spectrogram&lt;/strong&gt; of the song/audio. This is a graph of frequency against time. We'll talk more about spectrograms later.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Find peaks&lt;/strong&gt; in that spectrogram. These represent the loudest frequencies in the audio and will help us build a fingerprint.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hash&lt;/strong&gt; these peaks. In short, this means pairing peaks up to make a better fingerprint.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;After calculating these hashes, the &lt;em&gt;register&lt;/em&gt; flow will store them in the database. The &lt;em&gt;recognise&lt;/em&gt; flow will compare them to hashes already in the database to identify which song is playing through the &lt;strong&gt;matching&lt;/strong&gt; step.&lt;/p&gt;
+&lt;p&gt;In the next few sections, you'll learn more about each of these steps.&lt;/p&gt;
+&lt;h2 id="calculating-a-spectrogram"&gt;Calculating a spectrogram&lt;/h2&gt;
+&lt;p&gt;The first step for both flows is to obtain a spectrogram of the audio being registered or recognised. To understand spectrograms, you first have to understand Fourier transforms.&lt;/p&gt;
+&lt;h3 id="the-fourier-transform"&gt;The Fourier transform&lt;/h3&gt;
+&lt;p&gt;A &lt;a href="https://realpython.com/python-scipy-fft/"&gt;Fourier transform&lt;/a&gt; takes some audio and tells you which frequencies are present in that audio. For example, if you took a 20 Hertz sine wave and used the Fourier transform on it, you would see a big spike around 20 Hertz (Hz):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="20Hz sine wave and its Fourier transform" src="/images/abracadabra/fouriertransform20hz.png"&gt;&lt;/p&gt;
+&lt;p&gt;In the above image, you can see a large spike around 20Hz and nothing at other frequencies. Sine waves are often called &lt;strong&gt;pure tones&lt;/strong&gt; because of this property, since they only contain a single frequency.&lt;/p&gt;
+&lt;p&gt;The result of a Fourier transform is called a &lt;strong&gt;frequency spectrum&lt;/strong&gt;. We say that when you take the Fourier transform of a signal, you move it from the &lt;strong&gt;time domain&lt;/strong&gt; into the &lt;strong&gt;frequency domain&lt;/strong&gt;. These are fancy terms for describing whether time or frequency is along the bottom of a graph. In mathematical terms, the domain is more or less the X-axis of a graph.&lt;/p&gt;
+&lt;p&gt;The Y-axis of the frequency spectrum represents the strength of each frequency component. If a frequency component is stronger, then it will be more audible in the time-domain signal.&lt;/p&gt;
+&lt;p&gt;If you were to add a 50Hz sine wave at half the strength to that 20Hz sine wave, the resulting frequency spectrum would show a spike at 20Hz and a smaller spike at 50Hz:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="20Hz sine wave plus 50Hz sine wave and its Fourier transform" src="/images/abracadabra/fouriertransform20plus50.png"&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, adding multiple audio waves together combines the frequencies present in them. In fact, all audio signals can be reconstructed from waves like this. For more, take a look at 3Blue1Brown's &lt;a href="https://www.youtube.com/watch?v=spUNpyF58BY"&gt;video on the Fourier transform&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;One great property of the frequency domain is that it often helps us to see things that aren't clear in the time domain. For example, if you take the signal with two frequencies from before and add noise to it, in the time domain it looks visually very different. However, in the frequency domain, the two spikes are still very clear:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Fourier transform of a noisy signal" src="/images/abracadabra/noisyfouriertransform.png"&gt;&lt;/p&gt;
+&lt;p&gt;In the frequency domain graph on the right, you can still clearly see the spikes for the main component frequencies. It would be harder in the time domain to see what frequency sine waves went into the signal.&lt;/p&gt;
+&lt;p&gt;Up until now, our examples have only contained one or two frequencies, but what happens if you put a more complex signal through the Fourier transform? Let's take a look at our section of audio from Like a Stone:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Fourier transform of a Like a Stone sample" src="/images/abracadabra/fouriertransformsample.png"&gt;&lt;/p&gt;
+&lt;p&gt;Real audio files like the one above contain lots of different frequencies. This is a good thing, as it means that the frequencies present can uniquely identify songs.&lt;/p&gt;
+&lt;h3 id="spectrograms"&gt;Spectrograms&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra/blob/e0eb59a944d7c9999ff8a4bc53f5cfdeb07b39aa/abracadabra/fingerprint.py#L9"&gt;abracadabra implementation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you run a Fourier transform over an entire song, then you will see the strength of the frequencies present over the whole song. However, the frequencies that are present change over time. To better represent the frequencies changing over time, we need to split the song into small sections before taking the Fourier transform. This is called taking a spectrogram.&lt;/p&gt;
+&lt;p&gt;Here's a simplified animation of how spectrograms work:&lt;/p&gt;
+&lt;video autoplay loop muted playsinline src="/images/abracadabra/spectrogram.mp4"&gt;Explanation of the spectrogram process&lt;/video&gt;
+
+&lt;p&gt;In the above animation, you can see that the song is first split into small sections. Next, we use the Fourier transform to calculate the frequency spectrum of each of these sections. When you put all these frequency spectrums together, you get a spectrogram.&lt;/p&gt;
+&lt;p&gt;To make this concrete, let's take a look at the spectrogram of Like a Stone:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Spectrogram of Like a Stone" src="/images/abracadabra/spectrogram.png"&gt;&lt;/p&gt;
+&lt;p&gt;Even though the spectrogram looks 2-dimensional, it's actually a 3D graph with the following axes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Time (X-axis)&lt;/li&gt;
+&lt;li&gt;Frequency (Y-axis)&lt;/li&gt;
+&lt;li&gt;Strength (Z-axis/colour)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The Z-axis is represented by colour in the spectrogram above. Bright green shows a high magnitude for a particular frequency component and dark blue shows a low magnitude.&lt;/p&gt;
+&lt;p&gt;Looking at the spectrogram above, you can see that the brightest spots (strongest frequencies) almost exclusively occur below 5000Hz. This is quite common with music, for example most pianos have a &lt;a href="https://en.wikipedia.org/wiki/Piano_key_frequencies"&gt;frequency range&lt;/a&gt; of 27Hz-4186Hz.&lt;/p&gt;
+&lt;p&gt;The frequencies present in a track contain a lot of identifying information, and calculating the spectrogram allows us access to that information. In the next section, you'll learn how we turn all that information into a unique fingerprint for the track.&lt;/p&gt;
+&lt;h2 id="fingerprinting"&gt;Fingerprinting&lt;/h2&gt;
+&lt;p&gt;Just as a fingerprint uniquely identifies a person, we can extract a unique fingerprint for some audio from its spectrogram.&lt;/p&gt;
+&lt;p&gt;These audio fingerprints rely on finding peaks in the spectrogram. These peaks are the loudest frequencies at some time in the song. Because they are loud, it's likely they'll survive when subjected to noise or other distortions.&lt;/p&gt;
+&lt;p&gt;In the next section, you'll read some more about the motivation behind using spectrogram peaks to build fingerprints.&lt;/p&gt;
+&lt;h3 id="why-is-the-fingerprint-based-on-spectrogram-peaks"&gt;Why is the fingerprint based on spectrogram peaks?&lt;/h3&gt;
+&lt;p&gt;A spectrogram peak is a frequency that is loud at some point in an audio signal. You can recognise these on a spectrogram since they will be the brightest points.&lt;/p&gt;
+&lt;p&gt;In music, these would represent the loudest notes. For example, during a guitar solo, the notes that the guitar is playing might become spectrogram peaks since they would likely be the loudest notes at that time.&lt;/p&gt;
+&lt;p&gt;A spectrogram peak is the point least likely to be affected by noise. Noise has to be louder than the spectrogram peak to make it unrecognisable and the spectrogram peaks are the loudest frequency components in the track.&lt;/p&gt;
+&lt;p&gt;To make this visual, take a look at our earlier example of a Fourier transformed signal that had noise added to it. When noise is added, the frequency peaks still retain their rough shape.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Fourier transform of a noisy signal" src="/images/abracadabra/noisyfouriertransform.png"&gt;&lt;/p&gt;
+&lt;p&gt;Another advantage of using spectrogram peaks to fingerprint audio is that they cut down the amount of data we have to store. Storing only the loudest frequency components means we don't have to store everything else. This speeds up searching fingerprints since there is less data to look through.&lt;/p&gt;
+&lt;p&gt;Before we can use frequency peaks in our fingerprint though, we have to find them. In the next section, you'll learn how.&lt;/p&gt;
+&lt;h3 id="finding-peaks"&gt;Finding peaks&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra/blob/e0eb59a944d7c9999ff8a4bc53f5cfdeb07b39aa/abracadabra/fingerprint.py#L31"&gt;abracadabra implementation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As discussed in the previous section, the peaks of a spectrogram represent the strongest frequencies in a signal. For frequency peaks to be usable in an audio fingerprint, it's important that they are evenly spaced through the spectrogram.&lt;/p&gt;
+&lt;p&gt;It's important the peaks are evenly spaced in &lt;strong&gt;time&lt;/strong&gt;, so the system can recognise any section of the song. For example, if all the peaks were at the start of the song, then the fingerprint wouldn't cover later sections:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Peaks clustered in time" src="/images/abracadabra/peak_cluster_time.png"&gt;&lt;/p&gt;
+&lt;p&gt;In the image above, all the peaks (white crosses) are clustered at the start of the song. This means that the system can't recognise any sample from the rest of the song.&lt;/p&gt;
+&lt;p&gt;It's also important that the peaks are evenly spaced in &lt;strong&gt;frequency&lt;/strong&gt;, so the system can deal with noise and frequency distortion. Sometimes noise will be very loud and concentrated at a specific frequency range, for example a car horn in the background:&lt;/p&gt;
+&lt;video autoplay loop muted playsinline src="/images/abracadabra/peak_cluster_freq.mp4"&gt;Peaks clustered in a frequency band affected by noise&lt;/video&gt;
+
+&lt;p&gt;In the above animation, the peaks are well-spaced in time, but are clustered into a small frequency band. When a loud noise is introduced, for example a car horn, it can make an entire section of song unrecognisable by changing which peaks are selected.&lt;/p&gt;
+&lt;p&gt;To find spectrogram peaks while keeping them well-spaced, we can borrow a technique from image processing known as a maximum filter. The process looks something like the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Use the maximum filter to highlight peaks in the spectrogram.&lt;/li&gt;
+&lt;li&gt;Locate the highlighted peaks by comparing to our original spectrogram.&lt;/li&gt;
+&lt;li&gt;(Optional) Discard some peaks.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let's run through these steps one-by-one. First, let's take a look at how the maximum filter works:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 1: Maximum filter&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A maximum filter emphasises the peaks in an image. It does this by looking in a neighbourhood around each pixel for the maximum value and then setting the pixel to that local maximum. The following animation shows a maximum filter that looks at a 3x3 neighbourhood around each pixel:&lt;/p&gt;
+&lt;video autoplay loop muted playsinline src="/images/abracadabra/maximumfilter.mp4"&gt;Animation of a maximum filter on a simple image&lt;/video&gt;
+
+&lt;p&gt;As you can see in the above animation, the maximum filter takes each pixel of an image in turn and finds the maximum in a region surrounding it. The filtered pixel is then set to that local maximum. This has the effect of expanding each local peak to its surrounding area.&lt;/p&gt;
+&lt;p&gt;Running a maximum filter on Like a Stone's spectrogram gives the following result:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Spectrogram and maximum-filtered spectrogram of Like a Stone" src="/images/abracadabra/maxfilteredspectrogram.png"&gt;&lt;/p&gt;
+&lt;p&gt;The maximum-filtered spectrogram looks like a lower-resolution version of the original spectrogram. This is because the peaks in the signal have expanded and taken over the other pixels. Each box with the same colour in the filtered image corresponds to a local peak in the original image.&lt;/p&gt;
+&lt;p&gt;The maximum filter has a parameter that controls the size of the box to use when finding the local maxima. When you set this parameter to make a smaller box, you end up getting more peaks. Similarly, by setting this parameter larger you get fewer peaks.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 2: Recover original peaks&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The maximum filter doesn't do all the work for us. The filter has emphasised the local peaks, but it hasn't found their locations. To find the peak locations, we need to find the points that have equal values in the original spectrogram and the filtered spectrogram.&lt;/p&gt;
+&lt;p&gt;The idea behind this trick is that all the non-peak points in the spectrogram have been replaced by their local peaks, so their values have changed. The only points whose values haven't changed are the peaks.&lt;/p&gt;
+&lt;p&gt;Below is a zoomed in section of the spectrogram above. The points where the values are equal in the filtered and original spectrograms are highlighted:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zoomed section of spectrogram showing equal values in the maximum-filtered and original spectrograms" src="/images/abracadabra/zoomed_spectrogram.png"&gt;&lt;/p&gt;
+&lt;p&gt;As you can see in the images above, the highlighted points where the two spectrograms are equal correspond to the local peaks of that part of the image.&lt;/p&gt;
+&lt;p&gt;Plotting all of the peaks together produces something called a &lt;strong&gt;constellation map&lt;/strong&gt;. Here's the constellation map for Like a Stone:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Constellation map of Like a Stone" src="/images/abracadabra/constellationmap.png"&gt;&lt;/p&gt;
+&lt;p&gt;These graphs are called constellation maps since they look a bit like an image of the night sky. Who said computer science couldn't be romantic?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 3: (Optional) Discard peaks&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Once we have a constellation map of peaks, the next step is to potentially discard some. The size of our fingerprint is dependent on the number of peaks that we use in it. Keeping fingerprints small matters when you are storing millions of songs in your database.&lt;/p&gt;
+&lt;p&gt;However, by reducing the number of peaks we use, we reduce the accuracy of our system. Fewer peaks in a fingerprint mean fewer chances to match a sample to the correct song.&lt;/p&gt;
+&lt;p&gt;There are a couple of options for reducing the number of peaks in our fingerprint:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Take the top N peaks. N should be proportional to the length of audio that you are fingerprinting to avoid over-representing shorter songs.&lt;/li&gt;
+&lt;li&gt;Take all peaks above a certain threshold. This doesn't guarantee you a certain fingerprint size per time like the other method, but may give more accurate results.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;We have almost finished constructing our fingerprint, the next step is to produce a set of hashes from our peaks.&lt;/p&gt;
+&lt;h3 id="hashing"&gt;Hashing&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra/blob/e0eb59a944d7c9999ff8a4bc53f5cfdeb07b39aa/abracadabra/fingerprint.py#L96"&gt;abracadabra implementation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To motivate hashing, imagine that our fingerprint was just a collection of spectrogram peaks. Each peak's frequency would be represented by a certain number of bits, for example 10. With 10 bits of information, we can represent 2^10=1024 individual frequencies. With thousands of these points per track, we quickly get a lot of repeats.&lt;/p&gt;
+&lt;p&gt;Uniqueness is important for a fingerprint, since it makes searching a lot faster and helps to recognise more songs. Shazam's solution to the problem of uniqueness is to create hashes from pairs of peaks:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Diagram of two spectrogram peaks forming a hash" src="/images/abracadabra/hash_diagram.png"&gt;&lt;/p&gt;
+&lt;p&gt;The diagram above shows a zoomed in portion of a spectrogram. Each circle represents a peak and the dashed line box represents a hash. You can see that a hash is formed of two peaks. The information that is recorded for each hash is the frequency of each peak, f&lt;sub&gt;A&lt;/sub&gt; and f&lt;sub&gt;B&lt;/sub&gt;, and the time delta between them, 𝚫T.&lt;/p&gt;
+&lt;p&gt;The advantage of pairing points up is that two paired points are much more unique than a single point. Looking at it mathematically, if each point has 10 bits of frequency information, and the time delta between the two points could be represented by 10 bits, then you have 30 bits of information. 2^30=1073741824 which is &lt;strong&gt;significantly&lt;/strong&gt; larger than 1024 possibilities for a single point.&lt;/p&gt;
+&lt;p&gt;Shazam creates pairs using the following algorithm:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Pick a point. This will be called the anchor point.&lt;/li&gt;
+&lt;li&gt;Calculate a target zone of the spectrogram for the anchor point.&lt;/li&gt;
+&lt;li&gt;For every point in the target zone, create a pair with the anchor point.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can see this algorithm illustrated in the following animation:&lt;/p&gt;
+&lt;video autoplay loop muted playsinline src="/images/abracadabra/pairing.mp4"&gt;Animation of pairing points&lt;/video&gt;
+
+&lt;p&gt;Choosing a target zone isn't described in the Shazam paper, but the images the paper contains show it as starting slightly ahead of time of the anchor point and being centred on the anchor point's frequency.&lt;/p&gt;
+&lt;p&gt;Once a pair has been created, it is stored as a hash in the database with the following information:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th colspan="3"&gt;&lt;/th&gt;
+      &lt;th colspan="2"&gt;Other information&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Point A freq (f&lt;sub&gt;A&lt;/sub&gt;)&lt;/th&gt;
+    &lt;td&gt;Point B freq (f&lt;sub&gt;B&lt;/sub&gt;)&lt;/th&gt;
+    &lt;td&gt;Time delta (𝚫T)&lt;/th&gt;
+    &lt;td&gt;Point A time&lt;/th&gt;
+    &lt;td&gt;Track ID&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The first three columns (f&lt;sub&gt;A&lt;/sub&gt;, f&lt;sub&gt;B&lt;/sub&gt; and 𝚫T) make up the hash. The "Other information" is used to locate the hash at a specific time in a song. This will be used in matching later.&lt;/p&gt;
+&lt;p&gt;All of the hashes for a particular track make up the fingerprint. In the next section, you'll read about how Shazam matches these fingerprints.&lt;/p&gt;
+&lt;h2 id="matching"&gt;Matching&lt;/h2&gt;
+&lt;p&gt;Given a collection of fingerprints in a database, how does Shazam figure out which one a given audio sample matches? This is where the matching part of the system comes in. Recall the system diagram from earlier:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Diagram showing high-level overview of Shazam design" src="/images/abracadabra/shazam_overview.png"&gt;&lt;/p&gt;
+&lt;p&gt;The recognise and register flows both generate fingerprints. The difference lies in what they do with them. While the register flow stores fingerprints away for future matching, the recognise flow has to match its fingerprint with what is already in the database.&lt;/p&gt;
+&lt;p&gt;The matching algorithm contains the following steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Retrieve all hashes from the database that match the sample's fingerprint.&lt;/li&gt;
+&lt;li&gt;Group these hashes by song.&lt;/li&gt;
+&lt;li&gt;For each song, figure out if the hashes line up.&lt;/li&gt;
+&lt;li&gt;Choose the track with the most lined up hashes.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We'll look at each of these steps in turn.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 1: Retrieve matching hashes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra/blob/e0eb59a944d7c9999ff8a4bc53f5cfdeb07b39aa/abracadabra/storage.py#L75"&gt;abracadabra implementation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The first step is to find every hash in the database that matches a hash in the fingerprint we just created. Even though a hash is a 3-tuple of &lt;em&gt;(f&lt;sub&gt;A&lt;/sub&gt;, f&lt;sub&gt;B&lt;/sub&gt;, 𝚫T)&lt;/em&gt;, abracadabra stores this as &lt;em&gt;hash(f&lt;sub&gt;A&lt;/sub&gt;, f&lt;sub&gt;B&lt;/sub&gt;, 𝚫T)&lt;/em&gt; where &lt;code&gt;hash()&lt;/code&gt; is a &lt;a href="https://en.wikipedia.org/wiki/Hash_function"&gt;hash function&lt;/a&gt; that returns a single value. This way you only have to search for a single value per hash instead of three.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 2: Group hashes by song&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Recall the format of an individual hash in the database:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th colspan="3"&gt;&lt;/th&gt;
+      &lt;th colspan="2"&gt;Other information&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Point A freq (f&lt;sub&gt;A&lt;/sub&gt;)&lt;/th&gt;
+    &lt;td&gt;Point B freq (f&lt;sub&gt;B&lt;/sub&gt;)&lt;/th&gt;
+    &lt;td&gt;Time delta (𝚫T)&lt;/th&gt;
+    &lt;td&gt;Point A time&lt;/th&gt;
+    &lt;td&gt;Track ID&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Thanks to the track ID that we associated with each hash, we can group the hashes by track. This allows us to score each potentially matching track.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 3: Figure out if hashes line up&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra/blob/e0eb59a944d7c9999ff8a4bc53f5cfdeb07b39aa/abracadabra/recognise.py#L80"&gt;abracadabra implementation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If a sample matches a song, then the hashes present in that sample should line up nicely with the hashes in some section of that song. The diagram below illustrates what this would look like:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Diagram of sample hashes lining up to song hashes" src="/images/abracadabra/lineduphashes.png"&gt;&lt;/p&gt;
+&lt;p&gt;In the above diagram, a sample has been lined up with the section of the original song that it came from. The blue points represent the anchor points of the hashes.&lt;/p&gt;
+&lt;p&gt;While the above diagram shows the perfect scenario, there is a chance that the matching hashes from the database don't line up perfectly. For example, noise could have introduced peaks in the sample that resemble peaks at a different point in the song. This can lead to the following scenario:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Diagram of sample hashes imperfectly lining up with song hashes" src="/images/abracadabra/badlylineduphashes.png"&gt;&lt;/p&gt;
+&lt;p&gt;In the above diagram, the red circles represent hashes that match to points in the song outside the section the sample came from. In this situation, it's harder to see that the sample is a perfect match for the song.&lt;/p&gt;
+&lt;p&gt;What's worse, sometimes hashes can match to the wrong song! This is where checking that the hashes line up comes in.&lt;/p&gt;
+&lt;p&gt;To explain how we can check whether the hashes line up in code, let's look at an example. Let's imagine that we've got a list of matching hashes from the database and grouped them by track. For a given track, we can then check the time that the hash occurs in the original track against the time that the hash occurs in the sample.&lt;/p&gt;
+&lt;style&gt;
+.highlight-row&gt;td {
+  background-color: #B3FCB3 !important;
+}
+&lt;/style&gt;
+&lt;table&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Sample time&lt;/th&gt;
+    &lt;th&gt;Track time&lt;/th&gt;
+    &lt;th&gt;Track time - Sample time&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr class="highlight-row"&gt;
+    &lt;td&gt;3&lt;/td&gt;
+    &lt;td&gt;13&lt;/td&gt;
+    &lt;td&gt;&lt;b&gt;10&lt;/b&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class="highlight-row"&gt;
+    &lt;td&gt;4&lt;/td&gt;
+    &lt;td&gt;14&lt;/td&gt;
+    &lt;td&gt;&lt;b&gt;10&lt;/b&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;7&lt;/td&gt;
+    &lt;td&gt;20&lt;/td&gt;
+    &lt;td&gt;13&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class="highlight-row"&gt;
+    &lt;td&gt;5&lt;/td&gt;
+    &lt;td&gt;15&lt;/td&gt;
+    &lt;td&gt;&lt;b&gt;10&lt;/b&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;6&lt;/td&gt;
+    &lt;td&gt;12&lt;/td&gt;
+    &lt;td&gt;6&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr class="highlight-row"&gt;
+    &lt;td&gt;1&lt;/td&gt;
+    &lt;td&gt;11&lt;/td&gt;
+    &lt;td&gt;&lt;b&gt;10&lt;/b&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In the above table, you can see that all the matches with a &lt;em&gt;Track time - Sample time&lt;/em&gt; of 10 have been highlighted. These are the true matches, while the other two rows are false matches. To see this is the case, let's look at a similar diagram to the ones we saw before:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Diagram of sample hashes lining up to song hashes annotated with times" src="/images/abracadabra/lineduphashes2.png"&gt;&lt;/p&gt;
+&lt;p&gt;The above diagram contains the same hashes from the previous table. As you can see, the true matches have a &lt;em&gt;Track time - Sample time&lt;/em&gt; that is equal to how far into the track time that the sample starts.&lt;/p&gt;
+&lt;p&gt;While we don't know, for a given sample, the track time that it is taken from, we would expect the majority of matches to line up for the correct song. Therefore, we can take the song with the highest number of shared &lt;em&gt;'Sample time - Track time'&lt;/em&gt;s as the correct match.&lt;/p&gt;
+&lt;p&gt;You might wonder why we don't just go for the song that matches the largest number of hashes as it would be much simpler to implement. The problem with this approach is that not all songs are the same length. Longer songs are likely to get more matches than shorter songs and when some Spotify tracks are &lt;a href="https://www.reddit.com/r/spotify/comments/9i2ps6/longest_song_on_spotify/"&gt;over 4 hours long&lt;/a&gt; this can really bias your results!&lt;/p&gt;
+&lt;h2 id="enter-abracadabra"&gt;Enter abracadabra&lt;/h2&gt;
+&lt;p&gt;Well done for making it this far, that was a long journey! I learned everything written here over the process of writing &lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt;, my implementation of this paper.&lt;/p&gt;
+&lt;p&gt;If you are interested in seeing what this might look like in code, please take a look! Everything is open source and I've done my best to document the project. abracadabra can also be used as a library in other projects, so please feel free to re-mix and build something cool. If you do use it, I'd love to &lt;a href="/about"&gt;hear about it&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="further-reading"&gt;Further reading&lt;/h2&gt;
+&lt;p&gt;If you want to find out more about anything mentioned in this article, take a look below. I've also scattered some helpful links throughout the page.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://abracadabra.readthedocs.io/en/latest/"&gt;abracadabra docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/worldveil/dejavu"&gt;dejavu&lt;/a&gt; is another implementation of a song recogniser in Python. The author wrote a &lt;a href="https://willdrevo.com/fingerprinting-and-audio-recognition-with-python/"&gt;wonderful explanation&lt;/a&gt; on how it works.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://dhoiem.cs.illinois.edu/publications/cvpr2005-mr.pdf"&gt;Computer Vision for Music Identification&lt;/a&gt; is another approach to song recognition that is similar to how dejavu works.&lt;/li&gt;
+&lt;li&gt;An algorithm that takes a slightly different approach is &lt;a href="https://acoustid.org/chromaprint"&gt;Chromaprint&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.musicbrainz.org/Fingerprinting"&gt;Musicbrainz&lt;/a&gt; is an open-source encyclopedia of music information. This page explains how they fingerprint audio.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://aubio.org/news/20091111-2339_shazam"&gt;Playing with Shazam fingerprints&lt;/a&gt; is an article from 2009 about the author's experience implementing the Shazam algorithm.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://static1.squarespace.com/static/53f7940ae4b05c506d396373/t/5669c81ba2bab86d89ef3dec/1449773083824/Koh_30x40.pdf"&gt;Alignment of videos of same event using audio fingerprinting&lt;/a&gt; is an example of a use case for this algorithm that goes beyond music.&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Tutorials"></category><category term="abracadabra"></category><category term="Audio"></category><category term="Python"></category></entry><entry><title>What a computer science degree looks like in 2020</title><link href="https://www.cameronmacleod.com/blog/cs-degree-structure" rel="alternate"></link><published>2020-05-25T00:00:00+01:00</published><updated>2020-05-25T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-05-25:/blog/cs-degree-structure</id><summary type="html">&lt;p&gt;Lots of people who are learning to code ask the question "Should I get a CS degree or do a bootcamp?", or "Is a degree necessary?". I have just finished my degree (not graduated yet), and while I can't give all the answers to these questions, I can share my …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lots of people who are learning to code ask the question "Should I get a CS degree or do a bootcamp?", or "Is a degree necessary?". I have just finished my degree (not graduated yet), and while I can't give all the answers to these questions, I can share my experience.&lt;/p&gt;
 &lt;p&gt;In this post I will go into detail about what my degree contained. You can use this information to decide whether university is for you, make your own curriculum, or even just see how the syllabus has changed since you went.&lt;/p&gt;
 &lt;p&gt;I don't want to tell you to get a degree, and I equally don't want to tell you to not get one. It is a personal choice. However, on the whole I'm very pleased that I went to university. I learned a lot of things that I wouldn't have otherwise, but more importantly, I met lots of great people and had experiences that I couldn't have had in any other setting. The piece of paper that I will get once I graduate is important for the &lt;a href="/blog/why-pm-over-software"&gt;job I chose&lt;/a&gt;, but it won't be important for everyone on my course.&lt;/p&gt;
 &lt;p&gt;Below you will find a list of every module I took in the course of my degree and their content. Not every degree will look like this, I had a lot of elective modules and some universities are more practical than others, but this should give you an idea of what university can offer.&lt;/p&gt;
@@ -95,7 +393,6 @@
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="csdegree-year"&gt;
   &lt;h2&gt;Year 2&lt;/h2&gt;
   &lt;p&gt;Year 2 only had 20 credits free. Bayes Theorem was a big theme in year 2.&lt;/p&gt;
@@ -230,7 +527,6 @@
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="csdegree-year"&gt;
   &lt;h2&gt;Year 3&lt;/h2&gt;
   &lt;p&gt;Year 3 was the first honours year, and so courses start to get more specific in comparison to the foundational courses of years 1 and 2. It had 50 free credits&lt;/p&gt;
@@ -323,7 +619,6 @@
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="csdegree-year"&gt;
   &lt;h2&gt;Year 4&lt;/h2&gt;
   &lt;p&gt;Year 4 really frees up with 80 credits for optional courses. Of course, most of these credits have to be spent in the area of computer science unlike years 1 and 2.&lt;/p&gt;
@@ -453,41 +748,41 @@
 &lt;li&gt;&lt;a href="#creating-the-game-state"&gt;Creating the game state&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#python-lists"&gt;Python lists&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#the-microbit-co-ordinate-system"&gt;The micro:bit co-ordinate system&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-1-filling-in-the-state"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 1: Filling in the state&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-1-filling-in-the-state"&gt; Your turn 1: Filling in the state&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#drawing-to-the-screen"&gt;Drawing to the screen&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#drawing-the-food"&gt;Drawing the food&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#python-for-loops"&gt;Python for loops&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-2-drawing-the-snake"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 2: Drawing the snake&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-2-drawing-the-snake"&gt; Your turn 2: Drawing the snake&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#running-our-code"&gt;Running our code&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#moving-the-snake"&gt;Moving the snake&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#python-if-statements"&gt;Python if statements&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-3-calculating-the-new-head"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 3: Calculating the new head&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-4-removing-the-tail"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 4: Removing the tail&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-3-calculating-the-new-head"&gt; Your turn 3: Calculating the new head&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-4-removing-the-tail"&gt; Your turn 4: Removing the tail&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#wrapping"&gt;Wrapping&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#your-turn-5-wrap-the-screen"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 5: Wrap the screen&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-5-wrap-the-screen"&gt; Your turn 5: Wrap the screen&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#getting-input"&gt;Getting input&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#accelerometers"&gt;Accelerometers&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#simulator-only-how-to-test-with-the-accelerometer"&gt;Simulator only: How to test with the accelerometer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-6-updating-direction"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 6: Updating direction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-6-updating-direction"&gt; Your turn 6: Updating direction&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#food"&gt;Food&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#your-turn-7-eating-food"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 7: Eating food&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-7-eating-food"&gt; Your turn 7: Eating food&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#random-numbers"&gt;Random numbers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-8-generating-food"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 8: Generating food&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-8-generating-food"&gt; Your turn 8: Generating food&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#ending-the-game"&gt;Ending the game&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#loop-control"&gt;Loop control&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-9-ending-the-game"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 9: Ending the game&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-9-ending-the-game"&gt; Your turn 9: Ending the game&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#final-notes"&gt;Final notes&lt;/a&gt;&lt;/li&gt;
@@ -535,26 +830,24 @@
 &lt;h2 id="skeleton-code"&gt;Skeleton code&lt;/h2&gt;
 &lt;p&gt;To make it easier to get started, we'll be working from a skeleton file. Find it at &lt;a href="https://github.com/notexactlyawe/microbit-snake/blob/master/skeleton.py"&gt;this link&lt;/a&gt; and copy the contents into the &lt;a href="https://www.cameronmacleod.com/createwithcode/"&gt;create.withcode editor&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Let's take a look at each part of the code to figure out what it does.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;microbit&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;microbit&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Snake&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;At the very top of the file is an import. An import allows us to use code someone else has written in our own script. In this case, the other code we're using is the &lt;code&gt;microbit&lt;/code&gt; library, which allows us to control various components of the micro:bit including the display and accelerometer.&lt;/p&gt;
 &lt;p&gt;Skipping the class definition for now, at the bottom of the file is our game loop.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;handle_input&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The game loop is the entry point for the game (the first bit of code to be executed). It defines a series of actions that we do repeatedly in order to make the game work. In this case, we get some input from the user, update the &lt;dfn title="The state of a program is another word for its variables"&gt;game state&lt;/dfn&gt; accordingly and then re-draw the screen. Updating the screen twice a second feels about right, and so at the end we sleep for 500 milliseconds (half a second).&lt;/p&gt;
 &lt;p&gt;The functions called in the game loop are part of the Snake class, which is defined above the game loop.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Snake&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Snake&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; This class contains the functions that operate&lt;/span&gt;
 &lt;span class="sd"&gt;        on our game as well as the state of the game.&lt;/span&gt;
 &lt;span class="sd"&gt;        It&amp;#39;s a handy way to link the two.&lt;/span&gt;
@@ -573,8 +866,7 @@
         &lt;span class="o"&gt;...&lt;/span&gt;
 
 &lt;span class="n"&gt;game&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Snake&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;A class is a handy way of keeping some state, like the position of our snake, alongside the functions that operate on it. Our class has a few different functions that we'll have to write.&lt;/p&gt;
 &lt;ul&gt;
@@ -593,7 +885,8 @@
 &lt;p&gt;
 A class is a way of linking functions to variables, but you can also think of it as defining the 'type' of something. Let's use cars as an analogy:
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Car&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Car&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;colour&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;
@@ -609,7 +902,7 @@ A class is a way of linking functions to variables, but you can also think of it
 &lt;span class="c1"&gt;# Prints &amp;quot;This is a white Vauxhall Astra&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;golf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_info&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="c1"&gt;# Prints &amp;quot;This is a blue Volkswagen Golf&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
@@ -635,7 +928,7 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 &lt;p&gt;Before we can intialise the game state, we need to learn a little bit about Python and the micro:bit. Feel free to skip these sections if you have done this before.&lt;/p&gt;
 &lt;h3 id="python-lists"&gt;Python lists&lt;/h3&gt;
 &lt;p&gt;Lists are a way to store multiple values in the same variable in Python. If you haven't come across them before there's a more &lt;a href="http://openbookproject.net/thinkcs/python/english3e/lists.html"&gt;detailed introduction here&lt;/a&gt;. You may be able to get by with the cheat sheet below though.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# define a list&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# define a list&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="c1"&gt;# access elements of a list (start counting at 0)&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -658,8 +951,7 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;list_of_coords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id="the-microbit-co-ordinate-system"&gt;The micro:bit co-ordinate system&lt;/h3&gt;
 &lt;p&gt;On the front of a micro:bit is a grid of LEDs. When drawing something on the screen, we need a way to describe individual LEDs within this grid so that we know which one to light up. This is where the co-ordinate system comes in.&lt;/p&gt;
@@ -668,7 +960,7 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 &lt;p&gt;In the image above, point A is at the co-ordinates &lt;code&gt;[3, 0]&lt;/code&gt;. The left number in these co-ordinates is the position along the X axis and the right number is the position along the Y axis. Similarly, point B is at co-ordinates &lt;code&gt;[1, 2]&lt;/code&gt;.&lt;/p&gt;
 &lt;h3 id="your-turn-1-filling-in-the-state"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 1: Filling in the state&lt;/h3&gt;
 &lt;p&gt;If you now feel comfortable with these concepts, you'll notice that the &lt;code&gt;__init__&lt;/code&gt; function has some commented out code. When you uncomment that, it looks like the below. Feel free to have a go at completing it and we'll look at the solution in the next section.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# direction is a string with up, down, left or right&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# direction is a string with up, down, left or right&lt;/span&gt;
 &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;
 &lt;span class="c1"&gt;# snake is a list of the pixels that the snake is at&lt;/span&gt;
 &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
@@ -676,31 +968,31 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;
 &lt;span class="c1"&gt;# whether or not to end the game (boolean)&lt;/span&gt;
 &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
 Let's talk through the solution line by line.
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;up&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;up&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
 We defined `self.direction` to be a string and I've chosen to make the snake go up at first. If you've put any other direction that's fine too.
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
 I've put my food in the middle of the left-most column to start with. If you've put it elsewhere, that's fine as long as you've defined valid co-ordinates that aren't the same as the snake's starting position.
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
@@ -715,25 +1007,23 @@ This variable tells us whether the game has finished or not. It wouldn't be very
 &lt;p&gt;Ideally, then, we need a function to light up an individual LED using its co-ordinates. The snake and the food are both stored using co-ordinates, so if we can draw these on one at a time then we'll have completed our &lt;code&gt;draw&lt;/code&gt; function.&lt;/p&gt;
 &lt;p&gt;The micro:bit offers us a number of different ways to &lt;a href="https://microbit-micropython.readthedocs.io/en/latest/display.html"&gt;draw to the screen&lt;/a&gt;, including one that does what we need. &lt;code&gt;display.set_pixel(x, y, value)&lt;/code&gt; will set the pixel at &lt;code&gt;[x, y]&lt;/code&gt; to the level of brightness &lt;code&gt;value&lt;/code&gt;. &lt;code&gt;value&lt;/code&gt; can be between 0 and 9, where 0 is off and 9 is fully on.&lt;/p&gt;
 &lt;p&gt;Now that we have a function to turn on a pixel, we can start to fill in our &lt;code&gt;draw&lt;/code&gt; function.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clear&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_pixel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="c1"&gt;# TODO: draw snake&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The first thing we do in this function is &lt;code&gt;display.clear()&lt;/code&gt;. This sets all the LEDs off, which is important because this draw function will be called repeatedly and we want to draw something different each time. If we didn't clear the display, then the game state from the last iteration of the game loop would still be there.&lt;/p&gt;
 &lt;p&gt;Next we use the &lt;code&gt;self.food&lt;/code&gt; co-ordinates to draw the food. We use the intensity &lt;code&gt;5&lt;/code&gt; because that will help us to distinguish it from the snake.&lt;/p&gt;
 &lt;p&gt;Before we draw the snake, let's take a look at &lt;code&gt;for&lt;/code&gt; loops in Python. Again, if you've done this before, feel free to skip it.&lt;/p&gt;
 &lt;h3 id="python-for-loops"&gt;Python &lt;code&gt;for&lt;/code&gt; loops&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;for&lt;/code&gt; loops are great for when you want to do the same thing to multiple elements. In Python they're written like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;variable_name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;iterable_thing&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;variable_name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;iterable_thing&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;do_things&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;variable_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;iterable_thing&lt;/code&gt; is something with multiple elements, for example a list, tuple or even a &lt;code&gt;range(start, stop)&lt;/code&gt;. &lt;code&gt;variable_name&lt;/code&gt; is the name that you assign to the element that you are currently working on in the loop. To make this example more concrete, here's how you would print the numbers from one to five.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="mi"&gt;2&lt;/span&gt;
@@ -749,20 +1039,19 @@ This variable tells us whether the game has finished or not. It wouldn't be very
 &lt;span class="mi"&gt;3&lt;/span&gt;
 &lt;span class="mi"&gt;4&lt;/span&gt;
 &lt;span class="mi"&gt;5&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id="your-turn-2-drawing-the-snake"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 2: Drawing the snake&lt;/h3&gt;
 &lt;p&gt;Now you know how to light up individual pixels, and how to use a &lt;code&gt;for&lt;/code&gt; loop to go over a list, you should be able to draw the snake to the screen. You'll want to draw the snake with intensity &lt;code&gt;9&lt;/code&gt; so that it looks different from the food we drew earlier. As before, the solution is below.&lt;/p&gt;
 &lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clear&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_pixel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;part&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
       &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_pixel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;part&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;part&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
@@ -788,7 +1077,7 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 &lt;p&gt;So our first step will be to calculate the new head. We can do that with the help of &lt;code&gt;if&lt;/code&gt; statements.&lt;/p&gt;
 &lt;h3 id="python-if-statements"&gt;Python &lt;code&gt;if&lt;/code&gt; statements&lt;/h3&gt;
 &lt;p&gt;Sometimes we want to choose what to do based on a condition. For example, you would want to wear a coat if it was raining outside, but if it was sunny you would put on sunglasses. You can do this in Python using &lt;code&gt;if&lt;/code&gt; statements.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# rain is a boolean variable (True or False)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# rain is a boolean variable (True or False)&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;put_on_coat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -796,11 +1085,10 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
     &lt;span class="n"&gt;put_on_sunglasses&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="c1"&gt;# we&amp;#39;ll go outside whether it&amp;#39;s raining or sunny&lt;/span&gt;
 &lt;span class="n"&gt;go_outside&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You can even choose between more than two options. Sticking with the weather example, maybe it could be windy, rainy, or sunny. Being the responsible person that you are, you have clothes for each different possibility.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# in this case, weather is a string&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# in this case, weather is a string&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;weather&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;rain&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;put_on_raincoat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;weather&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;wind&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -808,8 +1096,7 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;weather&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sunny&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;put_on_sunglasses&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;go_outside&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id="your-turn-3-calculating-the-new-head"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 3: Calculating the new head&lt;/h3&gt;
 &lt;p&gt;We're going to be working in the &lt;code&gt;update()&lt;/code&gt; function here, since that updates the game state before we draw the screen.&lt;/p&gt;
@@ -821,10 +1108,9 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 &lt;/ol&gt;
 &lt;p&gt;The most difficult step here will be figuring out what to do for each direction. You might find this easier if you draw it out on a co-ordinate grid like the one in the &lt;a href="#the-microbit-co-ordinate-system"&gt;micro:bit co-ordinate system section&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt; - If you create the new head from the old head (e.g. &lt;code&gt;new_head = self.snake[-1]&lt;/code&gt;), you will need to copy it. Otherwise you will have a really annoying bug. You can copy a list like so:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# call list() to copy the old head&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# call list() to copy the old head&lt;/span&gt;
 &lt;span class="n"&gt;new_head&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;details&gt;&lt;summary&gt;What is the really annoying bug? (optional)&lt;/summary&gt;
 &lt;p&gt;
@@ -851,7 +1137,7 @@ Some objects in Python, for example tuples, are _immutable_ which means their va
 &lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;new_head&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;up&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="c1"&gt;# Y decreases as you go up the screen&lt;/span&gt;
@@ -865,7 +1151,7 @@ Some objects in Python, for example tuples, are _immutable_ which means their va
         &lt;span class="n"&gt;new_head&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
     &lt;span class="c1"&gt;# put the head on the end of the list&lt;/span&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_head&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
@@ -875,20 +1161,20 @@ Firstly we copy the old head of the snake, remember `-1` is the index of the las
 
 &lt;h3 id="your-turn-4-removing-the-tail"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 4: Removing the tail&lt;/h3&gt;
 &lt;p&gt;Remember the &lt;code&gt;.pop(idx)&lt;/code&gt; method on lists from before? You can remove an item from a list by calling this function with the index of the item that you want to remove.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_list&lt;/span&gt;
 &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Your task is to remove the tail of the snake. Here's a hint, if we add the new head to the end of the snake list, then the tail will be at the start of it.&lt;/p&gt;
 &lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
 The full `update` function should now look like this:
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;new_head&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;up&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;new_head&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
@@ -901,7 +1187,7 @@ The full `update` function should now look like this:
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_head&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="c1"&gt;# cut the tail of the snake&lt;/span&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;/p&gt;
@@ -925,7 +1211,7 @@ The full `update` function should now look like this:
 &lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="c1"&gt;# the code from above&lt;/span&gt;
     &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;right&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;new_head&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
@@ -943,7 +1229,7 @@ The full `update` function should now look like this:
 
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_head&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
@@ -971,29 +1257,27 @@ We add a new `if` statement for both the X co-ordinate and the Y co-ordinate. In
 &lt;h3 id="your-turn-6-updating-direction"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 6: Updating direction&lt;/h3&gt;
 &lt;p&gt;We're working in the &lt;code&gt;handle_input&lt;/code&gt; function for this section.&lt;/p&gt;
 &lt;p&gt;The accelerometer will return you values in the X and Y axes using the following functions. We don't care about the Z axis since our screen is 2D.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# These functions return values in the range -2000 to 2000&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# These functions return values in the range -2000 to 2000&lt;/span&gt;
 &lt;span class="n"&gt;accelerometer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_x&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;accelerometer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_y&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The X axis increases going left to right, and the Y axis increases from top to bottom, just like the screen co-ordinates.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Accelerometer axes on the micro:bit" src="/images/microbitsnake/acceldir.png"&gt;&lt;/p&gt;
 &lt;p&gt;We'll calculate the direction the user wants to go in by taking the biggest value from X and Y and then seeing if it's positive or negative (see diagram above). Careful though! X and Y can both be negative, so you can't do a simple &lt;code&gt;X &amp;gt; Y&lt;/code&gt;. To see why, imagine that X was 500 and Y was -1000. Even though Y is a bigger number than X, &lt;code&gt;X &amp;gt; Y == True&lt;/code&gt; because X is positive.&lt;/p&gt;
 &lt;p&gt;You may find the absolute function, &lt;code&gt;abs(x)&lt;/code&gt;, useful.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# abs (the absolute function) will remove a minus sign if present&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# abs (the absolute function) will remove a minus sign if present&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;
 &lt;span class="kc"&gt;True&lt;/span&gt;
 &lt;span class="c1"&gt;# ... and leave the value alone if not&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;
 &lt;span class="kc"&gt;True&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;handle_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;handle_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="c1"&gt;# get accelerometer values&lt;/span&gt;
     &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;accelerometer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_x&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;accelerometer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_y&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -1010,7 +1294,7 @@ We add a new `if` statement for both the X co-ordinate and the Y co-ordinate. In
             &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;up&amp;quot;&lt;/span&gt;
         &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;down&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
@@ -1031,7 +1315,7 @@ First we get the raw values from the accelerometer for X and Y, and then we comp
 &lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_head&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;new_head&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -1040,7 +1324,7 @@ First we get the raw values from the accelerometer for X and Y, and then we comp
     &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="c1"&gt;# cut the tail of the snake&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
@@ -1052,15 +1336,14 @@ We cut the tail in the else block, which means that we only cut it when the snak
 
 &lt;h3 id="random-numbers"&gt;Random numbers&lt;/h3&gt;
 &lt;p&gt;We want to generate new food randomly so that the game is interesting. We can do this using the &lt;code&gt;random&lt;/code&gt; module in Python. Here's an example that guesses (poorly) how old you are.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# import the function randint from the module random&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# import the function randint from the module random&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;random&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;randint&lt;/span&gt;
 
 &lt;span class="c1"&gt;# generate a random integer between 0 and 100 (inclusive)&lt;/span&gt;
 &lt;span class="n"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;I bet you are &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; years old&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;In this program we import then call the &lt;code&gt;randint(start, stop)&lt;/code&gt; function. This will give us back a number between 1 and 100. We then print it out using an &lt;a href="https://realpython.com/python-f-strings/"&gt;f-string&lt;/a&gt;. Side note: if you haven't come across f-strings before, check out that link. They are very cool.&lt;/p&gt;
 &lt;p&gt;We'll be using this &lt;code&gt;randint&lt;/code&gt; function to generate random co-ordinates.&lt;/p&gt;
@@ -1070,14 +1353,14 @@ We cut the tail in the else block, which means that we only cut it when the snak
 &lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;new_head&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
         &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;food&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
@@ -1105,7 +1388,7 @@ These numbers are very small for a computer, and we won't notice much delay in t
 &lt;p&gt;We've seen &lt;code&gt;while&lt;/code&gt; loops a couple of times so far. Most recently we used them to generate food, but at the very start we saw how our game loop is made of a &lt;code&gt;while&lt;/code&gt; loop.&lt;/p&gt;
 &lt;p&gt;In Python, you have the ability to run a loop forever with &lt;code&gt;while True&lt;/code&gt;. The complementary feature is that you have the ability to cut a loop short early using the &lt;code&gt;break&lt;/code&gt; statement. Let's take a quick look at how it works.&lt;/p&gt;
 &lt;p&gt;In the below example, we wait for the micro:bit's button A to be pressed then show a happy face.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# import all the microbit code&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# import all the microbit code&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;microbit&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 
 &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -1118,8 +1401,7 @@ These numbers are very small for a computer, and we won't notice much delay in t
 
 &lt;span class="c1"&gt;# show a happy face&lt;/span&gt;
 &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HAPPY&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id="your-turn-9-ending-the-game"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 9: Ending the game&lt;/h3&gt;
 &lt;p&gt;There are three steps to implementing losing the game.&lt;/p&gt;
@@ -1133,14 +1415,15 @@ These numbers are very small for a computer, and we won't notice much delay in t
 &lt;p&gt;
 In our update function:
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
     &lt;span class="c1"&gt;# after we calculate new_head&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;new_head&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;snake&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_head&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
@@ -1149,7 +1432,7 @@ We've just added an `if` statement here to check whether the new head is already
 In our game loop:
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
     &lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="c1"&gt;# now game.end will be set&lt;/span&gt;
@@ -1158,7 +1441,7 @@ In our game loop:
         &lt;span class="k"&gt;break&lt;/span&gt;
     &lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 
 
@@ -1213,10 +1496,9 @@ We add an if statement to check whether `game.end` was set to `True` in `update`
 &lt;p&gt;Starting from v1.17 the downscale stabilization window can be set on a per-HPA basis by setting the &lt;code&gt;behavior.scaleDown.stabilizationWindowSeconds&lt;/code&gt; field in the v2beta2 API. See Support for configurable scaling behavior.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;This was what I was looking for, so I set this field in my HPA deployment file and... got an error. I double and triple checked the code I was using to make sure it matched the spec on that page, but every time I tried to &lt;code&gt;kubectl apply&lt;/code&gt; this file, I got the error below.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ kubectl create -f some-autoscale.yaml
-error validating &lt;span class="s2"&gt;&amp;quot;some-autoscale.yaml&amp;quot;&lt;/span&gt;: error validating data: ValidationError&lt;span class="o"&gt;(&lt;/span&gt;HorizontalPodAutoscaler.spec&lt;span class="o"&gt;)&lt;/span&gt;: unknown field &lt;span class="s2"&gt;&amp;quot;behavior&amp;quot;&lt;/span&gt; in io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerSpec
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ kubectl create -f some-autoscale.yaml
+error validating &lt;span class="s2"&gt;&amp;quot;some-autoscale.yaml&amp;quot;&lt;/span&gt;: error validating data: ValidationError&lt;span class="o"&gt;(&lt;/span&gt;HorizontalPodAutoscaler.spec&lt;span class="o"&gt;)&lt;/span&gt;: unknown field &lt;span class="s2"&gt;&amp;quot;behavior&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerSpec
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Just to make this even more confusing, the Kubernetes API docs agreed with the error that the &lt;code&gt;behavior&lt;/code&gt; field didn't exist. At this point, I had exhausted all other options and had to turn to StackOverflow for help. At 7PM I posted a question, &lt;a href="https://stackoverflow.com/questions/60045564/kubernetes-unknown-field-behavior"&gt;Kubernetes unknown field "behavior"&lt;/a&gt;, and at 11PM I received an answer. The answerer said that I was reading the docs wrong and that the field didn't exist in the first place. Ready to drag this unsuspecting samaritan into my confusion, I went to sleep and planned to reply the following day.&lt;/p&gt;
 &lt;p&gt;When I checked the docs the following day, the quote from above was missing. After considering whether I'd imagined it all, I discovered that the Kubernetes docs were in a public GitHub repository that was linked from the bottom of each page. It turned out that a couple of hours before I had posted my question, the text about the &lt;code&gt;behavior&lt;/code&gt; object had been &lt;a href="https://github.com/kubernetes/website/pull/18963"&gt;removed in a PR&lt;/a&gt;. The &lt;code&gt;behavior&lt;/code&gt; object was meant to be introduced in V1.18 instead of V1.17 that was current at the time. The reason I hadn't seen the updated docs was probably due to my browser caching the old version since I'd visited that page a lot.&lt;/p&gt;
@@ -1282,28 +1564,26 @@ Think about it this way: Using the browser example, if your most accessed site w
 &lt;p&gt;It turns out that there is an optimal strategy for choosing what to replace in a cache and that is to get rid of the thing that won't be used for longest. This is called &lt;a href="https://en.wikipedia.org/wiki/Page_replacement_algorithm#The_theoretically_optimal_page_replacement_algorithm"&gt;Bélády's optimal algorithm&lt;/a&gt; but unfortunately requires knowing the future. Thankfully, in many situations LRU provides near optimal performance .&lt;/p&gt;
 &lt;h2 id="how-do-i-use-it"&gt;How do I use it?&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;functools.lru_cache&lt;/code&gt; is a decorator, so you can just place it on top of your function:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;functools&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;functools&lt;/span&gt;
 
 &lt;span class="nd"&gt;@functools&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lru_cache&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;maxsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;128&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
   &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The Fibonacci example is really commonly used here because the speed-up is so dramatic for so little effort. Running this on my machine, I got the following results for with and without cache versions of this function.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;fib(30)&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;fib(30)&amp;#39;&lt;/span&gt;
 &lt;span class="m"&gt;10&lt;/span&gt; loops, best of &lt;span class="m"&gt;3&lt;/span&gt;: &lt;span class="m"&gt;282&lt;/span&gt; msec per loop
 $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_cache&amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;fib_cache(30)&amp;#39;&lt;/span&gt;
 &lt;span class="m"&gt;10000000&lt;/span&gt; loops, best of &lt;span class="m"&gt;3&lt;/span&gt;: &lt;span class="m"&gt;0&lt;/span&gt;.0791 usec per loop
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;That's a &lt;strong&gt;3,565,107x&lt;/strong&gt; speed increase for a single line of code.&lt;/p&gt;
 &lt;p&gt;Of course, I think it can be hard to see how you'd actually use this in practice, since it's quite rare to need to calculate the Fibonacci series. Going back to our example with web pages, we can take the slightly more realistic example of caching rendered templates.&lt;/p&gt;
 &lt;p&gt;In server development, usually individual pages are stored as templates that have placeholder variables. For example, the following is a template for a page that displays the results of various football matches for a given day.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
   &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Matches for {{day}}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;table&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;matches&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -1322,13 +1602,12 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
     &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;table&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
   &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;When the template is rendered, it looks like the below:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Match template rendered" src="/images/match.png"&gt;&lt;/p&gt;
 &lt;p&gt;This is a prime target for caching because the results for each day won't change and it's likely that there will be multiple hits on each day. Below is a Flask app that serves this template. I've introduced a 50ms delay to simulate getting the match dictionary over a network/from a large database.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;
 
@@ -1349,17 +1628,15 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
 
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Using &lt;code&gt;requests&lt;/code&gt; to get three match days without caching takes on average 171ms running locally on my computer. This isn't bad, but we can do better, even considering the artificial delay.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/matches/&amp;lt;day&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/matches/&amp;lt;day&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="nd"&gt;@functools&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lru_cache&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;maxsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;show_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;matches&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;matches.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;day&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;I've set &lt;code&gt;maxsize=4&lt;/code&gt; in this example, because my test script only gets the same three days and it's best to set a power of two. Using this makes the average come down to 13.7ms over 10 loops.&lt;/p&gt;
 &lt;h2 id="anything-else-i-should-know"&gt;Anything else I should know?&lt;/h2&gt;
@@ -1379,18 +1656,17 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
 &lt;p&gt;&lt;a href="https://cachetools.readthedocs.io/en/stable/"&gt;More powerful caching library&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/python/cpython/blob/3.7/Lib/functools.py"&gt;Python 3.7 functools source&lt;/a&gt;&lt;/p&gt;</content><category term="Tutorials"></category><category term="Caching"></category><category term="Python"></category><category term="Performance"></category></entry><entry><title>Better parameter validation in Flask with marshmallow</title><link href="https://www.cameronmacleod.com/blog/better-validation-flask-marshmallow" rel="alternate"></link><published>2019-04-25T00:00:00+01:00</published><updated>2019-04-25T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2019-04-25:/blog/better-validation-flask-marshmallow</id><summary type="html">&lt;p&gt;Recently I've had two Flask projects with endpoints that take lots of parameters. While working on the first project, I noticed that I was writing a lot of code for validation in each method, and it ended up looking ugly and probably full of bugs. When I started the second …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently I've had two Flask projects with endpoints that take lots of parameters. While working on the first project, I noticed that I was writing a lot of code for validation in each method, and it ended up looking ugly and probably full of bugs. When I started the second project, I thought that there had to be a way to fix this, and it turns out that there was!&lt;/p&gt;
 &lt;p&gt;To illustrate what I'm talking about, imagine you need to implement the following endpoint for a note taking app.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;POST&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/api/note - POST
 
-&lt;span class="k"&gt;Parameters&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
- &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;No&lt;/span&gt; &lt;span class="n"&gt;longer&lt;/span&gt; &lt;span class="k"&gt;than&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt; &lt;span class="n"&gt;characters&lt;/span&gt;
- &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;No&lt;/span&gt; &lt;span class="n"&gt;longer&lt;/span&gt; &lt;span class="k"&gt;than&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="n"&gt;characters&lt;/span&gt;
- &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;No&lt;/span&gt; &lt;span class="n"&gt;smaller&lt;/span&gt; &lt;span class="k"&gt;than&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
- &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;Not&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;future&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+Parameters:
+ - title (str) No longer than 60 characters
+ - note (str) No longer than 1000 characters
+ - user_id (int) No smaller than 1
+ - time_created (datetime) Not in the future
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;In Flask without a library for validation, you might end up writing the following view function to implement this.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_note&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="c1"&gt;# we don&amp;#39;t know that the &amp;#39;title&amp;#39; parameter exists yet&lt;/span&gt;
     &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1409,8 +1685,7 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
 
     &lt;span class="n"&gt;actually_create_note&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The two parameters I validated up there were strings which made this easier, the &lt;code&gt;integer&lt;/code&gt; parameter would have additionally needed a type check and don't even think about parsing and validating the &lt;code&gt;datetime&lt;/code&gt; there. The above code is long and very prone to bugs. Of course, you could abstract it all to cleaner methods, but that wouldn't solve the underlying problem of having to write all of this manually.&lt;/p&gt;
 &lt;p&gt;Thankfully, it turns out there is a library that does validation like this straight out of the box. It's called &lt;a href="https://marshmallow.readthedocs.io/"&gt;marshmallow&lt;/a&gt; and is meant for object serialization. Alongside parsing and dumping, it also comes with some powerful validation functionality built-in.&lt;/p&gt;
@@ -1422,7 +1697,7 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
 
 &lt;p&gt;The core idea in marshmallow is that data structure is represented with a schema. A schema is a class that defines what format the data comes in. It dictates what fields exist, their types and validation on them. You create a schema by sub-classing &lt;code&gt;marshmallow.Schema&lt;/code&gt; and creating attributes that will represent the fields in your data.&lt;/p&gt;
 &lt;p&gt;Using the note-taking endpoint as an example, we'll create a schema that represents the structure of incoming data to the endpoint.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;marshmallow&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;marshmallow&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CreateNoteInputSchema&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; /api/note - POST&lt;/span&gt;
@@ -1438,11 +1713,10 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
     &lt;span class="n"&gt;note&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This is a pretty simple class, but already it contains a lot of magic. This will check both existence of fields and their types for you. It's important to note that it won't do any business logic validation yet. You can use this in a view function like so:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;create_note_schema&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreateNoteInputSchema&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;create_note_schema&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CreateNoteInputSchema&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
 &lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_note&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
@@ -1453,11 +1727,10 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
     &lt;span class="c1"&gt;# business requirements aren&amp;#39;t necessarily satisfied (length, time bounds, etc)&lt;/span&gt;
     &lt;span class="n"&gt;actually_create_note&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;We don't have all of the functionality we need, but even still this has cleaned up the code considerably. The other thing we need to do is to add validation methods for the business requirements. You can do this in two ways with marshmallow. Firstly you could create a method in your schema that has the &lt;code&gt;@validates&lt;/code&gt; decorator, or for simple cases, you could give the &lt;code&gt;validate&lt;/code&gt; keyword argument to the field.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;marshmallow&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;marshmallow&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;
 &lt;span class="c1"&gt;# import built-in validators&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;marshmallow.validate&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Range&lt;/span&gt;
 
@@ -1470,12 +1743,11 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
     &lt;span class="c1"&gt;# at least 1&lt;/span&gt;
     &lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
     &lt;span class="n"&gt;time_created&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You will notice above that marshmallow comes with a bunch of handy validators built-in. You can see a full list of them in the &lt;a href="https://marshmallow.readthedocs.io/en/3.0/api_reference.html#module-marshmallow.validate"&gt;API docs&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We're still missing a validator for checking that the date is not in the future. Luckily we can use the &lt;code&gt;@validates&lt;/code&gt; decorator to write our own.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;marshmallow&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ValidationError&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;
 
@@ -1490,19 +1762,17 @@ $ python3 -m timeit -s &lt;span class="s1"&gt;&amp;#39;from fib_test import fib_
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;ValidationError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Can&amp;#39;t create notes in the future!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="c1"&gt;# if the function doesn&amp;#39;t raise an error, the check is considered passed&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;We don't even have to use any extra code in our view function now to use the extra validation, we still just call the &lt;code&gt;validate&lt;/code&gt; method.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nd"&gt;@app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/api/note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_note&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="n"&gt;errors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;create_note_schema&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BAD_REQUEST&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
     &lt;span class="n"&gt;actually_create_note&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id="extra-information"&gt;Extra information&lt;/h2&gt;
 &lt;p&gt;marshmallow is very powerful and contains much more than what I have covered here. Thankfully there are many good resources on the internet for you to research further.&lt;/p&gt;
@@ -1580,17 +1850,16 @@ United Kingdom  &lt;/p&gt;
 &lt;h3 id="how-do-i-know-it-worked"&gt;How do I know it worked?&lt;/h3&gt;
 &lt;p&gt;DNS is notoriously slow to make changes to. Most providers recommend waiting 24 hours (some up to 72!) before you will be able to see your changes. When checking to see whether or not your changes have propagated, you can do one of two things. Use a DNS tool (like the one from &lt;a href="https://www.dnsstuff.com/tools"&gt;DNSstuff&lt;/a&gt; above) or use the unix command &lt;code&gt;dig&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;dig&lt;/code&gt; is a command that can find and list the DNS records for a given domain name. On Linux and Mac machines, you can run the following in terminal:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="nv"&gt;@isla&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;noall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="nv"&gt;@isla&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;noall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;DiG&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.10.3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;P4&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Ubuntu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;noall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;global&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;655&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mf"&gt;192.30.252.154&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;655&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mf"&gt;192.30.252.153&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The output might look a bit confusing, but it's the last two lines that count. Those are the records that &lt;code&gt;dig&lt;/code&gt; has found for your domain. In my case, this output was from before I changed my DNS settings, so it still shows the old &lt;strong&gt;A records&lt;/strong&gt; that I was using. Running it now would give something like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="nv"&gt;@isla&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;noall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="nv"&gt;@isla&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;noall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;DiG&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9.10.3&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;P4&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Ubuntu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;noall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="p"&gt;;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;global&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -1599,8 +1868,7 @@ United Kingdom  &lt;/p&gt;
 &lt;span class="n"&gt;notexactlyawe&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3599&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mf"&gt;185.199.109.153&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;notexactlyawe&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3599&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mf"&gt;185.199.111.153&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;notexactlyawe&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3599&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="ow"&gt;IN&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="mf"&gt;185.199.110.153&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You might notice that there are a lot of &lt;strong&gt;A records&lt;/strong&gt;, but that is because &lt;strong&gt;ALIAS records&lt;/strong&gt; will resolve automatically to &lt;strong&gt;A records&lt;/strong&gt; in the DNS server, meaning that when you run &lt;code&gt;dig&lt;/code&gt; it just shows you the final output.&lt;/p&gt;
 &lt;p&gt;You will want to check that the &lt;strong&gt;IP addresses&lt;/strong&gt; in the last column of the &lt;code&gt;dig&lt;/code&gt; output look similar to the ones above. For a complete and up to date list of GitHub Pages &lt;strong&gt;IP addresses&lt;/strong&gt;, you can check &lt;a href="https://help.github.com/articles/setting-up-an-apex-domain/#configuring-a-records-with-your-dns-provider"&gt;their documentation&lt;/a&gt;.&lt;/p&gt;
@@ -1688,7 +1956,7 @@ United Kingdom  &lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Most of these were quite easy to integrate, thanks to some logical design on the part of the team at MIT. The CV upload functionality took me longer than the others though mostly due to my inexperience with front-end development. Before I was comfortable signing this off for use during the hack (due to it being so critical), I wanted to do some manual testing, and part of that was load testing since I was worried about a huge amount of users at the start of the hackathon.&lt;/p&gt;
 &lt;p&gt;I wrote up a quick script that started up a number of threads and used them all to fire a request at the home page of the application in a staggered fashion, hoping to simulate actual usage.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;random&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt;
@@ -1712,41 +1980,38 @@ United Kingdom  &lt;/p&gt;
 
 
 &lt;span class="n"&gt;load_test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The results I got from this quick test were mildly alarming. Each of these times (in seconds) is how long it took to receive a full response from the server.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;cameron@isla:~/src/created/cog$ python load_test.py&lt;/span&gt;
-&lt;span class="err"&gt;Waiting&lt;/span&gt;
-&lt;span class="err"&gt;1.971983&lt;/span&gt;
-&lt;span class="err"&gt;3.797295&lt;/span&gt;
-&lt;span class="err"&gt;5.694615&lt;/span&gt;
-&lt;span class="err"&gt;7.800551&lt;/span&gt;
-&lt;span class="err"&gt;9.669649&lt;/span&gt;
-&lt;span class="err"&gt;...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;isla&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;load_test&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;Waiting&lt;/span&gt;
+&lt;span class="mf"&gt;1.971983&lt;/span&gt;
+&lt;span class="mf"&gt;3.797295&lt;/span&gt;
+&lt;span class="mf"&gt;5.694615&lt;/span&gt;
+&lt;span class="mf"&gt;7.800551&lt;/span&gt;
+&lt;span class="mf"&gt;9.669649&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;To put this into context, this isn’t a particularly demanding page. It displays to the user a list of available hardware and does little else.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="The main page for Cog" src="/images/cog_main_page.png" title="The main page for Cog"&gt;&lt;/p&gt;
 &lt;p&gt;However, I wasn’t sure whether the problem was with my script or with Cog itself. To investigate this, I started Googling around profiling in Flask (the framework Cog is written in) and &lt;a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvi-debugging-testing-and-profiling"&gt;this article&lt;/a&gt; pointed me to some &lt;a href="http://werkzeug.pocoo.org/docs/0.14/contrib/profiler/"&gt;Werkzeug middleware&lt;/a&gt; that did what I wanted. The output is below from one of the endpoint calls - pay attention to the top call.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PATH&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/inventory&amp;#39;&lt;/span&gt;
-         &lt;span class="mi"&gt;1761654&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1645404&lt;/span&gt; &lt;span class="n"&gt;primitive&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;829&lt;/span&gt; &lt;span class="n"&gt;seconds&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;PATH: &amp;#39;/inventory&amp;#39;
+         1761654 function calls (1645404 primitive calls) in 2.829 seconds
 
-   &lt;span class="n"&gt;Ordered&lt;/span&gt; &lt;span class="k"&gt;by&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;internal&lt;/span&gt; &lt;span class="k"&gt;time&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;call&lt;/span&gt; &lt;span class="k"&gt;count&lt;/span&gt;
-   &lt;span class="n"&gt;List&lt;/span&gt; &lt;span class="n"&gt;reduced&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;1183&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="n"&gt;due&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;restriction&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+   Ordered by: internal time, call count
+   List reduced from 1183 to 10 due to restriction &amp;lt;10&amp;gt;
 
-   &lt;span class="n"&gt;ncalls&lt;/span&gt;  &lt;span class="n"&gt;tottime&lt;/span&gt;  &lt;span class="n"&gt;percall&lt;/span&gt;  &lt;span class="n"&gt;cumtime&lt;/span&gt;  &lt;span class="n"&gt;percall&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;lineno&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="mi"&gt;759&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;375&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;377&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="k"&gt;method&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;execute&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;psycopg2.extensions.cursor&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;
-     &lt;span class="mi"&gt;4536&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;062&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;280&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sqlalchemy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;sql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;schema&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;898&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-     &lt;span class="mi"&gt;6426&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;056&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;070&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sqlalchemy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;sql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;674&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__getattr__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      759    0.375    0.000    0.377    0.000 {method &amp;#39;execute&amp;#39; of &amp;#39;psycopg2.extensions.cursor&amp;#39; objects}
+     4536    0.062    0.000    0.280    0.000 /home/cameron/src/created/cog/venv/local/lib/python2.7/site-packages/sqlalchemy/sql/schema.py:898(__init__)
+     6426    0.056    0.000    0.070    0.000 /home/cameron/src/created/cog/venv/local/lib/python2.7/site-packages/sqlalchemy/sql/elements.py:674(__getattr__)
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The 2.829 seconds it took to serve the page suggested that the problem was somewhere in the application as opposed to my script and looked at the output. The most suspicious line to my eyes was the one that ended &lt;code&gt;{method 'execute' of 'psycopg2.extensions.cursor' objects}&lt;/code&gt;, mostly because it was the most expensive, but also because it meant the database calls were taking a long time to execute. After a while going down the rabbit hole of trying different deployment options with the database in case the problem was with the database itself I went back and saw the &lt;code&gt;ncalls&lt;/code&gt; column had 759 in it. This was fishy as all the page was doing was displaying a list of hardware available to the user, which shouldn’t have taken more than a couple of queries at most.&lt;/p&gt;
 &lt;p&gt;I was stumped as to what could be making this many queries in the application as the code all looked sensible, so I set SQLAlchemy to echo all queries to see whether I could see a pattern. Sparing you the output of 759 queries, a lot of COUNTs were popping up suggesting that the problem may be in the quantities of items since those were the only numbers on the page. Sure enough, looking at the code I found this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;InventoryEntry&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;InventoryEntry&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
     &lt;span class="nd"&gt;@property&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;quantity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -1758,34 +2023,31 @@ United Kingdom  &lt;/p&gt;
                    &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;with_entities&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;RequestItem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quantity&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scalar&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;In the database, there was a table for inventory entries (roughly corresponding to 'classes' of items) and items (think instances of these classes). When calculating how many of a particular inventory entry was available it would check how many of an inventory entry existed in total and then subtract the number of approved requests for that item. This looks fine at first glance, and indeed it gives the correct result. However the issue is that this is calculated on a per-item basis, meaning each item makes 2 queries, when this could be done in a single query on a table basis.&lt;/p&gt;
 &lt;p&gt;The solution comes through the use of the GROUP BY clause. The following code selects all items that no user has claimed and groups them by the ID in &lt;code&gt;inventory_entry&lt;/code&gt; before counting the groups (effectively returning how many of each inventory entry are free). The bottom line is a dictionary comprehension that puts them in a nice format for the Jinja template.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="n"&gt;counts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;session&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;\
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="n"&gt;counts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;session&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;\
             &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;group_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;\
             &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter_by&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;\
             &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;counts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;id_&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;counts&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The one important thing to note with this code is that &lt;code&gt;counts[“some_id”]&lt;/code&gt; will error if &lt;code&gt;some_id&lt;/code&gt; has no items free since &lt;code&gt;counts&lt;/code&gt; won't have it as a key. The way to fix this is by using &lt;code&gt;counts.get(“some_id”, 0)&lt;/code&gt; where &lt;code&gt;0&lt;/code&gt; is a default value that’s returned when there’s no entry in the dictionary for &lt;code&gt;some_id&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;And as thought, the profiler output looks much better. The ncalls to &lt;code&gt;cursor.execute&lt;/code&gt; has gone down to 4, which is much more sensible!&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PATH&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/inventory&amp;#39;&lt;/span&gt;
-         &lt;span class="mi"&gt;30824&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;29237&lt;/span&gt; &lt;span class="n"&gt;primitive&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;055&lt;/span&gt; &lt;span class="n"&gt;seconds&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;PATH&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/inventory&amp;#39;&lt;/span&gt;
+         &lt;span class="mi"&gt;30824&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;29237&lt;/span&gt; &lt;span class="n"&gt;primitive&lt;/span&gt; &lt;span class="n"&gt;calls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="mf"&gt;0.055&lt;/span&gt; &lt;span class="n"&gt;seconds&lt;/span&gt;
 
-   &lt;span class="n"&gt;Ordered&lt;/span&gt; &lt;span class="k"&gt;by&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;internal&lt;/span&gt; &lt;span class="k"&gt;time&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;call&lt;/span&gt; &lt;span class="k"&gt;count&lt;/span&gt;
-   &lt;span class="n"&gt;List&lt;/span&gt; &lt;span class="n"&gt;reduced&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;677&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="n"&gt;due&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;restriction&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+   &lt;span class="n"&gt;Ordered&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;internal&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;
+   &lt;span class="n"&gt;List&lt;/span&gt; &lt;span class="n"&gt;reduced&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="mi"&gt;677&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="n"&gt;due&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;restriction&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 
-   &lt;span class="n"&gt;ncalls&lt;/span&gt;  &lt;span class="n"&gt;tottime&lt;/span&gt;  &lt;span class="n"&gt;percall&lt;/span&gt;  &lt;span class="n"&gt;cumtime&lt;/span&gt;  &lt;span class="n"&gt;percall&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;lineno&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="mi"&gt;297&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;003&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;010&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sqlalchemy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;orm&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;loading&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;instances&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="mi"&gt;4&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;003&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;001&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;003&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;001&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="k"&gt;method&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;execute&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;psycopg2.extensions.cursor&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;
-    &lt;span class="mi"&gt;162&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;003&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;025&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;025&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="k"&gt;method&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;join&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;unicode&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+   &lt;span class="n"&gt;ncalls&lt;/span&gt;  &lt;span class="n"&gt;tottime&lt;/span&gt;  &lt;span class="n"&gt;percall&lt;/span&gt;  &lt;span class="n"&gt;cumtime&lt;/span&gt;  &lt;span class="n"&gt;percall&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;lineno&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="mi"&gt;297&lt;/span&gt;    &lt;span class="mf"&gt;0.003&lt;/span&gt;    &lt;span class="mf"&gt;0.000&lt;/span&gt;    &lt;span class="mf"&gt;0.010&lt;/span&gt;    &lt;span class="mf"&gt;0.000&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sqlalchemy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;orm&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;loading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;instances&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="mi"&gt;4&lt;/span&gt;    &lt;span class="mf"&gt;0.003&lt;/span&gt;    &lt;span class="mf"&gt;0.001&lt;/span&gt;    &lt;span class="mf"&gt;0.003&lt;/span&gt;    &lt;span class="mf"&gt;0.001&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;execute&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;psycopg2.extensions.cursor&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="mi"&gt;162&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;    &lt;span class="mf"&gt;0.003&lt;/span&gt;    &lt;span class="mf"&gt;0.000&lt;/span&gt;    &lt;span class="mf"&gt;0.025&lt;/span&gt;    &lt;span class="mf"&gt;0.025&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;join&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;unicode&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The final code that we deployed is now sitting on &lt;a href="https://github.com/notexactlyawe/cog"&gt;GitHub&lt;/a&gt; so you can feel free to take a look.&lt;/p&gt;</content><category term="Blogging"></category><category term="Python"></category><category term="Databases"></category><category term="SQLAlchemy"></category></entry><entry><title>Useful links relating to abracadabra</title><link href="https://www.cameronmacleod.com/blog/abracadabra-links" rel="alternate"></link><published>2016-07-18T00:00:00+01:00</published><updated>2016-07-18T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-07-18:/blog/abracadabra-links</id><summary type="html">&lt;p&gt;Here is a collection of links relating to abracadabra that may be useful for anyone looking to do something similar.&lt;/p&gt;
 &lt;h2 id="github-repositories"&gt;Github Repositories&lt;/h2&gt;
@@ -1817,25 +2079,23 @@ United Kingdom  &lt;/p&gt;
 &lt;p&gt;&lt;a href="http://static1.squarespace.com/static/53f7940ae4b05c506d396373/t/5669c81ba2bab86d89ef3dec/1449773083824/Koh_30x40.pdf"&gt;Alignment of videos of same event using audio fingerprinting&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://news.ycombinator.com/item?id=8303713"&gt;De-duplicating music library&lt;/a&gt; &lt;/p&gt;</content><category term="Link collections"></category><category term="Python"></category><category term="abracadabra"></category></entry><entry><title>How to read WAVE files in Python</title><link href="https://www.cameronmacleod.com/blog/reading-wave-python" rel="alternate"></link><published>2016-04-07T00:00:00+01:00</published><updated>2016-04-07T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-04-07:/blog/reading-wave-python</id><summary type="html">&lt;p&gt;Any project that uses audio will usually start out using WAVE files for its on-disk presence, and as with many things in Python, there's a standard library module for that. Now don't get me wrong in the rest of this article - &lt;code&gt;wave&lt;/code&gt; does the job. The thing is that it …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Any project that uses audio will usually start out using WAVE files for its on-disk presence, and as with many things in Python, there's a standard library module for that. Now don't get me wrong in the rest of this article - &lt;code&gt;wave&lt;/code&gt; does the job. The thing is that it can be a bit confusing to get started with and it's not &lt;em&gt;always&lt;/em&gt; the best tool for the job. This post will go over my journey in reading WAVEs and the various approaches I found.&lt;/p&gt;
 &lt;p&gt;When you read &lt;a href="https://docs.python.org/2/library/wave.html"&gt;the documentation&lt;/a&gt; for &lt;code&gt;wave&lt;/code&gt;, you quickly find the &lt;code&gt;readframes()&lt;/code&gt; function for reading the meat of the file. This just as quickly poses a problem, that of how to parse the data it returns.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;\xd04\xd52\xd63\x824...&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;#39;\xd04\xd52\xd63\x824...&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Of course, this wouldn't pose even the hint of a problem if we bothered to read &lt;a href="http://www-mmsp.ece.mcgill.ca/documents/audioformats/wave/wave.html"&gt;the spec&lt;/a&gt; for wave files, but who reads those? As a result, I found myself writing some convoluted string parser that was the textbook example of treating the symptom as opposed to the cause. It also didn't really work. It would technically be a valid solution, but there is little point getting it up and running because there are better ways.&lt;/p&gt;
 &lt;p&gt;The next level up is discovering the &lt;code&gt;struct&lt;/code&gt; module. &lt;code&gt;struct&lt;/code&gt; is a module that allows for the reading of raw binary data into native Python types that I discovered - after some pained googling - in [this Stack Overflow question]. &lt;code&gt;struct.unpack()&lt;/code&gt; contains all of the magic that we need. It takes a format string and the data that you want to extract. The below is an example from the git history of &lt;a href="http://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_whole&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_whole&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;wav_r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wave&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
     &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tell&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getnframes&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
         &lt;span class="n"&gt;decoded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;h&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readframes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
         &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;decoded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;As a quick explanation of the format string, the &lt;code&gt;&amp;lt;&lt;/code&gt; indicates little-endian data (defined in the spec) and the &lt;code&gt;h&lt;/code&gt; 1 signed 16-bit int. Before you think "Hooray, a code snippet! I can leave now.", there are a few problems with this approach. Firstly, wave data is not guaranteed to contain int16s and so this would fall down on a good number of files. Second, it's horrendously slow.&lt;/p&gt;
 &lt;p&gt;Tackling the second issue first, you could minimise the number of calls to &lt;code&gt;unpack()&lt;/code&gt;. Calling it with fmt as &lt;code&gt;"&amp;lt;hh"&lt;/code&gt; it would expect two int16s, &lt;code&gt;"&amp;lt;hhhhh"&lt;/code&gt; would expect 5. You could change the above code to use this as so:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;...&lt;/span&gt;
 &lt;span class="n"&gt;chunk_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;
 &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tell&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getnframes&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;h&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;chunk_size&lt;/span&gt;
@@ -1847,15 +2107,13 @@ United Kingdom  &lt;/p&gt;
         &lt;span class="n"&gt;tmp_fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;h&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;chunk_size&lt;/span&gt;
         &lt;span class="n"&gt;decoded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;struct&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tmp_fmt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;wav_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readframes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tmp_size&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Yet again, as this article is a journey as opposed to a straight out answer, this ugly hack does not come recommended. In general, I find that ugly code == doing things wrong. This example is no different, but is easily fixed.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;...&lt;/span&gt;
 &lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;&lt;/span&gt;&lt;span class="si"&gt;{0}&lt;/span&gt;&lt;span class="s2"&gt;h&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk_size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;As an aside, if you are not already using this way to construct format strings, please take the time to internalise it. But back to the change, this works due to an unremarkable looking line in the docs for &lt;code&gt;struct&lt;/code&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1863,7 +2121,7 @@ United Kingdom  &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Much better, no?&lt;/p&gt;
 &lt;p&gt;Our next issue was that the data isn't guaranteed to come in signed 16-bit integers. The good news is that we can get what format it is in programmatically with our old friend, the &lt;code&gt;wave&lt;/code&gt; module. The below code is from abracadabra.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;mode&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;
     &lt;span class="n"&gt;sizes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;h&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wav&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;wave&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1871,15 +2129,13 @@ United Kingdom  &lt;/p&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wav&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getnchannels&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fmt_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sizes&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wav&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getsampwidth&lt;/span&gt;&lt;span class="p"&gt;()]&lt;/span&gt;
     &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fmt_size&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you have read the WAVE spec you will see that BitsPerSample is 2 bytes, suggesting that getsampwidth() could return an arbitrary value between 0 and 8192. In reality, you are not likely to encounter greater than 32 bit audio in the wild and &lt;code&gt;sizes&lt;/code&gt; reflects this. Saying this, it would probably be good practice to catch KeyError when setting fmt_size and raising a more readable error.&lt;/p&gt;
 &lt;p&gt;So we now have a working solution, and I have used this in production code before now. There is, however, another optimisation you could make assuming that the files you are loading in aren't overly large and it involves the &lt;code&gt;array&lt;/code&gt; module. &lt;code&gt;array&lt;/code&gt; is advertised in the docs as memory efficent arrays, but for our purposes we care more that its implemented in straight C and is lightning fast. It's also pretty easy to use.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fmt_size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fmt_size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getsize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;itemsize&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You just pass it a format string (of the same format as struct) and then call &lt;code&gt;fromfile&lt;/code&gt; with a file object and the size of it. According to &lt;a href="http://stackoverflow.com/questions/5804052/improve-speed-of-reading-and-converting-from-binary-file-with-python"&gt;this&lt;/a&gt; SO question it is up to 40X faster than &lt;code&gt;struct.unpack&lt;/code&gt; &lt;em&gt;YMMV&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;This has been my journey in attempting to read WAVE files and hopefully it will help. Most of the code in here has been adapted from my repository &lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt; and if you are looking for an up-to-date version of what I am using there might be a good place to look. This article is &lt;a href="https://github.com/notexactlyawe/cameronmacleod.com"&gt;also on Github&lt;/a&gt; so if you see something wrong, please submit an issue.&lt;/p&gt;</content><category term="Tutorials"></category><category term="Python"></category><category term="Audio"></category></entry><entry><title>The importance of letting go of ideas</title><link href="https://www.cameronmacleod.com/blog/importance-of-letting-go" rel="alternate"></link><published>2016-03-13T00:00:00+00:00</published><updated>2016-03-13T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-03-13:/blog/importance-of-letting-go</id><summary type="html">&lt;p&gt;On May 29 2015, I made my first entry into a fancy notebook I had bought. This was going to be it, I was never again going to struggle in vain to remember that killer idea I had earlier. Everything was getting written down from here on out.&lt;/p&gt;</summary><content type="html">&lt;p&gt;On May 29 2015, I made my first entry into a fancy notebook I had bought. This was going to be it, I was never again going to struggle in vain to remember that killer idea I had earlier. Everything was getting written down from here on out.&lt;/p&gt;

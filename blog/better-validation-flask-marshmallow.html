@@ -85,18 +85,17 @@
     <span class="category"><a href="/category/tutorials.html">Tutorials</a></span>
 	<p>Recently I've had two Flask projects with endpoints that take lots of parameters. While working on the first project, I noticed that I was writing a lot of code for validation in each method, and it ended up looking ugly and probably full of bugs. When I started the second project, I thought that there had to be a way to fix this, and it turns out that there was!</p>
 <p>To illustrate what I'm talking about, imagine you need to implement the following endpoint for a note taking app.</p>
-<div class="highlight"><pre><span></span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">note</span> <span class="o">-</span> <span class="n">POST</span>
+<div class="highlight"><pre><span></span><code>/api/note - POST
 
-<span class="k">Parameters</span><span class="p">:</span>
- <span class="o">-</span> <span class="n">title</span> <span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="k">No</span> <span class="n">longer</span> <span class="k">than</span> <span class="mi">60</span> <span class="n">characters</span>
- <span class="o">-</span> <span class="n">note</span> <span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="k">No</span> <span class="n">longer</span> <span class="k">than</span> <span class="mi">1000</span> <span class="n">characters</span>
- <span class="o">-</span> <span class="n">user_id</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="k">No</span> <span class="n">smaller</span> <span class="k">than</span> <span class="mi">1</span>
- <span class="o">-</span> <span class="n">time_created</span> <span class="p">(</span><span class="n">datetime</span><span class="p">)</span> <span class="k">Not</span> <span class="k">in</span> <span class="n">the</span> <span class="n">future</span>
-</pre></div>
-
+Parameters:
+ - title (str) No longer than 60 characters
+ - note (str) No longer than 1000 characters
+ - user_id (int) No smaller than 1
+ - time_created (datetime) Not in the future
+</code></pre></div>
 
 <p>In Flask without a library for validation, you might end up writing the following view function to implement this.</p>
-<div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/note&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/note&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">create_note</span><span class="p">():</span>
     <span class="c1"># we don&#39;t know that the &#39;title&#39; parameter exists yet</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -115,8 +114,7 @@
 
     <span class="n">actually_create_note</span><span class="p">()</span>
     <span class="k">return</span> <span class="s1">&#39;ok&#39;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>The two parameters I validated up there were strings which made this easier, the <code>integer</code> parameter would have additionally needed a type check and don't even think about parsing and validating the <code>datetime</code> there. The above code is long and very prone to bugs. Of course, you could abstract it all to cleaner methods, but that wouldn't solve the underlying problem of having to write all of this manually.</p>
 <p>Thankfully, it turns out there is a library that does validation like this straight out of the box. It's called <a href="https://marshmallow.readthedocs.io/">marshmallow</a> and is meant for object serialization. Alongside parsing and dumping, it also comes with some powerful validation functionality built-in.</p>
@@ -128,7 +126,7 @@
 
 <p>The core idea in marshmallow is that data structure is represented with a schema. A schema is a class that defines what format the data comes in. It dictates what fields exist, their types and validation on them. You create a schema by sub-classing <code>marshmallow.Schema</code> and creating attributes that will represent the fields in your data.</p>
 <p>Using the note-taking endpoint as an example, we'll create a schema that represents the structure of incoming data to the endpoint.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">marshmallow</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">fields</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">marshmallow</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">fields</span>
 
 <span class="k">class</span> <span class="nc">CreateNoteInputSchema</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; /api/note - POST</span>
@@ -144,11 +142,10 @@
     <span class="n">note</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Str</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">user_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Int</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">time_created</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>This is a pretty simple class, but already it contains a lot of magic. This will check both existence of fields and their types for you. It's important to note that it won't do any business logic validation yet. You can use this in a view function like so:</p>
-<div class="highlight"><pre><span></span><span class="n">create_note_schema</span> <span class="o">=</span> <span class="n">CreateNoteInputSchema</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="n">create_note_schema</span> <span class="o">=</span> <span class="n">CreateNoteInputSchema</span><span class="p">()</span>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/note&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">create_note</span><span class="p">():</span>
@@ -159,11 +156,10 @@
     <span class="c1"># business requirements aren&#39;t necessarily satisfied (length, time bounds, etc)</span>
     <span class="n">actually_create_note</span><span class="p">()</span>
     <span class="k">return</span> <span class="s1">&#39;ok&#39;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>We don't have all of the functionality we need, but even still this has cleaned up the code considerably. The other thing we need to do is to add validation methods for the business requirements. You can do this in two ways with marshmallow. Firstly you could create a method in your schema that has the <code>@validates</code> decorator, or for simple cases, you could give the <code>validate</code> keyword argument to the field.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">marshmallow</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">fields</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">marshmallow</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">fields</span>
 <span class="c1"># import built-in validators</span>
 <span class="kn">from</span> <span class="nn">marshmallow.validate</span> <span class="kn">import</span> <span class="n">Length</span><span class="p">,</span> <span class="n">Range</span>
 
@@ -176,12 +172,11 @@
     <span class="c1"># at least 1</span>
     <span class="n">user_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Int</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">Range</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">time_created</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>You will notice above that marshmallow comes with a bunch of handy validators built-in. You can see a full list of them in the <a href="https://marshmallow.readthedocs.io/en/3.0/api_reference.html#module-marshmallow.validate">API docs</a>.</p>
 <p>We're still missing a validator for checking that the date is not in the future. Luckily we can use the <code>@validates</code> decorator to write our own.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">marshmallow</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">validates</span><span class="p">,</span> <span class="n">ValidationError</span>
 <span class="o">...</span>
 
@@ -196,19 +191,17 @@
         <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">now</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t create notes in the future!&quot;</span><span class="p">)</span>
         <span class="c1"># if the function doesn&#39;t raise an error, the check is considered passed</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>We don't even have to use any extra code in our view function now to use the extra validation, we still just call the <code>validate</code> method.</p>
-<div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/note&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/note&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">create_note</span><span class="p">():</span>
     <span class="n">errors</span> <span class="o">=</span> <span class="n">create_note_schema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
         <span class="n">abort</span><span class="p">(</span><span class="n">BAD_REQUEST</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">errors</span><span class="p">))</span>
     <span class="n">actually_create_note</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
     <span class="k">return</span> <span class="s1">&#39;ok&#39;</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2 id="extra-information">Extra information</h2>
 <p>marshmallow is very powerful and contains much more than what I have covered here. Thankfully there are many good resources on the internet for you to research further.</p>

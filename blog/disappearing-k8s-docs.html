@@ -107,10 +107,9 @@
 <p>Starting from v1.17 the downscale stabilization window can be set on a per-HPA basis by setting the <code>behavior.scaleDown.stabilizationWindowSeconds</code> field in the v2beta2 API. See Support for configurable scaling behavior.</p>
 </blockquote>
 <p>This was what I was looking for, so I set this field in my HPA deployment file and... got an error. I double and triple checked the code I was using to make sure it matched the spec on that page, but every time I tried to <code>kubectl apply</code> this file, I got the error below.</p>
-<div class="highlight"><pre><span></span>$ kubectl create -f some-autoscale.yaml
-error validating <span class="s2">&quot;some-autoscale.yaml&quot;</span>: error validating data: ValidationError<span class="o">(</span>HorizontalPodAutoscaler.spec<span class="o">)</span>: unknown field <span class="s2">&quot;behavior&quot;</span> in io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerSpec
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>$ kubectl create -f some-autoscale.yaml
+error validating <span class="s2">&quot;some-autoscale.yaml&quot;</span>: error validating data: ValidationError<span class="o">(</span>HorizontalPodAutoscaler.spec<span class="o">)</span>: unknown field <span class="s2">&quot;behavior&quot;</span> <span class="k">in</span> io.k8s.api.autoscaling.v2beta2.HorizontalPodAutoscalerSpec
+</code></pre></div>
 
 <p>Just to make this even more confusing, the Kubernetes API docs agreed with the error that the <code>behavior</code> field didn't exist. At this point, I had exhausted all other options and had to turn to StackOverflow for help. At 7PM I posted a question, <a href="https://stackoverflow.com/questions/60045564/kubernetes-unknown-field-behavior">Kubernetes unknown field "behavior"</a>, and at 11PM I received an answer. The answerer said that I was reading the docs wrong and that the field didn't exist in the first place. Ready to drag this unsuspecting samaritan into my confusion, I went to sleep and planned to reply the following day.</p>
 <p>When I checked the docs the following day, the quote from above was missing. After considering whether I'd imagined it all, I discovered that the Kubernetes docs were in a public GitHub repository that was linked from the bottom of each page. It turned out that a couple of hours before I had posted my question, the text about the <code>behavior</code> object had been <a href="https://github.com/kubernetes/website/pull/18963">removed in a PR</a>. The <code>behavior</code> object was meant to be introduced in V1.18 instead of V1.17 that was current at the time. The reason I hadn't seen the updated docs was probably due to my browser caching the old version since I'd visited that page a lot.</p>

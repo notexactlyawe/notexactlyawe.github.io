@@ -103,41 +103,41 @@
 <li><a href="#creating-the-game-state">Creating the game state</a><ul>
 <li><a href="#python-lists">Python lists</a></li>
 <li><a href="#the-microbit-co-ordinate-system">The micro:bit co-ordinate system</a></li>
-<li><a href="#your-turn-1-filling-in-the-state"><i class="fa fa-lightbulb-o"></i> Your turn 1: Filling in the state</a></li>
+<li><a href="#your-turn-1-filling-in-the-state"> Your turn 1: Filling in the state</a></li>
 </ul>
 </li>
 <li><a href="#drawing-to-the-screen">Drawing to the screen</a><ul>
 <li><a href="#drawing-the-food">Drawing the food</a></li>
 <li><a href="#python-for-loops">Python for loops</a></li>
-<li><a href="#your-turn-2-drawing-the-snake"><i class="fa fa-lightbulb-o"></i> Your turn 2: Drawing the snake</a></li>
+<li><a href="#your-turn-2-drawing-the-snake"> Your turn 2: Drawing the snake</a></li>
 <li><a href="#running-our-code">Running our code</a></li>
 </ul>
 </li>
 <li><a href="#moving-the-snake">Moving the snake</a><ul>
 <li><a href="#python-if-statements">Python if statements</a></li>
-<li><a href="#your-turn-3-calculating-the-new-head"><i class="fa fa-lightbulb-o"></i> Your turn 3: Calculating the new head</a></li>
-<li><a href="#your-turn-4-removing-the-tail"><i class="fa fa-lightbulb-o"></i> Your turn 4: Removing the tail</a></li>
+<li><a href="#your-turn-3-calculating-the-new-head"> Your turn 3: Calculating the new head</a></li>
+<li><a href="#your-turn-4-removing-the-tail"> Your turn 4: Removing the tail</a></li>
 </ul>
 </li>
 <li><a href="#wrapping">Wrapping</a><ul>
-<li><a href="#your-turn-5-wrap-the-screen"><i class="fa fa-lightbulb-o"></i> Your turn 5: Wrap the screen</a></li>
+<li><a href="#your-turn-5-wrap-the-screen"> Your turn 5: Wrap the screen</a></li>
 </ul>
 </li>
 <li><a href="#getting-input">Getting input</a><ul>
 <li><a href="#accelerometers">Accelerometers</a></li>
 <li><a href="#simulator-only-how-to-test-with-the-accelerometer">Simulator only: How to test with the accelerometer</a></li>
-<li><a href="#your-turn-6-updating-direction"><i class="fa fa-lightbulb-o"></i> Your turn 6: Updating direction</a></li>
+<li><a href="#your-turn-6-updating-direction"> Your turn 6: Updating direction</a></li>
 </ul>
 </li>
 <li><a href="#food">Food</a><ul>
-<li><a href="#your-turn-7-eating-food"><i class="fa fa-lightbulb-o"></i> Your turn 7: Eating food</a></li>
+<li><a href="#your-turn-7-eating-food"> Your turn 7: Eating food</a></li>
 <li><a href="#random-numbers">Random numbers</a></li>
-<li><a href="#your-turn-8-generating-food"><i class="fa fa-lightbulb-o"></i> Your turn 8: Generating food</a></li>
+<li><a href="#your-turn-8-generating-food"> Your turn 8: Generating food</a></li>
 </ul>
 </li>
 <li><a href="#ending-the-game">Ending the game</a><ul>
 <li><a href="#loop-control">Loop control</a></li>
-<li><a href="#your-turn-9-ending-the-game"><i class="fa fa-lightbulb-o"></i> Your turn 9: Ending the game</a></li>
+<li><a href="#your-turn-9-ending-the-game"> Your turn 9: Ending the game</a></li>
 </ul>
 </li>
 <li><a href="#final-notes">Final notes</a></li>
@@ -185,26 +185,24 @@
 <h2 id="skeleton-code">Skeleton code</h2>
 <p>To make it easier to get started, we'll be working from a skeleton file. Find it at <a href="https://github.com/notexactlyawe/microbit-snake/blob/master/skeleton.py">this link</a> and copy the contents into the <a href="https://www.cameronmacleod.com/createwithcode/">create.withcode editor</a>.</p>
 <p>Let's take a look at each part of the code to figure out what it does.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">microbit</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">microbit</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="k">class</span> <span class="nc">Snake</span><span class="p">:</span>
 <span class="o">...</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>At the very top of the file is an import. An import allows us to use code someone else has written in our own script. In this case, the other code we're using is the <code>microbit</code> library, which allows us to control various components of the micro:bit including the display and accelerometer.</p>
 <p>Skipping the class definition for now, at the bottom of the file is our game loop.</p>
-<div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">game</span><span class="o">.</span><span class="n">handle_input</span><span class="p">()</span>
     <span class="n">game</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
     <span class="n">game</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>The game loop is the entry point for the game (the first bit of code to be executed). It defines a series of actions that we do repeatedly in order to make the game work. In this case, we get some input from the user, update the <dfn title="The state of a program is another word for its variables">game state</dfn> accordingly and then re-draw the screen. Updating the screen twice a second feels about right, and so at the end we sleep for 500 milliseconds (half a second).</p>
 <p>The functions called in the game loop are part of the Snake class, which is defined above the game loop.</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Snake</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Snake</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; This class contains the functions that operate</span>
 <span class="sd">        on our game as well as the state of the game.</span>
 <span class="sd">        It&#39;s a handy way to link the two.</span>
@@ -223,8 +221,7 @@
         <span class="o">...</span>
 
 <span class="n">game</span> <span class="o">=</span> <span class="n">Snake</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>A class is a handy way of keeping some state, like the position of our snake, alongside the functions that operate on it. Our class has a few different functions that we'll have to write.</p>
 <ul>
@@ -243,7 +240,8 @@
 <p>
 A class is a way of linking functions to variables, but you can also think of it as defining the 'type' of something. Let's use cars as an analogy:
 
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">make</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">colour</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">make</span> <span class="o">=</span> <span class="n">make</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
@@ -259,7 +257,7 @@ A class is a way of linking functions to variables, but you can also think of it
 <span class="c1"># Prints &quot;This is a white Vauxhall Astra&quot;</span>
 <span class="n">golf</span><span class="o">.</span><span class="n">print_info</span><span class="p">()</span>
 <span class="c1"># Prints &quot;This is a blue Volkswagen Golf&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 
@@ -285,7 +283,7 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 <p>Before we can intialise the game state, we need to learn a little bit about Python and the micro:bit. Feel free to skip these sections if you have done this before.</p>
 <h3 id="python-lists">Python lists</h3>
 <p>Lists are a way to store multiple values in the same variable in Python. If you haven't come across them before there's a more <a href="http://openbookproject.net/thinkcs/python/english3e/lists.html">detailed introduction here</a>. You may be able to get by with the cheat sheet below though.</p>
-<div class="highlight"><pre><span></span><span class="c1"># define a list</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># define a list</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="c1"># access elements of a list (start counting at 0)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -308,8 +306,7 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">list_of_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 <span class="mi">2</span>
-</pre></div>
-
+</code></pre></div>
 
 <h3 id="the-microbit-co-ordinate-system">The micro:bit co-ordinate system</h3>
 <p>On the front of a micro:bit is a grid of LEDs. When drawing something on the screen, we need a way to describe individual LEDs within this grid so that we know which one to light up. This is where the co-ordinate system comes in.</p>
@@ -318,7 +315,7 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 <p>In the image above, point A is at the co-ordinates <code>[3, 0]</code>. The left number in these co-ordinates is the position along the X axis and the right number is the position along the Y axis. Similarly, point B is at co-ordinates <code>[1, 2]</code>.</p>
 <h3 id="your-turn-1-filling-in-the-state"><i class="fa fa-lightbulb-o"></i> Your turn 1: Filling in the state</h3>
 <p>If you now feel comfortable with these concepts, you'll notice that the <code>__init__</code> function has some commented out code. When you uncomment that, it looks like the below. Feel free to have a go at completing it and we'll look at the solution in the next section.</p>
-<div class="highlight"><pre><span></span><span class="c1"># direction is a string with up, down, left or right</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># direction is a string with up, down, left or right</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span>
 <span class="c1"># snake is a list of the pixels that the snake is at</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">snake</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
@@ -326,31 +323,31 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 <span class="bp">self</span><span class="o">.</span><span class="n">food</span> <span class="o">=</span>
 <span class="c1"># whether or not to end the game (boolean)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span>
-</pre></div>
-
+</code></pre></div>
 
 <details><summary>Solution</summary>
 <p>
 Let's talk through the solution line by line.
 
-<div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s2">&quot;up&quot;</span>
-</pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s2">&quot;up&quot;</span>
+</code></pre></div>
 
 
 
 We defined `self.direction` to be a string and I've chosen to make the snake go up at first. If you've put any other direction that's fine too.
 
 
-<div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">food</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">food</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</code></pre></div>
 
 
 
 I've put my food in the middle of the left-most column to start with. If you've put it elsewhere, that's fine as long as you've defined valid co-ordinates that aren't the same as the snake's starting position.
 
 
-<div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="kc">False</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
 
 
 
@@ -365,25 +362,23 @@ This variable tells us whether the game has finished or not. It wouldn't be very
 <p>Ideally, then, we need a function to light up an individual LED using its co-ordinates. The snake and the food are both stored using co-ordinates, so if we can draw these on one at a time then we'll have completed our <code>draw</code> function.</p>
 <p>The micro:bit offers us a number of different ways to <a href="https://microbit-micropython.readthedocs.io/en/latest/display.html">draw to the screen</a>, including one that does what we need. <code>display.set_pixel(x, y, value)</code> will set the pixel at <code>[x, y]</code> to the level of brightness <code>value</code>. <code>value</code> can be between 0 and 9, where 0 is off and 9 is fully on.</p>
 <p>Now that we have a function to turn on a pixel, we can start to fill in our <code>draw</code> function.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">display</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
     <span class="n">display</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
     <span class="c1"># TODO: draw snake</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>The first thing we do in this function is <code>display.clear()</code>. This sets all the LEDs off, which is important because this draw function will be called repeatedly and we want to draw something different each time. If we didn't clear the display, then the game state from the last iteration of the game loop would still be there.</p>
 <p>Next we use the <code>self.food</code> co-ordinates to draw the food. We use the intensity <code>5</code> because that will help us to distinguish it from the snake.</p>
 <p>Before we draw the snake, let's take a look at <code>for</code> loops in Python. Again, if you've done this before, feel free to skip it.</p>
 <h3 id="python-for-loops">Python <code>for</code> loops</h3>
 <p><code>for</code> loops are great for when you want to do the same thing to multiple elements. In Python they're written like this:</p>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">iterable_thing</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">iterable_thing</span><span class="p">:</span>
     <span class="n">do_things</span><span class="p">(</span><span class="n">variable_name</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><code>iterable_thing</code> is something with multiple elements, for example a list, tuple or even a <code>range(start, stop)</code>. <code>variable_name</code> is the name that you assign to the element that you are currently working on in the loop. To make this example more concrete, here's how you would print the numbers from one to five.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
 <span class="o">&gt;&gt;&gt;</span>     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <span class="mi">1</span>
 <span class="mi">2</span>
@@ -399,20 +394,19 @@ This variable tells us whether the game has finished or not. It wouldn't be very
 <span class="mi">3</span>
 <span class="mi">4</span>
 <span class="mi">5</span>
-</pre></div>
-
+</code></pre></div>
 
 <h3 id="your-turn-2-drawing-the-snake"><i class="fa fa-lightbulb-o"></i> Your turn 2: Drawing the snake</h3>
 <p>Now you know how to light up individual pixels, and how to use a <code>for</code> loop to go over a list, you should be able to draw the snake to the screen. You'll want to draw the snake with intensity <code>9</code> so that it looks different from the food we drew earlier. As before, the solution is below.</p>
 <details><summary>Solution</summary>
 <p>
 
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">display</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
     <span class="n">display</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">:</span>
       <span class="n">display</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="n">part</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">part</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">9</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 
@@ -438,7 +432,7 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 <p>So our first step will be to calculate the new head. We can do that with the help of <code>if</code> statements.</p>
 <h3 id="python-if-statements">Python <code>if</code> statements</h3>
 <p>Sometimes we want to choose what to do based on a condition. For example, you would want to wear a coat if it was raining outside, but if it was sunny you would put on sunglasses. You can do this in Python using <code>if</code> statements.</p>
-<div class="highlight"><pre><span></span><span class="c1"># rain is a boolean variable (True or False)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># rain is a boolean variable (True or False)</span>
 <span class="k">if</span> <span class="n">rain</span><span class="p">:</span>
     <span class="n">put_on_coat</span><span class="p">()</span>
 <span class="k">else</span><span class="p">:</span>
@@ -446,11 +440,10 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
     <span class="n">put_on_sunglasses</span><span class="p">()</span>
 <span class="c1"># we&#39;ll go outside whether it&#39;s raining or sunny</span>
 <span class="n">go_outside</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>You can even choose between more than two options. Sticking with the weather example, maybe it could be windy, rainy, or sunny. Being the responsible person that you are, you have clothes for each different possibility.</p>
-<div class="highlight"><pre><span></span><span class="c1"># in this case, weather is a string</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># in this case, weather is a string</span>
 <span class="k">if</span> <span class="n">weather</span> <span class="o">==</span> <span class="s2">&quot;rain&quot;</span><span class="p">:</span>
     <span class="n">put_on_raincoat</span><span class="p">()</span>
 <span class="k">elif</span> <span class="n">weather</span> <span class="o">==</span> <span class="s2">&quot;wind&quot;</span><span class="p">:</span>
@@ -458,8 +451,7 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 <span class="k">elif</span> <span class="n">weather</span> <span class="o">==</span> <span class="s2">&quot;sunny&quot;</span><span class="p">:</span>
     <span class="n">put_on_sunglasses</span><span class="p">()</span>
 <span class="n">go_outside</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <h3 id="your-turn-3-calculating-the-new-head"><i class="fa fa-lightbulb-o"></i> Your turn 3: Calculating the new head</h3>
 <p>We're going to be working in the <code>update()</code> function here, since that updates the game state before we draw the screen.</p>
@@ -471,10 +463,9 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 </ol>
 <p>The most difficult step here will be figuring out what to do for each direction. You might find this easier if you draw it out on a co-ordinate grid like the one in the <a href="#the-microbit-co-ordinate-system">micro:bit co-ordinate system section</a>.</p>
 <p><strong>Important</strong> - If you create the new head from the old head (e.g. <code>new_head = self.snake[-1]</code>), you will need to copy it. Otherwise you will have a really annoying bug. You can copy a list like so:</p>
-<div class="highlight"><pre><span></span><span class="c1"># call list() to copy the old head</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># call list() to copy the old head</span>
 <span class="n">new_head</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-
+</code></pre></div>
 
 <details><summary>What is the really annoying bug? (optional)</summary>
 <p>
@@ -501,7 +492,7 @@ Some objects in Python, for example tuples, are _immutable_ which means their va
 <details><summary>Solution</summary>
 <p>
 
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">new_head</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;up&quot;</span><span class="p">:</span>
         <span class="c1"># Y decreases as you go up the screen</span>
@@ -515,7 +506,7 @@ Some objects in Python, for example tuples, are _immutable_ which means their va
         <span class="n">new_head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
     <span class="c1"># put the head on the end of the list</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_head</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 
@@ -525,20 +516,20 @@ Firstly we copy the old head of the snake, remember `-1` is the index of the las
 
 <h3 id="your-turn-4-removing-the-tail"><i class="fa fa-lightbulb-o"></i> Your turn 4: Removing the tail</h3>
 <p>Remember the <code>.pop(idx)</code> method on lists from before? You can remove an item from a list by calling this function with the index of the item that you want to remove.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="mi">1</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span>
 <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Your task is to remove the tail of the snake. Here's a hint, if we add the new head to the end of the snake list, then the tail will be at the start of it.</p>
 <details><summary>Solution</summary>
 <p>
 The full `update` function should now look like this:
 
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">new_head</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;up&quot;</span><span class="p">:</span>
         <span class="n">new_head</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
@@ -551,7 +542,7 @@ The full `update` function should now look like this:
     <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_head</span><span class="p">)</span>
     <span class="c1"># cut the tail of the snake</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 </p>
@@ -575,7 +566,7 @@ The full `update` function should now look like this:
 <details><summary>Solution</summary>
 <p>
 
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="o">...</span> <span class="c1"># the code from above</span>
     <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
         <span class="n">new_head</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
@@ -593,7 +584,7 @@ The full `update` function should now look like this:
 
     <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_head</span><span class="p">)</span>
     <span class="o">...</span>
-</pre></div>
+</code></pre></div>
 
 
 
@@ -621,29 +612,27 @@ We add a new `if` statement for both the X co-ordinate and the Y co-ordinate. In
 <h3 id="your-turn-6-updating-direction"><i class="fa fa-lightbulb-o"></i> Your turn 6: Updating direction</h3>
 <p>We're working in the <code>handle_input</code> function for this section.</p>
 <p>The accelerometer will return you values in the X and Y axes using the following functions. We don't care about the Z axis since our screen is 2D.</p>
-<div class="highlight"><pre><span></span><span class="c1"># These functions return values in the range -2000 to 2000</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># These functions return values in the range -2000 to 2000</span>
 <span class="n">accelerometer</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
 <span class="n">accelerometer</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>The X axis increases going left to right, and the Y axis increases from top to bottom, just like the screen co-ordinates.</p>
 <p><img alt="Accelerometer axes on the micro:bit" src="/images/microbitsnake/acceldir.png"></p>
 <p>We'll calculate the direction the user wants to go in by taking the biggest value from X and Y and then seeing if it's positive or negative (see diagram above). Careful though! X and Y can both be negative, so you can't do a simple <code>X &gt; Y</code>. To see why, imagine that X was 500 and Y was -1000. Even though Y is a bigger number than X, <code>X &gt; Y == True</code> because X is positive.</p>
 <p>You may find the absolute function, <code>abs(x)</code>, useful.</p>
-<div class="highlight"><pre><span></span><span class="c1"># abs (the absolute function) will remove a minus sign if present</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># abs (the absolute function) will remove a minus sign if present</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span> <span class="o">==</span> <span class="mi">30</span>
 <span class="kc">True</span>
 <span class="c1"># ... and leave the value alone if not</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">==</span> <span class="mi">30</span>
 <span class="kc">True</span>
-</pre></div>
-
+</code></pre></div>
 
 <details><summary>Solution</summary>
 <p>
 
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">handle_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">handle_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1"># get accelerometer values</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">accelerometer</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">accelerometer</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
@@ -660,7 +649,7 @@ We add a new `if` statement for both the X co-ordinate and the Y co-ordinate. In
             <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s2">&quot;up&quot;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s2">&quot;down&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 
@@ -681,7 +670,7 @@ First we get the raw values from the accelerometer for X and Y, and then we comp
 <details><summary>Solution</summary>
 <p>
 
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_head</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">new_head</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">:</span>
@@ -690,7 +679,7 @@ First we get the raw values from the accelerometer for X and Y, and then we comp
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># cut the tail of the snake</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 
@@ -702,15 +691,14 @@ We cut the tail in the else block, which means that we only cut it when the snak
 
 <h3 id="random-numbers">Random numbers</h3>
 <p>We want to generate new food randomly so that the game is interesting. We can do this using the <code>random</code> module in Python. Here's an example that guesses (poorly) how old you are.</p>
-<div class="highlight"><pre><span></span><span class="c1"># import the function randint from the module random</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># import the function randint from the module random</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
 
 <span class="c1"># generate a random integer between 0 and 100 (inclusive)</span>
 <span class="n">age</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I bet you are </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old&quot;</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>In this program we import then call the <code>randint(start, stop)</code> function. This will give us back a number between 1 and 100. We then print it out using an <a href="https://realpython.com/python-f-strings/">f-string</a>. Side note: if you haven't come across f-strings before, check out that link. They are very cool.</p>
 <p>We'll be using this <code>randint</code> function to generate random co-ordinates.</p>
@@ -720,14 +708,14 @@ We cut the tail in the else block, which means that we only cut it when the snak
 <details><summary>Solution</summary>
 <p>
 
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">if</span> <span class="n">new_head</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">food</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">food</span> <span class="o">=</span> <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">food</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">food</span> <span class="o">=</span> <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
     <span class="o">...</span>
-</pre></div>
+</code></pre></div>
 
 
 
@@ -755,7 +743,7 @@ These numbers are very small for a computer, and we won't notice much delay in t
 <p>We've seen <code>while</code> loops a couple of times so far. Most recently we used them to generate food, but at the very start we saw how our game loop is made of a <code>while</code> loop.</p>
 <p>In Python, you have the ability to run a loop forever with <code>while True</code>. The complementary feature is that you have the ability to cut a loop short early using the <code>break</code> statement. Let's take a quick look at how it works.</p>
 <p>In the below example, we wait for the micro:bit's button A to be pressed then show a happy face.</p>
-<div class="highlight"><pre><span></span><span class="c1"># import all the microbit code</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># import all the microbit code</span>
 <span class="kn">from</span> <span class="nn">microbit</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -768,8 +756,7 @@ These numbers are very small for a computer, and we won't notice much delay in t
 
 <span class="c1"># show a happy face</span>
 <span class="n">display</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">HAPPY</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <h3 id="your-turn-9-ending-the-game"><i class="fa fa-lightbulb-o"></i> Your turn 9: Ending the game</h3>
 <p>There are three steps to implementing losing the game.</p>
@@ -783,14 +770,15 @@ These numbers are very small for a computer, and we won't notice much delay in t
 <p>
 In our update function:
 
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="c1"># after we calculate new_head</span>
     <span class="k">if</span> <span class="n">new_head</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">snake</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_head</span><span class="p">)</span>
     <span class="o">...</span>
-</pre></div>
+</code></pre></div>
 
 
 
@@ -799,7 +787,7 @@ We've just added an `if` statement here to check whether the new head is already
 In our game loop:
 
 
-<div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="o">...</span>
     <span class="n">game</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
     <span class="c1"># now game.end will be set</span>
@@ -808,7 +796,7 @@ In our game loop:
         <span class="k">break</span>
     <span class="n">game</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
     <span class="o">...</span>
-</pre></div>
+</code></pre></div>
 
 
 
