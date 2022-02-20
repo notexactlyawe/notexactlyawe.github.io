@@ -113,6 +113,7 @@
 </ul>
 </li>
 <li><a href="#matching">Matching</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
 <li><a href="#enter-abracadabra">Enter abracadabra</a></li>
 <li><a href="#further-reading">Further reading</a></li>
 </ul>
@@ -367,10 +368,34 @@
 <p>In the above table, you can see that all the matches with a <em>Track time - Sample time</em> of 10 have been highlighted. These are the true matches, while the other two rows are false matches. To see this is the case, let's look at a similar diagram to the ones we saw before:</p>
 <p><img alt="Diagram of sample hashes lining up to song hashes annotated with times" src="/images/abracadabra/lineduphashes2.png"></p>
 <p>The above diagram contains the same hashes from the previous table. As you can see, the true matches have a <em>Track time - Sample time</em> that is equal to how far into the track time that the sample starts.</p>
-<p>While we don't know, for a given sample, the track time that it is taken from, we would expect the majority of matches to line up for the correct song. Therefore, we can take the song with the highest number of shared <em>'Sample time - Track time'</em>s as the correct match.</p>
+<p>To see how we turn this into a score for the track, let's make this data into a histogram. A histogram is a fancy name for a bar chart. We're going to plot each <em>Track time - Sample time</em> against the number of times it occurs:</p>
+<p><img alt="Histogram showing frequency of 'Track time - Sample time'" src="/images/abracadabra/sample_histogram.png"></p>
+<p>Each bar in the histogram above is referred to as a <strong>bin</strong>. To score a song on how good a match it is for an audio sample, we just need to take the largest bin. Songs that aren't good matches will have low values in all bins, whereas a song that's a good match will have a large spike in one of the bins.</p>
+<p>This way we can compare a sample to all the songs with matching hashes in our database and score each of them. The song with the highest score is likely to be the correct result.</p>
 <p>You might wonder why we don't just go for the song that matches the largest number of hashes as it would be much simpler to implement. The problem with this approach is that not all songs are the same length. Longer songs are likely to get more matches than shorter songs and when some Spotify tracks are <a href="https://www.reddit.com/r/spotify/comments/9i2ps6/longest_song_on_spotify/">over 4 hours long</a> this can really bias your results!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Well done for making it this far, that was a long journey! Over the course of this article, you've learned how Shazam extracts fingerprints from audio, and how it matches these fingerprints to those that it has already registered in its database.</p>
+<p>To summarise, Shazam does the following to <strong>register</strong> a song:</p>
+<ul>
+<li>Calculates a <strong>spectrogram</strong> of a song</li>
+<li>Extracts <strong>peaks</strong> from that spectrogram</li>
+<li>Pairs those peaks up into <strong>hashes</strong></li>
+<li>Stores the collection of hashes for a song as a <strong>fingerprint</strong></li>
+</ul>
+<p>Shazam does the following to <strong>recognise</strong> an audio sample:</p>
+<ul>
+<li>Calculates a <strong>fingerprint</strong> of the audio sample</li>
+<li>Finds the <strong>hashes</strong> that match that fingerprint in the database</li>
+<li>For each potential song match:<ul>
+<li>Calculate <strong>Track time - Sample time</strong> for each matching hash</li>
+<li>Group those values into a <strong>histogram</strong></li>
+<li>Take the largest bin in this histogram as the <strong>score</strong> for the song</li>
+</ul>
+</li>
+<li>Return the song with the highest score</li>
+</ul>
 <h2 id="enter-abracadabra">Enter abracadabra</h2>
-<p>Well done for making it this far, that was a long journey! I learned everything written here over the process of writing <a href="https://github.com/notexactlyawe/abracadabra">abracadabra</a>, my implementation of this paper.</p>
+<p>I learned everything written here over the process of writing <a href="https://github.com/notexactlyawe/abracadabra">abracadabra</a>, my implementation of this paper.</p>
 <p>If you are interested in seeing what this might look like in code, please take a look! Everything is open source and I've done my best to document the project. abracadabra can also be used as a library in other projects, so please feel free to re-mix and build something cool. If you do use it, I'd love to <a href="/about">hear about it</a>.</p>
 <h2 id="further-reading">Further reading</h2>
 <p>If you want to find out more about anything mentioned in this article, take a look below. I've also scattered some helpful links throughout the page.</p>
