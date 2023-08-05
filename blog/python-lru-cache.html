@@ -126,10 +126,10 @@ Think about it this way: Using the browser example, if your most accessed site w
 </code></pre></div>
 
 <p>The Fibonacci example is really commonly used here because the speed-up is so dramatic for so little effort. Running this on my machine, I got the following results for with and without cache versions of this function.</p>
-<div class="highlight"><pre><span></span><code>$ python3 -m timeit -s <span class="s1">&#39;from fib_test import fib&#39;</span> <span class="s1">&#39;fib(30)&#39;</span>
-<span class="m">10</span> loops, best of <span class="m">3</span>: <span class="m">282</span> msec per loop
-$ python3 -m timeit -s <span class="s1">&#39;from fib_test import fib_cache&#39;</span> <span class="s1">&#39;fib_cache(30)&#39;</span>
-<span class="m">10000000</span> loops, best of <span class="m">3</span>: <span class="m">0</span>.0791 usec per loop
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>timeit<span class="w"> </span>-s<span class="w"> </span><span class="s1">&#39;from fib_test import fib&#39;</span><span class="w"> </span><span class="s1">&#39;fib(30)&#39;</span>
+<span class="m">10</span><span class="w"> </span>loops,<span class="w"> </span>best<span class="w"> </span>of<span class="w"> </span><span class="m">3</span>:<span class="w"> </span><span class="m">282</span><span class="w"> </span>msec<span class="w"> </span>per<span class="w"> </span>loop
+$<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>timeit<span class="w"> </span>-s<span class="w"> </span><span class="s1">&#39;from fib_test import fib_cache&#39;</span><span class="w"> </span><span class="s1">&#39;fib_cache(30)&#39;</span>
+<span class="m">10000000</span><span class="w"> </span>loops,<span class="w"> </span>best<span class="w"> </span>of<span class="w"> </span><span class="m">3</span>:<span class="w"> </span><span class="m">0</span>.0791<span class="w"> </span>usec<span class="w"> </span>per<span class="w"> </span>loop
 </code></pre></div>
 
 <p>That's a <strong>3,565,107x</strong> speed increase for a single line of code.</p>

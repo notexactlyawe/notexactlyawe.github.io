@@ -131,7 +131,7 @@ Parameters:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">marshmallow</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">fields</span>
 
 <span class="k">class</span> <span class="nc">CreateNoteInputSchema</span><span class="p">(</span><span class="n">Schema</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; /api/note - POST</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; /api/note - POST</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">     - title (str)</span>
@@ -188,7 +188,7 @@ Parameters:
 
     <span class="nd">@validates</span><span class="p">(</span><span class="s1">&#39;time_created&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">is_not_in_future</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;&#39;value&#39; is the datetime parsed from time_created by marshmallow&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&#39;value&#39; is the datetime parsed from time_created by marshmallow&quot;&quot;&quot;</span>
         <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">now</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t create notes in the future!&quot;</span><span class="p">)</span>
