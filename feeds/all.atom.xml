@@ -1,5 +1,438 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Cameron MacLeod</title><link href="https://www.cameronmacleod.com/" rel="alternate"></link><link href="https://www.cameronmacleod.com/feeds/all.atom.xml" rel="self"></link><id>https://www.cameronmacleod.com/</id><updated>2022-02-19T00:00:00+00:00</updated><entry><title>abracadabra: How does Shazam work?</title><link href="https://www.cameronmacleod.com/blog/how-does-shazam-work" rel="alternate"></link><published>2022-02-19T00:00:00+00:00</published><updated>2022-02-19T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2022-02-19:/blog/how-does-shazam-work</id><summary type="html">&lt;p&gt;&lt;img alt="" src="/images/abracadabra/header.png"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cameron MacLeod</title><link href="https://www.cameronmacleod.com/" rel="alternate"></link><link href="https://www.cameronmacleod.com/feeds/all.atom.xml" rel="self"></link><id>https://www.cameronmacleod.com/</id><updated>2023-08-06T00:00:00+01:00</updated><entry><title>How to sort parent nodes before child nodes? - Topological sort</title><link href="https://www.cameronmacleod.com/blog/topological-sort" rel="alternate"></link><published>2023-08-06T00:00:00+01:00</published><updated>2023-08-06T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2023-08-06:/blog/topological-sort</id><summary type="html">&lt;p&gt;&lt;img alt="" src="/images/toposort/header.png"&gt;&lt;/p&gt;
+&lt;p&gt;Dependencies between things are common, but they can be tricky to manage in code.
+You might think of using a graph to model your system, but how can you ensure that
+thing A happens before thing B? This is where the idea of a topological sort comes in.&lt;/p&gt;
+&lt;p&gt;This article …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="" src="/images/toposort/header.png"&gt;&lt;/p&gt;
+&lt;p&gt;Dependencies between things are common, but they can be tricky to manage in code.
+You might think of using a graph to model your system, but how can you ensure that
+thing A happens before thing B? This is where the idea of a topological sort comes in.&lt;/p&gt;
+&lt;p&gt;This article is aimed at programmers who want to use topological sorting. I won't
+explain the maths but I will give code examples. There are also &lt;a href="http://localhost:8001/blog/topological-sort#how-do-you-use-a-topological-sort"&gt;links&lt;/a&gt;
+to help you find an implementation for your language. The examples will be in Python, but the
+concepts should apply generally.&lt;/p&gt;
+&lt;div class="toc"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#why-would-you-need-a-topological-sort"&gt;Why would you need a topological sort?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#what-is-a-topological-sort"&gt;What is a topological sort?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#cycles-and-topological-sorts"&gt;Cycles and topological sorts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#how-do-you-use-a-topological-sort"&gt;How do you use a topological sort?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#multi-threading-and-topologicalsorter"&gt;Multi-threading and TopologicalSorter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h2 id="why-would-you-need-a-topological-sort"&gt;Why would you need a topological sort?&lt;/h2&gt;
+&lt;p&gt;A package manager is a piece of software that installs other software. For example,
+a user could ask a package manager to install a text editor. It would then be the
+package manager's job to know where to find the text editor and how to install it.&lt;/p&gt;
+&lt;p&gt;Software packages almost always have dependencies. To install a text editor, you
+might first need to install a UI library and that UI library might require a C++
+compiler. This dependency graph would look like the following:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A text editor package depending on gcc, a C++ compiler" src="/images/toposort/simpledependency.svg"&gt;&lt;/p&gt;
+&lt;p&gt;This example is simple, but in the general case each package might have many dependencies
+and packages may share dependencies. This quickly becomes a tangled mess, and
+making sure that dependencies are installed before the software that needs them
+becomes difficult.&lt;/p&gt;
+&lt;p&gt;You can phrase this problem more generally. Given a graph, with dependencies between
+parent nodes and child nodes, how do you produce a list of nodes such that parent
+nodes come before their child nodes?&lt;/p&gt;
+&lt;p&gt;You can sort nodes of a graph in this way using a topological sort.&lt;/p&gt;
+&lt;h2 id="what-is-a-topological-sort"&gt;What is a topological sort?&lt;/h2&gt;
+&lt;p&gt;A topological sort is a fancy name for:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Taking a graph that has parent and child nodes (a &lt;strong&gt;directed&lt;/strong&gt; graph)&lt;/li&gt;
+&lt;li&gt;Making a list of nodes in that graph such that:&lt;ul&gt;
+&lt;li&gt;Each parent node will always appear before its children&lt;/li&gt;
+&lt;li&gt;Each child node will come after its parents in the list&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So taking a graph like the following:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A more complex dependency graph" src="/images/toposort/complexdependencies.svg"&gt;&lt;/p&gt;
+&lt;p&gt;A topological sort might look like:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Package&lt;/th&gt;
+&lt;th&gt;Depends on&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1. gcc&lt;/td&gt;
+&lt;td&gt;N/A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2. Network library&lt;/td&gt;
+&lt;td&gt;gcc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3. UI library&lt;/td&gt;
+&lt;td&gt;gcc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4. Python&lt;/td&gt;
+&lt;td&gt;gcc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5. Language server&lt;/td&gt;
+&lt;td&gt;gcc, Python&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6. Text editor&lt;/td&gt;
+&lt;td&gt;Network library, UI library, Language server&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In the above ordering, a package always comes after its dependencies.&lt;/p&gt;
+&lt;p&gt;In the case of a package manager, this would mean that topological sorting produces
+an installation order that ensures dependencies are always installed before the
+software that depends on them. This is great, because there will never be missing
+dependency errors!&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;Why is it called a topological sort?&lt;/summary&gt;
+&lt;br&gt;
+&lt;p&gt;
+&lt;b&gt;&lt;i&gt;hand-waving begins&lt;/i&gt;&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+There is a branch of maths called topology which deals with shape and structure.
+Graph theory originally came out of topology.
+&lt;/p&gt;
+&lt;p&gt;
+Dependencies give structure to a graph, and topology is structure. Sorting a graph
+by its dependencies, therefore, can be considered a &lt;i&gt;topological&lt;/i&gt; sort.
+&lt;/p&gt;
+&lt;p&gt;
+There are a lot of Wikipedia pages with topology in their name in this area, so it
+feels like the name intuitively fits, but I can't give you a more concrete
+answer unfortunately. Further reading below!
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Topological_graph_theory"&gt;Topological graph theory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Network_topology"&gt;Network topology&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Topological_sorting"&gt;Topological sorting&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;b&gt;&lt;i&gt;hand-waving ends, back to the coding&lt;/i&gt;&lt;/b&gt;
+&lt;/details&gt;
+&lt;p&gt;&lt;a name="how-to-cycles"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="cycles-and-topological-sorts"&gt;Cycles and topological sorts&lt;/h2&gt;
+&lt;p&gt;You can't apply a topological sort to a graph with a cycle in it.
+A cycle is where two or more nodes depend on each other. For example, &lt;code&gt;A&lt;/code&gt; depends
+on &lt;code&gt;B&lt;/code&gt;, but &lt;code&gt;B&lt;/code&gt; also depends on &lt;code&gt;A&lt;/code&gt;. In this case you can't produce a topological
+sort, because both &lt;code&gt;A, B&lt;/code&gt; and &lt;code&gt;B, A&lt;/code&gt; have a child node before a parent node.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A cycle with two nodes" src="/images/toposort/cycle.svg"&gt;&lt;/p&gt;
+&lt;p&gt;What can you do about cycles? Fundamentally, cycles cannot be topologically sorted.
+That said, there are a few things you could do depending on what problem you are solving:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Manually remove the cycle&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you are building a graph by hand, then the easiest way to fix a problem like this
+is to manually remove the cycle. This can be done by removing conflicting edges.&lt;/p&gt;
+&lt;p&gt;For example, in the &lt;code&gt;A-&amp;gt;B-&amp;gt;A&lt;/code&gt; graph above, you could remove &lt;code&gt;A&lt;/code&gt;'s dependency on &lt;code&gt;B&lt;/code&gt;,
+or &lt;code&gt;B&lt;/code&gt;'s dependency on &lt;code&gt;A&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Throw an error to the user/caller of your code&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If the graph is being passed from outside your code, then it might be acceptable to
+throw an error in case of a cycle.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Algorithmically remove cycles&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The problem of removing cycles from a graph while keeping the maximum number of
+edges is called the &lt;a href="https://en.wikipedia.org/wiki/Feedback_arc_set"&gt;feedback arc set&lt;/a&gt;.
+There are algorithms for the feedback arc set, but they are not for the faint of
+heart! Proceed with caution:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/questions/6284469/how-to-remove-cycles-in-an-unweighted-directed-graph-such-that-the-number-of-ed"&gt;How to remove cycles in an unweighted directed graph, such that the number of edges is maximised? - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://cs.stackexchange.com/questions/90481/how-to-remove-cycles-from-a-directed-graph"&gt;How to remove cycles from a directed graph? - Computer Science Stack Exchange&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="how-do-you-use-a-topological-sort"&gt;How do you use a topological sort?&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;For those who just want Python code, I've compiled it in &lt;a href="https://gist.github.com/notexactlyawe/606734bcffdaa7d0c091dfbe55f09baa"&gt;this gist&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The below examples are all in Python, however, here are some links for libraries in
+other languages. I have not used any of the below, but hopefully they can provide a
+starting point for your research.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JavaScript: &lt;a href="https://www.npmjs.com/package/toposort"&gt;toposort - npm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Java: &lt;a href="https://jgrapht.org/javadoc/org.jgrapht.core/org/jgrapht/traverse/TopologicalOrderIterator.html"&gt;TopologicalOrderIterator - JGraphT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Rust: &lt;a href="https://docs.rs/petgraph/latest/petgraph/algo/fn.toposort.html"&gt;petagraph::algo::toposort&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thankfully Python (&lt;a href="https://docs.python.org/3/whatsnew/3.9.html"&gt;from version 3.9&lt;/a&gt;) comes
+with topological sort in the standard library! The wonderful &lt;a href="https://docs.python.org/3/library/graphlib.html"&gt;graphlib&lt;/a&gt;
+provides everything you need.&lt;/p&gt;
+&lt;p&gt;Going back to the package manager example from earlier, you could model a package and
+its dependencies with the below class:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dataclasses&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;dataclass&lt;/span&gt;    
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;    
+
+
+&lt;span class="nd"&gt;@dataclass&lt;/span&gt;          
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;      
+    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;                   
+    &lt;span class="n"&gt;depends_on&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The above code defines a class &lt;code&gt;Package&lt;/code&gt; that has two fields, &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;depends_on&lt;/code&gt;.
+&lt;code&gt;name&lt;/code&gt; is the name of the package and &lt;code&gt;depends_on&lt;/code&gt; is a list of other package names
+that this package depends on. The fields have type hints on them for readability.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.python.org/3/library/dataclasses.html"&gt;&lt;code&gt;@dataclass&lt;/code&gt;&lt;/a&gt; is a really powerful
+decorator that creates a lot of boilerplate methods, such as &lt;code&gt;__init__&lt;/code&gt; for free. Thanks
+to &lt;code&gt;@dataclass&lt;/code&gt;, you can use &lt;code&gt;Package&lt;/code&gt; like so:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;text_editor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;editor&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ui_lib&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;ui_lib&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ui_lib&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gcc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;gcc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gcc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will create three packages. A text editor which depends on a UI library which in
+turn depends on GCC:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A text editor package depending on gcc, a C++ compiler" src="/images/toposort/simpledependency.svg"&gt;&lt;/p&gt;
+&lt;p&gt;After creating the packages, the next job is to create a &lt;a href="https://docs.python.org/3.9/library/graphlib.html#graphlib.TopologicalSorter"&gt;&lt;code&gt;TopologicalSorter&lt;/code&gt;&lt;/a&gt;.
+A &lt;code&gt;TopologicalSorter&lt;/code&gt; has methods for topologically sorting a graph. The below code
+creates one and tells it about the packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;ts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TopologicalSorter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text_editor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;text_editor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;depends_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ui_lib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;ui_lib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;depends_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gcc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;gcc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;depends_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In the above snippet, the &lt;code&gt;add&lt;/code&gt; method takes a node as the first argument, and its dependencies
+as the following arguments. The code uses an asterisk &lt;code&gt;*&lt;/code&gt; to unpack the &lt;code&gt;depends_on&lt;/code&gt; fields
+into separate arguments. If you've not seen this syntax before, check out
+&lt;a href="https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists"&gt;the Python docs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There are a couple of things to note in the above code snippet. Firstly, all arguments
+provided to &lt;code&gt;add&lt;/code&gt; represent nodes and must be &lt;a href="https://stackoverflow.com/questions/42203673/in-python-why-is-a-tuple-hashable-but-not-a-list"&gt;hashable&lt;/a&gt;.
+This means that strings and tuples are valid nodes, but lists are not.&lt;/p&gt;
+&lt;p&gt;Secondly, you may notice that the &lt;code&gt;text_editor&lt;/code&gt; node was added before the nodes it
+depends on. This is because &lt;code&gt;TopologicalSorter&lt;/code&gt; is very forgiving and allows you to
+add nodes in any order. From the &lt;a href="https://docs.python.org/3.9/library/graphlib.html#graphlib.TopologicalSorter.add"&gt;docs&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If a node that has not been provided before is included among &lt;em&gt;predecessors&lt;/em&gt; it will be automatically added to the graph with no predecessors of its own.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The next step is to call &lt;code&gt;static_order&lt;/code&gt; on the &lt;code&gt;TopologicalSorter&lt;/code&gt; to produce a
+topological sort of the package graph:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;static_order&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will print:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gcc
+ui_lib
+editor
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Great! This prints packages in the correct installation order. GCC can be installed
+first because it has no dependencies, and installing it unblocks installing the UI library
+which, in turn, unblocks installing the text editor.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;static_order()&lt;/code&gt; returns an &lt;a href="https://realpython.com/python-iterators-iterables/"&gt;iterator&lt;/a&gt;,
+which is why the code uses a &lt;code&gt;for&lt;/code&gt; loop to get the resulting nodes. Iterators are usually
+more efficient than lists, but if you wanted the result in a list, you could do
+the following:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;nodes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;static_order&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+
+&lt;span class="c1"&gt;# nodes = [&amp;quot;gcc&amp;quot;, &amp;quot;ui_lib&amp;quot;, &amp;quot;editor&amp;quot;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;For a more complex example, imagine the text editor had more dependencies:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A more complex dependency graph" src="/images/toposort/complexdependencies.svg"&gt;&lt;/p&gt;
+&lt;p&gt;In the dependency graph above, there are a lot more packages, and some of them
+even share dependencies! Luckily, &lt;code&gt;TopologicalSorter&lt;/code&gt; will handle them without a problem:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;text_editor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;editor&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ui_lib&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;lang_server&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;network_lib&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;lang_server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lang_server&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gcc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;network_lib&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;network_lib&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gcc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;ui_lib&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ui_lib&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gcc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gcc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;gcc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gcc&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[])&lt;/span&gt;
+
+&lt;span class="n"&gt;ts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TopologicalSorter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text_editor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;text_editor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;depends_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="c1"&gt;# more add()s here&lt;/span&gt;
+&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gcc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;gcc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;depends_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;static_order&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will print:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gcc
+network_lib
+ui_lib
+python
+lang_server
+editor
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;TopologicalSorter&lt;/code&gt; is a powerful tool indeed! However, what happens when you accidentally
+pass it a cycle? The below code example creates a cycle to demonstrate what happens:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;text_editor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;editor&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lang_server&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;lang_server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lang_server&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;editor&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="n"&gt;ts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TopologicalSorter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text_editor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;text_editor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;depends_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lang_server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;lang_server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;depends_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;static_order&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt; &lt;span class="c1"&gt;# raises CycleError&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;node&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;When the code calls &lt;code&gt;static_order&lt;/code&gt;, it raises a &lt;code&gt;CycleError&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;Traceback&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;most&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;recent&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;call&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;last&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;File&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/home/cameron/src/scratch/cycle-toposort.py&amp;quot;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;module&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;node&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;ts&lt;/span&gt;.&lt;span class="nv"&gt;static_order&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;:
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;File&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/usr/lib/python3.9/graphlib.py&amp;quot;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;242&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;static_order&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;prepare&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;File&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/usr/lib/python3.9/graphlib.py&amp;quot;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;104&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;prepare&lt;/span&gt;
+&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;raise&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;CycleError&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;nodes are in a cycle&amp;quot;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;cycle&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;graphlib&lt;/span&gt;.&lt;span class="nv"&gt;CycleError&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;nodes are in a cycle&amp;#39;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;[&lt;span class="s1"&gt;&amp;#39;editor&amp;#39;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;lang_server&amp;#39;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;editor&amp;#39;&lt;/span&gt;]&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Take a look at the section above on &lt;a href="#how-to-cycles"&gt;dealing with cycles&lt;/a&gt; for pointers
+on handling this error.&lt;/p&gt;
+&lt;h2 id="multi-threading-and-topologicalsorter"&gt;Multi-threading and TopologicalSorter&lt;/h2&gt;
+&lt;p&gt;Calling &lt;code&gt;static_order&lt;/code&gt;, as in the examples above, produces a list that works well
+with single-threaded code. However, it doesn't tell you which nodes can be processed
+at the same time.&lt;/p&gt;
+&lt;p&gt;To take the package manager example, a naive implementation using &lt;code&gt;static_order&lt;/code&gt;
+may end up installing a package at the same time as its dependency. This could cause
+problems.&lt;/p&gt;
+&lt;p&gt;A naive implementation using two threads and &lt;code&gt;static_order&lt;/code&gt; would break on the
+simple dependencies example from earlier. It would try to install gcc at the same
+time as the UI library, which would fail as the UI library depends on gcc:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="An example of a naive multi-threaded implementation causing problems" src="/images/toposort/multithreadconflict.svg"&gt;&lt;/p&gt;
+&lt;p&gt;Processing multiple nodes at once is useful as it can speed up your code, but
+is incompatible with &lt;code&gt;static_order()&lt;/code&gt;. You can still use &lt;code&gt;graphlib&lt;/code&gt; in multi-threaded
+code, though. Below are steps from the docs to use &lt;code&gt;TopologicalSorter&lt;/code&gt; in a
+parallel way:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Create an instance of the &lt;code&gt;TopologicalSorter&lt;/code&gt; with an optional initial graph.&lt;/li&gt;
+&lt;li&gt;Add additional nodes to the graph.&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;prepare()&lt;/code&gt; on the graph.&lt;/li&gt;
+&lt;li&gt;While &lt;code&gt;is_active()&lt;/code&gt; is True, iterate over the nodes returned by &lt;code&gt;get_ready()&lt;/code&gt; and process them. Call &lt;code&gt;done()&lt;/code&gt; on each node as it finishes processing.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You've already seen how to do steps 1 and 2, that's the same as in the earlier code.
+To recap, here's how to add nodes to the &lt;code&gt;TopologicalSorter&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;ts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TopologicalSorter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text_editor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;text_editor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;depends_on&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After creating a &lt;code&gt;TopologicalSorter&lt;/code&gt; and adding nodes to it, step 3 is to call
+&lt;code&gt;prepare()&lt;/code&gt; on it. &lt;code&gt;prepare()&lt;/code&gt; marks the graph as ready for processing and
+checks for cycles:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;prepare&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="n"&gt;graphlib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CycleError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="c1"&gt;# do something with the error&lt;/span&gt;
+  &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is where a &lt;code&gt;graphlib.CycleError&lt;/code&gt; may be raised, so the code uses a
+&lt;code&gt;try&lt;/code&gt;/&lt;code&gt;except&lt;/code&gt; to deal with the error. After calling &lt;code&gt;prepare()&lt;/code&gt;, you can't add
+any more nodes to the graph.&lt;/p&gt;
+&lt;p&gt;Before writing the code to get packages from &lt;code&gt;TopologicalSorter&lt;/code&gt;, there needs to
+be a way of simulating package installation. Since installing packages takes time,
+the code can simulate it with &lt;code&gt;time.sleep&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;queue&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Queue&lt;/span&gt;
+
+&lt;span class="n"&gt;installed_packages_queue&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Queue&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;install_package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;* Installing package &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;installed_packages_queue&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The above code defines a function &lt;code&gt;install_package&lt;/code&gt; that &lt;a href="https://docs.python.org/3/library/time.html#time.sleep"&gt;sleeps&lt;/a&gt; for a second and
+then puts the package that it just 'installed' onto a &lt;a href="https://docs.python.org/3/library/queue.html"&gt;queue&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The queue is used to communicate to the &lt;code&gt;TopologicalSorter&lt;/code&gt; that packages depending
+on the now installed package can be processed. A queue allows the code to wait
+for any package to be installed even if multiple threads are installing packages.&lt;/p&gt;
+&lt;p&gt;Step 4 is where things get a little more complicated as it introduces three new
+functions, &lt;code&gt;is_active()&lt;/code&gt;, &lt;code&gt;get_ready()&lt;/code&gt; and &lt;code&gt;done()&lt;/code&gt;. Let's take a look at the
+code and then step through it to see what it does:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;concurrent.futures&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ThreadPoolExecutor&lt;/span&gt;
+
+&lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;ThreadPoolExecutor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;executor&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_active&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="n"&gt;ready_packages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_ready&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Ready to install &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;ready_packages&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;executor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;install_package&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ready_packages&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="n"&gt;installed_package&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;installed_packages_queue&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;installed_package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Installed package &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;installed_package&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor"&gt;&lt;code&gt;ThreadPoolExecutor&lt;/code&gt;&lt;/a&gt;
+is a convenient way to work with threads. You can submit jobs to a &lt;code&gt;ThreadPoolExecutor&lt;/code&gt;
+and have them automatically run in different threads. It simplifies a lot of the
+boilerplate and clean-up that typically comes with threaded code.&lt;/p&gt;
+&lt;p&gt;The code creates a &lt;code&gt;ThreadPoolExecutor&lt;/code&gt; which will get cleaned up automatically
+once execution leaves the &lt;code&gt;with&lt;/code&gt; block. &lt;code&gt;ThreadPoolExecutor&lt;/code&gt; is a &lt;a href="https://docs.python.org/3/reference/datamodel.html#context-managers"&gt;&lt;strong&gt;context manager&lt;/strong&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;ThreadPoolExecutor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;executor&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The code then enters into the loop that the &lt;code&gt;graphlib&lt;/code&gt; docs described:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;While &lt;code&gt;is_active()&lt;/code&gt; is True, iterate over the nodes returned by &lt;code&gt;get_ready()&lt;/code&gt; and process them. Call &lt;code&gt;done()&lt;/code&gt; on each node as it finishes processing.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;is_active()&lt;/code&gt; reports whether there are nodes left to process. Until all
+the nodes have been returned by &lt;code&gt;get_ready()&lt;/code&gt;, &lt;code&gt;is_active()&lt;/code&gt; will return &lt;code&gt;True&lt;/code&gt;.
+The code uses &lt;code&gt;is_active()&lt;/code&gt; to stop once all packages are installed.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;get_ready()&lt;/code&gt; gets a tuple of nodes that can be processed right now. A node can be
+processed if all of its parents have been processed or if it has no parents:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_active&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;ready_packages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_ready&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Ready to install &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;ready_packages&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;executor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;install_package&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ready_packages&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The above code snippet gets a list of currently ready packages and then submits them
+as jobs to the &lt;code&gt;ThreadPoolExecutor&lt;/code&gt; using &lt;code&gt;map(func, iterable)&lt;/code&gt;. This creates a new
+&lt;code&gt;install_package&lt;/code&gt; job for each package that &lt;code&gt;get_ready&lt;/code&gt; returns. Note that &lt;code&gt;map&lt;/code&gt; is
+non-blocking.&lt;/p&gt;
+&lt;p&gt;The code then blocks on a package being put onto &lt;code&gt;installed_packages_queue&lt;/code&gt;. The
+&lt;code&gt;.get()&lt;/code&gt; call will return after the first &lt;code&gt;install_package&lt;/code&gt; returns:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="n"&gt;installed_package&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;installed_packages_queue&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;installed_package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Installed package &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;installed_package&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;done(package)&lt;/code&gt; marks a node as processed. This enables &lt;code&gt;get_ready()&lt;/code&gt; to return
+any child nodes of the processed node. In the above code, &lt;code&gt;done&lt;/code&gt; marks a package as
+installed, which allows &lt;code&gt;get_ready()&lt;/code&gt; to return packages that depend on the
+installed package.&lt;/p&gt;
+&lt;p&gt;With all these pieces in place, here's the English version of the above code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;While there are packages left to install  &lt;ol&gt;
+&lt;li&gt;Get the packages that can currently be installed&lt;/li&gt;
+&lt;li&gt;Start an installation thread for each package&lt;/li&gt;
+&lt;li&gt;Wait for a package to be installed by listening on &lt;code&gt;installed_packages_queue&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Mark that package as done in the &lt;code&gt;TopologicalSorter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Go round again to see whether any more package can now be installed&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It took me a little while to wrap my head around this example, so don't be afraid
+to re-read the above a couple of times! It's worth noting that if your
+use case works with single-threaded processing, then &lt;code&gt;static_order&lt;/code&gt; is an easier
+option.&lt;/p&gt;
+&lt;p&gt;Running the code in the attached &lt;a href="https://gist.github.com/notexactlyawe/606734bcffdaa7d0c091dfbe55f09baa"&gt;gist&lt;/a&gt;
+produces the following output:&lt;/p&gt;
+&lt;script async id="asciicast-600838" src="https://asciinema.org/a/600838.js"&gt;&lt;/script&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Topological sorting is a really powerful tool. It allows you to order nodes in a graph
+by their dependencies, making sure that parent nodes come before their children.&lt;/p&gt;
+&lt;p&gt;In this article, you learned:  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What a topological sort is and what it's useful for&lt;/li&gt;
+&lt;li&gt;How to use &lt;code&gt;graphlib.TopologicalSorter&lt;/code&gt; in the Python standard library&lt;/li&gt;
+&lt;li&gt;How to deal with cycles in graphs when topologically sorting them&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All the code in this article is available in a &lt;a href="https://gist.github.com/notexactlyawe/606734bcffdaa7d0c091dfbe55f09baa"&gt;GitHub Gist&lt;/a&gt;.&lt;/p&gt;</content><category term="Tutorials"></category><category term="Python"></category><category term="Graph theory"></category></entry><entry><title>abracadabra: How does Shazam work?</title><link href="https://www.cameronmacleod.com/blog/how-does-shazam-work" rel="alternate"></link><published>2022-02-19T00:00:00+00:00</published><updated>2022-02-19T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2022-02-19:/blog/how-does-shazam-work</id><summary type="html">&lt;p&gt;&lt;img alt="" src="/images/abracadabra/header.png"&gt;&lt;/p&gt;
 &lt;p&gt;Your phone's ability to identify any song it listens to is pure technological magic. In this article, I'll show you how one of the most popular apps, &lt;a href="https://www.shazam.com"&gt;Shazam&lt;/a&gt;, does it. The founders of Shazam released &lt;a href="https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf"&gt;a paper&lt;/a&gt; in 2003 documenting how it works, and I have been working on an …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="" src="/images/abracadabra/header.png"&gt;&lt;/p&gt;
 &lt;p&gt;Your phone's ability to identify any song it listens to is pure technological magic. In this article, I'll show you how one of the most popular apps, &lt;a href="https://www.shazam.com"&gt;Shazam&lt;/a&gt;, does it. The founders of Shazam released &lt;a href="https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf"&gt;a paper&lt;/a&gt; in 2003 documenting how it works, and I have been working on an implementation of that paper, &lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Where the paper doesn't explain something, I will fill in the gaps with how abracadabra approaches it. I've also included links to the corresponding part of the abracadabra codebase in relevant sections so you can follow along in Python if you prefer.&lt;/p&gt;
