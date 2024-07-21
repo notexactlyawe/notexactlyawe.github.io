@@ -90,10 +90,10 @@
 <div class="highlight"><pre><span></span><code>/api/note - POST
 
 Parameters:
- - title (str) No longer than 60 characters
- - note (str) No longer than 1000 characters
- - user_id (int) No smaller than 1
- - time_created (datetime) Not in the future
+ <span class="k">-</span> title (str) No longer than 60 characters
+ <span class="k">-</span> note (str) No longer than 1000 characters
+ <span class="k">-</span> user_id (int) No smaller than 1
+ <span class="k">-</span> time_created (datetime) Not in the future
 </code></pre></div>
 
 <p>In Flask without a library for validation, you might end up writing the following view function to implement this.</p>
@@ -205,7 +205,7 @@ Parameters:
     <span class="k">return</span> <span class="s1">&#39;ok&#39;</span>
 </code></pre></div>
 
-<h2 id="extra-information">Extra information</h2>
+<h2 id="extra-information">Extra information<a class="headerlink" href="#extra-information" title="Link to heading">#</a></h2>
 <p>marshmallow is very powerful and contains much more than what I have covered here. Thankfully there are many good resources on the internet for you to research further.</p>
 <ul>
 <li><a href="https://marshmallow.readthedocs.io/en/3.0/quickstart.html">marshmallow Quickstart</a></li>

@@ -119,12 +119,12 @@
 <li><a href="#further-reading">Further reading</a></li>
 </ul>
 </div>
-<h2 id="what-is-shazam">What is Shazam?</h2>
+<h2 id="what-is-shazam">What is Shazam?<a class="headerlink" href="#what-is-shazam" title="Link to heading">#</a></h2>
 <p>Shazam is an app that identifies songs that are playing around you. You open the app while music is playing, and Shazam will record a few seconds of audio which it uses to search its database. Once it identifies the song that's playing, it will display the result on screen.</p>
 <video autoplay loop muted playsinline src="/images/abracadabra/shazam.mp4" class="portrait-video">Shazam recognising a song</video>
 
 <p>Before Shazam was an app, it was a phone number. To identify a song, you would ring up the number and hold your phone's microphone to the music. After 30 seconds, Shazam would hang up and then text you details on the song you were listening to. If you were using a mobile phone back in 2002, you'll understand that the quality of phone calls back then made this a challenging task!</p>
-<h2 id="why-is-song-recognition-hard-anyway">Why is song recognition hard anyway?</h2>
+<h2 id="why-is-song-recognition-hard-anyway">Why is song recognition hard anyway?<a class="headerlink" href="#why-is-song-recognition-hard-anyway" title="Link to heading">#</a></h2>
 <p>If you haven't done much signal processing before, it may not be obvious why this is a difficult problem to solve. To help give you an idea, take a look at the following audio:</p>
 <p><img alt="Chris Cornell's &quot;Like a Stone&quot; waveform" src="/images/abracadabra/likeastone.png"></p>
 <p>The above graph shows what <a href="https://www.youtube.com/watch?v=pom_tO2-5s8">Chris Cornell's "Like a Stone"</a> looks like when stored in a computer. Now take a look at the following section of the track:</p>
@@ -135,7 +135,7 @@
 <p>This would be a bit slow, but it would work. Now imagine that you didn't know which track this audio came from, and you had a database of 10 million songs to search. This would take a lot longer!</p>
 <p>What's worse, when you move from this toy example to samples that are recorded through a microphone you introduce background noise, frequency effects, amplitude changes and more. All of these can change the shape of the audio significantly. The sliding method just doesn't work that well for this problem.</p>
 <p>Thankfully, Shazam's approach is a lot smarter than that. In the next section, you'll see the high-level overview of how this works.</p>
-<h2 id="system-overview">System overview</h2>
+<h2 id="system-overview">System overview<a class="headerlink" href="#system-overview" title="Link to heading">#</a></h2>
 <p>If Shazam doesn't take the sliding approach we described above, what does it do? Take a look at the following high-level diagram:</p>
 <p><img alt="Diagram showing high-level overview of Shazam design" src="/images/abracadabra/shazam_overview.png"></p>
 <p>The first thing you will notice is that the diagram is split up into <em>register</em> and <em>recognise</em> flows. The <em>register</em> flow remembers a song to enable it to be recognised in the future. The <em>recognise</em> flow identifies a short section of audio.</p>
@@ -147,9 +147,9 @@
 </ol>
 <p>After calculating these hashes, the <em>register</em> flow will store them in the database. The <em>recognise</em> flow will compare them to hashes already in the database to identify which song is playing through the <strong>matching</strong> step.</p>
 <p>In the next few sections, you'll learn more about each of these steps.</p>
-<h2 id="calculating-a-spectrogram">Calculating a spectrogram</h2>
+<h2 id="calculating-a-spectrogram">Calculating a spectrogram<a class="headerlink" href="#calculating-a-spectrogram" title="Link to heading">#</a></h2>
 <p>The first step for both flows is to obtain a spectrogram of the audio being registered or recognised. To understand spectrograms, you first have to understand Fourier transforms.</p>
-<h3 id="the-fourier-transform">The Fourier transform</h3>
+<h3 id="the-fourier-transform">The Fourier transform<a class="headerlink" href="#the-fourier-transform" title="Link to heading">#</a></h3>
 <p>A <a href="https://realpython.com/python-scipy-fft/">Fourier transform</a> takes some audio and tells you which frequencies are present in that audio. For example, if you took a 20 Hertz sine wave and used the Fourier transform on it, you would see a big spike around 20 Hertz (Hz):</p>
 <p><img alt="20Hz sine wave and its Fourier transform" src="/images/abracadabra/fouriertransform20hz.png"></p>
 <p>In the above image, you can see a large spike around 20Hz and nothing at other frequencies. Sine waves are often called <strong>pure tones</strong> because of this property, since they only contain a single frequency.</p>
@@ -164,7 +164,7 @@
 <p>Up until now, our examples have only contained one or two frequencies, but what happens if you put a more complex signal through the Fourier transform? Let's take a look at our section of audio from Like a Stone:</p>
 <p><img alt="Fourier transform of a Like a Stone sample" src="/images/abracadabra/fouriertransformsample.png"></p>
 <p>Real audio files like the one above contain lots of different frequencies. This is a good thing, as it means that the frequencies present can uniquely identify songs.</p>
-<h3 id="spectrograms">Spectrograms</h3>
+<h3 id="spectrograms">Spectrograms<a class="headerlink" href="#spectrograms" title="Link to heading">#</a></h3>
 <p><a href="https://github.com/notexactlyawe/abracadabra/blob/e0eb59a944d7c9999ff8a4bc53f5cfdeb07b39aa/abracadabra/fingerprint.py#L9">abracadabra implementation</a></p>
 <p>If you run a Fourier transform over an entire song, then you will see the strength of the frequencies present over the whole song. However, the frequencies that are present change over time. To better represent the frequencies changing over time, we need to split the song into small sections before taking the Fourier transform. This is called taking a spectrogram.</p>
 <p>Here's a simplified animation of how spectrograms work:</p>
@@ -182,11 +182,11 @@
 <p>The Z-axis is represented by colour in the spectrogram above. Bright green shows a high magnitude for a particular frequency component and dark blue shows a low magnitude.</p>
 <p>Looking at the spectrogram above, you can see that the brightest spots (strongest frequencies) almost exclusively occur below 5000Hz. This is quite common with music, for example most pianos have a <a href="https://en.wikipedia.org/wiki/Piano_key_frequencies">frequency range</a> of 27Hz-4186Hz.</p>
 <p>The frequencies present in a track contain a lot of identifying information, and calculating the spectrogram allows us access to that information. In the next section, you'll learn how we turn all that information into a unique fingerprint for the track.</p>
-<h2 id="fingerprinting">Fingerprinting</h2>
+<h2 id="fingerprinting">Fingerprinting<a class="headerlink" href="#fingerprinting" title="Link to heading">#</a></h2>
 <p>Just as a fingerprint uniquely identifies a person, we can extract a unique fingerprint for some audio from its spectrogram.</p>
 <p>These audio fingerprints rely on finding peaks in the spectrogram. These peaks are the loudest frequencies at some time in the song. Because they are loud, it's likely they'll survive when subjected to noise or other distortions.</p>
 <p>In the next section, you'll read some more about the motivation behind using spectrogram peaks to build fingerprints.</p>
-<h3 id="why-is-the-fingerprint-based-on-spectrogram-peaks">Why is the fingerprint based on spectrogram peaks?</h3>
+<h3 id="why-is-the-fingerprint-based-on-spectrogram-peaks">Why is the fingerprint based on spectrogram peaks?<a class="headerlink" href="#why-is-the-fingerprint-based-on-spectrogram-peaks" title="Link to heading">#</a></h3>
 <p>A spectrogram peak is a frequency that is loud at some point in an audio signal. You can recognise these on a spectrogram since they will be the brightest points.</p>
 <p>In music, these would represent the loudest notes. For example, during a guitar solo, the notes that the guitar is playing might become spectrogram peaks since they would likely be the loudest notes at that time.</p>
 <p>A spectrogram peak is the point least likely to be affected by noise. Noise has to be louder than the spectrogram peak to make it unrecognisable and the spectrogram peaks are the loudest frequency components in the track.</p>
@@ -194,7 +194,7 @@
 <p><img alt="Fourier transform of a noisy signal" src="/images/abracadabra/noisyfouriertransform.png"></p>
 <p>Another advantage of using spectrogram peaks to fingerprint audio is that they cut down the amount of data we have to store. Storing only the loudest frequency components means we don't have to store everything else. This speeds up searching fingerprints since there is less data to look through.</p>
 <p>Before we can use frequency peaks in our fingerprint though, we have to find them. In the next section, you'll learn how.</p>
-<h3 id="finding-peaks">Finding peaks</h3>
+<h3 id="finding-peaks">Finding peaks<a class="headerlink" href="#finding-peaks" title="Link to heading">#</a></h3>
 <p><a href="https://github.com/notexactlyawe/abracadabra/blob/e0eb59a944d7c9999ff8a4bc53f5cfdeb07b39aa/abracadabra/fingerprint.py#L31">abracadabra implementation</a></p>
 <p>As discussed in the previous section, the peaks of a spectrogram represent the strongest frequencies in a signal. For frequency peaks to be usable in an audio fingerprint, it's important that they are evenly spaced through the spectrogram.</p>
 <p>It's important the peaks are evenly spaced in <strong>time</strong>, so the system can recognise any section of the song. For example, if all the peaks were at the start of the song, then the fingerprint wouldn't cover later sections:</p>
@@ -239,7 +239,7 @@
 </ol>
 <hr>
 <p>We have almost finished constructing our fingerprint, the next step is to produce a set of hashes from our peaks.</p>
-<h3 id="hashing">Hashing</h3>
+<h3 id="hashing">Hashing<a class="headerlink" href="#hashing" title="Link to heading">#</a></h3>
 <p><a href="https://github.com/notexactlyawe/abracadabra/blob/e0eb59a944d7c9999ff8a4bc53f5cfdeb07b39aa/abracadabra/fingerprint.py#L96">abracadabra implementation</a></p>
 <p>To motivate hashing, imagine that our fingerprint was just a collection of spectrogram peaks. Each peak's frequency would be represented by a certain number of bits, for example 10. With 10 bits of information, we can represent 2^10=1024 individual frequencies. With thousands of these points per track, we quickly get a lot of repeats.</p>
 <p>Uniqueness is important for a fingerprint, since it makes searching a lot faster and helps to recognise more songs. Shazam's solution to the problem of uniqueness is to create hashes from pairs of peaks:</p>
@@ -275,7 +275,7 @@
 
 <p>The first three columns (f<sub>A</sub>, f<sub>B</sub> and 𝚫T) make up the hash. The "Other information" is used to locate the hash at a specific time in a song. This will be used in matching later.</p>
 <p>All of the hashes for a particular track make up the fingerprint. In the next section, you'll read about how Shazam matches these fingerprints.</p>
-<h2 id="matching">Matching</h2>
+<h2 id="matching">Matching<a class="headerlink" href="#matching" title="Link to heading">#</a></h2>
 <p>Given a collection of fingerprints in a database, how does Shazam figure out which one a given audio sample matches? This is where the matching part of the system comes in. Recall the system diagram from earlier:</p>
 <p><img alt="Diagram showing high-level overview of Shazam design" src="/images/abracadabra/shazam_overview.png"></p>
 <p>The recognise and register flows both generate fingerprints. The difference lies in what they do with them. While the register flow stores fingerprints away for future matching, the recognise flow has to match its fingerprint with what is already in the database.</p>
@@ -374,7 +374,7 @@
 <p>Each bar in the histogram above is referred to as a <strong>bin</strong>. To score a song on how good a match it is for an audio sample, we just need to take the largest bin. Songs that aren't good matches will have low values in all bins, whereas a song that's a good match will have a large spike in one of the bins.</p>
 <p>This way we can compare a sample to all the songs with matching hashes in our database and score each of them. The song with the highest score is likely to be the correct result.</p>
 <p>You might wonder why we don't just go for the song that matches the largest number of hashes as it would be much simpler to implement. The problem with this approach is that not all songs are the same length. Longer songs are likely to get more matches than shorter songs and when some Spotify tracks are <a href="https://www.reddit.com/r/spotify/comments/9i2ps6/longest_song_on_spotify/">over 4 hours long</a> this can really bias your results!</p>
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Link to heading">#</a></h2>
 <p>Well done for making it this far, that was a long journey! Over the course of this article, you've learned how Shazam extracts fingerprints from audio, and how it matches these fingerprints to those that it has already registered in its database.</p>
 <p>To summarise, Shazam does the following to <strong>register</strong> a song:</p>
 <ul>
@@ -395,10 +395,10 @@
 </li>
 <li>Return the song with the highest score</li>
 </ul>
-<h2 id="enter-abracadabra">Enter abracadabra</h2>
+<h2 id="enter-abracadabra">Enter abracadabra<a class="headerlink" href="#enter-abracadabra" title="Link to heading">#</a></h2>
 <p>I learned everything written here over the process of writing <a href="https://github.com/notexactlyawe/abracadabra">abracadabra</a>, my implementation of this paper.</p>
 <p>If you are interested in seeing what this might look like in code, please take a look! Everything is open source and I've done my best to document the project. abracadabra can also be used as a library in other projects, so please feel free to re-mix and build something cool. If you do use it, I'd love to <a href="/about">hear about it</a>.</p>
-<h2 id="further-reading">Further reading</h2>
+<h2 id="further-reading">Further reading<a class="headerlink" href="#further-reading" title="Link to heading">#</a></h2>
 <p>If you want to find out more about anything mentioned in this article, take a look below. I've also scattered some helpful links throughout the page.</p>
 <ul>
 <li><a href="https://abracadabra.readthedocs.io/en/latest/">abracadabra docs</a></li>

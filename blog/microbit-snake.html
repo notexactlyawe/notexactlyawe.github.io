@@ -92,7 +92,7 @@
 <p>Below is a preview of what we'll be building.</p>
 <video autoplay loop muted playsinline src="/images/microbitsnake/snakepreview.mp4">Snake game running on the BBC micro:bit</video>
 
-<h2 id="pre-requisites">Pre-requisites</h2>
+<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Link to heading">#</a></h2>
 <p>This tutorial will assume that you know what Python is, and that you know some basic programming concepts. But don't worry, if you consider yourself a beginner then this tutorial is for you. In fact, I will try to over-explain things and provide solutions to every exercise, so there's nothing to fear!</p>
 <p>With that out the way, let's get started.</p>
 <p><strong>Quick links</strong></p>
@@ -106,41 +106,41 @@
 <li><a href="#creating-the-game-state">Creating the game state</a><ul>
 <li><a href="#python-lists">Python lists</a></li>
 <li><a href="#the-microbit-co-ordinate-system">The micro:bit co-ordinate system</a></li>
-<li><a href="#your-turn-1-filling-in-the-state"> Your turn 1: Filling in the state</a></li>
+<li><a href="#your-turn-1-filling-in-the-state">Your turn 1: Filling in the state</a></li>
 </ul>
 </li>
 <li><a href="#drawing-to-the-screen">Drawing to the screen</a><ul>
 <li><a href="#drawing-the-food">Drawing the food</a></li>
 <li><a href="#python-for-loops">Python for loops</a></li>
-<li><a href="#your-turn-2-drawing-the-snake"> Your turn 2: Drawing the snake</a></li>
+<li><a href="#your-turn-2-drawing-the-snake">Your turn 2: Drawing the snake</a></li>
 <li><a href="#running-our-code">Running our code</a></li>
 </ul>
 </li>
 <li><a href="#moving-the-snake">Moving the snake</a><ul>
 <li><a href="#python-if-statements">Python if statements</a></li>
-<li><a href="#your-turn-3-calculating-the-new-head"> Your turn 3: Calculating the new head</a></li>
-<li><a href="#your-turn-4-removing-the-tail"> Your turn 4: Removing the tail</a></li>
+<li><a href="#your-turn-3-calculating-the-new-head">Your turn 3: Calculating the new head</a></li>
+<li><a href="#your-turn-4-removing-the-tail">Your turn 4: Removing the tail</a></li>
 </ul>
 </li>
 <li><a href="#wrapping">Wrapping</a><ul>
-<li><a href="#your-turn-5-wrap-the-screen"> Your turn 5: Wrap the screen</a></li>
+<li><a href="#your-turn-5-wrap-the-screen">Your turn 5: Wrap the screen</a></li>
 </ul>
 </li>
 <li><a href="#getting-input">Getting input</a><ul>
 <li><a href="#accelerometers">Accelerometers</a></li>
 <li><a href="#simulator-only-how-to-test-with-the-accelerometer">Simulator only: How to test with the accelerometer</a></li>
-<li><a href="#your-turn-6-updating-direction"> Your turn 6: Updating direction</a></li>
+<li><a href="#your-turn-6-updating-direction">Your turn 6: Updating direction</a></li>
 </ul>
 </li>
 <li><a href="#food">Food</a><ul>
-<li><a href="#your-turn-7-eating-food"> Your turn 7: Eating food</a></li>
+<li><a href="#your-turn-7-eating-food">Your turn 7: Eating food</a></li>
 <li><a href="#random-numbers">Random numbers</a></li>
-<li><a href="#your-turn-8-generating-food"> Your turn 8: Generating food</a></li>
+<li><a href="#your-turn-8-generating-food">Your turn 8: Generating food</a></li>
 </ul>
 </li>
 <li><a href="#ending-the-game">Ending the game</a><ul>
 <li><a href="#loop-control">Loop control</a></li>
-<li><a href="#your-turn-9-ending-the-game"> Your turn 9: Ending the game</a></li>
+<li><a href="#your-turn-9-ending-the-game">Your turn 9: Ending the game</a></li>
 </ul>
 </li>
 <li><a href="#final-notes">Final notes</a></li>
@@ -149,11 +149,11 @@
 <li><a href="#copyright">Copyright</a></li>
 </ul>
 </div>
-<h2 id="what-is-a-microbit">What is a micro:bit?</h2>
+<h2 id="what-is-a-microbit">What is a micro:bit?<a class="headerlink" href="#what-is-a-microbit" title="Link to heading">#</a></h2>
 <p>A <a href="https://microbit.org/">micro:bit</a> is a tiny computer that you can program in Python. It comes with an LED grid (for a screen), an accelerometer (to detect motion), electrical outputs (for controlling motors, lights etc) and a bunch of other cool features. They're also pretty cheap (£20/$20 at time of writing on Amazon), and programming them is as simple as dragging a file to a USB stick.</p>
 <p><img alt="A micro:bit" src="/images/microbitsnake/microbit.svg"></p>
 <p>If you don't already have one, don't worry! There are simulators available online and you'll be able to follow along with this whole tutorial.</p>
-<h2 id="setting-up-environment">Setting up environment</h2>
+<h2 id="setting-up-environment">Setting up environment<a class="headerlink" href="#setting-up-environment" title="Link to heading">#</a></h2>
 <p>Whether you have a micro:bit or not, the first step is to open the <a href="https://www.cameronmacleod.com/createwithcode/">create.withcode editor</a>. When you do, you should see a screen like the one below.</p>
 <p><img alt="create.withcode editor" src="/images/microbitsnake/createwithcode.png"></p>
 <p>Most of the screen (1) is taken up with the editor. This is where you'll put your code. In the lower-right corner (2) is a button to run your code which looks like a green triangle. Alternatively, you can run your code by pressing <code>Ctrl</code>+<code>Enter</code>.</p>
@@ -163,7 +163,7 @@
 <p>Your code will be running on the virtual micro:bit you can see, and there are tabs along the top for your to control various inputs to the device, which will become important later.</p>
 <p>If you are working with a physical micro:bit, then the "Download HEX" button in the top-left of the pop-up will allow you to download the file you need to program your micro:bit. You can drag this file to the "MICROBIT" device in your file manager to program it.</p>
 <p>Before we start looking at some code, let's take a quick detour to look at the game of Snake.</p>
-<h2 id="snake">Snake</h2>
+<h2 id="snake">Snake<a class="headerlink" href="#snake" title="Link to heading">#</a></h2>
 <p>Fun fact - if you go to Google and search for "snake", a snake game should appear. Just in case it doesn't appear for you, you can play it <a href="https://www.google.com/fbx?fbx=snake_arcade">here</a>. Below you can see it in action.</p>
 <video autoplay loop muted playsinline src="/images/microbitsnake/snakedemo.mp4">Google Snake game demo</video>
 
@@ -185,7 +185,7 @@
 </li>
 </ul>
 <p>So in theory, if we can build all these components, then we should have a snake game!</p>
-<h2 id="skeleton-code">Skeleton code</h2>
+<h2 id="skeleton-code">Skeleton code<a class="headerlink" href="#skeleton-code" title="Link to heading">#</a></h2>
 <p>To make it easier to get started, we'll be working from a skeleton file. Find it at <a href="https://github.com/notexactlyawe/microbit-snake/blob/master/skeleton.py">this link</a> and copy the contents into the <a href="https://www.cameronmacleod.com/createwithcode/">create.withcode editor</a>.</p>
 <p>Let's take a look at each part of the code to figure out what it does.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">microbit</span> <span class="kn">import</span> <span class="o">*</span>
@@ -282,9 +282,9 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 </details>
 
 <p>Now that we have a template, our first step will be to initialise the game state.</p>
-<h2 id="creating-the-game-state">Creating the game state</h2>
+<h2 id="creating-the-game-state">Creating the game state<a class="headerlink" href="#creating-the-game-state" title="Link to heading">#</a></h2>
 <p>Before we can intialise the game state, we need to learn a little bit about Python and the micro:bit. Feel free to skip these sections if you have done this before.</p>
-<h3 id="python-lists">Python lists</h3>
+<h3 id="python-lists">Python lists<a class="headerlink" href="#python-lists" title="Link to heading">#</a></h3>
 <p>Lists are a way to store multiple values in the same variable in Python. If you haven't come across them before there's a more <a href="http://openbookproject.net/thinkcs/python/english3e/lists.html">detailed introduction here</a>. You may be able to get by with the cheat sheet below though.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># define a list</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
@@ -311,12 +311,12 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 <span class="mi">2</span>
 </code></pre></div>
 
-<h3 id="the-microbit-co-ordinate-system">The micro:bit co-ordinate system</h3>
+<h3 id="the-microbit-co-ordinate-system">The micro:bit co-ordinate system<a class="headerlink" href="#the-microbit-co-ordinate-system" title="Link to heading">#</a></h3>
 <p>On the front of a micro:bit is a grid of LEDs. When drawing something on the screen, we need a way to describe individual LEDs within this grid so that we know which one to light up. This is where the co-ordinate system comes in.</p>
 <p><img alt="Diagram of the micro:bit co-ordinate system" src="/images/microbitsnake/displaycoords.svg"></p>
 <p>Display co-ordinates on the micro:bit work a little like the graphs you may have plotted in school. There's an X axis that goes from left to right and a Y axis that goes from top to bottom. The main difference from the graphs in school is that the Y axis increases going down (towards the pins) whereas in school it would have increased going up.</p>
 <p>In the image above, point A is at the co-ordinates <code>[3, 0]</code>. The left number in these co-ordinates is the position along the X axis and the right number is the position along the Y axis. Similarly, point B is at co-ordinates <code>[1, 2]</code>.</p>
-<h3 id="your-turn-1-filling-in-the-state"><i class="fa fa-lightbulb-o"></i> Your turn 1: Filling in the state</h3>
+<h3 id="your-turn-1-filling-in-the-state"><i class="fa fa-lightbulb-o"></i> Your turn 1: Filling in the state<a class="headerlink" href="#your-turn-1-filling-in-the-state" title="Link to heading">#</a></h3>
 <p>If you now feel comfortable with these concepts, you'll notice that the <code>__init__</code> function has some commented out code. When you uncomment that, it looks like the below. Feel free to have a go at completing it and we'll look at the solution in the next section.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># direction is a string with up, down, left or right</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span>
@@ -358,10 +358,10 @@ This variable tells us whether the game has finished or not. It wouldn't be very
 </p>
 </details>
 
-<h2 id="drawing-to-the-screen">Drawing to the screen</h2>
+<h2 id="drawing-to-the-screen">Drawing to the screen<a class="headerlink" href="#drawing-to-the-screen" title="Link to heading">#</a></h2>
 <p>We have some initial state, but if you ran this code right now, you wouldn't see much happening. That's because we're not actually drawing anything to the screen.</p>
 <p>So what do we need to draw on the screen? Thinking back to our Google Snake example, the snake, food and grid were visible. On the micro:bit the grid is already built for us since the LEDs form a grid naturally. That leaves the snake and the food to be drawn.</p>
-<h3 id="drawing-the-food">Drawing the food</h3>
+<h3 id="drawing-the-food">Drawing the food<a class="headerlink" href="#drawing-the-food" title="Link to heading">#</a></h3>
 <p>Ideally, then, we need a function to light up an individual LED using its co-ordinates. The snake and the food are both stored using co-ordinates, so if we can draw these on one at a time then we'll have completed our <code>draw</code> function.</p>
 <p>The micro:bit offers us a number of different ways to <a href="https://microbit-micropython.readthedocs.io/en/latest/display.html">draw to the screen</a>, including one that does what we need. <code>display.set_pixel(x, y, value)</code> will set the pixel at <code>[x, y]</code> to the level of brightness <code>value</code>. <code>value</code> can be between 0 and 9, where 0 is off and 9 is fully on.</p>
 <p>Now that we have a function to turn on a pixel, we can start to fill in our <code>draw</code> function.</p>
@@ -374,7 +374,7 @@ This variable tells us whether the game has finished or not. It wouldn't be very
 <p>The first thing we do in this function is <code>display.clear()</code>. This sets all the LEDs off, which is important because this draw function will be called repeatedly and we want to draw something different each time. If we didn't clear the display, then the game state from the last iteration of the game loop would still be there.</p>
 <p>Next we use the <code>self.food</code> co-ordinates to draw the food. We use the intensity <code>5</code> because that will help us to distinguish it from the snake.</p>
 <p>Before we draw the snake, let's take a look at <code>for</code> loops in Python. Again, if you've done this before, feel free to skip it.</p>
-<h3 id="python-for-loops">Python <code>for</code> loops</h3>
+<h3 id="python-for-loops">Python <code>for</code> loops<a class="headerlink" href="#python-for-loops" title="Link to heading">#</a></h3>
 <p><code>for</code> loops are great for when you want to do the same thing to multiple elements. In Python they're written like this:</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">iterable_thing</span><span class="p">:</span>
     <span class="n">do_things</span><span class="p">(</span><span class="n">variable_name</span><span class="p">)</span>
@@ -399,7 +399,7 @@ This variable tells us whether the game has finished or not. It wouldn't be very
 <span class="mi">5</span>
 </code></pre></div>
 
-<h3 id="your-turn-2-drawing-the-snake"><i class="fa fa-lightbulb-o"></i> Your turn 2: Drawing the snake</h3>
+<h3 id="your-turn-2-drawing-the-snake"><i class="fa fa-lightbulb-o"></i> Your turn 2: Drawing the snake<a class="headerlink" href="#your-turn-2-drawing-the-snake" title="Link to heading">#</a></h3>
 <p>Now you know how to light up individual pixels, and how to use a <code>for</code> loop to go over a list, you should be able to draw the snake to the screen. You'll want to draw the snake with intensity <code>9</code> so that it looks different from the food we drew earlier. As before, the solution is below.</p>
 <details><summary>Solution</summary>
 <p>
@@ -417,13 +417,13 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 </p>
 </details>
 
-<h3 id="running-our-code">Running our code</h3>
+<h3 id="running-our-code">Running our code<a class="headerlink" href="#running-our-code" title="Link to heading">#</a></h3>
 <p>At this point, we should see some output, so let's go ahead and run our code. Whether or not you have a physical micro:bit, press <code>Ctrl</code>+<code>Enter</code> in the editor to bring up the micro:bit pop up. You can also click the cross in the corner and then click the green play button.</p>
 <p>If you want to run the code on your physical micro:bit, click the "Download HEX" button in the top left corner. You can refer to the <a href="#setting-up-environment">Setting up environment section</a> if you can't find it.</p>
 <p>You should see something that looks like the below. If so, well done! If not, go back and check the solutions match your code exactly. Whitespace matters in Python as well, so check that carefully.</p>
 <p><img alt="Snake game state being drawn to the screen" src="/images/microbitsnake/drawingtoscreen.svg"></p>
 <p>Our snake is in the centre of the screen as a bright dot, and our food is at the left of the screen as a less bright dot. Yours might be in different positions depending on what you chose in <a href="#your-turn-1-filling-in-the-state">Creating the game state</a>. The next step is to make the snake move.</p>
-<h2 id="moving-the-snake">Moving the snake</h2>
+<h2 id="moving-the-snake">Moving the snake<a class="headerlink" href="#moving-the-snake" title="Link to heading">#</a></h2>
 <p>To understand how to move the snake, let's take a look at an example.</p>
 <video autoplay loop muted playsinline src="/images/microbitsnake/calcheadcuttail.mp4">Animation showing how the snake moves.</video>
 
@@ -433,7 +433,7 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 <li>Cut the tail off</li>
 </ol>
 <p>So our first step will be to calculate the new head. We can do that with the help of <code>if</code> statements.</p>
-<h3 id="python-if-statements">Python <code>if</code> statements</h3>
+<h3 id="python-if-statements">Python <code>if</code> statements<a class="headerlink" href="#python-if-statements" title="Link to heading">#</a></h3>
 <p>Sometimes we want to choose what to do based on a condition. For example, you would want to wear a coat if it was raining outside, but if it was sunny you would put on sunglasses. You can do this in Python using <code>if</code> statements.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># rain is a boolean variable (True or False)</span>
 <span class="k">if</span> <span class="n">rain</span><span class="p">:</span>
@@ -456,7 +456,7 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 <span class="n">go_outside</span><span class="p">()</span>
 </code></pre></div>
 
-<h3 id="your-turn-3-calculating-the-new-head"><i class="fa fa-lightbulb-o"></i> Your turn 3: Calculating the new head</h3>
+<h3 id="your-turn-3-calculating-the-new-head"><i class="fa fa-lightbulb-o"></i> Your turn 3: Calculating the new head<a class="headerlink" href="#your-turn-3-calculating-the-new-head" title="Link to heading">#</a></h3>
 <p>We're going to be working in the <code>update()</code> function here, since that updates the game state before we draw the screen.</p>
 <p>There are a few steps in calculating the new head of the snake.</p>
 <ol>
@@ -517,7 +517,7 @@ Firstly we copy the old head of the snake, remember `-1` is the index of the las
 </p>
 </details>
 
-<h3 id="your-turn-4-removing-the-tail"><i class="fa fa-lightbulb-o"></i> Your turn 4: Removing the tail</h3>
+<h3 id="your-turn-4-removing-the-tail"><i class="fa fa-lightbulb-o"></i> Your turn 4: Removing the tail<a class="headerlink" href="#your-turn-4-removing-the-tail" title="Link to heading">#</a></h3>
 <p>Remember the <code>.pop(idx)</code> method on lists from before? You can remove an item from a list by calling this function with the index of the item that you want to remove.</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -558,12 +558,12 @@ The full `update` function should now look like this:
 <p><code>ValueError: index out of bounds</code></p>
 <p>What's happening here is that our <code>new_head</code> is going out of bounds, which means it's becoming a value that can't be displayed on the screen. If you remember our co-ordinates diagram, the Y co-ordinate is getting smaller until it gets to -1. When we then try and call <code>display.set_pixel</code> with -1 as an input, it gives us an error, since there's no LED at <code>[2, -1]</code>.</p>
 <p>We could fix this by ending the game if the snake goes out of bounds, but on a screen this small that wouldn't be much fun. Instead, let's fix it by wrapping our snake around the board.</p>
-<h2 id="wrapping">Wrapping</h2>
+<h2 id="wrapping">Wrapping<a class="headerlink" href="#wrapping" title="Link to heading">#</a></h2>
 <p>Wrapping just means that if the snake hits one side of the screen, then it should appear on the other side of the screen.</p>
 <video autoplay loop muted playsinline src="/images/microbitsnake/wrappingdemo.mp4">Demonstration of wrapping the snake to the other side of the screen.</video>
 
 <p>In the above example, the snake is moving up the screen. After the snake's head reaches <code>[3, 0]</code> it goes to <code>[3, 4]</code> and appears at the bottom of the screen. The snake continues to move upwards, just starting from the bottom of the screen now. We can implement this behaviour by checking the bounds of the <code>new_head</code>.</p>
-<h3 id="your-turn-5-wrap-the-screen"><i class="fa fa-lightbulb-o"></i> Your turn 5: Wrap the screen</h3>
+<h3 id="your-turn-5-wrap-the-screen"><i class="fa fa-lightbulb-o"></i> Your turn 5: Wrap the screen<a class="headerlink" href="#your-turn-5-wrap-the-screen" title="Link to heading">#</a></h3>
 <p>The bounds of our screen are 0-4 in both the X and Y axes. So you'll want to check if the X co-ordinate or the Y co-ordinate are less than/greater than these boundaries. If they are, reset them to the other edge of the screen.</p>
 <p>Again, for this task we'll be working in our <code>update</code> method.</p>
 <details><summary>Solution</summary>
@@ -598,21 +598,21 @@ We add a new `if` statement for both the X co-ordinate and the Y co-ordinate. In
 <p>When we add this code to our game, it should look like the below.</p>
 <video autoplay loop muted playsinline src="/images/microbitsnake/wrapping.mp4">The game successfully wrapping the snake round the screen.</video>
 
-<h2 id="getting-input">Getting input</h2>
+<h2 id="getting-input">Getting input<a class="headerlink" href="#getting-input" title="Link to heading">#</a></h2>
 <p>At this point, we have an image on the screen and the snake moves! The user can't yet control the snake though, so let's add that in.</p>
 <p>The micro:bit has a few different ways of getting input from the user and the world around it. Most visibly, it has two buttons on the front that the user can press. While we could use these for input, four directions doesn't map into two buttons in an intuitive way. Other inputs the micro:bit has include an accelerometer for detecting tilt and motion, a compass for direction relative to the earth, pins on the bottom for electrical input and a temperature sensor. Out of these, the accelerometer can provide the simplest method of control.</p>
-<h3 id="accelerometers">Accelerometers</h3>
+<h3 id="accelerometers">Accelerometers<a class="headerlink" href="#accelerometers" title="Link to heading">#</a></h3>
 <p>We won't try to understand how accelerometers work here, that would take a post of its own. However, we can understand what an accelerometer can do for us. If you've never heard of an accelerometer before, it's the bit of your phone that detects orientation and makes your videos landscape when you tilt your phone.</p>
 <p>In short, an accelerometer can measure the tilt of a device, and we can use this for our game. To see how this will work, take a look at the video below.</p>
 <video autoplay loop muted playsinline src="/images/microbitsnake/accelphysdemo.mp4">Using the accelerometer to move a dot around the micro:bit screen</video>
 
 <p>The dot follows the tilt of the device here. When we tilt the device away from us, the dot heads up the screen (away from us). Tilting the device to the left, right or towards us have similar efects.</p>
-<h3 id="simulator-only-how-to-test-with-the-accelerometer">Simulator only: How to test with the accelerometer</h3>
+<h3 id="simulator-only-how-to-test-with-the-accelerometer">Simulator only: How to test with the accelerometer<a class="headerlink" href="#simulator-only-how-to-test-with-the-accelerometer" title="Link to heading">#</a></h3>
 <video autoplay loop muted playsinline src="/images/microbitsnake/accelvirtdemo.mp4">Controlling the micro:bit accelerometer with the mouse in the create.withcode editor</video>
 
 <p>The micro:bit pop-up in the simulator has some tabs along the top for controlling the various components of the micro:bit. One of these tabs controls the accelerometer (seen in the video above). In the tab you will see three sliders, one for each axis, and a checkbox labelled "Move accelerometer with mouse". Go ahead and tick that checkbox.</p>
 <p>With the checkbox ticked, you'll notice that moving your mouse over the micro:bit's screen will change the accelerometer values in the sliders. As you head towards the lower-right corner of the micro:bit the values will increase, and as you head towards the upper-left corner they will decrease.</p>
-<h3 id="your-turn-6-updating-direction"><i class="fa fa-lightbulb-o"></i> Your turn 6: Updating direction</h3>
+<h3 id="your-turn-6-updating-direction"><i class="fa fa-lightbulb-o"></i> Your turn 6: Updating direction<a class="headerlink" href="#your-turn-6-updating-direction" title="Link to heading">#</a></h3>
 <p>We're working in the <code>handle_input</code> function for this section.</p>
 <p>The accelerometer will return you values in the X and Y axes using the following functions. We don't care about the Z axis since our screen is 2D.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># These functions return values in the range -2000 to 2000</span>
@@ -661,12 +661,12 @@ First we get the raw values from the accelerometer for X and Y, and then we comp
 </details>
 
 <p>The user can now tilt the micro:bit to make the snake move! You may notice while playing with this that the snake will never grow, so now it's time to figure out how food works.</p>
-<h2 id="food">Food</h2>
+<h2 id="food">Food<a class="headerlink" href="#food" title="Link to heading">#</a></h2>
 <p>When the snake approaches some food, we want the snake to grow and the food to appear again in another location. Ideally, the process would look like the following animation.</p>
 <video autoplay loop muted playsinline src="/images/microbitsnake/food.mp4">Animation showing the snake eating food and growing</video>
 
 <p>Building our food mechanic can be split into two steps. Detecting and reacting to food being eaten, and then generating new food.</p>
-<h3 id="your-turn-7-eating-food"><i class="fa fa-lightbulb-o"></i> Your turn 7: Eating food</h3>
+<h3 id="your-turn-7-eating-food"><i class="fa fa-lightbulb-o"></i> Your turn 7: Eating food<a class="headerlink" href="#your-turn-7-eating-food" title="Link to heading">#</a></h3>
 <p>The snake "eats" the food when its head is in the same cell as the food. When it eats the food, it should grow by one cell which can be done by not cutting the tail from the snake.</p>
 <p>In the case that the snake is eating the food, you should leave some space in your code to generate the new food.</p>
 <p>Hint: In Python you can compare two lists just with <code>list1 == list2</code>.</p>
@@ -692,7 +692,7 @@ We cut the tail in the else block, which means that we only cut it when the snak
 </p>
 </details>
 
-<h3 id="random-numbers">Random numbers</h3>
+<h3 id="random-numbers">Random numbers<a class="headerlink" href="#random-numbers" title="Link to heading">#</a></h3>
 <p>We want to generate new food randomly so that the game is interesting. We can do this using the <code>random</code> module in Python. Here's an example that guesses (poorly) how old you are.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># import the function randint from the module random</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
@@ -705,7 +705,7 @@ We cut the tail in the else block, which means that we only cut it when the snak
 
 <p>In this program we import then call the <code>randint(start, stop)</code> function. This will give us back a number between 1 and 100. We then print it out using an <a href="https://realpython.com/python-f-strings/">f-string</a>. Side note: if you haven't come across f-strings before, check out that link. They are very cool.</p>
 <p>We'll be using this <code>randint</code> function to generate random co-ordinates.</p>
-<h3 id="your-turn-8-generating-food"><i class="fa fa-lightbulb-o"></i> Your turn 8: Generating food</h3>
+<h3 id="your-turn-8-generating-food"><i class="fa fa-lightbulb-o"></i> Your turn 8: Generating food<a class="headerlink" href="#your-turn-8-generating-food" title="Link to heading">#</a></h3>
 <p>To generate new food, you'll need to generate an X co-ordinate and a Y co-ordinate. Remember, the axes run from 0 to 4.</p>
 <p>One edge case you'll have to think about is what happens if the co-ordinates you generate are covered by the snake. The solution I'll recommend is to keep re-generating the co-ordinates until they are not in the snake, but feel free to come up with your own solutions here. You can check if the co-ordinates are inside the snake using the <code>in</code> keyword (<code>co_ords in self.snake</code>) and a <code>while</code> loop.</p>
 <details><summary>Solution</summary>
@@ -739,10 +739,10 @@ These numbers are very small for a computer, and we won't notice much delay in t
 </details>
 
 <p>Our snake game is almost finished! The only step left is figuring out how to end the game.</p>
-<h2 id="ending-the-game">Ending the game</h2>
+<h2 id="ending-the-game">Ending the game<a class="headerlink" href="#ending-the-game" title="Link to heading">#</a></h2>
 <p>The game of snake ends in two situations. Firstly, if you crash into yourself (or the wall, in some versions) then you lose. Secondly, if you fill the entire grid with your snake then you win.</p>
 <p>We'll worry about losing the game for now, and I'll leave winning the game as an exercise for you.</p>
-<h3 id="loop-control">Loop control</h3>
+<h3 id="loop-control">Loop control<a class="headerlink" href="#loop-control" title="Link to heading">#</a></h3>
 <p>We've seen <code>while</code> loops a couple of times so far. Most recently we used them to generate food, but at the very start we saw how our game loop is made of a <code>while</code> loop.</p>
 <p>In Python, you have the ability to run a loop forever with <code>while True</code>. The complementary feature is that you have the ability to cut a loop short early using the <code>break</code> statement. Let's take a quick look at how it works.</p>
 <p>In the below example, we wait for the micro:bit's button A to be pressed then show a happy face.</p>
@@ -761,7 +761,7 @@ These numbers are very small for a computer, and we won't notice much delay in t
 <span class="n">display</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">HAPPY</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="your-turn-9-ending-the-game"><i class="fa fa-lightbulb-o"></i> Your turn 9: Ending the game</h3>
+<h3 id="your-turn-9-ending-the-game"><i class="fa fa-lightbulb-o"></i> Your turn 9: Ending the game<a class="headerlink" href="#your-turn-9-ending-the-game" title="Link to heading">#</a></h3>
 <p>There are three steps to implementing losing the game.</p>
 <ol>
 <li>Detect if you've crashed into yourself using the <code>in</code> keyword. This will be part of the <code>update</code> function.</li>
@@ -807,18 +807,18 @@ We add an if statement to check whether `game.end` was set to `True` in `update`
 </p>
 </details>
 
-<h2 id="final-notes">Final notes</h2>
+<h2 id="final-notes">Final notes<a class="headerlink" href="#final-notes" title="Link to heading">#</a></h2>
 <p>Well done on making it this far! You've just built your very own game, and can be really proud of yourself. I hope you've enjoyed the experience and that it's inspired you to keep going with micro:bit, programming or game development. If you want some more material for learning, then check out the <a href="#useful-links">Useful links</a> below. If you'd like to check your solution, I've put the <a href="https://github.com/notexactlyawe/microbit-snake/blob/master/snake.py">final code for this tutorial on GitHub</a>.</p>
 <p>This tutorial was based off a workshop that I wrote while part of the Embedded and Robotics Society (EaRS) at Edinburgh. It was one of my favourite workshops there, and it's been fun to re-visit it and turn it into a full tutorial. If you like this, then they have more resources <a href="http://ears-edi.com/">on their website</a> so you should check them out.</p>
 <p>If you found any issues in this tutorial, have ideas for new tutorials you'd like to see, or have a question then feel free to <a href="/contact">contact me</a>. I'd love to hear from you.</p>
-<h2 id="extensions">Extensions</h2>
+<h2 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Link to heading">#</a></h2>
 <p>Just because you finished this tutorial doesn't mean you have to stop working on the game. There are a number of extensions you could make to it, and you may even think of some of your own.</p>
 <ul>
 <li>Implement a winning condition.</li>
 <li>Stop the player from going in a direction opposite to the current one they're going in. This annoyed me while playing the game, since it means you lost when you go back into yourself, and most snake implementations prevent you from being able to do this.</li>
 <li>Expand the game grid. Maybe you could have a grid that is bigger than the screen, and display a part of it at a time. You could show this by moving the food instead of the snake, or by flashing the screen when you drew a different area.</li>
 </ul>
-<h2 id="useful-links">Useful links</h2>
+<h2 id="useful-links">Useful links<a class="headerlink" href="#useful-links" title="Link to heading">#</a></h2>
 <ul>
 <li><a href="https://python.microbit.org/v/2.0">Official Python editor for micro:bit</a></li>
 <li><a href="https://makecode.microbit.org/">MakeCode for micro:bit (JavaScript/Scratch)</a></li>
@@ -826,7 +826,7 @@ We add an if statement to check whether `game.end` was set to `True` in `update`
 <li><a href="https://docs.google.com/presentation/d/1d5NM7Sf5eOalQJ1Otfe1fJ4gtUMj3hgkXyFJPTEyZik/edit?usp=sharing">Original workshop slides</a></li>
 <li><a href="https://microbit-challenges.readthedocs.io/en/latest/introduction/getting_started.html">UCL BBC micro:bit tutorial</a></li>
 </ul>
-<h2 id="copyright">Copyright</h2>
+<h2 id="copyright">Copyright<a class="headerlink" href="#copyright" title="Link to heading">#</a></h2>
 <p>Pretty micro:bit SVG images were modified from the <a href="https://github.com/microbit-foundation/microbit-svg/">Micro:bit Educational Foundation's GitHub repo</a> under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>. Those images on this page are therefore licensed under the same terms.</p>
 <p>All other content on this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0 license</a>.</p>
 <p>The create.withcode editor hosted on my site is courtesy of Pete Dring of <a href="https://blog.withcode.uk/">blog.withcode.uk</a>. It has been slightly modified, hence this tutorial not using the official site.</p>

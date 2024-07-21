@@ -104,7 +104,7 @@ concepts should apply generally.</p>
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
 </div>
-<h2 id="why-would-you-need-a-topological-sort">Why would you need a topological sort?</h2>
+<h2 id="why-would-you-need-a-topological-sort">Why would you need a topological sort?<a class="headerlink" href="#why-would-you-need-a-topological-sort" title="Link to heading">#</a></h2>
 <p>A package manager is a piece of software that installs other software. For example,
 a user could ask a package manager to install a text editor. It would then be the
 package manager's job to know where to find the text editor and how to install it.</p>
@@ -120,7 +120,7 @@ becomes difficult.</p>
 parent nodes and child nodes, how do you produce a list of nodes such that parent
 nodes come before their child nodes?</p>
 <p>You can sort nodes of a graph in this way using a topological sort.</p>
-<h2 id="what-is-a-topological-sort">What is a topological sort?</h2>
+<h2 id="what-is-a-topological-sort">What is a topological sort?<a class="headerlink" href="#what-is-a-topological-sort" title="Link to heading">#</a></h2>
 <p>A topological sort is a fancy name for:</p>
 <ol>
 <li>Taking a graph that has parent and child nodes (a <strong>directed</strong> graph)</li>
@@ -199,7 +199,7 @@ answer unfortunately. Further reading below!
 <b><i>hand-waving ends, back to the coding</i></b>
 </details>
 <p><a name="how-to-cycles"></a></p>
-<h2 id="cycles-and-topological-sorts">Cycles and topological sorts</h2>
+<h2 id="cycles-and-topological-sorts">Cycles and topological sorts<a class="headerlink" href="#cycles-and-topological-sorts" title="Link to heading">#</a></h2>
 <p>You can't apply a topological sort to a graph with a cycle in it.
 A cycle is where two or more nodes depend on each other. For example, <code>A</code> depends
 on <code>B</code>, but <code>B</code> also depends on <code>A</code>. In this case you can't produce a topological
@@ -224,7 +224,7 @@ heart! Proceed with caution:</p>
 <li><a href="https://stackoverflow.com/questions/6284469/how-to-remove-cycles-in-an-unweighted-directed-graph-such-that-the-number-of-ed">How to remove cycles in an unweighted directed graph, such that the number of edges is maximised? - Stack Overflow</a></li>
 <li><a href="https://cs.stackexchange.com/questions/90481/how-to-remove-cycles-from-a-directed-graph">How to remove cycles from a directed graph? - Computer Science Stack Exchange</a></li>
 </ul>
-<h2 id="how-do-you-use-a-topological-sort">How do you use a topological sort?</h2>
+<h2 id="how-do-you-use-a-topological-sort">How do you use a topological sort?<a class="headerlink" href="#how-do-you-use-a-topological-sort" title="Link to heading">#</a></h2>
 <p><em>For those who just want Python code, I've compiled it in <a href="https://gist.github.com/notexactlyawe/606734bcffdaa7d0c091dfbe55f09baa">this gist</a>.</em></p>
 <p>The below examples are all in Python, however, here are some links for libraries in
 other languages. I have not used any of the below, but hopefully they can provide a
@@ -352,19 +352,19 @@ pass it a cycle? The below code example creates a cycle to demonstrate what happ
 </code></pre></div>
 
 <p>When the code calls <code>static_order</code>, it raises a <code>CycleError</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">Traceback</span><span class="w"> </span><span class="ss">(</span><span class="nv">most</span><span class="w"> </span><span class="nv">recent</span><span class="w"> </span><span class="k">call</span><span class="w"> </span><span class="nl">last</span><span class="ss">)</span>:
-<span class="w"> </span><span class="nv">File</span><span class="w"> </span><span class="s2">&quot;/home/cameron/src/scratch/cycle-toposort.py&quot;</span>,<span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="mi">21</span>,<span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">module</span><span class="o">&gt;</span>
-<span class="w">   </span><span class="k">for</span><span class="w"> </span><span class="nv">node</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">ts</span>.<span class="nv">static_order</span><span class="ss">()</span>:
-<span class="w"> </span><span class="nv">File</span><span class="w"> </span><span class="s2">&quot;/usr/lib/python3.9/graphlib.py&quot;</span>,<span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="mi">242</span>,<span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">static_order</span>
-<span class="w">   </span><span class="nv">self</span>.<span class="nv">prepare</span><span class="ss">()</span>
-<span class="w"> </span><span class="nv">File</span><span class="w"> </span><span class="s2">&quot;/usr/lib/python3.9/graphlib.py&quot;</span>,<span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="mi">104</span>,<span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">prepare</span>
-<span class="w">   </span><span class="nv">raise</span><span class="w"> </span><span class="nv">CycleError</span><span class="ss">(</span><span class="nv">f</span><span class="s2">&quot;nodes are in a cycle&quot;</span>,<span class="w"> </span><span class="nv">cycle</span><span class="ss">)</span>
-<span class="nv">graphlib</span>.<span class="nv">CycleError</span>:<span class="w"> </span><span class="ss">(</span><span class="s1">&#39;nodes are in a cycle&#39;</span>,<span class="w"> </span>[<span class="s1">&#39;editor&#39;</span>,<span class="w"> </span><span class="s1">&#39;lang_server&#39;</span>,<span class="w"> </span><span class="s1">&#39;editor&#39;</span>]<span class="ss">)</span>
+<div class="highlight"><pre><span></span><code>Traceback (most recent call last):
+ File &quot;/home/cameron/src/scratch/cycle-toposort.py&quot;, line 21, in &lt;module&gt;
+   for node in ts.static_order():
+ File &quot;/usr/lib/python3.9/graphlib.py&quot;, line 242, in static_order
+   self.prepare()
+ File &quot;/usr/lib/python3.9/graphlib.py&quot;, line 104, in prepare
+   raise CycleError(f&quot;nodes are in a cycle&quot;, cycle)
+graphlib.CycleError: (&#39;nodes are in a cycle&#39;, [&#39;editor&#39;, &#39;lang_server&#39;, &#39;editor&#39;])
 </code></pre></div>
 
 <p>Take a look at the section above on <a href="#how-to-cycles">dealing with cycles</a> for pointers
 on handling this error.</p>
-<h2 id="multi-threading-and-topologicalsorter">Multi-threading and TopologicalSorter</h2>
+<h2 id="multi-threading-and-topologicalsorter">Multi-threading and TopologicalSorter<a class="headerlink" href="#multi-threading-and-topologicalsorter" title="Link to heading">#</a></h2>
 <p>Calling <code>static_order</code>, as in the examples above, produces a list that works well
 with single-threaded code. However, it doesn't tell you which nodes can be processed
 at the same time.</p>
@@ -506,7 +506,7 @@ option.</p>
 produces the following output:</p>
 <script async id="asciicast-600838" src="https://asciinema.org/a/600838.js"></script>
 
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Link to heading">#</a></h2>
 <p>Topological sorting is a really powerful tool. It allows you to order nodes in a graph
 by their dependencies, making sure that parent nodes come before their children.</p>
 <p>In this article, you learned:  </p>

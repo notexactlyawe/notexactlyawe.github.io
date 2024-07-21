@@ -21,7 +21,7 @@ concepts should apply generally.&lt;/p&gt;
 &lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;h2 id="why-would-you-need-a-topological-sort"&gt;Why would you need a topological sort?&lt;/h2&gt;
+&lt;h2 id="why-would-you-need-a-topological-sort"&gt;Why would you need a topological sort?&lt;a class="headerlink" href="#why-would-you-need-a-topological-sort" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A package manager is a piece of software that installs other software. For example,
 a user could ask a package manager to install a text editor. It would then be the
 package manager's job to know where to find the text editor and how to install it.&lt;/p&gt;
@@ -37,7 +37,7 @@ becomes difficult.&lt;/p&gt;
 parent nodes and child nodes, how do you produce a list of nodes such that parent
 nodes come before their child nodes?&lt;/p&gt;
 &lt;p&gt;You can sort nodes of a graph in this way using a topological sort.&lt;/p&gt;
-&lt;h2 id="what-is-a-topological-sort"&gt;What is a topological sort?&lt;/h2&gt;
+&lt;h2 id="what-is-a-topological-sort"&gt;What is a topological sort?&lt;a class="headerlink" href="#what-is-a-topological-sort" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A topological sort is a fancy name for:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Taking a graph that has parent and child nodes (a &lt;strong&gt;directed&lt;/strong&gt; graph)&lt;/li&gt;
@@ -116,7 +116,7 @@ answer unfortunately. Further reading below!
 &lt;b&gt;&lt;i&gt;hand-waving ends, back to the coding&lt;/i&gt;&lt;/b&gt;
 &lt;/details&gt;
 &lt;p&gt;&lt;a name="how-to-cycles"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="cycles-and-topological-sorts"&gt;Cycles and topological sorts&lt;/h2&gt;
+&lt;h2 id="cycles-and-topological-sorts"&gt;Cycles and topological sorts&lt;a class="headerlink" href="#cycles-and-topological-sorts" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;You can't apply a topological sort to a graph with a cycle in it.
 A cycle is where two or more nodes depend on each other. For example, &lt;code&gt;A&lt;/code&gt; depends
 on &lt;code&gt;B&lt;/code&gt;, but &lt;code&gt;B&lt;/code&gt; also depends on &lt;code&gt;A&lt;/code&gt;. In this case you can't produce a topological
@@ -141,7 +141,7 @@ heart! Proceed with caution:&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://stackoverflow.com/questions/6284469/how-to-remove-cycles-in-an-unweighted-directed-graph-such-that-the-number-of-ed"&gt;How to remove cycles in an unweighted directed graph, such that the number of edges is maximised? - Stack Overflow&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://cs.stackexchange.com/questions/90481/how-to-remove-cycles-from-a-directed-graph"&gt;How to remove cycles from a directed graph? - Computer Science Stack Exchange&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="how-do-you-use-a-topological-sort"&gt;How do you use a topological sort?&lt;/h2&gt;
+&lt;h2 id="how-do-you-use-a-topological-sort"&gt;How do you use a topological sort?&lt;a class="headerlink" href="#how-do-you-use-a-topological-sort" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;For those who just want Python code, I've compiled it in &lt;a href="https://gist.github.com/notexactlyawe/606734bcffdaa7d0c091dfbe55f09baa"&gt;this gist&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The below examples are all in Python, however, here are some links for libraries in
 other languages. I have not used any of the below, but hopefully they can provide a
@@ -269,19 +269,19 @@ pass it a cycle? The below code example creates a cycle to demonstrate what happ
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;When the code calls &lt;code&gt;static_order&lt;/code&gt;, it raises a &lt;code&gt;CycleError&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;Traceback&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;most&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;recent&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;call&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;last&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;File&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/home/cameron/src/scratch/cycle-toposort.py&amp;quot;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;module&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;node&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;ts&lt;/span&gt;.&lt;span class="nv"&gt;static_order&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;:
-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;File&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/usr/lib/python3.9/graphlib.py&amp;quot;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;242&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;static_order&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;prepare&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;
-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;File&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/usr/lib/python3.9/graphlib.py&amp;quot;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;104&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;prepare&lt;/span&gt;
-&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nv"&gt;raise&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;CycleError&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;nodes are in a cycle&amp;quot;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;cycle&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="nv"&gt;graphlib&lt;/span&gt;.&lt;span class="nv"&gt;CycleError&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;nodes are in a cycle&amp;#39;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;[&lt;span class="s1"&gt;&amp;#39;editor&amp;#39;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;lang_server&amp;#39;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;editor&amp;#39;&lt;/span&gt;]&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Traceback (most recent call last):
+ File &amp;quot;/home/cameron/src/scratch/cycle-toposort.py&amp;quot;, line 21, in &amp;lt;module&amp;gt;
+   for node in ts.static_order():
+ File &amp;quot;/usr/lib/python3.9/graphlib.py&amp;quot;, line 242, in static_order
+   self.prepare()
+ File &amp;quot;/usr/lib/python3.9/graphlib.py&amp;quot;, line 104, in prepare
+   raise CycleError(f&amp;quot;nodes are in a cycle&amp;quot;, cycle)
+graphlib.CycleError: (&amp;#39;nodes are in a cycle&amp;#39;, [&amp;#39;editor&amp;#39;, &amp;#39;lang_server&amp;#39;, &amp;#39;editor&amp;#39;])
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Take a look at the section above on &lt;a href="#how-to-cycles"&gt;dealing with cycles&lt;/a&gt; for pointers
 on handling this error.&lt;/p&gt;
-&lt;h2 id="multi-threading-and-topologicalsorter"&gt;Multi-threading and TopologicalSorter&lt;/h2&gt;
+&lt;h2 id="multi-threading-and-topologicalsorter"&gt;Multi-threading and TopologicalSorter&lt;a class="headerlink" href="#multi-threading-and-topologicalsorter" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Calling &lt;code&gt;static_order&lt;/code&gt;, as in the examples above, produces a list that works well
 with single-threaded code. However, it doesn't tell you which nodes can be processed
 at the same time.&lt;/p&gt;
@@ -423,7 +423,7 @@ option.&lt;/p&gt;
 produces the following output:&lt;/p&gt;
 &lt;script async id="asciicast-600838" src="https://asciinema.org/a/600838.js"&gt;&lt;/script&gt;
 
-&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Topological sorting is a really powerful tool. It allows you to order nodes in a graph
 by their dependencies, making sure that parent nodes come before their children.&lt;/p&gt;
 &lt;p&gt;In this article, you learned:  &lt;/p&gt;
@@ -466,12 +466,12 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;li&gt;&lt;a href="#further-reading"&gt;Further reading&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;h2 id="what-is-shazam"&gt;What is Shazam?&lt;/h2&gt;
+&lt;h2 id="what-is-shazam"&gt;What is Shazam?&lt;a class="headerlink" href="#what-is-shazam" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Shazam is an app that identifies songs that are playing around you. You open the app while music is playing, and Shazam will record a few seconds of audio which it uses to search its database. Once it identifies the song that's playing, it will display the result on screen.&lt;/p&gt;
 &lt;video autoplay loop muted playsinline src="/images/abracadabra/shazam.mp4" class="portrait-video"&gt;Shazam recognising a song&lt;/video&gt;
 
 &lt;p&gt;Before Shazam was an app, it was a phone number. To identify a song, you would ring up the number and hold your phone's microphone to the music. After 30 seconds, Shazam would hang up and then text you details on the song you were listening to. If you were using a mobile phone back in 2002, you'll understand that the quality of phone calls back then made this a challenging task!&lt;/p&gt;
-&lt;h2 id="why-is-song-recognition-hard-anyway"&gt;Why is song recognition hard anyway?&lt;/h2&gt;
+&lt;h2 id="why-is-song-recognition-hard-anyway"&gt;Why is song recognition hard anyway?&lt;a class="headerlink" href="#why-is-song-recognition-hard-anyway" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you haven't done much signal processing before, it may not be obvious why this is a difficult problem to solve. To help give you an idea, take a look at the following audio:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Chris Cornell's &amp;quot;Like a Stone&amp;quot; waveform" src="/images/abracadabra/likeastone.png"&gt;&lt;/p&gt;
 &lt;p&gt;The above graph shows what &lt;a href="https://www.youtube.com/watch?v=pom_tO2-5s8"&gt;Chris Cornell's "Like a Stone"&lt;/a&gt; looks like when stored in a computer. Now take a look at the following section of the track:&lt;/p&gt;
@@ -482,7 +482,7 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;p&gt;This would be a bit slow, but it would work. Now imagine that you didn't know which track this audio came from, and you had a database of 10 million songs to search. This would take a lot longer!&lt;/p&gt;
 &lt;p&gt;What's worse, when you move from this toy example to samples that are recorded through a microphone you introduce background noise, frequency effects, amplitude changes and more. All of these can change the shape of the audio significantly. The sliding method just doesn't work that well for this problem.&lt;/p&gt;
 &lt;p&gt;Thankfully, Shazam's approach is a lot smarter than that. In the next section, you'll see the high-level overview of how this works.&lt;/p&gt;
-&lt;h2 id="system-overview"&gt;System overview&lt;/h2&gt;
+&lt;h2 id="system-overview"&gt;System overview&lt;a class="headerlink" href="#system-overview" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If Shazam doesn't take the sliding approach we described above, what does it do? Take a look at the following high-level diagram:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Diagram showing high-level overview of Shazam design" src="/images/abracadabra/shazam_overview.png"&gt;&lt;/p&gt;
 &lt;p&gt;The first thing you will notice is that the diagram is split up into &lt;em&gt;register&lt;/em&gt; and &lt;em&gt;recognise&lt;/em&gt; flows. The &lt;em&gt;register&lt;/em&gt; flow remembers a song to enable it to be recognised in the future. The &lt;em&gt;recognise&lt;/em&gt; flow identifies a short section of audio.&lt;/p&gt;
@@ -494,9 +494,9 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;/ol&gt;
 &lt;p&gt;After calculating these hashes, the &lt;em&gt;register&lt;/em&gt; flow will store them in the database. The &lt;em&gt;recognise&lt;/em&gt; flow will compare them to hashes already in the database to identify which song is playing through the &lt;strong&gt;matching&lt;/strong&gt; step.&lt;/p&gt;
 &lt;p&gt;In the next few sections, you'll learn more about each of these steps.&lt;/p&gt;
-&lt;h2 id="calculating-a-spectrogram"&gt;Calculating a spectrogram&lt;/h2&gt;
+&lt;h2 id="calculating-a-spectrogram"&gt;Calculating a spectrogram&lt;a class="headerlink" href="#calculating-a-spectrogram" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The first step for both flows is to obtain a spectrogram of the audio being registered or recognised. To understand spectrograms, you first have to understand Fourier transforms.&lt;/p&gt;
-&lt;h3 id="the-fourier-transform"&gt;The Fourier transform&lt;/h3&gt;
+&lt;h3 id="the-fourier-transform"&gt;The Fourier transform&lt;a class="headerlink" href="#the-fourier-transform" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;A &lt;a href="https://realpython.com/python-scipy-fft/"&gt;Fourier transform&lt;/a&gt; takes some audio and tells you which frequencies are present in that audio. For example, if you took a 20 Hertz sine wave and used the Fourier transform on it, you would see a big spike around 20 Hertz (Hz):&lt;/p&gt;
 &lt;p&gt;&lt;img alt="20Hz sine wave and its Fourier transform" src="/images/abracadabra/fouriertransform20hz.png"&gt;&lt;/p&gt;
 &lt;p&gt;In the above image, you can see a large spike around 20Hz and nothing at other frequencies. Sine waves are often called &lt;strong&gt;pure tones&lt;/strong&gt; because of this property, since they only contain a single frequency.&lt;/p&gt;
@@ -511,7 +511,7 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;p&gt;Up until now, our examples have only contained one or two frequencies, but what happens if you put a more complex signal through the Fourier transform? Let's take a look at our section of audio from Like a Stone:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Fourier transform of a Like a Stone sample" src="/images/abracadabra/fouriertransformsample.png"&gt;&lt;/p&gt;
 &lt;p&gt;Real audio files like the one above contain lots of different frequencies. This is a good thing, as it means that the frequencies present can uniquely identify songs.&lt;/p&gt;
-&lt;h3 id="spectrograms"&gt;Spectrograms&lt;/h3&gt;
+&lt;h3 id="spectrograms"&gt;Spectrograms&lt;a class="headerlink" href="#spectrograms" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra/blob/e0eb59a944d7c9999ff8a4bc53f5cfdeb07b39aa/abracadabra/fingerprint.py#L9"&gt;abracadabra implementation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;If you run a Fourier transform over an entire song, then you will see the strength of the frequencies present over the whole song. However, the frequencies that are present change over time. To better represent the frequencies changing over time, we need to split the song into small sections before taking the Fourier transform. This is called taking a spectrogram.&lt;/p&gt;
 &lt;p&gt;Here's a simplified animation of how spectrograms work:&lt;/p&gt;
@@ -529,11 +529,11 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;p&gt;The Z-axis is represented by colour in the spectrogram above. Bright green shows a high magnitude for a particular frequency component and dark blue shows a low magnitude.&lt;/p&gt;
 &lt;p&gt;Looking at the spectrogram above, you can see that the brightest spots (strongest frequencies) almost exclusively occur below 5000Hz. This is quite common with music, for example most pianos have a &lt;a href="https://en.wikipedia.org/wiki/Piano_key_frequencies"&gt;frequency range&lt;/a&gt; of 27Hz-4186Hz.&lt;/p&gt;
 &lt;p&gt;The frequencies present in a track contain a lot of identifying information, and calculating the spectrogram allows us access to that information. In the next section, you'll learn how we turn all that information into a unique fingerprint for the track.&lt;/p&gt;
-&lt;h2 id="fingerprinting"&gt;Fingerprinting&lt;/h2&gt;
+&lt;h2 id="fingerprinting"&gt;Fingerprinting&lt;a class="headerlink" href="#fingerprinting" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Just as a fingerprint uniquely identifies a person, we can extract a unique fingerprint for some audio from its spectrogram.&lt;/p&gt;
 &lt;p&gt;These audio fingerprints rely on finding peaks in the spectrogram. These peaks are the loudest frequencies at some time in the song. Because they are loud, it's likely they'll survive when subjected to noise or other distortions.&lt;/p&gt;
 &lt;p&gt;In the next section, you'll read some more about the motivation behind using spectrogram peaks to build fingerprints.&lt;/p&gt;
-&lt;h3 id="why-is-the-fingerprint-based-on-spectrogram-peaks"&gt;Why is the fingerprint based on spectrogram peaks?&lt;/h3&gt;
+&lt;h3 id="why-is-the-fingerprint-based-on-spectrogram-peaks"&gt;Why is the fingerprint based on spectrogram peaks?&lt;a class="headerlink" href="#why-is-the-fingerprint-based-on-spectrogram-peaks" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;A spectrogram peak is a frequency that is loud at some point in an audio signal. You can recognise these on a spectrogram since they will be the brightest points.&lt;/p&gt;
 &lt;p&gt;In music, these would represent the loudest notes. For example, during a guitar solo, the notes that the guitar is playing might become spectrogram peaks since they would likely be the loudest notes at that time.&lt;/p&gt;
 &lt;p&gt;A spectrogram peak is the point least likely to be affected by noise. Noise has to be louder than the spectrogram peak to make it unrecognisable and the spectrogram peaks are the loudest frequency components in the track.&lt;/p&gt;
@@ -541,7 +541,7 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;p&gt;&lt;img alt="Fourier transform of a noisy signal" src="/images/abracadabra/noisyfouriertransform.png"&gt;&lt;/p&gt;
 &lt;p&gt;Another advantage of using spectrogram peaks to fingerprint audio is that they cut down the amount of data we have to store. Storing only the loudest frequency components means we don't have to store everything else. This speeds up searching fingerprints since there is less data to look through.&lt;/p&gt;
 &lt;p&gt;Before we can use frequency peaks in our fingerprint though, we have to find them. In the next section, you'll learn how.&lt;/p&gt;
-&lt;h3 id="finding-peaks"&gt;Finding peaks&lt;/h3&gt;
+&lt;h3 id="finding-peaks"&gt;Finding peaks&lt;a class="headerlink" href="#finding-peaks" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra/blob/e0eb59a944d7c9999ff8a4bc53f5cfdeb07b39aa/abracadabra/fingerprint.py#L31"&gt;abracadabra implementation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;As discussed in the previous section, the peaks of a spectrogram represent the strongest frequencies in a signal. For frequency peaks to be usable in an audio fingerprint, it's important that they are evenly spaced through the spectrogram.&lt;/p&gt;
 &lt;p&gt;It's important the peaks are evenly spaced in &lt;strong&gt;time&lt;/strong&gt;, so the system can recognise any section of the song. For example, if all the peaks were at the start of the song, then the fingerprint wouldn't cover later sections:&lt;/p&gt;
@@ -586,7 +586,7 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;p&gt;We have almost finished constructing our fingerprint, the next step is to produce a set of hashes from our peaks.&lt;/p&gt;
-&lt;h3 id="hashing"&gt;Hashing&lt;/h3&gt;
+&lt;h3 id="hashing"&gt;Hashing&lt;a class="headerlink" href="#hashing" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra/blob/e0eb59a944d7c9999ff8a4bc53f5cfdeb07b39aa/abracadabra/fingerprint.py#L96"&gt;abracadabra implementation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;To motivate hashing, imagine that our fingerprint was just a collection of spectrogram peaks. Each peak's frequency would be represented by a certain number of bits, for example 10. With 10 bits of information, we can represent 2^10=1024 individual frequencies. With thousands of these points per track, we quickly get a lot of repeats.&lt;/p&gt;
 &lt;p&gt;Uniqueness is important for a fingerprint, since it makes searching a lot faster and helps to recognise more songs. Shazam's solution to the problem of uniqueness is to create hashes from pairs of peaks:&lt;/p&gt;
@@ -622,7 +622,7 @@ by their dependencies, making sure that parent nodes come before their children.
 
 &lt;p&gt;The first three columns (f&lt;sub&gt;A&lt;/sub&gt;, f&lt;sub&gt;B&lt;/sub&gt; and 𝚫T) make up the hash. The "Other information" is used to locate the hash at a specific time in a song. This will be used in matching later.&lt;/p&gt;
 &lt;p&gt;All of the hashes for a particular track make up the fingerprint. In the next section, you'll read about how Shazam matches these fingerprints.&lt;/p&gt;
-&lt;h2 id="matching"&gt;Matching&lt;/h2&gt;
+&lt;h2 id="matching"&gt;Matching&lt;a class="headerlink" href="#matching" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Given a collection of fingerprints in a database, how does Shazam figure out which one a given audio sample matches? This is where the matching part of the system comes in. Recall the system diagram from earlier:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Diagram showing high-level overview of Shazam design" src="/images/abracadabra/shazam_overview.png"&gt;&lt;/p&gt;
 &lt;p&gt;The recognise and register flows both generate fingerprints. The difference lies in what they do with them. While the register flow stores fingerprints away for future matching, the recognise flow has to match its fingerprint with what is already in the database.&lt;/p&gt;
@@ -721,7 +721,7 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;p&gt;Each bar in the histogram above is referred to as a &lt;strong&gt;bin&lt;/strong&gt;. To score a song on how good a match it is for an audio sample, we just need to take the largest bin. Songs that aren't good matches will have low values in all bins, whereas a song that's a good match will have a large spike in one of the bins.&lt;/p&gt;
 &lt;p&gt;This way we can compare a sample to all the songs with matching hashes in our database and score each of them. The song with the highest score is likely to be the correct result.&lt;/p&gt;
 &lt;p&gt;You might wonder why we don't just go for the song that matches the largest number of hashes as it would be much simpler to implement. The problem with this approach is that not all songs are the same length. Longer songs are likely to get more matches than shorter songs and when some Spotify tracks are &lt;a href="https://www.reddit.com/r/spotify/comments/9i2ps6/longest_song_on_spotify/"&gt;over 4 hours long&lt;/a&gt; this can really bias your results!&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Well done for making it this far, that was a long journey! Over the course of this article, you've learned how Shazam extracts fingerprints from audio, and how it matches these fingerprints to those that it has already registered in its database.&lt;/p&gt;
 &lt;p&gt;To summarise, Shazam does the following to &lt;strong&gt;register&lt;/strong&gt; a song:&lt;/p&gt;
 &lt;ul&gt;
@@ -742,10 +742,10 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;/li&gt;
 &lt;li&gt;Return the song with the highest score&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="enter-abracadabra"&gt;Enter abracadabra&lt;/h2&gt;
+&lt;h2 id="enter-abracadabra"&gt;Enter abracadabra&lt;a class="headerlink" href="#enter-abracadabra" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I learned everything written here over the process of writing &lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt;, my implementation of this paper.&lt;/p&gt;
 &lt;p&gt;If you are interested in seeing what this might look like in code, please take a look! Everything is open source and I've done my best to document the project. abracadabra can also be used as a library in other projects, so please feel free to re-mix and build something cool. If you do use it, I'd love to &lt;a href="/about"&gt;hear about it&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="further-reading"&gt;Further reading&lt;/h2&gt;
+&lt;h2 id="further-reading"&gt;Further reading&lt;a class="headerlink" href="#further-reading" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you want to find out more about anything mentioned in this article, take a look below. I've also scattered some helpful links throughout the page.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://abracadabra.readthedocs.io/en/latest/"&gt;abracadabra docs&lt;/a&gt;&lt;/li&gt;
@@ -1192,7 +1192,7 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;p&gt;Below is a preview of what we'll be building.&lt;/p&gt;
 &lt;video autoplay loop muted playsinline src="/images/microbitsnake/snakepreview.mp4"&gt;Snake game running on the BBC micro:bit&lt;/video&gt;
 
-&lt;h2 id="pre-requisites"&gt;Pre-requisites&lt;/h2&gt;
+&lt;h2 id="pre-requisites"&gt;Pre-requisites&lt;a class="headerlink" href="#pre-requisites" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This tutorial will assume that you know what Python is, and that you know some basic programming concepts. But don't worry, if you consider yourself a beginner then this tutorial is for you. In fact, I will try to over-explain things and provide solutions to every exercise, so there's nothing to fear!&lt;/p&gt;
 &lt;p&gt;With that out the way, let's get started.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Quick links&lt;/strong&gt;&lt;/p&gt;
@@ -1206,41 +1206,41 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;li&gt;&lt;a href="#creating-the-game-state"&gt;Creating the game state&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#python-lists"&gt;Python lists&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#the-microbit-co-ordinate-system"&gt;The micro:bit co-ordinate system&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-1-filling-in-the-state"&gt; Your turn 1: Filling in the state&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-1-filling-in-the-state"&gt;Your turn 1: Filling in the state&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#drawing-to-the-screen"&gt;Drawing to the screen&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#drawing-the-food"&gt;Drawing the food&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#python-for-loops"&gt;Python for loops&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-2-drawing-the-snake"&gt; Your turn 2: Drawing the snake&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-2-drawing-the-snake"&gt;Your turn 2: Drawing the snake&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#running-our-code"&gt;Running our code&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#moving-the-snake"&gt;Moving the snake&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#python-if-statements"&gt;Python if statements&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-3-calculating-the-new-head"&gt; Your turn 3: Calculating the new head&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-4-removing-the-tail"&gt; Your turn 4: Removing the tail&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-3-calculating-the-new-head"&gt;Your turn 3: Calculating the new head&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-4-removing-the-tail"&gt;Your turn 4: Removing the tail&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#wrapping"&gt;Wrapping&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#your-turn-5-wrap-the-screen"&gt; Your turn 5: Wrap the screen&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-5-wrap-the-screen"&gt;Your turn 5: Wrap the screen&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#getting-input"&gt;Getting input&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#accelerometers"&gt;Accelerometers&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#simulator-only-how-to-test-with-the-accelerometer"&gt;Simulator only: How to test with the accelerometer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-6-updating-direction"&gt; Your turn 6: Updating direction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-6-updating-direction"&gt;Your turn 6: Updating direction&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#food"&gt;Food&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="#your-turn-7-eating-food"&gt; Your turn 7: Eating food&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-7-eating-food"&gt;Your turn 7: Eating food&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#random-numbers"&gt;Random numbers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-8-generating-food"&gt; Your turn 8: Generating food&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-8-generating-food"&gt;Your turn 8: Generating food&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#ending-the-game"&gt;Ending the game&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="#loop-control"&gt;Loop control&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#your-turn-9-ending-the-game"&gt; Your turn 9: Ending the game&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#your-turn-9-ending-the-game"&gt;Your turn 9: Ending the game&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="#final-notes"&gt;Final notes&lt;/a&gt;&lt;/li&gt;
@@ -1249,11 +1249,11 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;li&gt;&lt;a href="#copyright"&gt;Copyright&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;h2 id="what-is-a-microbit"&gt;What is a micro:bit?&lt;/h2&gt;
+&lt;h2 id="what-is-a-microbit"&gt;What is a micro:bit?&lt;a class="headerlink" href="#what-is-a-microbit" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A &lt;a href="https://microbit.org/"&gt;micro:bit&lt;/a&gt; is a tiny computer that you can program in Python. It comes with an LED grid (for a screen), an accelerometer (to detect motion), electrical outputs (for controlling motors, lights etc) and a bunch of other cool features. They're also pretty cheap (£20/$20 at time of writing on Amazon), and programming them is as simple as dragging a file to a USB stick.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="A micro:bit" src="/images/microbitsnake/microbit.svg"&gt;&lt;/p&gt;
 &lt;p&gt;If you don't already have one, don't worry! There are simulators available online and you'll be able to follow along with this whole tutorial.&lt;/p&gt;
-&lt;h2 id="setting-up-environment"&gt;Setting up environment&lt;/h2&gt;
+&lt;h2 id="setting-up-environment"&gt;Setting up environment&lt;a class="headerlink" href="#setting-up-environment" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Whether you have a micro:bit or not, the first step is to open the &lt;a href="https://www.cameronmacleod.com/createwithcode/"&gt;create.withcode editor&lt;/a&gt;. When you do, you should see a screen like the one below.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="create.withcode editor" src="/images/microbitsnake/createwithcode.png"&gt;&lt;/p&gt;
 &lt;p&gt;Most of the screen (1) is taken up with the editor. This is where you'll put your code. In the lower-right corner (2) is a button to run your code which looks like a green triangle. Alternatively, you can run your code by pressing &lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;Enter&lt;/code&gt;.&lt;/p&gt;
@@ -1263,7 +1263,7 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;p&gt;Your code will be running on the virtual micro:bit you can see, and there are tabs along the top for your to control various inputs to the device, which will become important later.&lt;/p&gt;
 &lt;p&gt;If you are working with a physical micro:bit, then the "Download HEX" button in the top-left of the pop-up will allow you to download the file you need to program your micro:bit. You can drag this file to the "MICROBIT" device in your file manager to program it.&lt;/p&gt;
 &lt;p&gt;Before we start looking at some code, let's take a quick detour to look at the game of Snake.&lt;/p&gt;
-&lt;h2 id="snake"&gt;Snake&lt;/h2&gt;
+&lt;h2 id="snake"&gt;Snake&lt;a class="headerlink" href="#snake" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Fun fact - if you go to Google and search for "snake", a snake game should appear. Just in case it doesn't appear for you, you can play it &lt;a href="https://www.google.com/fbx?fbx=snake_arcade"&gt;here&lt;/a&gt;. Below you can see it in action.&lt;/p&gt;
 &lt;video autoplay loop muted playsinline src="/images/microbitsnake/snakedemo.mp4"&gt;Google Snake game demo&lt;/video&gt;
 
@@ -1285,7 +1285,7 @@ by their dependencies, making sure that parent nodes come before their children.
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;So in theory, if we can build all these components, then we should have a snake game!&lt;/p&gt;
-&lt;h2 id="skeleton-code"&gt;Skeleton code&lt;/h2&gt;
+&lt;h2 id="skeleton-code"&gt;Skeleton code&lt;a class="headerlink" href="#skeleton-code" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To make it easier to get started, we'll be working from a skeleton file. Find it at &lt;a href="https://github.com/notexactlyawe/microbit-snake/blob/master/skeleton.py"&gt;this link&lt;/a&gt; and copy the contents into the &lt;a href="https://www.cameronmacleod.com/createwithcode/"&gt;create.withcode editor&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Let's take a look at each part of the code to figure out what it does.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;microbit&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
@@ -1382,9 +1382,9 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 &lt;/details&gt;
 
 &lt;p&gt;Now that we have a template, our first step will be to initialise the game state.&lt;/p&gt;
-&lt;h2 id="creating-the-game-state"&gt;Creating the game state&lt;/h2&gt;
+&lt;h2 id="creating-the-game-state"&gt;Creating the game state&lt;a class="headerlink" href="#creating-the-game-state" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Before we can intialise the game state, we need to learn a little bit about Python and the micro:bit. Feel free to skip these sections if you have done this before.&lt;/p&gt;
-&lt;h3 id="python-lists"&gt;Python lists&lt;/h3&gt;
+&lt;h3 id="python-lists"&gt;Python lists&lt;a class="headerlink" href="#python-lists" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Lists are a way to store multiple values in the same variable in Python. If you haven't come across them before there's a more &lt;a href="http://openbookproject.net/thinkcs/python/english3e/lists.html"&gt;detailed introduction here&lt;/a&gt;. You may be able to get by with the cheat sheet below though.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# define a list&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -1411,12 +1411,12 @@ For more discussion of classes, take a look a [Jeff Knupp's blog post](https://j
 &lt;span class="mi"&gt;2&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id="the-microbit-co-ordinate-system"&gt;The micro:bit co-ordinate system&lt;/h3&gt;
+&lt;h3 id="the-microbit-co-ordinate-system"&gt;The micro:bit co-ordinate system&lt;a class="headerlink" href="#the-microbit-co-ordinate-system" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;On the front of a micro:bit is a grid of LEDs. When drawing something on the screen, we need a way to describe individual LEDs within this grid so that we know which one to light up. This is where the co-ordinate system comes in.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Diagram of the micro:bit co-ordinate system" src="/images/microbitsnake/displaycoords.svg"&gt;&lt;/p&gt;
 &lt;p&gt;Display co-ordinates on the micro:bit work a little like the graphs you may have plotted in school. There's an X axis that goes from left to right and a Y axis that goes from top to bottom. The main difference from the graphs in school is that the Y axis increases going down (towards the pins) whereas in school it would have increased going up.&lt;/p&gt;
 &lt;p&gt;In the image above, point A is at the co-ordinates &lt;code&gt;[3, 0]&lt;/code&gt;. The left number in these co-ordinates is the position along the X axis and the right number is the position along the Y axis. Similarly, point B is at co-ordinates &lt;code&gt;[1, 2]&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id="your-turn-1-filling-in-the-state"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 1: Filling in the state&lt;/h3&gt;
+&lt;h3 id="your-turn-1-filling-in-the-state"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 1: Filling in the state&lt;a class="headerlink" href="#your-turn-1-filling-in-the-state" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;If you now feel comfortable with these concepts, you'll notice that the &lt;code&gt;__init__&lt;/code&gt; function has some commented out code. When you uncomment that, it looks like the below. Feel free to have a go at completing it and we'll look at the solution in the next section.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# direction is a string with up, down, left or right&lt;/span&gt;
 &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;direction&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;
@@ -1458,10 +1458,10 @@ This variable tells us whether the game has finished or not. It wouldn't be very
 &lt;/p&gt;
 &lt;/details&gt;
 
-&lt;h2 id="drawing-to-the-screen"&gt;Drawing to the screen&lt;/h2&gt;
+&lt;h2 id="drawing-to-the-screen"&gt;Drawing to the screen&lt;a class="headerlink" href="#drawing-to-the-screen" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;We have some initial state, but if you ran this code right now, you wouldn't see much happening. That's because we're not actually drawing anything to the screen.&lt;/p&gt;
 &lt;p&gt;So what do we need to draw on the screen? Thinking back to our Google Snake example, the snake, food and grid were visible. On the micro:bit the grid is already built for us since the LEDs form a grid naturally. That leaves the snake and the food to be drawn.&lt;/p&gt;
-&lt;h3 id="drawing-the-food"&gt;Drawing the food&lt;/h3&gt;
+&lt;h3 id="drawing-the-food"&gt;Drawing the food&lt;a class="headerlink" href="#drawing-the-food" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Ideally, then, we need a function to light up an individual LED using its co-ordinates. The snake and the food are both stored using co-ordinates, so if we can draw these on one at a time then we'll have completed our &lt;code&gt;draw&lt;/code&gt; function.&lt;/p&gt;
 &lt;p&gt;The micro:bit offers us a number of different ways to &lt;a href="https://microbit-micropython.readthedocs.io/en/latest/display.html"&gt;draw to the screen&lt;/a&gt;, including one that does what we need. &lt;code&gt;display.set_pixel(x, y, value)&lt;/code&gt; will set the pixel at &lt;code&gt;[x, y]&lt;/code&gt; to the level of brightness &lt;code&gt;value&lt;/code&gt;. &lt;code&gt;value&lt;/code&gt; can be between 0 and 9, where 0 is off and 9 is fully on.&lt;/p&gt;
 &lt;p&gt;Now that we have a function to turn on a pixel, we can start to fill in our &lt;code&gt;draw&lt;/code&gt; function.&lt;/p&gt;
@@ -1474,7 +1474,7 @@ This variable tells us whether the game has finished or not. It wouldn't be very
 &lt;p&gt;The first thing we do in this function is &lt;code&gt;display.clear()&lt;/code&gt;. This sets all the LEDs off, which is important because this draw function will be called repeatedly and we want to draw something different each time. If we didn't clear the display, then the game state from the last iteration of the game loop would still be there.&lt;/p&gt;
 &lt;p&gt;Next we use the &lt;code&gt;self.food&lt;/code&gt; co-ordinates to draw the food. We use the intensity &lt;code&gt;5&lt;/code&gt; because that will help us to distinguish it from the snake.&lt;/p&gt;
 &lt;p&gt;Before we draw the snake, let's take a look at &lt;code&gt;for&lt;/code&gt; loops in Python. Again, if you've done this before, feel free to skip it.&lt;/p&gt;
-&lt;h3 id="python-for-loops"&gt;Python &lt;code&gt;for&lt;/code&gt; loops&lt;/h3&gt;
+&lt;h3 id="python-for-loops"&gt;Python &lt;code&gt;for&lt;/code&gt; loops&lt;a class="headerlink" href="#python-for-loops" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;for&lt;/code&gt; loops are great for when you want to do the same thing to multiple elements. In Python they're written like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;variable_name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;iterable_thing&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;do_things&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;variable_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1499,7 +1499,7 @@ This variable tells us whether the game has finished or not. It wouldn't be very
 &lt;span class="mi"&gt;5&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id="your-turn-2-drawing-the-snake"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 2: Drawing the snake&lt;/h3&gt;
+&lt;h3 id="your-turn-2-drawing-the-snake"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 2: Drawing the snake&lt;a class="headerlink" href="#your-turn-2-drawing-the-snake" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Now you know how to light up individual pixels, and how to use a &lt;code&gt;for&lt;/code&gt; loop to go over a list, you should be able to draw the snake to the screen. You'll want to draw the snake with intensity &lt;code&gt;9&lt;/code&gt; so that it looks different from the food we drew earlier. As before, the solution is below.&lt;/p&gt;
 &lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
 &lt;p&gt;
@@ -1517,13 +1517,13 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 &lt;/p&gt;
 &lt;/details&gt;
 
-&lt;h3 id="running-our-code"&gt;Running our code&lt;/h3&gt;
+&lt;h3 id="running-our-code"&gt;Running our code&lt;a class="headerlink" href="#running-our-code" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;At this point, we should see some output, so let's go ahead and run our code. Whether or not you have a physical micro:bit, press &lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;Enter&lt;/code&gt; in the editor to bring up the micro:bit pop up. You can also click the cross in the corner and then click the green play button.&lt;/p&gt;
 &lt;p&gt;If you want to run the code on your physical micro:bit, click the "Download HEX" button in the top left corner. You can refer to the &lt;a href="#setting-up-environment"&gt;Setting up environment section&lt;/a&gt; if you can't find it.&lt;/p&gt;
 &lt;p&gt;You should see something that looks like the below. If so, well done! If not, go back and check the solutions match your code exactly. Whitespace matters in Python as well, so check that carefully.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Snake game state being drawn to the screen" src="/images/microbitsnake/drawingtoscreen.svg"&gt;&lt;/p&gt;
 &lt;p&gt;Our snake is in the centre of the screen as a bright dot, and our food is at the left of the screen as a less bright dot. Yours might be in different positions depending on what you chose in &lt;a href="#your-turn-1-filling-in-the-state"&gt;Creating the game state&lt;/a&gt;. The next step is to make the snake move.&lt;/p&gt;
-&lt;h2 id="moving-the-snake"&gt;Moving the snake&lt;/h2&gt;
+&lt;h2 id="moving-the-snake"&gt;Moving the snake&lt;a class="headerlink" href="#moving-the-snake" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To understand how to move the snake, let's take a look at an example.&lt;/p&gt;
 &lt;video autoplay loop muted playsinline src="/images/microbitsnake/calcheadcuttail.mp4"&gt;Animation showing how the snake moves.&lt;/video&gt;
 
@@ -1533,7 +1533,7 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 &lt;li&gt;Cut the tail off&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;So our first step will be to calculate the new head. We can do that with the help of &lt;code&gt;if&lt;/code&gt; statements.&lt;/p&gt;
-&lt;h3 id="python-if-statements"&gt;Python &lt;code&gt;if&lt;/code&gt; statements&lt;/h3&gt;
+&lt;h3 id="python-if-statements"&gt;Python &lt;code&gt;if&lt;/code&gt; statements&lt;a class="headerlink" href="#python-if-statements" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Sometimes we want to choose what to do based on a condition. For example, you would want to wear a coat if it was raining outside, but if it was sunny you would put on sunglasses. You can do this in Python using &lt;code&gt;if&lt;/code&gt; statements.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# rain is a boolean variable (True or False)&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -1556,7 +1556,7 @@ Since `self.snake` is a list of co-ordinates, we can use it in a `for` loop to g
 &lt;span class="n"&gt;go_outside&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id="your-turn-3-calculating-the-new-head"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 3: Calculating the new head&lt;/h3&gt;
+&lt;h3 id="your-turn-3-calculating-the-new-head"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 3: Calculating the new head&lt;a class="headerlink" href="#your-turn-3-calculating-the-new-head" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;We're going to be working in the &lt;code&gt;update()&lt;/code&gt; function here, since that updates the game state before we draw the screen.&lt;/p&gt;
 &lt;p&gt;There are a few steps in calculating the new head of the snake.&lt;/p&gt;
 &lt;ol&gt;
@@ -1617,7 +1617,7 @@ Firstly we copy the old head of the snake, remember `-1` is the index of the las
 &lt;/p&gt;
 &lt;/details&gt;
 
-&lt;h3 id="your-turn-4-removing-the-tail"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 4: Removing the tail&lt;/h3&gt;
+&lt;h3 id="your-turn-4-removing-the-tail"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 4: Removing the tail&lt;a class="headerlink" href="#your-turn-4-removing-the-tail" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Remember the &lt;code&gt;.pop(idx)&lt;/code&gt; method on lists from before? You can remove an item from a list by calling this function with the index of the item that you want to remove.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1658,12 +1658,12 @@ The full `update` function should now look like this:
 &lt;p&gt;&lt;code&gt;ValueError: index out of bounds&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;What's happening here is that our &lt;code&gt;new_head&lt;/code&gt; is going out of bounds, which means it's becoming a value that can't be displayed on the screen. If you remember our co-ordinates diagram, the Y co-ordinate is getting smaller until it gets to -1. When we then try and call &lt;code&gt;display.set_pixel&lt;/code&gt; with -1 as an input, it gives us an error, since there's no LED at &lt;code&gt;[2, -1]&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;We could fix this by ending the game if the snake goes out of bounds, but on a screen this small that wouldn't be much fun. Instead, let's fix it by wrapping our snake around the board.&lt;/p&gt;
-&lt;h2 id="wrapping"&gt;Wrapping&lt;/h2&gt;
+&lt;h2 id="wrapping"&gt;Wrapping&lt;a class="headerlink" href="#wrapping" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Wrapping just means that if the snake hits one side of the screen, then it should appear on the other side of the screen.&lt;/p&gt;
 &lt;video autoplay loop muted playsinline src="/images/microbitsnake/wrappingdemo.mp4"&gt;Demonstration of wrapping the snake to the other side of the screen.&lt;/video&gt;
 
 &lt;p&gt;In the above example, the snake is moving up the screen. After the snake's head reaches &lt;code&gt;[3, 0]&lt;/code&gt; it goes to &lt;code&gt;[3, 4]&lt;/code&gt; and appears at the bottom of the screen. The snake continues to move upwards, just starting from the bottom of the screen now. We can implement this behaviour by checking the bounds of the &lt;code&gt;new_head&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id="your-turn-5-wrap-the-screen"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 5: Wrap the screen&lt;/h3&gt;
+&lt;h3 id="your-turn-5-wrap-the-screen"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 5: Wrap the screen&lt;a class="headerlink" href="#your-turn-5-wrap-the-screen" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The bounds of our screen are 0-4 in both the X and Y axes. So you'll want to check if the X co-ordinate or the Y co-ordinate are less than/greater than these boundaries. If they are, reset them to the other edge of the screen.&lt;/p&gt;
 &lt;p&gt;Again, for this task we'll be working in our &lt;code&gt;update&lt;/code&gt; method.&lt;/p&gt;
 &lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
@@ -1698,21 +1698,21 @@ We add a new `if` statement for both the X co-ordinate and the Y co-ordinate. In
 &lt;p&gt;When we add this code to our game, it should look like the below.&lt;/p&gt;
 &lt;video autoplay loop muted playsinline src="/images/microbitsnake/wrapping.mp4"&gt;The game successfully wrapping the snake round the screen.&lt;/video&gt;
 
-&lt;h2 id="getting-input"&gt;Getting input&lt;/h2&gt;
+&lt;h2 id="getting-input"&gt;Getting input&lt;a class="headerlink" href="#getting-input" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At this point, we have an image on the screen and the snake moves! The user can't yet control the snake though, so let's add that in.&lt;/p&gt;
 &lt;p&gt;The micro:bit has a few different ways of getting input from the user and the world around it. Most visibly, it has two buttons on the front that the user can press. While we could use these for input, four directions doesn't map into two buttons in an intuitive way. Other inputs the micro:bit has include an accelerometer for detecting tilt and motion, a compass for direction relative to the earth, pins on the bottom for electrical input and a temperature sensor. Out of these, the accelerometer can provide the simplest method of control.&lt;/p&gt;
-&lt;h3 id="accelerometers"&gt;Accelerometers&lt;/h3&gt;
+&lt;h3 id="accelerometers"&gt;Accelerometers&lt;a class="headerlink" href="#accelerometers" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;We won't try to understand how accelerometers work here, that would take a post of its own. However, we can understand what an accelerometer can do for us. If you've never heard of an accelerometer before, it's the bit of your phone that detects orientation and makes your videos landscape when you tilt your phone.&lt;/p&gt;
 &lt;p&gt;In short, an accelerometer can measure the tilt of a device, and we can use this for our game. To see how this will work, take a look at the video below.&lt;/p&gt;
 &lt;video autoplay loop muted playsinline src="/images/microbitsnake/accelphysdemo.mp4"&gt;Using the accelerometer to move a dot around the micro:bit screen&lt;/video&gt;
 
 &lt;p&gt;The dot follows the tilt of the device here. When we tilt the device away from us, the dot heads up the screen (away from us). Tilting the device to the left, right or towards us have similar efects.&lt;/p&gt;
-&lt;h3 id="simulator-only-how-to-test-with-the-accelerometer"&gt;Simulator only: How to test with the accelerometer&lt;/h3&gt;
+&lt;h3 id="simulator-only-how-to-test-with-the-accelerometer"&gt;Simulator only: How to test with the accelerometer&lt;a class="headerlink" href="#simulator-only-how-to-test-with-the-accelerometer" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;video autoplay loop muted playsinline src="/images/microbitsnake/accelvirtdemo.mp4"&gt;Controlling the micro:bit accelerometer with the mouse in the create.withcode editor&lt;/video&gt;
 
 &lt;p&gt;The micro:bit pop-up in the simulator has some tabs along the top for controlling the various components of the micro:bit. One of these tabs controls the accelerometer (seen in the video above). In the tab you will see three sliders, one for each axis, and a checkbox labelled "Move accelerometer with mouse". Go ahead and tick that checkbox.&lt;/p&gt;
 &lt;p&gt;With the checkbox ticked, you'll notice that moving your mouse over the micro:bit's screen will change the accelerometer values in the sliders. As you head towards the lower-right corner of the micro:bit the values will increase, and as you head towards the upper-left corner they will decrease.&lt;/p&gt;
-&lt;h3 id="your-turn-6-updating-direction"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 6: Updating direction&lt;/h3&gt;
+&lt;h3 id="your-turn-6-updating-direction"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 6: Updating direction&lt;a class="headerlink" href="#your-turn-6-updating-direction" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;We're working in the &lt;code&gt;handle_input&lt;/code&gt; function for this section.&lt;/p&gt;
 &lt;p&gt;The accelerometer will return you values in the X and Y axes using the following functions. We don't care about the Z axis since our screen is 2D.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# These functions return values in the range -2000 to 2000&lt;/span&gt;
@@ -1761,12 +1761,12 @@ First we get the raw values from the accelerometer for X and Y, and then we comp
 &lt;/details&gt;
 
 &lt;p&gt;The user can now tilt the micro:bit to make the snake move! You may notice while playing with this that the snake will never grow, so now it's time to figure out how food works.&lt;/p&gt;
-&lt;h2 id="food"&gt;Food&lt;/h2&gt;
+&lt;h2 id="food"&gt;Food&lt;a class="headerlink" href="#food" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;When the snake approaches some food, we want the snake to grow and the food to appear again in another location. Ideally, the process would look like the following animation.&lt;/p&gt;
 &lt;video autoplay loop muted playsinline src="/images/microbitsnake/food.mp4"&gt;Animation showing the snake eating food and growing&lt;/video&gt;
 
 &lt;p&gt;Building our food mechanic can be split into two steps. Detecting and reacting to food being eaten, and then generating new food.&lt;/p&gt;
-&lt;h3 id="your-turn-7-eating-food"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 7: Eating food&lt;/h3&gt;
+&lt;h3 id="your-turn-7-eating-food"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 7: Eating food&lt;a class="headerlink" href="#your-turn-7-eating-food" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The snake "eats" the food when its head is in the same cell as the food. When it eats the food, it should grow by one cell which can be done by not cutting the tail from the snake.&lt;/p&gt;
 &lt;p&gt;In the case that the snake is eating the food, you should leave some space in your code to generate the new food.&lt;/p&gt;
 &lt;p&gt;Hint: In Python you can compare two lists just with &lt;code&gt;list1 == list2&lt;/code&gt;.&lt;/p&gt;
@@ -1792,7 +1792,7 @@ We cut the tail in the else block, which means that we only cut it when the snak
 &lt;/p&gt;
 &lt;/details&gt;
 
-&lt;h3 id="random-numbers"&gt;Random numbers&lt;/h3&gt;
+&lt;h3 id="random-numbers"&gt;Random numbers&lt;a class="headerlink" href="#random-numbers" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;We want to generate new food randomly so that the game is interesting. We can do this using the &lt;code&gt;random&lt;/code&gt; module in Python. Here's an example that guesses (poorly) how old you are.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# import the function randint from the module random&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;random&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;randint&lt;/span&gt;
@@ -1805,7 +1805,7 @@ We cut the tail in the else block, which means that we only cut it when the snak
 
 &lt;p&gt;In this program we import then call the &lt;code&gt;randint(start, stop)&lt;/code&gt; function. This will give us back a number between 1 and 100. We then print it out using an &lt;a href="https://realpython.com/python-f-strings/"&gt;f-string&lt;/a&gt;. Side note: if you haven't come across f-strings before, check out that link. They are very cool.&lt;/p&gt;
 &lt;p&gt;We'll be using this &lt;code&gt;randint&lt;/code&gt; function to generate random co-ordinates.&lt;/p&gt;
-&lt;h3 id="your-turn-8-generating-food"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 8: Generating food&lt;/h3&gt;
+&lt;h3 id="your-turn-8-generating-food"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 8: Generating food&lt;a class="headerlink" href="#your-turn-8-generating-food" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;To generate new food, you'll need to generate an X co-ordinate and a Y co-ordinate. Remember, the axes run from 0 to 4.&lt;/p&gt;
 &lt;p&gt;One edge case you'll have to think about is what happens if the co-ordinates you generate are covered by the snake. The solution I'll recommend is to keep re-generating the co-ordinates until they are not in the snake, but feel free to come up with your own solutions here. You can check if the co-ordinates are inside the snake using the &lt;code&gt;in&lt;/code&gt; keyword (&lt;code&gt;co_ords in self.snake&lt;/code&gt;) and a &lt;code&gt;while&lt;/code&gt; loop.&lt;/p&gt;
 &lt;details&gt;&lt;summary&gt;Solution&lt;/summary&gt;
@@ -1839,10 +1839,10 @@ These numbers are very small for a computer, and we won't notice much delay in t
 &lt;/details&gt;
 
 &lt;p&gt;Our snake game is almost finished! The only step left is figuring out how to end the game.&lt;/p&gt;
-&lt;h2 id="ending-the-game"&gt;Ending the game&lt;/h2&gt;
+&lt;h2 id="ending-the-game"&gt;Ending the game&lt;a class="headerlink" href="#ending-the-game" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The game of snake ends in two situations. Firstly, if you crash into yourself (or the wall, in some versions) then you lose. Secondly, if you fill the entire grid with your snake then you win.&lt;/p&gt;
 &lt;p&gt;We'll worry about losing the game for now, and I'll leave winning the game as an exercise for you.&lt;/p&gt;
-&lt;h3 id="loop-control"&gt;Loop control&lt;/h3&gt;
+&lt;h3 id="loop-control"&gt;Loop control&lt;a class="headerlink" href="#loop-control" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;We've seen &lt;code&gt;while&lt;/code&gt; loops a couple of times so far. Most recently we used them to generate food, but at the very start we saw how our game loop is made of a &lt;code&gt;while&lt;/code&gt; loop.&lt;/p&gt;
 &lt;p&gt;In Python, you have the ability to run a loop forever with &lt;code&gt;while True&lt;/code&gt;. The complementary feature is that you have the ability to cut a loop short early using the &lt;code&gt;break&lt;/code&gt; statement. Let's take a quick look at how it works.&lt;/p&gt;
 &lt;p&gt;In the below example, we wait for the micro:bit's button A to be pressed then show a happy face.&lt;/p&gt;
@@ -1861,7 +1861,7 @@ These numbers are very small for a computer, and we won't notice much delay in t
 &lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HAPPY&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id="your-turn-9-ending-the-game"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 9: Ending the game&lt;/h3&gt;
+&lt;h3 id="your-turn-9-ending-the-game"&gt;&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Your turn 9: Ending the game&lt;a class="headerlink" href="#your-turn-9-ending-the-game" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;There are three steps to implementing losing the game.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Detect if you've crashed into yourself using the &lt;code&gt;in&lt;/code&gt; keyword. This will be part of the &lt;code&gt;update&lt;/code&gt; function.&lt;/li&gt;
@@ -1907,18 +1907,18 @@ We add an if statement to check whether `game.end` was set to `True` in `update`
 &lt;/p&gt;
 &lt;/details&gt;
 
-&lt;h2 id="final-notes"&gt;Final notes&lt;/h2&gt;
+&lt;h2 id="final-notes"&gt;Final notes&lt;a class="headerlink" href="#final-notes" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Well done on making it this far! You've just built your very own game, and can be really proud of yourself. I hope you've enjoyed the experience and that it's inspired you to keep going with micro:bit, programming or game development. If you want some more material for learning, then check out the &lt;a href="#useful-links"&gt;Useful links&lt;/a&gt; below. If you'd like to check your solution, I've put the &lt;a href="https://github.com/notexactlyawe/microbit-snake/blob/master/snake.py"&gt;final code for this tutorial on GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This tutorial was based off a workshop that I wrote while part of the Embedded and Robotics Society (EaRS) at Edinburgh. It was one of my favourite workshops there, and it's been fun to re-visit it and turn it into a full tutorial. If you like this, then they have more resources &lt;a href="http://ears-edi.com/"&gt;on their website&lt;/a&gt; so you should check them out.&lt;/p&gt;
 &lt;p&gt;If you found any issues in this tutorial, have ideas for new tutorials you'd like to see, or have a question then feel free to &lt;a href="/contact"&gt;contact me&lt;/a&gt;. I'd love to hear from you.&lt;/p&gt;
-&lt;h2 id="extensions"&gt;Extensions&lt;/h2&gt;
+&lt;h2 id="extensions"&gt;Extensions&lt;a class="headerlink" href="#extensions" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Just because you finished this tutorial doesn't mean you have to stop working on the game. There are a number of extensions you could make to it, and you may even think of some of your own.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Implement a winning condition.&lt;/li&gt;
 &lt;li&gt;Stop the player from going in a direction opposite to the current one they're going in. This annoyed me while playing the game, since it means you lost when you go back into yourself, and most snake implementations prevent you from being able to do this.&lt;/li&gt;
 &lt;li&gt;Expand the game grid. Maybe you could have a grid that is bigger than the screen, and display a part of it at a time. You could show this by moving the food instead of the snake, or by flashing the screen when you drew a different area.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="useful-links"&gt;Useful links&lt;/h2&gt;
+&lt;h2 id="useful-links"&gt;Useful links&lt;a class="headerlink" href="#useful-links" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://python.microbit.org/v/2.0"&gt;Official Python editor for micro:bit&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://makecode.microbit.org/"&gt;MakeCode for micro:bit (JavaScript/Scratch)&lt;/a&gt;&lt;/li&gt;
@@ -1926,7 +1926,7 @@ We add an if statement to check whether `game.end` was set to `True` in `update`
 &lt;li&gt;&lt;a href="https://docs.google.com/presentation/d/1d5NM7Sf5eOalQJ1Otfe1fJ4gtUMj3hgkXyFJPTEyZik/edit?usp=sharing"&gt;Original workshop slides&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://microbit-challenges.readthedocs.io/en/latest/introduction/getting_started.html"&gt;UCL BBC micro:bit tutorial&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="copyright"&gt;Copyright&lt;/h2&gt;
+&lt;h2 id="copyright"&gt;Copyright&lt;a class="headerlink" href="#copyright" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Pretty micro:bit SVG images were modified from the &lt;a href="https://github.com/microbit-foundation/microbit-svg/"&gt;Micro:bit Educational Foundation's GitHub repo&lt;/a&gt; under the &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0 license&lt;/a&gt;. Those images on this page are therefore licensed under the same terms.&lt;/p&gt;
 &lt;p&gt;All other content on this page is licensed under the &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;CC BY 4.0 license&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The create.withcode editor hosted on my site is courtesy of Pete Dring of &lt;a href="https://blog.withcode.uk/"&gt;blog.withcode.uk&lt;/a&gt;. It has been slightly modified, hence this tutorial not using the official site.&lt;/p&gt;</content><category term="Tutorials"></category><category term="micro:bit"></category><category term="Python"></category><category term="Games"></category></entry><entry><title>Disappearing documentation (a Kubernetes war story)</title><link href="https://www.cameronmacleod.com/blog/disappearing-k8s-docs" rel="alternate"></link><published>2020-05-03T00:00:00+01:00</published><updated>2020-05-03T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-05-03:/blog/disappearing-k8s-docs</id><summary type="html">&lt;p&gt;I like a good war story, and I like them even more when I get to tell them. While writing my dissertation, I ran into a case of disappearing documentation. Here's what happened.&lt;/p&gt;
@@ -1963,7 +1963,7 @@ error&lt;span class="w"&gt; &lt;/span&gt;validating&lt;span class="w"&gt; &lt;/s
 &lt;p&gt;Finding out that I wasn't imagining things and that the docs were wrong was very satisfying. Everything had fallen nicely into place. I answered the Stack Overflow question with a shortened version of this story and carried on with my dissertation.&lt;/p&gt;
 &lt;p&gt;Now that 1.18 is out, this will no longer be a problem, but I thought it would be an interesting story to share. This was only a small part of my dissertation, which was on mobile networks and Kubernetes. It's now finished (exhausted hooray). If you're interested, you can read it &lt;a href="/dissertation.pdf"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="Blogging"></category><category term="Kubernetes"></category><category term="Documentation"></category></entry><entry><title>Why I chose product management over software development</title><link href="https://www.cameronmacleod.com/blog/why-pm-over-software" rel="alternate"></link><published>2020-03-03T00:00:00+00:00</published><updated>2020-03-03T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2020-03-03:/blog/why-pm-over-software</id><summary type="html">&lt;p&gt;I'm about to finish my degree and have been fortunate enough to receive two graduate job offers. One was an associate product manager position at Google, and the other was software engineering at Bloomberg. Both companies and jobs excited me, which left me with a difficult choice. In this post …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm about to finish my degree and have been fortunate enough to receive two graduate job offers. One was an associate product manager position at Google, and the other was software engineering at Bloomberg. Both companies and jobs excited me, which left me with a difficult choice. In this post, I'll explain why I chose product management, even after years of wanting to be a software developer.&lt;/p&gt;
 &lt;p&gt;The factors that were important to my decision won't be the same for everyone, and this post is not a recommendation of one career path over the other. Choosing a job is deeply personal, and both career paths could potentially be right for any given individual. However, I do hope that this post helps someone else if confronted with a similar decision.&lt;/p&gt;
-&lt;h2 id="background"&gt;Background&lt;/h2&gt;
+&lt;h2 id="background"&gt;Background&lt;a class="headerlink" href="#background" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At the time of this decision, I:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;was a final year Computer Science student.&lt;/li&gt;
@@ -1972,28 +1972,28 @@ error&lt;span class="w"&gt; &lt;/span&gt;validating&lt;span class="w"&gt; &lt;/s
 &lt;/ul&gt;
 &lt;p&gt;I had applied to the Google APM program on a whim and only because I spotted it while looking for software engineering roles. Of course, I liked the sound of the position but had never really thought about working in product before. I wasn't that clear on what product meant.&lt;/p&gt;
 &lt;p&gt;Throughout the interview process and up until I signed the contract, I did my best to understand product management. I think that I ended up with a reasonably clear idea of what it is, but of course, I have never actually &lt;em&gt;done&lt;/em&gt; it. After my research, the points below are the biggest reasons that justified my decision.&lt;/p&gt;
-&lt;h2 id="generalism"&gt;Generalism&lt;/h2&gt;
+&lt;h2 id="generalism"&gt;Generalism&lt;a class="headerlink" href="#generalism" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I have always identified with the label 'generalist' for a couple of reasons. Firstly, it means that I enjoy novelty, something that shows up most in my hobbies. I rarely stick with one for longer than a few months. Whether or not this is a character flaw (something I'm still unsure about), it's a part of me that I have to take into account when making big decisions.&lt;/p&gt;
 &lt;p&gt;Another reason that I identify with this label is a fear of specialisation. The idea of becoming a professional expert in a single field or skill scares me. I worry that it would be boring. I'm not saying that I don't want to be an expert in anything, more that I'm afraid of becoming a one-trick pony.&lt;/p&gt;
 &lt;p&gt;Software development has the potential to provide new challenges each day. I enjoy writing software, and hopefully always will, but I worry about getting pigeonholed as one type of developer. While development would tick the generalism box at the start of my career, I'm not sure that it still would as my career progressed.&lt;/p&gt;
 &lt;p&gt;Product management, in itself, would be new for me. From everything I've read, the job involves a lot of context switching and many different skills. Most importantly, it doesn't look like this generalist quality of the job disappears as you move up the career ladder.&lt;/p&gt;
-&lt;h2 id="communication"&gt;Communication&lt;/h2&gt;
+&lt;h2 id="communication"&gt;Communication&lt;a class="headerlink" href="#communication" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Communication is getting an idea out of your head and into someone else's, but this can cover a wide range of skills due to the many ways we convey information. Writing, presenting, face-to-face conversation, education and visual design can all fall under the communication umbrella.&lt;/p&gt;
 &lt;p&gt;As I've gotten older, I have placed more importance on communication, mostly as a result of enjoying related activities. Writing for this blog, teaching, giving presentations and finding sponsorship for a hackathon have all brought me a lot of satisfaction, and all of them have been communication heavy. Improving my communication is something I find difficult but pleasantly so.&lt;/p&gt;
 &lt;p&gt;Product management relies heavily on communication. Attempting to align people from different backgrounds requires understanding all perspectives and then translating them into the language of other people around you. I find this challenge exciting.&lt;/p&gt;
-&lt;h2 id="rounding-my-skill-set"&gt;Rounding my skill-set&lt;/h2&gt;
+&lt;h2 id="rounding-my-skill-set"&gt;Rounding my skill-set&lt;a class="headerlink" href="#rounding-my-skill-set" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I have been programming for a long time and over that time have acquired a decent level of technical skill. While there is still a lot of room for me to grow as a developer, there are many other skills that I have never had the chance to focus on improving. Becoming a product manager would allow me to focus on different skills than those I have been able to so far.&lt;/p&gt;
 &lt;p&gt;Product managers sit in the middle of developers, designers and business people, allowing them to learn a little about each of these areas. This learning would be alongside getting more in-depth knowledge about product management. Product management should broaden my knowledge base in a way few other positions could.&lt;/p&gt;
-&lt;h2 id="the-google-effect"&gt;The Google effect&lt;/h2&gt;
+&lt;h2 id="the-google-effect"&gt;The Google effect&lt;a class="headerlink" href="#the-google-effect" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It might reduce my credibility in some circles, but "working for Google" was also attractive to me. When I first started programming, I idolised Google. Their products were everywhere, and the narrative they cultivated around their working culture seemed exciting and fun, especially for someone who knew little about the working world.&lt;/p&gt;
 &lt;p&gt;Of course, after having a few jobs and being exposed to more perspectives, my initial infatuation faded. Every year of university, however, I applied religiously to Google for internships. As time went on, some of my friends started getting in, but I still never even received an interview.&lt;/p&gt;
 &lt;p&gt;So finally getting in after all this time did feel a little unbelievable and I had to be very careful not to accept the offer on that basis alone. I stand by this excitement forming part of my final decision, but it was important to me that it wasn't the whole reason for making my choice.&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I justified my final decision with the points above, but it was still painful to reject the software engineering position. The decision process was long and involved a series of pros/cons lists and talking to many people before I settled on an answer. Alongside friends and family, one of my interviewers from Google also offered to answer any questions I had, which was really helpful.&lt;/p&gt;
 &lt;p&gt;I'm pleased to say that I'm very sure about my decision, and I feel confident that I made the right choice for me. Of course, it's not possible to know that one job or the other is better overall, because that would require predicting not just one future, but two. That said, I have no regrets.&lt;/p&gt;
 &lt;p&gt;My start date is in August, and I'm super excited.&lt;/p&gt;</content><category term="Blogging"></category><category term="Career"></category><category term="Product Management"></category></entry><entry><title>Easy Python speed wins with functools.lru_cache</title><link href="https://www.cameronmacleod.com/blog/python-lru-cache" rel="alternate"></link><published>2019-06-10T00:00:00+01:00</published><updated>2019-06-10T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2019-06-10:/blog/python-lru-cache</id><summary type="html">&lt;p&gt;Recently, I was reading an &lt;a href="https://datawhatnow.com/things-you-are-probably-not-using-in-python-3-but-should/"&gt;interesting article&lt;/a&gt; on some under-used Python features. In the article, the author mentioned that from Python version 3.2, the standard library came with a built in decorator &lt;code&gt;functools.lru_cache&lt;/code&gt; which I found exciting as it has the potential to speed up a lot of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently, I was reading an &lt;a href="https://datawhatnow.com/things-you-are-probably-not-using-in-python-3-but-should/"&gt;interesting article&lt;/a&gt; on some under-used Python features. In the article, the author mentioned that from Python version 3.2, the standard library came with a built in decorator &lt;code&gt;functools.lru_cache&lt;/code&gt; which I found exciting as it has the potential to speed up a lot of applications with very little effort.&lt;/p&gt;
 &lt;p&gt;That's great and all, you may be thinking, but what is it? Well, the decorator provides access to a ready-built cache that uses the Least Recently Used (LRU) replacement strategy, hence the name &lt;code&gt;lru_cache&lt;/code&gt;. Of course, that sentence probably sounds a little intimidating, so let's break it down.&lt;/p&gt;
-&lt;h2 id="what-is-a-cache"&gt;What is a cache?&lt;/h2&gt;
+&lt;h2 id="what-is-a-cache"&gt;What is a cache?&lt;a class="headerlink" href="#what-is-a-cache" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A cache is a place that is quick to access where you store things that are otherwise slow to access. To demonstrate this, let's take your web browser as an example.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Diagram of a web browser using a cache" src="/images/browser_cache.png"&gt;&lt;/p&gt;
 &lt;p&gt;Getting a web page from the internet can take up to a few seconds, even on a fast internet connection. In computer time this is an eternity. To solve this, browsers store the web pages you've already visited in a cache on your computer which can be thousands of times faster to access.&lt;/p&gt;
@@ -2005,7 +2005,7 @@ error&lt;span class="w"&gt; &lt;/span&gt;validating&lt;span class="w"&gt; &lt;/s
 &lt;/ol&gt;
 &lt;p&gt;While this doesn't make things faster the first time you visit a web page, often you'll find yourself visiting a page more than once (think Facebook, or your email) and every subsequent visit will be faster.&lt;/p&gt;
 &lt;p&gt;Web browsers aren't the only place caches are used. They are used everywhere from servers to computer hardware between the CPU and your hard disk/SSD. Getting things from a cache is quick, and so when you are getting something more than once, it can speed up a program a lot.&lt;/p&gt;
-&lt;h2 id="what-does-lru-mean"&gt;What does LRU mean?&lt;/h2&gt;
+&lt;h2 id="what-does-lru-mean"&gt;What does LRU mean?&lt;a class="headerlink" href="#what-does-lru-mean" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A cache can only ever store a finite amount of things, and often is much smaller than whatever it is caching (for example, your hard drive is much smaller than the internet). This means that sometimes you will need to swap something that is already in the cache out for something else that you want to put in the cache. The way you decide what to take out is called a replacement strategy.&lt;/p&gt;
 &lt;p&gt;That's where LRU comes in. LRU stands for Least Recently Used and is a commonly used replacement strategy for caches.&lt;/p&gt;
 &lt;details&gt;&lt;summary&gt;Why does a replacement strategy matter?&lt;/summary&gt;
@@ -2020,7 +2020,7 @@ Think about it this way: Using the browser example, if your most accessed site w
 &lt;p&gt;&lt;img alt="LRU diagram" src="/images/lru.png"&gt;&lt;/p&gt;
 &lt;p&gt;In the above diagram each item in the cache has an associated access time. LRU chooses the item at 2:55PM to be replaced since it was accessed longest ago. If there were two objects with the same access time, then LRU would pick one at random.&lt;/p&gt;
 &lt;p&gt;It turns out that there is an optimal strategy for choosing what to replace in a cache and that is to get rid of the thing that won't be used for longest. This is called &lt;a href="https://en.wikipedia.org/wiki/Page_replacement_algorithm#The_theoretically_optimal_page_replacement_algorithm"&gt;Bélády's optimal algorithm&lt;/a&gt; but unfortunately requires knowing the future. Thankfully, in many situations LRU provides near optimal performance .&lt;/p&gt;
-&lt;h2 id="how-do-i-use-it"&gt;How do I use it?&lt;/h2&gt;
+&lt;h2 id="how-do-i-use-it"&gt;How do I use it?&lt;a class="headerlink" href="#how-do-i-use-it" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;functools.lru_cache&lt;/code&gt; is a decorator, so you can just place it on top of your function:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;functools&lt;/span&gt;
 
@@ -2097,11 +2097,11 @@ $&lt;span class="w"&gt; &lt;/span&gt;python3&lt;span class="w"&gt; &lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;I've set &lt;code&gt;maxsize=4&lt;/code&gt; in this example, because my test script only gets the same three days and it's best to set a power of two. Using this makes the average come down to 13.7ms over 10 loops.&lt;/p&gt;
-&lt;h2 id="anything-else-i-should-know"&gt;Anything else I should know?&lt;/h2&gt;
+&lt;h2 id="anything-else-i-should-know"&gt;Anything else I should know?&lt;a class="headerlink" href="#anything-else-i-should-know" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The &lt;a href="https://docs.python.org/3/library/functools.html#functools.lru_cache"&gt;Python docs&lt;/a&gt; are pretty good, but there are a few things worth highlighting.&lt;/p&gt;
-&lt;h3 id="built-in-functions"&gt;Built in functions&lt;/h3&gt;
+&lt;h3 id="built-in-functions"&gt;Built in functions&lt;a class="headerlink" href="#built-in-functions" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The decorator comes with some built-in functions that you may find useful. &lt;code&gt;cache_info()&lt;/code&gt; will help you figure out how big &lt;code&gt;maxsize&lt;/code&gt; should be by giving you information on hits, misses and the current size of the cache. &lt;code&gt;cache_clear()&lt;/code&gt; will delete all elements in the cache.&lt;/p&gt;
-&lt;h3 id="sometimes-you-shouldnt-use-a-cache"&gt;Sometimes you shouldn't use a cache&lt;/h3&gt;
+&lt;h3 id="sometimes-you-shouldnt-use-a-cache"&gt;Sometimes you shouldn't use a cache&lt;a class="headerlink" href="#sometimes-you-shouldnt-use-a-cache" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;In general a cache can only be used when:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The data doesn't change for the lifetime of the cache.&lt;/li&gt;
@@ -2117,10 +2117,10 @@ $&lt;span class="w"&gt; &lt;/span&gt;python3&lt;span class="w"&gt; &lt;/span&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;/api/note - POST
 
 Parameters:
- - title (str) No longer than 60 characters
- - note (str) No longer than 1000 characters
- - user_id (int) No smaller than 1
- - time_created (datetime) Not in the future
+ &lt;span class="k"&gt;-&lt;/span&gt; title (str) No longer than 60 characters
+ &lt;span class="k"&gt;-&lt;/span&gt; note (str) No longer than 1000 characters
+ &lt;span class="k"&gt;-&lt;/span&gt; user_id (int) No smaller than 1
+ &lt;span class="k"&gt;-&lt;/span&gt; time_created (datetime) Not in the future
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;In Flask without a library for validation, you might end up writing the following view function to implement this.&lt;/p&gt;
@@ -2232,7 +2232,7 @@ Parameters:
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id="extra-information"&gt;Extra information&lt;/h2&gt;
+&lt;h2 id="extra-information"&gt;Extra information&lt;a class="headerlink" href="#extra-information" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;marshmallow is very powerful and contains much more than what I have covered here. Thankfully there are many good resources on the internet for you to research further.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://marshmallow.readthedocs.io/en/3.0/quickstart.html"&gt;marshmallow Quickstart&lt;/a&gt;&lt;/li&gt;
@@ -2241,7 +2241,7 @@ Parameters:
 &lt;/ul&gt;</content><category term="Tutorials"></category><category term="Python"></category><category term="Flask"></category><category term="marshmallow"></category><category term="Web apps"></category></entry><entry><title>How to configure DNS for custom domains on GitHub Pages</title><link href="https://www.cameronmacleod.com/blog/github-pages-dns" rel="alternate"></link><published>2018-11-20T00:00:00+00:00</published><updated>2018-11-20T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-11-20:/blog/github-pages-dns</id><summary type="html">&lt;p&gt;Recently-ish GitHub &lt;a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/"&gt;announced&lt;/a&gt; that HTTPS would now work on custom domains with GitHub Pages. This was a great bit of news, because the web is slowly moving towards a HTTPS-only state of being and it's nice not to be left behind.&lt;/p&gt;
 &lt;p&gt;Unfortunately for me, for this new feature to work …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently-ish GitHub &lt;a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/"&gt;announced&lt;/a&gt; that HTTPS would now work on custom domains with GitHub Pages. This was a great bit of news, because the web is slowly moving towards a HTTPS-only state of being and it's nice not to be left behind.&lt;/p&gt;
 &lt;p&gt;Unfortunately for me, for this new feature to work you had to be using either &lt;strong&gt;CNAME&lt;/strong&gt; or &lt;strong&gt;ALIAS records&lt;/strong&gt; to point to your GitHub Pages domain. At the time, I was using &lt;strong&gt;A records&lt;/strong&gt; pointed at the old GitHub Pages servers, which didn't have the new features enabled. All these terms can be quite confusing if you're not familiar with DNS, so let's take a look at some basics.&lt;/p&gt;
-&lt;h3 id="what-is-dns"&gt;What is DNS?&lt;/h3&gt;
+&lt;h3 id="what-is-dns"&gt;What is DNS?&lt;a class="headerlink" href="#what-is-dns" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;DNS stands for Domain Name System and it's the internet's way of mapping &lt;strong&gt;URLs&lt;/strong&gt; (like &lt;code&gt;cameronmacleod.com&lt;/code&gt;) to the actual &lt;strong&gt;IP addresses&lt;/strong&gt; (like &lt;code&gt;185.199.108.153&lt;/code&gt;) of the computers that can serve you the website. By means of an analogy, a &lt;strong&gt;URL&lt;/strong&gt; is a bit like a postal address, for example:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;1 Castlehill&lt;br&gt;
@@ -2258,7 +2258,7 @@ United Kingdom  &lt;/p&gt;
 &lt;/ol&gt;
 &lt;p&gt;A &lt;strong&gt;nameserver&lt;/strong&gt; is just the DNS name for a computer that keeps &lt;strong&gt;records&lt;/strong&gt; and can do the job of translating &lt;strong&gt;URLs&lt;/strong&gt; to &lt;strong&gt;IP addresses&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;This is not comprehensive or 100% accurate, but it's a good enough model for our purposes. If you would like to know more, or you're still a bit confused then Cloudflare have a &lt;a href="https://www.cloudflare.com/learning/dns/what-is-dns/"&gt;really good intro to the topic&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id="what-are-dns-records"&gt;What are DNS records?&lt;/h3&gt;
+&lt;h3 id="what-are-dns-records"&gt;What are DNS records?&lt;a class="headerlink" href="#what-are-dns-records" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;So far, we know that things called &lt;strong&gt;records&lt;/strong&gt; store the mapping between &lt;strong&gt;URLs&lt;/strong&gt; and &lt;strong&gt;IP addresses&lt;/strong&gt;. Presumably this means that if we want to make our site point at the GitHub Pages servers, then we need to change these. But what are &lt;strong&gt;records&lt;/strong&gt; and how do they work?&lt;/p&gt;
 &lt;p&gt;At their core, &lt;strong&gt;records&lt;/strong&gt; are just text files written in a certain way, that tell the &lt;strong&gt;nameserver&lt;/strong&gt; how to find the &lt;strong&gt;IP address&lt;/strong&gt; for a certain website. There are multiple different types of DNS &lt;strong&gt;records&lt;/strong&gt; and all of them serve a slightly different purpose. Alongside the information below, all records have a &lt;code&gt;TTL&lt;/code&gt; or &lt;code&gt;Time To Live&lt;/code&gt; value that contains the number of seconds that the record is still valid for.&lt;/p&gt;
 &lt;ul&gt;
@@ -2275,7 +2275,7 @@ United Kingdom  &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Other record types&lt;/strong&gt; - There are many other record types, including &lt;strong&gt;MX&lt;/strong&gt; for pointing to mail servers, &lt;strong&gt;NS&lt;/strong&gt; for nameserver data and even &lt;strong&gt;TXT&lt;/strong&gt; for general notes.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="how-can-i-change-my-dns-records"&gt;How can I change my DNS records?&lt;/h3&gt;
+&lt;h3 id="how-can-i-change-my-dns-records"&gt;How can I change my DNS records?&lt;a class="headerlink" href="#how-can-i-change-my-dns-records" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;If you know your DNS provider already, then great! If not, you will need to either figure out which one you are using, or set one up if your site is not yet live. For those of you who have yet to set up DNS, often your domain name provider will have a DNS service as part of purchasing your domain name, if not then there are many free DNS providers out there.&lt;/p&gt;
 &lt;p&gt;If you (like me) can't remember what DNS provider you used, then a really useful tool can be found &lt;a href="https://www.dnsstuff.com/tools"&gt;from DNSstuff&lt;/a&gt;. On that page there is a "DNS Lookup" tool that you can type your domain into.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="DNS lookup tool screenshot" src="/images/dnsstufflookup.png"&gt;&lt;/p&gt;
@@ -2305,7 +2305,7 @@ United Kingdom  &lt;/p&gt;
 &lt;/table&gt;
 &lt;p&gt;The first is necessary to redirect &lt;code&gt;www.cameronmacleod.com&lt;/code&gt; to the GitHub Pages servers and the second redirects the "apex" domain (&lt;code&gt;cameronmacleod.com&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;When you come to configure this for yourself, you may find that there are no &lt;strong&gt;ALIAS records&lt;/strong&gt; available under your provider. Unfortunately your best option in this case may be to change DNS provider.&lt;/p&gt;
-&lt;h3 id="how-do-i-know-it-worked"&gt;How do I know it worked?&lt;/h3&gt;
+&lt;h3 id="how-do-i-know-it-worked"&gt;How do I know it worked?&lt;a class="headerlink" href="#how-do-i-know-it-worked" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;DNS is notoriously slow to make changes to. Most providers recommend waiting 24 hours (some up to 72!) before you will be able to see your changes. When checking to see whether or not your changes have propagated, you can do one of two things. Use a DNS tool (like the one from &lt;a href="https://www.dnsstuff.com/tools"&gt;DNSstuff&lt;/a&gt; above) or use the unix command &lt;code&gt;dig&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;dig&lt;/code&gt; is a command that can find and list the DNS records for a given domain name. On Linux and Mac machines, you can run the following in terminal:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;cameron&lt;/span&gt;&lt;span class="nv"&gt;@isla&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dig&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cameronmacleod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;noall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;answer&lt;/span&gt;
@@ -2331,7 +2331,7 @@ United Kingdom  &lt;/p&gt;
 &lt;p&gt;You might notice that there are a lot of &lt;strong&gt;A records&lt;/strong&gt;, but that is because &lt;strong&gt;ALIAS records&lt;/strong&gt; will resolve automatically to &lt;strong&gt;A records&lt;/strong&gt; in the DNS server, meaning that when you run &lt;code&gt;dig&lt;/code&gt; it just shows you the final output.&lt;/p&gt;
 &lt;p&gt;You will want to check that the &lt;strong&gt;IP addresses&lt;/strong&gt; in the last column of the &lt;code&gt;dig&lt;/code&gt; output look similar to the ones above. For a complete and up to date list of GitHub Pages &lt;strong&gt;IP addresses&lt;/strong&gt;, you can check &lt;a href="https://help.github.com/articles/setting-up-an-apex-domain/#configuring-a-records-with-your-dns-provider"&gt;their documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If this worked, then great! Your DNS is properly configured to redirect your custom domain to GitHub Pages, and you should be able to visit your domain in a browser and see your page being served!&lt;/p&gt;
-&lt;h3 id="https-for-custom-domains-in-github-pages"&gt;HTTPS for custom domains in GitHub Pages&lt;/h3&gt;
+&lt;h3 id="https-for-custom-domains-in-github-pages"&gt;HTTPS for custom domains in GitHub Pages&lt;a class="headerlink" href="#https-for-custom-domains-in-github-pages" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;If you are trying to set up HTTPS on your site, then the changes above are necessary because they will point you at GitHub's content delivery network which has support for HTTPS. See &lt;a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/"&gt;GitHub's announcement&lt;/a&gt; for more details. You will also need to perform a couple more steps.&lt;/p&gt;
 &lt;p&gt;Firstly, if you used to be using &lt;strong&gt;A records&lt;/strong&gt; then you may need to remove and re-add your custom subdomain from your repository's settings. This will generate you a certificate for your domain. To do this, firstly go to your repository settings.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Screenshot of repository settings" src="/images/repositorysettings.png"&gt;&lt;/p&gt;
@@ -2340,24 +2340,24 @@ United Kingdom  &lt;/p&gt;
 &lt;p&gt;After doing this you will need to wait about an hour, but after that you should be able to go to &lt;code&gt;https://siteinthecustomdomainbox.com&lt;/code&gt; and see a green padlock in the address bar. If the domain you put in the "Custom domain" box had a &lt;code&gt;www.&lt;/code&gt; in front of it, then you will need to add that to the URL when visiting your site else it won't work.&lt;/p&gt;
 &lt;p&gt;For full and up to date instructions on the above see &lt;a href="https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/"&gt;GitHub's documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;One thing to note is that HTTPS will only work for either &lt;code&gt;www.yoursite.com&lt;/code&gt; or &lt;code&gt;yoursite.com&lt;/code&gt; but not both depending on which one you put in the "Custom domain" box. GitHub are aware of the issue, but haven't given any public timeline for fixing it, see &lt;a href="https://github.community/t5/GitHub-Pages/Does-GitHub-Pages-Support-HTTPS-for-www-and-subdomains/td-p/7116"&gt;this GitHub Community thread&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id="if-something-didnt-work"&gt;If something didn't work&lt;/h1&gt;
+&lt;h1 id="if-something-didnt-work"&gt;If something didn't work&lt;a class="headerlink" href="#if-something-didnt-work" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;GitHub have a really useful &lt;a href="https://help.github.com/articles/troubleshooting-custom-domains/"&gt;troubleshooting guide&lt;/a&gt; for custom domains and HTTPS.&lt;/p&gt;</content><category term="Tutorials"></category><category term="Github Pages"></category><category term="DNS"></category></entry><entry><title>5 Mistakes companies make recruiting software interns</title><link href="https://www.cameronmacleod.com/blog/recruiting-software-interns" rel="alternate"></link><published>2018-11-14T00:00:00+00:00</published><updated>2018-11-14T00:00:00+00:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-11-14:/blog/recruiting-software-interns</id><summary type="html">&lt;p&gt;August to November is internship application season for computer science undergraduates and over the past few months I've been applying to a good number of internships myself. Through these applications I've learnt a few things about what makes for a good recruitment process and what doesn't and I hope to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;August to November is internship application season for computer science undergraduates and over the past few months I've been applying to a good number of internships myself. Through these applications I've learnt a few things about what makes for a good recruitment process and what doesn't and I hope to share a few of them here.&lt;/p&gt;
 &lt;p&gt;Having a good process is really important in software engineering roles because candidates hold so much power. A good candidate will be progressing with at least 3 or 4 companies that are likely to hire them at any one time. If they find any reason to dismiss your company, then they will. Below I've listed five common mistakes I've seen in recruiting processes and why each one is likely to lose you a good candidate.&lt;/p&gt;
-&lt;h1 id="1-timing-the-process-wrong"&gt;1. Timing the process wrong&lt;/h1&gt;
+&lt;h1 id="1-timing-the-process-wrong"&gt;1. Timing the process wrong&lt;a class="headerlink" href="#1-timing-the-process-wrong" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;The big companies that recruit computer science interns (Google, Amazon, Facebook etc) tend to start their processes around September. This means that all the candidates they wanted have been snapped up by December at the latest. If you are starting your recruiting process any later than September, then you are losing a lot of good candidates to bigger companies that got in earlier.&lt;/p&gt;
 &lt;p&gt;The earlier you list your positions, the better. If a candidate receives an offer from you whilst they are only in an early stage of the process with other companies, then they are much more likely to take your position. Of course, the same applies to other companies, which makes it even more necessary to get in early.&lt;/p&gt;
 &lt;p&gt;All this is not to say that there aren't still good candidates left later on, it's just that you will have a harder time finding them. When a candidate receives an offer, they're likely to take it.&lt;/p&gt;
-&lt;h1 id="2-bad-communication"&gt;2. Bad communication&lt;/h1&gt;
+&lt;h1 id="2-bad-communication"&gt;2. Bad communication&lt;a class="headerlink" href="#2-bad-communication" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;There is nothing worse from a candidate's perspective than not hearing anything back from an application. Not being clear on what happens next in a recruitment process comes in a close second. It's crucial when recruiting to be prompt in replying to candidates and exceedingly clear on what the process will entail.&lt;/p&gt;
 &lt;p&gt;Often companies make this mistake by opening applications for a position, stockpiling them and then come back to review them a few weeks later. Alongside being an unpleasant candidate experience, this will also lose you candidates to other companies that have reviewed and made offers faster.&lt;/p&gt;
 &lt;p&gt;In terms of making sure the candidate is aware of what the process entails, it's generally a good idea to let them know as early as possible in an email that lists the steps, and then reinforce this at the end of every step. Candidates really appreciate having all the information and will reward you for your effort with a better image of your organisation.&lt;/p&gt;
-&lt;h1 id="3-unhelpful-interviews"&gt;3. Unhelpful interviews&lt;/h1&gt;
+&lt;h1 id="3-unhelpful-interviews"&gt;3. Unhelpful interviews&lt;a class="headerlink" href="#3-unhelpful-interviews" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;An interview is your best chance to get to know the candidate and their experience. Something that's often overlooked, however, is that it's also your best chance to sell the candidate your position.&lt;/p&gt;
 &lt;p&gt;Lists of what is important to software engineers in their job often start with working with smart colleagues. For the candidate to know that your team are excellent at what they do, it's important that the questions they get asked in interview are smart and relevant. Asking candidates to recite some facts from a textbook is unhelpful for you and them, but asking them to solve a problem that's relevant to your business both gives you greater insight into them and demonstrates your team's skill.&lt;/p&gt;
-&lt;h1 id="4-not-reimbursing-travel"&gt;4. Not reimbursing travel&lt;/h1&gt;
+&lt;h1 id="4-not-reimbursing-travel"&gt;4. Not reimbursing travel&lt;a class="headerlink" href="#4-not-reimbursing-travel" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Hiring software engineers is expensive. The amount of recruiting and engineering time that goes into a single candidate is huge. But the reason for this is that hiring the wrong engineer is even more expensive. So why would you vastly narrow your pool of candidates and exclude many good engineers by not paying for a train fare or flight? The price will pale in comparison to what you're already spending on the candidate. Personally I would not attend an interview without travel reimbursement and I know many people that feel the same.&lt;/p&gt;
 &lt;p&gt;This is also a problem in terms of recruiting diverse candidates. I'm sure that I don't need to go into the benefits of a diverse workforce, but not reimbursing travel expenses reduces the diversity of your talent pool. Only candidates from the local area, or those who can afford to travel would then attend. Assuming that you'll find enough good engineers this way can be a costly mistake.&lt;/p&gt;
-&lt;h1 id="5-ignoring-early-year-undergraduates"&gt;5. Ignoring early year undergraduates&lt;/h1&gt;
+&lt;h1 id="5-ignoring-early-year-undergraduates"&gt;5. Ignoring early year undergraduates&lt;a class="headerlink" href="#5-ignoring-early-year-undergraduates" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;This is quite possibly the most common mistake I see companies making today. A candidate not in their penultimate year of study can have an awful experience with all the auto-rejections and non-replies sent their way. This is a real shame because there are a lot of really good candidates that get ignored by companies that prefer to hire penultimate year students.&lt;/p&gt;
 &lt;p&gt;Understandably, some companies run internships for the express purpose of channelling interns into their graduate program. The argument goes that candidates are more likely to return for a graduate job if they get the offer just after their internship ends and you can only offer graduate jobs to students expecting to graduate the following year. Whilst this is true, I would disagree with this implying excluding earlier year candidates because in my opinion the early bird gets the worm. If you are a company that doesn't ignore non-penultimate year students then those early students will have a more favourable image of you. On top of this many interns return for another internship at the same company, meaning you still get the funnelling effect, just they're even more productive when they join full time due to the extra experience working in your environment.&lt;/p&gt;
 &lt;p&gt;It's also worth mentioning that a lot of the most talented students I know are not penultimate-year. Whilst university is valuable, some students have been programming for years beforehand and come into university well above their expected level. It would be a shame to ignore these candidates, especially at a time in their career when other companies are less interested.&lt;/p&gt;
@@ -2375,21 +2375,21 @@ United Kingdom  &lt;/p&gt;
 &lt;p&gt;If you found this useful or interesting, why not &lt;a href="https://twitter.com/notexactlyawe"&gt;follow me on Twitter&lt;/a&gt;?&lt;/p&gt;</content><category term="Blogging"></category><category term="Career"></category><category term="Recruiting"></category></entry><entry><title>How we ran Welcome Week events</title><link href="https://www.cameronmacleod.com/blog/running-freshers-events" rel="alternate"></link><published>2018-10-06T00:00:00+01:00</published><updated>2018-10-06T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2018-10-06:/blog/running-freshers-events</id><summary type="html">&lt;p&gt;At the University of Edinburgh we call the week before lectures begin each year Welcome Week. It's designed as a time for new students to meet each other and get settled into university and often a new city. Most societies will run events to try and attract new students to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;At the University of Edinburgh we call the week before lectures begin each year Welcome Week. It's designed as a time for new students to meet each other and get settled into university and often a new city. Most societies will run events to try and attract new students to join them and we (&lt;a href="http://ears-edi.com/"&gt;EaRS&lt;/a&gt;) were no different. After all, a society dies when no-one is interested any more.&lt;/p&gt;
 &lt;p&gt;I wanted to write down some of our experience running events during Welcome Week because it is different to running events any other time of the year and it may be useful to anyone who is new to running a society in future. If you are not running a society, hopefully it should be an interesting insight into what goes on behind the scenes.&lt;/p&gt;
 &lt;p&gt;We ran three separate events during Welcome Week 2018. There was a pub quiz, a workshop and an evening of board games. We attempted to make each event as inclusive to various skill levels as possible, because we wanted to attract first year undergraduates and the level of technical knowledge amongst new students varies wildly.&lt;/p&gt;
-&lt;h2 id="choosing-events-to-run"&gt;Choosing events to run&lt;/h2&gt;
+&lt;h2 id="choosing-events-to-run"&gt;Choosing events to run&lt;a class="headerlink" href="#choosing-events-to-run" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It's important to be as inclusive as possible during your first events as you want to encourage people to join whatever their experience level. For this reason, we chose to run two socials alongside our workshop, which everyone could turn up to and didn't reward technical knowledge to level the playing field. The workshop was aimed squarely at beginners as well. This is especially important for technical societies like ours, since we can often seem intimidating to beginners.&lt;/p&gt;
-&lt;h4 id="mistake-1-wrong-level-of-workshop"&gt;Mistake #1 - Wrong level of workshop&lt;/h4&gt;
+&lt;h4 id="mistake-1-wrong-level-of-workshop"&gt;Mistake #1 - Wrong level of workshop&lt;a class="headerlink" href="#mistake-1-wrong-level-of-workshop" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;The workshop that we ran was aimed at complete programming beginners. We decided to do this since we weren't sure what skill level the freshers coming in would be at. Unfortunately we ended up attracting a lot of experienced people to the workshop and had to split it into two sessions at the same time; one for beginners and one for more advanced people. This made it harder to run the workshop as we could give less attention to each group.&lt;/p&gt;
-&lt;h6 id="potential-solutions"&gt;Potential solutions&lt;/h6&gt;
+&lt;h6 id="potential-solutions"&gt;Potential solutions&lt;a class="headerlink" href="#potential-solutions" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h6&gt;
 &lt;ul&gt;
 &lt;li&gt;More heavily emphasise the beginner nature of the event in the advertising.&lt;/li&gt;
 &lt;li&gt;Advertise the event through other tangentially related societies with potential interests in learning to code. This would attract people that wouldn't have gone out of their way to find a technical society like ours.&lt;/li&gt;
 &lt;li&gt;Keep the event at a beginner level, but in a less popular topic such as electronics or mechanical engineering.  &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="advertising-events"&gt;Advertising events&lt;/h2&gt;
+&lt;h2 id="advertising-events"&gt;Advertising events&lt;a class="headerlink" href="#advertising-events" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Our student union is the best place to advertise fresher's events in Edinburgh as they put a lot of money into printing booklets and directing students towards the places to find these events. Because we submitted late we didn't get to make full use of this, but we still got a few sign-ups from the online version of their events brochure.&lt;/p&gt;
-&lt;h4 id="mistake-2-late-submission-to-the-student-union"&gt;Mistake #2 - Late submission to the student union&lt;/h4&gt;
+&lt;h4 id="mistake-2-late-submission-to-the-student-union"&gt;Mistake #2 - Late submission to the student union&lt;a class="headerlink" href="#mistake-2-late-submission-to-the-student-union" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;This mistake fell squarely on my shoulders. In April before the last academic year ended, our student union sent us an email with details on how to include our Welcome Week events in their advertising. I didn't pay enough attention to the email to see this and so we missed the deadline for submission by a few months.&lt;/p&gt;
-&lt;h5 id="potential-solutions_1"&gt;Potential solutions&lt;/h5&gt;
+&lt;h5 id="potential-solutions_1"&gt;Potential solutions&lt;a class="headerlink" href="#potential-solutions_1" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h5&gt;
 &lt;ul&gt;
 &lt;li&gt;Read all emails from the student union.&lt;/li&gt;
 &lt;li&gt;Find a better secretary.&lt;/li&gt;
@@ -2455,15 +2455,15 @@ United Kingdom  &lt;/p&gt;
 &lt;p&gt;&lt;img alt="The main page for Cog" src="/images/cog_main_page.png" title="The main page for Cog"&gt;&lt;/p&gt;
 &lt;p&gt;However, I wasn’t sure whether the problem was with my script or with Cog itself. To investigate this, I started Googling around profiling in Flask (the framework Cog is written in) and &lt;a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvi-debugging-testing-and-profiling"&gt;this article&lt;/a&gt; pointed me to some &lt;a href="http://werkzeug.pocoo.org/docs/0.14/contrib/profiler/"&gt;Werkzeug middleware&lt;/a&gt; that did what I wanted. The output is below from one of the endpoint calls - pay attention to the top call.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;PATH&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;inventory&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
-&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="mi"&gt;1761654&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;calls&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1645404&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;primitive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;calls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m m-Double"&gt;2.8&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;seconds&lt;/span&gt;
+&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="mi"&gt;1761654&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;calls&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1645404&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;primitive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;calls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m m-Double"&gt;2.829&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;seconds&lt;/span&gt;
 
 &lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nx"&gt;Ordered&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;by&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;internal&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;time&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;call&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;count&lt;/span&gt;
 &lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nx"&gt;List&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;reduced&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1183&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;due&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;restriction&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 
 &lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nx"&gt;ncalls&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;tottime&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;percall&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;cumtime&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;percall&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nx"&gt;lineno&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;function&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="mi"&gt;759&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.3&lt;/span&gt;&lt;span class="mi"&gt;75&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.3&lt;/span&gt;&lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;method&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;execute&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;psycopg2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;cursor&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;objects&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="mi"&gt;4536&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0&lt;/span&gt;&lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.2&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;cameron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;python2&lt;/span&gt;&lt;span class="m m-Double"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sqlalchemy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;schema&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;898&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="mi"&gt;6426&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0&lt;/span&gt;&lt;span class="mi"&gt;56&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0&lt;/span&gt;&lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.0&lt;/span&gt;&lt;span class="mi"&gt;00&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;cameron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;python2&lt;/span&gt;&lt;span class="m m-Double"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sqlalchemy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;674&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;__getattr__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="mi"&gt;759&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.375&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.000&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.377&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;method&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;execute&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;psycopg2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;cursor&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;objects&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="mi"&gt;4536&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.062&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.000&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.280&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;cameron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;python2&lt;/span&gt;&lt;span class="m m-Double"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sqlalchemy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;schema&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;898&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="mi"&gt;6426&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.056&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.000&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.070&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="m m-Double"&gt;0.000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;cameron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;created&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;cog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;python2&lt;/span&gt;&lt;span class="m m-Double"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sqlalchemy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;674&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;__getattr__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -2508,16 +2508,16 @@ United Kingdom  &lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The final code that we deployed is now sitting on &lt;a href="https://github.com/notexactlyawe/cog"&gt;GitHub&lt;/a&gt; so you can feel free to take a look.&lt;/p&gt;</content><category term="Blogging"></category><category term="Python"></category><category term="Databases"></category><category term="SQLAlchemy"></category></entry><entry><title>Useful links relating to abracadabra</title><link href="https://www.cameronmacleod.com/blog/abracadabra-links" rel="alternate"></link><published>2016-07-18T00:00:00+01:00</published><updated>2016-07-18T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-07-18:/blog/abracadabra-links</id><summary type="html">&lt;p&gt;Here is a collection of links relating to abracadabra that may be useful for anyone looking to do something similar.&lt;/p&gt;
-&lt;h2 id="github-repositories"&gt;Github Repositories&lt;/h2&gt;
+&lt;h2 id="github-repositories"&gt;Github Repositories&lt;a class="headerlink" href="#github-repositories" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/worldveil/dejavu"&gt;dejavu&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="academic-papers"&gt;Academic Papers&lt;/h2&gt;
+&lt;h2 id="academic-papers"&gt;Academic Papers&lt;a class="headerlink" href="#academic-papers" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://musicweb.ucsd.edu/~sdubnov/CATbox/Reader/ThumbnailingMM05.pdf"&gt;Audio Thumbnailing of Popular Music Using Chroma-Based Representations&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The above paper was more about feature detection for search and retrieval as opposed to robust …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is a collection of links relating to abracadabra that may be useful for anyone looking to do something similar.&lt;/p&gt;
-&lt;h2 id="github-repositories"&gt;Github Repositories&lt;/h2&gt;
+&lt;h2 id="github-repositories"&gt;Github Repositories&lt;a class="headerlink" href="#github-repositories" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://github.com/notexactlyawe/abracadabra"&gt;abracadabra&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/worldveil/dejavu"&gt;dejavu&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="academic-papers"&gt;Academic Papers&lt;/h2&gt;
+&lt;h2 id="academic-papers"&gt;Academic Papers&lt;a class="headerlink" href="#academic-papers" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://musicweb.ucsd.edu/~sdubnov/CATbox/Reader/ThumbnailingMM05.pdf"&gt;Audio Thumbnailing of Popular Music Using Chroma-Based Representations&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The above paper was more about feature detection for search and retrieval as opposed to robust fingerprinting for search after distortion.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://slsp.kaist.ac.kr/~swkim/papers/journal_TIFS_2009.pdf"&gt;Pairwise Boosted Audio Fingerprint&lt;/a&gt;&lt;/p&gt;
@@ -2527,13 +2527,13 @@ United Kingdom  &lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf"&gt;An Industrial Strength Audio Search Algorithm&lt;/a&gt; - The original Shazam paper&lt;/p&gt;
 &lt;p&gt;Papers referencing Wang:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://scholar.google.co.uk/scholar?client=ubuntu&amp;amp;channel=fs&amp;amp;oe=utf-8&amp;amp;gfe_rd=cr&amp;amp;um=1&amp;amp;ie=UTF-8&amp;amp;lr&amp;amp;cites=11824032630980601393"&gt;https://scholar.google.co.uk/scholar?client=ubuntu&amp;amp;channel=fs&amp;amp;oe=utf-8&amp;amp;gfe_rd=cr&amp;amp;um=1&amp;amp;ie=UTF-8&amp;amp;lr&amp;amp;cites=11824032630980601393&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="similar-projects"&gt;Similar Projects&lt;/h2&gt;
+&lt;h2 id="similar-projects"&gt;Similar Projects&lt;a class="headerlink" href="#similar-projects" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Probably the closest in scope and implementation is &lt;a href="https://github.com/worldveil/dejavu"&gt;dejavu&lt;/a&gt; by Will Drevo.&lt;/p&gt;
 &lt;p&gt;An algorithm that takes a slightly different approach is &lt;a href="https://acoustid.org/chromaprint"&gt;Chromaprint&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://wiki.musicbrainz.org/Fingerprinting"&gt;Musicbrainz&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://aubio.org/news/20091111-2339_shazam"&gt;Playing with Shazam fingerprints&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://echoprint.me/"&gt;Echoprint&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="use-cases"&gt;Use Cases&lt;/h2&gt;
+&lt;h2 id="use-cases"&gt;Use Cases&lt;a class="headerlink" href="#use-cases" title="Link to heading"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://static1.squarespace.com/static/53f7940ae4b05c506d396373/t/5669c81ba2bab86d89ef3dec/1449773083824/Koh_30x40.pdf"&gt;Alignment of videos of same event using audio fingerprinting&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://news.ycombinator.com/item?id=8303713"&gt;De-duplicating music library&lt;/a&gt; &lt;/p&gt;</content><category term="Link collections"></category><category term="Python"></category><category term="abracadabra"></category></entry><entry><title>How to read WAVE files in Python</title><link href="https://www.cameronmacleod.com/blog/reading-wave-python" rel="alternate"></link><published>2016-04-07T00:00:00+01:00</published><updated>2016-04-07T00:00:00+01:00</updated><author><name>Cameron MacLeod</name></author><id>tag:www.cameronmacleod.com,2016-04-07:/blog/reading-wave-python</id><summary type="html">&lt;p&gt;Any project that uses audio will usually start out using WAVE files for its on-disk presence, and as with many things in Python, there's a standard library module for that. Now don't get me wrong in the rest of this article - &lt;code&gt;wave&lt;/code&gt; does the job. The thing is that it …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Any project that uses audio will usually start out using WAVE files for its on-disk presence, and as with many things in Python, there's a standard library module for that. Now don't get me wrong in the rest of this article - &lt;code&gt;wave&lt;/code&gt; does the job. The thing is that it can be a bit confusing to get started with and it's not &lt;em&gt;always&lt;/em&gt; the best tool for the job. This post will go over my journey in reading WAVEs and the various approaches I found.&lt;/p&gt;
 &lt;p&gt;When you read &lt;a href="https://docs.python.org/2/library/wave.html"&gt;the documentation&lt;/a&gt; for &lt;code&gt;wave&lt;/code&gt;, you quickly find the &lt;code&gt;readframes()&lt;/code&gt; function for reading the meat of the file. This just as quickly poses a problem, that of how to parse the data it returns.&lt;/p&gt;
